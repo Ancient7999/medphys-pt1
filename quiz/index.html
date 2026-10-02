@@ -242,13 +242,21 @@ html[data-cursor="beam-v"]{--cur-w:3px;--cur-h:22px;--cur-border:none;--cur-radi
 html[data-cursor="beam-h"]{--cur-w:26px;--cur-h:3px;--cur-border:none;--cur-radius:1px;--cur-bg:var(--accent-1);--cur-blend:normal;--cur-shadow:0 0 12px rgba(var(--accent-0-rgb),.4);--cur-core-w:6px;--cur-core-h:6px;--cur-core-bg:var(--accent-0);--cur-core-radius:1px;--cur-active-w:40px;--cur-active-h:5px;--cur-active-bg:var(--accent-0)}
 html[data-cursor="diamond"]{--cur-w:22px;--cur-h:22px;--cur-border:2px solid var(--accent-0);--cur-radius:2px;--cur-rot:rotate(45deg);--cur-blend:normal;--cur-shadow:0 0 14px rgba(var(--accent-0-rgb),.4);--cur-core-w:6px;--cur-core-h:6px;--cur-core-bg:var(--accent-1);--cur-core-radius:1px;--cur-core-rot:rotate(45deg);--cur-active-w:34px;--cur-active-h:34px;--cur-active-radius:2px}
 html[data-cursor="comma"]{--cur-w:18px;--cur-h:18px;--cur-border:2px solid var(--accent-0);--cur-radius:50% 50% 50% 2px;--cur-rot:rotate(-20deg);--cur-blend:normal;--cur-shadow:0 0 12px rgba(var(--accent-0-rgb),.35);--cur-core-w:5px;--cur-core-h:5px;--cur-core-bg:var(--accent-1);--cur-core-radius:50%;--cur-active-w:32px;--cur-active-h:32px;--cur-active-radius:50% 50% 50% 4px}
-html[data-cursor="system"]{--cur-w:18px;--cur-h:26px;--cur-border:none;--cur-radius:0;--cur-bg:linear-gradient(160deg,#ffffff 0 46%,var(--accent-0) 46% 100%);--cur-blend:normal;--cur-shadow:1px 2px 6px rgba(0,0,0,.5),0 0 12px rgba(var(--accent-0-rgb),.35);--cur-core-w:0px;--cur-core-h:0px;--cur-core-bg:transparent;--cur-active-w:20px;--cur-active-h:28px;--cur-active-bg:linear-gradient(160deg,#ffffff 0 46%,var(--accent-1) 46% 100%);--cur-active-border:transparent}
+html[data-cursor="system"]{--cur-w:18px;--cur-h:26px;--cur-border:none;--cur-radius:0;--cur-bg:var(--accent-0);--cur-blend:normal;--cur-shadow:none;--cur-core-w:0px;--cur-core-h:0px;--cur-core-bg:transparent;--cur-active-w:20px;--cur-active-h:28px;--cur-active-bg:var(--accent-1);--cur-active-border:transparent}
 html[data-cursor="system"] #cursor,
 html[data-cursor="system"] #cursor.active{
   border:none!important;border-radius:0!important;
+  background:var(--accent-0)!important;
   clip-path:polygon(0% 0%,0% 100%,34% 70%,48% 100%,60% 95%,42% 62%,78% 62%);
   transform:translate(0,0)!important;
   mix-blend-mode:normal!important;
+  /* fill + outline both accent (clip-path ignores box-shadow; use drop-shadow) */
+  filter:drop-shadow(0 0 0.6px var(--accent-0)) drop-shadow(0 0 0.6px var(--accent-0)) drop-shadow(1px 2px 3px rgba(0,0,0,.45))!important;
+  box-shadow:none!important;
+}
+html[data-cursor="system"] #cursor.active{
+  background:var(--accent-1)!important;
+  filter:drop-shadow(0 0 0.6px var(--accent-1)) drop-shadow(0 0 0.6px var(--accent-1)) drop-shadow(1px 2px 3px rgba(0,0,0,.45))!important;
 }
 html[data-cursor="system"] #cursor.core,
 html[data-cursor="system"] #cursor.core.active{display:none!important;opacity:0!important;width:0!important;height:0!important}

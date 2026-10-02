@@ -190,7 +190,7 @@ button { cursor: pointer; }
 .preview-beam-h{width:22px;height:3px;border-radius:1px;background:var(--accent-1);box-shadow:0 0 8px rgba(var(--accent-0-rgb),.5);}
 .preview-diamond{width:16px;height:16px;border:2px solid var(--accent-0);border-radius:2px;transform:rotate(45deg);}
 .preview-comma{width:16px;height:16px;border:2px solid var(--accent-0);border-radius:50% 50% 50% 2px;transform:rotate(-20deg);}
-.preview-system{width:14px;height:18px;background:linear-gradient(160deg,#fff 0 46%,var(--accent-0) 46% 100%);clip-path:polygon(0% 0%,0% 100%,34% 70%,48% 100%,60% 95%,42% 62%,78% 62%);box-shadow:1px 1px 4px rgba(0,0,0,.35);font-size:0;color:transparent;}
+.preview-system{width:14px;height:18px;background:var(--accent-0);clip-path:polygon(0% 0%,0% 100%,34% 70%,48% 100%,60% 95%,42% 62%,78% 62%);filter:drop-shadow(0 0 0.5px var(--accent-0)) drop-shadow(1px 1px 2px rgba(0,0,0,.4));font-size:0;color:transparent;}
 .cursor-skins-disabled{opacity:.42;pointer-events:none;filter:grayscale(.25);}
 
 

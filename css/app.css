@@ -120,10 +120,17 @@ a { color: var(--accent-0); }
 .ps2-menu-item:hover,
 .ps2-menu-item:focus-visible,
 .ps2-menu-item.focused {
-  transform: translateX(8px);
-  background: linear-gradient(90deg, rgba(var(--accent-0-rgb), 0.22) 0%, rgba(var(--accent-0-rgb), 0.05) 100%);
-  box-shadow: 0 0 32px rgba(var(--accent-0-rgb), 0.55), inset 0 0 18px rgba(var(--accent-0-rgb), 0.16);
+  transform: translateX(8px) !important;
+  background: linear-gradient(90deg, rgba(var(--accent-0-rgb), 0.28) 0%, rgba(var(--accent-0-rgb), 0.08) 100%) !important;
+  border-color: rgba(var(--accent-0-rgb), 0.7);
+  border-left-color: var(--accent-0);
+  box-shadow:
+    0 0 32px rgba(var(--accent-0-rgb), 0.55),
+    0 0 56px rgba(var(--accent-0-rgb), 0.28),
+    inset 0 0 18px rgba(var(--accent-0-rgb), 0.16) !important;
   outline: none;
+  opacity: 1;
+  filter: brightness(1.06);
 }
 .ps2-menu-item .ps2-icon {
   font-size: 1.75em; color: var(--accent-0);
@@ -147,11 +154,25 @@ a { color: var(--accent-0); }
   box-shadow: none !important;
 }
 .ps2-menu-item.quiet:hover,
-.ps2-menu-item.quiet:focus-visible {
-  transform: translateX(4px);
-  opacity: 0.9;
-  box-shadow: 0 0 12px rgba(var(--accent-0-rgb), 0.18) !important;
-  background: linear-gradient(90deg, rgba(var(--accent-0-rgb), 0.08) 0%, rgba(26, 26, 26, 0.5) 100%) !important;
+.ps2-menu-item.quiet:focus-visible,
+.ps2-menu-item.quiet.focused {
+  transform: translateX(8px) !important;
+  opacity: 1 !important;
+  border-color: rgba(var(--accent-0-rgb), 0.55);
+  border-left-color: var(--accent-0);
+  box-shadow:
+    0 0 32px rgba(var(--accent-0-rgb), 0.55),
+    0 0 56px rgba(var(--accent-0-rgb), 0.28),
+    inset 0 0 18px rgba(var(--accent-0-rgb), 0.16) !important;
+  background: linear-gradient(90deg, rgba(var(--accent-0-rgb), 0.22) 0%, rgba(var(--accent-0-rgb), 0.06) 100%) !important;
+  filter: brightness(1.06);
+  outline: none;
+}
+.ps2-menu-item.quiet.focused .ps2-icon,
+.ps2-menu-item.quiet:hover .ps2-icon,
+.ps2-menu-item.quiet:focus-visible .ps2-icon {
+  color: var(--accent-0);
+  filter: drop-shadow(0 0 6px rgba(var(--accent-0-rgb), 0.55));
 }
 .ps2-menu-item.quiet .ps2-icon { color: var(--col-text-muted); filter: grayscale(40%); }
 
@@ -166,13 +187,23 @@ a { color: var(--accent-0); }
 .ps2-menu-item.neutral:hover,
 .ps2-menu-item.neutral:focus-visible,
 .ps2-menu-item.neutral.focused {
-  transform: translateX(4px);
-  opacity: 0.9;
-  background: linear-gradient(90deg, rgba(var(--accent-0-rgb), 0.1) 0%, rgba(26, 26, 26, 0.52) 100%) !important;
-  border-color: rgba(var(--accent-0-rgb), 0.32);
-  border-left-color: rgba(var(--accent-0-rgb), 0.65);
-  box-shadow: 0 0 12px rgba(var(--accent-0-rgb), 0.2) !important;
+  transform: translateX(8px) !important;
+  opacity: 1 !important;
+  background: linear-gradient(90deg, rgba(var(--accent-0-rgb), 0.22) 0%, rgba(var(--accent-0-rgb), 0.06) 100%) !important;
+  border-color: rgba(var(--accent-0-rgb), 0.55);
+  border-left-color: var(--accent-0);
+  box-shadow:
+    0 0 32px rgba(var(--accent-0-rgb), 0.55),
+    0 0 56px rgba(var(--accent-0-rgb), 0.28),
+    inset 0 0 18px rgba(var(--accent-0-rgb), 0.16) !important;
+  filter: brightness(1.06);
   outline: none;
+}
+.ps2-menu-item.neutral.focused .ps2-icon,
+.ps2-menu-item.neutral:hover .ps2-icon,
+.ps2-menu-item.neutral:focus-visible .ps2-icon {
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(var(--accent-0-rgb), 0.65));
 }
 .ps2-menu-item.neutral .ps2-icon {
   color: var(--accent-0);
@@ -239,7 +270,8 @@ a { color: var(--accent-0); }
   transition: opacity 0.2s;
 }
 .ps2-menu-item.hero:hover::after,
-.ps2-menu-item.hero:focus-visible::after {
+.ps2-menu-item.hero:focus-visible::after,
+.ps2-menu-item.hero.focused::after {
   opacity: 1;
   animation: hero-shine 0.85s ease forwards;
 }
@@ -248,13 +280,17 @@ a { color: var(--accent-0); }
   to { left: 120%; }
 }
 .ps2-menu-item.hero:hover,
-.ps2-menu-item.hero:focus-visible {
-  transform: translateX(10px) scale(1.015);
-  filter: brightness(1.08);
+.ps2-menu-item.hero:focus-visible,
+.ps2-menu-item.hero.focused {
+  transform: translateX(10px) scale(1.015) !important;
+  filter: brightness(1.1);
+  border-color: rgba(var(--accent-0-rgb), 0.85);
   box-shadow:
     0 0 48px rgba(var(--accent-0-rgb), 0.75),
     0 8px 32px rgba(var(--accent-0-rgb), 0.35),
+    0 0 72px rgba(var(--accent-0-rgb), 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  outline: none;
 }
 
 .ps2-tip-bar {

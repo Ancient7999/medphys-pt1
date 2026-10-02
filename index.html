@@ -99,7 +99,8 @@
   document.getElementById('menuAbout').addEventListener('click', showAbout);
   document.getElementById('aboutBack').addEventListener('click', showHome);
 
-  document.addEventListener('keydown', function(e){
+  /* window (not document): cursor-idle hideCursor runs on document first and clears .focused; ATC Math restores via window */
+  window.addEventListener('keydown', function(e){
     if(about.style.display !== 'none' && about.style.display !== ''){
       if(e.key === 'Escape'){ e.preventDefault(); showHome(); }
       return;
