@@ -341,14 +341,14 @@ html.cursor-ibeam #cursor.core,
 html.cursor-ibeam #cursor.core.active{display:none!important;opacity:0!important;width:0!important;height:0!important}
 
 /* Native fallback when custom cursor off; hide OS cursor on these while custom is on */
-html[data-custom-cursor="on"] #accent-strength-slider,
-html[data-custom-cursor="on"] .settings-modal input[type="range"],
-html[data-custom-cursor="on"] #accent-color-picker,
-html[data-custom-cursor="on"] #accent-hex-input{cursor:none!important}
-html[data-custom-cursor="off"] #accent-strength-slider,
-html[data-custom-cursor="off"] .settings-modal input[type="range"]{cursor:ew-resize}
-html[data-custom-cursor="off"] #accent-color-picker{cursor:pointer}
-html[data-custom-cursor="off"] #accent-hex-input{cursor:text}
+html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) #accent-strength-slider,
+html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) .settings-modal input[type="range"],
+html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) #accent-color-picker,
+html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) #accent-hex-input{cursor:none!important}
+html[data-custom-cursor="off"] #accent-strength-slider,html[data-pointer-input="touch"] #accent-strength-slider,
+html[data-custom-cursor="off"] .settings-modal input[type="range"],html[data-pointer-input="touch"] .settings-modal input[type="range"]{cursor:ew-resize}
+html[data-custom-cursor="off"] #accent-color-picker,html[data-pointer-input="touch"] #accent-color-picker{cursor:pointer}
+html[data-custom-cursor="off"] #accent-hex-input,html[data-pointer-input="touch"] #accent-hex-input{cursor:text}
 
 
 /* Display quality + system cursor overrides */
@@ -381,55 +381,55 @@ html[data-quality="basic"] .timer-dock{
   background:#121820!important;
   border-color:rgba(148,163,184,.35)!important;
 }
-html[data-custom-cursor="off"] body,
-html[data-custom-cursor="off"] button,
-html[data-custom-cursor="off"] .opt,
-html[data-custom-cursor="off"] .nav-btn,
-html[data-custom-cursor="off"] .fs-btn,
-html[data-custom-cursor="off"] .card,
-html[data-custom-cursor="off"] .mood-live,
-html[data-custom-cursor="off"] .mood-pick,
-html[data-custom-cursor="off"] .mood-tray,
-html[data-custom-cursor="off"] .timer-dock-main,
-html[data-custom-cursor="off"] .mood-reset-item,
-html[data-custom-cursor="off"] .mood-cursor-btn,
-html[data-custom-cursor="off"] .mood-tray-tools,
-html[data-custom-cursor="off"] .timer-dock,
-html[data-custom-cursor="off"] .chat-dock,
-html[data-custom-cursor="off"] .chat-toggle,
-html[data-custom-cursor="off"] .chat-minimize,
-html[data-custom-cursor="off"] .chat-send,
-html[data-custom-cursor="off"] .chat-channel-btn,
-html[data-custom-cursor="off"] .chat-channel-opt,
-html[data-custom-cursor="off"] .chat-channel-label,
-html[data-custom-cursor="off"] .chat-vis-btn,
-html[data-custom-cursor="off"] .chat-tool-btn,
-html[data-custom-cursor="off"] .chat-ac-item,
-html[data-custom-cursor="off"] .chat-icon-btn,
-html[data-custom-cursor="off"] .chat-friends-btn,
-html[data-custom-cursor="off"] .chat-friends-main,
-html[data-custom-cursor="off"] .chat-friends-x,
-html[data-custom-cursor="off"] .chat-friends-add,
-html[data-custom-cursor="off"] .chat-ac-add,
-html[data-custom-cursor="off"] .party-mini-chip,
-html[data-custom-cursor="off"] .party-timer-chip,
-html[data-custom-cursor="off"] .party-sync-timers-btn,
-html[data-custom-cursor="off"] .lobby-panel,
-html[data-custom-cursor="off"] .lobby-row,
-html[data-custom-cursor="off"] .lobby-seat-occ,
-html[data-custom-cursor="off"] .lobby-bench-chip,
-html[data-custom-cursor="off"] .kb-mode-btn,
-html[data-custom-cursor="off"] .pane-opt-btn,
-html[data-custom-cursor="off"] .mastery-dnsa-btn,
-html[data-custom-cursor="off"] .portal-card,
-html[data-custom-cursor="off"] .online-tile.open,
-html[data-custom-cursor="off"] .profile-switch{
+html[data-custom-cursor="off"] body,html[data-pointer-input="touch"] body,
+html[data-custom-cursor="off"] button,html[data-pointer-input="touch"] button,
+html[data-custom-cursor="off"] .opt,html[data-pointer-input="touch"] .opt,
+html[data-custom-cursor="off"] .nav-btn,html[data-pointer-input="touch"] .nav-btn,
+html[data-custom-cursor="off"] .fs-btn,html[data-pointer-input="touch"] .fs-btn,
+html[data-custom-cursor="off"] .card,html[data-pointer-input="touch"] .card,
+html[data-custom-cursor="off"] .mood-live,html[data-pointer-input="touch"] .mood-live,
+html[data-custom-cursor="off"] .mood-pick,html[data-pointer-input="touch"] .mood-pick,
+html[data-custom-cursor="off"] .mood-tray,html[data-pointer-input="touch"] .mood-tray,
+html[data-custom-cursor="off"] .timer-dock-main,html[data-pointer-input="touch"] .timer-dock-main,
+html[data-custom-cursor="off"] .mood-reset-item,html[data-pointer-input="touch"] .mood-reset-item,
+html[data-custom-cursor="off"] .mood-cursor-btn,html[data-pointer-input="touch"] .mood-cursor-btn,
+html[data-custom-cursor="off"] .mood-tray-tools,html[data-pointer-input="touch"] .mood-tray-tools,
+html[data-custom-cursor="off"] .timer-dock,html[data-pointer-input="touch"] .timer-dock,
+html[data-custom-cursor="off"] .chat-dock,html[data-pointer-input="touch"] .chat-dock,
+html[data-custom-cursor="off"] .chat-toggle,html[data-pointer-input="touch"] .chat-toggle,
+html[data-custom-cursor="off"] .chat-minimize,html[data-pointer-input="touch"] .chat-minimize,
+html[data-custom-cursor="off"] .chat-send,html[data-pointer-input="touch"] .chat-send,
+html[data-custom-cursor="off"] .chat-channel-btn,html[data-pointer-input="touch"] .chat-channel-btn,
+html[data-custom-cursor="off"] .chat-channel-opt,html[data-pointer-input="touch"] .chat-channel-opt,
+html[data-custom-cursor="off"] .chat-channel-label,html[data-pointer-input="touch"] .chat-channel-label,
+html[data-custom-cursor="off"] .chat-vis-btn,html[data-pointer-input="touch"] .chat-vis-btn,
+html[data-custom-cursor="off"] .chat-tool-btn,html[data-pointer-input="touch"] .chat-tool-btn,
+html[data-custom-cursor="off"] .chat-ac-item,html[data-pointer-input="touch"] .chat-ac-item,
+html[data-custom-cursor="off"] .chat-icon-btn,html[data-pointer-input="touch"] .chat-icon-btn,
+html[data-custom-cursor="off"] .chat-friends-btn,html[data-pointer-input="touch"] .chat-friends-btn,
+html[data-custom-cursor="off"] .chat-friends-main,html[data-pointer-input="touch"] .chat-friends-main,
+html[data-custom-cursor="off"] .chat-friends-x,html[data-pointer-input="touch"] .chat-friends-x,
+html[data-custom-cursor="off"] .chat-friends-add,html[data-pointer-input="touch"] .chat-friends-add,
+html[data-custom-cursor="off"] .chat-ac-add,html[data-pointer-input="touch"] .chat-ac-add,
+html[data-custom-cursor="off"] .party-mini-chip,html[data-pointer-input="touch"] .party-mini-chip,
+html[data-custom-cursor="off"] .party-timer-chip,html[data-pointer-input="touch"] .party-timer-chip,
+html[data-custom-cursor="off"] .party-sync-timers-btn,html[data-pointer-input="touch"] .party-sync-timers-btn,
+html[data-custom-cursor="off"] .lobby-panel,html[data-pointer-input="touch"] .lobby-panel,
+html[data-custom-cursor="off"] .lobby-row,html[data-pointer-input="touch"] .lobby-row,
+html[data-custom-cursor="off"] .lobby-seat-occ,html[data-pointer-input="touch"] .lobby-seat-occ,
+html[data-custom-cursor="off"] .lobby-bench-chip,html[data-pointer-input="touch"] .lobby-bench-chip,
+html[data-custom-cursor="off"] .kb-mode-btn,html[data-pointer-input="touch"] .kb-mode-btn,
+html[data-custom-cursor="off"] .pane-opt-btn,html[data-pointer-input="touch"] .pane-opt-btn,
+html[data-custom-cursor="off"] .mastery-dnsa-btn,html[data-pointer-input="touch"] .mastery-dnsa-btn,
+html[data-custom-cursor="off"] .portal-card,html[data-pointer-input="touch"] .portal-card,
+html[data-custom-cursor="off"] .online-tile.open,html[data-pointer-input="touch"] .online-tile.open,
+html[data-custom-cursor="off"] .profile-switch,html[data-pointer-input="touch"] .profile-switch{
   cursor:auto!important;
 }
-html[data-custom-cursor="off"] #cursor,
-html[data-custom-cursor="off"] #cursor.core{display:none!important}
-html[data-custom-cursor="off"] #cursorRandomBtn,
-html[data-custom-cursor="off"] .mood-cursor-hint{display:none!important}
+html[data-custom-cursor="off"] #cursor,html[data-pointer-input="touch"] #cursor,
+html[data-custom-cursor="off"] #cursor.core,html[data-pointer-input="touch"] #cursor.core{display:none!important}
+html[data-custom-cursor="off"] #cursorRandomBtn,html[data-pointer-input="touch"] #cursorRandomBtn,
+html[data-custom-cursor="off"] .mood-cursor-hint,html[data-pointer-input="touch"] .mood-cursor-hint{display:none!important}
 body{
   background:
     radial-gradient(ellipse var(--skin-glow-a, 90% 60%) at var(--skin-pos-a, 50% -20%), var(--bg-glow), transparent 60%),
@@ -1704,7 +1704,7 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   z-index:2;
   animation:skipSparkBack var(--skip-duration,.95s) ease-in-out infinite var(--skip-delay,0s);
 }
-html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-btn{cursor:none!important}
+html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) .match-item,html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) .q-nav-btn{cursor:none!important}
 
 
 .hub-view{max-width:1100px;margin:0 auto}
@@ -2223,7 +2223,7 @@ function tickFx(){
   ctx.globalAlpha=1; requestAnimationFrame(tickFx);
 }
 tickFx();
-function customCursorOn(){ return document.documentElement.getAttribute('data-custom-cursor')!=='off'; }
+function customCursorOn(){ var root=document.documentElement; return root.getAttribute('data-custom-cursor')!=='off' && root.getAttribute('data-pointer-input')!=='touch'; }
 const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove', e=>{ if(!customCursorOn()) return; document.querySelectorAll('#cursor').forEach(el=>{ el.style.left=e.clientX+'px'; el.style.top=e.clientY+'px'; }); });
 document.addEventListener('mousedown',()=>{ if(customCursorOn()&&cursor) cursor.classList.add('active'); });
@@ -3385,6 +3385,34 @@ function onDrawMove(ev){
   const dx=p.x-last.x, dy=p.y-last.y; if(dx*dx+dy*dy>=64) drawState.points.push(p);
   paintWires(layer, ensureMatchAns().wires||[], drawState);
 }
+/* Expanded hit pad for linking release (~28–40px). Distance-to-rect is the
+ * source of truth so near-misses register consistently; elementFromPoint alone
+ * is flaky at edges. Modest pad avoids stealing a neighboring choice. */
+const MATCH_HIT_PAD=34;
+function distPointToRect(x,y,r){
+  const dx=x<r.left?r.left-x:x>r.right?x-r.right:0;
+  const dy=y<r.top?r.top-y:y>r.bottom?y-r.bottom:0;
+  return Math.hypot(dx,dy);
+}
+function nearestOppositeMatchItem(clientX,clientY,fromSide){
+  const wantSide=fromSide==='L'?'R':'L';
+  const nodes=document.querySelectorAll('.match-item');
+  let best=null, bestDist=Infinity, bestCenter=Infinity;
+  for(let i=0;i<nodes.length;i++){
+    const el=nodes[i];
+    if(el.disabled || el.dataset.side!==wantSide) continue;
+    const r=el.getBoundingClientRect();
+    if(r.width<1||r.height<1) continue;
+    const d=distPointToRect(clientX,clientY,r);
+    if(d>MATCH_HIT_PAD) continue;
+    const cx=(r.left+r.right)/2, cy=(r.top+r.bottom)/2;
+    const dc=Math.hypot(clientX-cx, clientY-cy);
+    if(d<bestDist-0.01 || (Math.abs(d-bestDist)<0.01 && dc<bestCenter)){
+      best=el; bestDist=d; bestCenter=dc;
+    }
+  }
+  return best;
+}
 function onDrawUp(ev){
   if(!drawState) return;
   stopDragAutoScroll();
@@ -3400,8 +3428,8 @@ function onDrawUp(ev){
   // draw ends; solved terms are re-applied below as the only left glow.
   src.classList.remove('active');
   src.blur();
-  const under=document.elementFromPoint(ev.clientX, ev.clientY);
-  const hit=under&&under.closest?under.closest('.match-item'):null;
+  // Prefer distance-to-nearest opposite choice (expanded hit) over elementFromPoint.
+  const hit=nearestOppositeMatchItem(ev.clientX, ev.clientY, drawState.side);
   const svg=document.querySelector('.match-wires');
   const cur=ensureMatchAns();
   const pts=drawState.points.slice();

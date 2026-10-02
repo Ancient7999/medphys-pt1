@@ -5,8 +5,10 @@
   'use strict';
 
   function customCursorOn() {
-    var v = document.documentElement.getAttribute('data-custom-cursor');
-    return v !== 'off';
+    var root = document.documentElement;
+    if (root.getAttribute('data-custom-cursor') === 'off') return false;
+    if (root.getAttribute('data-pointer-input') === 'touch') return false;
+    return true;
   }
 
   if (!customCursorOn()) return;
@@ -19,7 +21,7 @@
     var style = document.createElement('style');
     style.setAttribute('data-atc-cursor-idle', '1');
     style.textContent =
-      '*{cursor:none !important;}' +
+      'html:not([data-pointer-input="touch"]) *{cursor:none !important;}' +
       '.brushCursor{position:fixed;pointer-events:none;z-index:2147483647;width:20px;height:20px;border-radius:50%;' +
       'background:radial-gradient(circle,var(--accent-0) 0,var(--accent-0) 8px,rgba(var(--accent-0-rgb),0.8) 8px,rgba(var(--accent-0-rgb),0.8) 10px);' +
       'transform:translate(-50%,-50%);left:-100px;top:-100px;transition:opacity 0.2s ease;}' +
@@ -142,6 +144,21 @@
       var item = e.target.closest(HOVER_SEL);
       if (item && window.mouseHoveredItem === item) window.mouseHoveredItem = null;
     }, true);
+
+    function syncTouchPointerMode() {
+      if (document.documentElement.getAttribute('data-pointer-input') === 'touch') {
+        clearTimeout(idleTimer);
+        brush.classList.add('hidden');
+        hoverBlocker.style.pointerEvents = 'none';
+        document.body.classList.remove('cursor-idle');
+      } else if (customCursorOn()) {
+        showCursor();
+      } else {
+        brush.classList.add('hidden');
+      }
+    }
+    document.documentElement.addEventListener('pt1-pointer-input', syncTouchPointerMode);
+    syncTouchPointerMode();
 
     idleTimer = setTimeout(hideCursor, IDLE_MS);
   }

@@ -591,6 +591,54 @@ global.resetThemeToDefaults = resetThemeToDefaults;
     if (grid) grid.classList.toggle('cursor-skins-disabled', !enabled);
   }
 
+  function isTouchPointerActive() {
+    return document.documentElement.getAttribute('data-pointer-input') === 'touch';
+  }
+
+  function refreshCursorOverlayVisibility() {
+    // Preference stays in data-custom-cursor / localStorage; touch only suppresses overlays.
+    var show = isCustomCursorEnabled() && !isTouchPointerActive();
+    document.querySelectorAll('#cursor').forEach(function (el) {
+      el.classList.toggle('hidden', !show);
+    });
+    document.querySelectorAll('.brushCursor').forEach(function (el) {
+      el.classList.toggle('hidden', !show);
+    });
+  }
+
+  function setPointerInputKind(kind) {
+    var next = kind === 'touch' ? 'touch' : 'fine';
+    var root = document.documentElement;
+    if (root.getAttribute('data-pointer-input') === next) return;
+    root.setAttribute('data-pointer-input', next);
+    refreshCursorOverlayVisibility();
+    try {
+      root.dispatchEvent(new CustomEvent('pt1-pointer-input', { detail: { kind: next } }));
+    } catch (e) {}
+  }
+
+  function notePointerTypeEvent(ev) {
+    if (!ev) return;
+    if (ev.type === 'touchstart') {
+      setPointerInputKind('touch');
+      return;
+    }
+    var t = ev.pointerType;
+    if (t === 'touch') setPointerInputKind('touch');
+    else if (t === 'mouse' || t === 'pen') setPointerInputKind('fine');
+  }
+
+  function wirePointerInputDetection() {
+    if (document.documentElement.dataset.pointerInputWired === '1') return;
+    document.documentElement.dataset.pointerInputWired = '1';
+    if (!document.documentElement.getAttribute('data-pointer-input')) {
+      document.documentElement.setAttribute('data-pointer-input', 'fine');
+    }
+    document.addEventListener('pointerdown', notePointerTypeEvent, true);
+    document.addEventListener('pointermove', notePointerTypeEvent, true);
+    document.addEventListener('touchstart', notePointerTypeEvent, { capture: true, passive: true });
+  }
+
   function applyCursorState(opts) {
     var root = document.documentElement;
     var enabled = (opts && typeof opts.enabled === 'boolean')
@@ -605,13 +653,7 @@ global.resetThemeToDefaults = resetThemeToDefaults;
     } catch (e) {}
     root.setAttribute('data-custom-cursor', enabled ? 'on' : 'off');
     root.setAttribute('data-cursor', skin);
-    if (enabled) {
-      document.querySelectorAll('#cursor').forEach(function (el) { el.classList.remove('hidden'); });
-      document.querySelectorAll('.brushCursor').forEach(function (el) { el.classList.remove('hidden'); });
-    } else {
-      document.querySelectorAll('#cursor').forEach(function (el) { el.classList.add('hidden'); });
-      document.querySelectorAll('.brushCursor').forEach(function (el) { el.classList.add('hidden'); });
-    }
+    refreshCursorOverlayVisibility();
     syncCursorPickerUI();
   }
 
@@ -657,6 +699,9 @@ global.resetThemeToDefaults = resetThemeToDefaults;
   global.syncCursorPickerUI = syncCursorPickerUI;
   global.isCustomCursorEnabled = isCustomCursorEnabled;
   global.currentCursorSkin = currentCursorSkin;
+  global.isTouchPointerActive = isTouchPointerActive;
+  global.refreshCursorOverlayVisibility = refreshCursorOverlayVisibility;
+  wirePointerInputDetection();
 
 (function initThemeSystem() {
 const picker = document.getElementById('accent-color-picker');
