@@ -42,6 +42,9 @@ Title: **Medical Physics · Periodic Test 1** · shared colorizer theme via `atc
 - Chapter 1: Stress, Strain & Young's Modulus
 - Chapter 2: Fluids at Rest (all Ch2 cats)
 - Chapter 3: Mass Flow & Bernoulli
+- **Formulas** — unlimited auto-generated calculation practice (Ch1–3 through Bernoulli). Separate card counters; does **not** affect chapter solved progress. Tap **Show formula** for the symbolic rearrangement.
+
+Generator module: `quiz/formula-gen.js` (`FORMULA_METADATA` + `QUESTION_GENERATORS`). Storage: `pt1_formula_count`, `pt1_formula_mastery_v1`.
 
 Shuffle prefs live under **Quiz settings**. From a run, **Return to interface** goes to the forms list (not the main menu).
 

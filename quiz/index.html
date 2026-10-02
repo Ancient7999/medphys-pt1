@@ -555,6 +555,23 @@ html[data-quality="basic"]{
 .mood-stamp{font-size:1.7rem;min-height:1.7rem}
 .card-title{font-family:var(--font-head,var(--head));font-style:italic;font-weight:400;font-size:1.22rem;margin:0;color:var(--text);line-height:1.3}
 .card-sub{color:var(--text-dim);font-size:.8rem;font-family:var(--mono);letter-spacing:.02em;margin:0}
+
+.card-desc-formula{font-family:var(--mono);font-size:.78rem;color:var(--text-dim);margin:2px 0 0;line-height:1.45;opacity:.92}
+.card.formula-card .form-letter{font-size:1.05rem}
+.formula-mastery-badge{font-family:var(--mono);font-size:.72rem;color:var(--success);margin-top:4px}
+.formula-hint-box{display:none;margin:10px 0 0;padding:12px 14px;border-radius:12px;border:1px solid rgba(var(--accent-0-rgb),.35);background:rgba(var(--accent-0-rgb),.08);font-family:var(--mono);font-size:.88rem;line-height:1.5;color:var(--accent-1)}
+.formula-hint-box.show{display:block}
+.formula-hint-box .fh-label{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px}
+body.formula-mode #backBtn,body.formula-mode #nextBtn{display:none!important}
+body.formula-mode #qNav{display:none!important}
+body.formula-mode .track{display:none!important}
+body.formula-mode .q-count{font-family:var(--mono)}
+#formulaShowBtn{display:none}
+body.formula-mode #formulaShowBtn{display:inline-flex}
+body.formula-mode #formulaRollBtn{display:inline-flex}
+#formulaRollBtn{display:none}
+.nav.formula-nav{gap:10px;flex-wrap:wrap}
+
 .card-stats{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 14px;margin-top:auto;padding-top:12px;border-top:1px solid rgba(var(--accent-0-rgb),.14)}
 .card-pct{margin:0;font-family:var(--mono);font-size:1.05rem;font-weight:700;color:var(--accent-1);letter-spacing:.02em}
 .card-meta{margin:0;font-family:var(--mono);font-size:.72rem;color:var(--accent-0);opacity:.8}
@@ -1862,8 +1879,14 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
         <div class="question" id="qText"></div>
         <div class="options" id="options"></div>
         <div class="feedback idle" id="feedback"></div>
-        <div class="nav">
+        <div class="formula-hint-box" id="formulaHintBox" aria-live="polite">
+          <div class="fh-label">Formula</div>
+          <div id="formulaHintText"></div>
+        </div>
+        <div class="nav formula-nav">
           <button class="nav-btn" id="backBtn" type="button" disabled>← Back</button>
+          <button class="nav-btn" id="formulaShowBtn" type="button">Show formula</button>
+          <button class="nav-btn" id="formulaRollBtn" type="button">🎲 New question</button>
           <button class="nav-btn primary" id="nextBtn" type="button" disabled>Next →</button>
         </div>
       </div>
@@ -1881,6 +1904,7 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
   </div>
 </div>
 
+<script src="formula-gen.js"></script>
 <script>
 function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
 function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
@@ -2027,6 +2051,25 @@ refreshFxAccentColors();
 /* —— bank + hub —— */
 let BANK=null;
 let questions=[], answers=[], current=0, locked=false, quizActive=false, startTime=0, elapsedTimer=null, drawState=null, runLabel='';
+let formulaMode=false, formulaKeys=[], formulaAdvanceTimer=null, formulaHintShown=false;
+const FORMULA_COUNT_KEY='pt1_formula_count';
+const FORMULA_MASTERY_KEY='pt1_formula_mastery_v1';
+function loadFormulaCount(){ const n=parseInt(lsGet(FORMULA_COUNT_KEY)||'0',10); return Number.isFinite(n)&&n>0?n:0; }
+function saveFormulaCount(n){ lsSet(FORMULA_COUNT_KEY, String(Math.max(0,n|0))); }
+function loadFormulaMastery(){ try{ return JSON.parse(lsGet(FORMULA_MASTERY_KEY)||'{}')||{}; }catch(e){ return {}; } }
+function saveFormulaMastery(obj){ lsSet(FORMULA_MASTERY_KEY, JSON.stringify(obj||{})); }
+function bumpFormulaMastery(key, variant){
+  const m=loadFormulaMastery();
+  if(!m[key]) m[key]={total:0, byVariant:{}};
+  m[key].total=(m[key].total||0)+1;
+  const vk=String(variant==null?0:variant);
+  m[key].byVariant=m[key].byVariant||{};
+  m[key].byVariant[vk]=(m[key].byVariant[vk]||0)+1;
+  saveFormulaMastery(m);
+}
+function formulaMeta(){ return (window.Pt1FormulaGen&&Pt1FormulaGen.FORMULA_METADATA)||{}; }
+function clearFormulaAdvance(){ if(formulaAdvanceTimer){ clearTimeout(formulaAdvanceTimer); formulaAdvanceTimer=null; } }
+
 
 function bankId(){ return (BANK && (BANK.id||BANK.title)) || 'anon'; }
 function solvedKey(){ return 'skel_solved:'+bankId(); }
@@ -2041,11 +2084,18 @@ function updateCounters(){
   if(BANK) document.getElementById('bankMeta').textContent='Loaded · '+(allQuestions().length)+' questions · solved '+loadSolved().size;
   syncResetSolvedBtn();
   if(quizActive){
-    const answeredCount=answers.filter((a,i)=>isAnswered(a,questions[i])).length;
-    document.getElementById('quizSub').textContent=(BANK.title||'')+' · '+(questions.length-answeredCount)+' remaining this run';
+    if(formulaMode){
+      document.getElementById('quizSub').textContent='Unlimited practice · Formulas answered: '+loadFormulaCount();
+    } else {
+      const answeredCount=answers.filter((a,i)=>isAnswered(a,questions[i])).length;
+      document.getElementById('quizSub').textContent=(BANK.title||'')+' · '+(questions.length-answeredCount)+' remaining this run';
+    }
   }
 }
-function markSolved(q){ const s=loadSolved(); s.add(qid(q,0)); saveSolved(s); updateCounters(); }
+function markSolved(q){
+  if(formulaMode || (q&&q.__formulaMode)) return; // Formulas never touch global solved bank
+  const s=loadSolved(); s.add(qid(q,0)); saveSolved(s); updateCounters();
+}
 
 function allQuestions(){
   if(!BANK) return [];
@@ -2226,6 +2276,43 @@ function renderHub(){
     appendPoolCard(grid, formDef.title, pool);
   });
   host.appendChild(grid);
+  renderFormulaSection(host);
+}
+
+function renderFormulaSection(host){
+  if(!window.Pt1FormulaGen){
+    const note=document.createElement('div'); note.className='empty-note';
+    note.textContent='Formula generator module failed to load.';
+    host.appendChild(note); return;
+  }
+  const h=document.createElement('div'); h.className='section-h'; h.textContent='Formulas'; host.appendChild(h);
+  const intro=document.createElement('div'); intro.className='card-sub';
+  intro.style.margin='0 0 12px';
+  intro.textContent='Unlimited auto-generated calculations · Ch1–3 through Bernoulli · does not affect chapter progress';
+  host.appendChild(intro);
+  const total=loadFormulaCount();
+  const grid=document.createElement('div'); grid.className='grid';
+  // All-formulas card
+  const allBtn=document.createElement('button'); allBtn.type='button'; allBtn.className='card formula-card';
+  allBtn.innerHTML=`<div class="card-top"><span class="form-letter">All formulas</span></div>
+    <div class="card-desc-formula">Mix every family · random unknown</div>
+    <div class="card-stats"><div class="card-pct">${total} answered</div><div class="card-meta">this form only</div></div>`;
+  allBtn.addEventListener('click',()=>startFormulaRun(Pt1FormulaGen.allKeys(),'Formulas · All'));
+  grid.appendChild(allBtn);
+  const mastery=loadFormulaMastery();
+  const meta=formulaMeta();
+  Object.keys(Pt1FormulaGen.QUESTION_GENERATORS).forEach(key=>{
+    const m=meta[key]||{name:key,description:''};
+    const count=(mastery[key]&&mastery[key].total)||0;
+    const btn=document.createElement('button'); btn.type='button'; btn.className='card formula-card';
+    btn.dataset.formulaKey=key;
+    btn.innerHTML=`<div class="card-top"><span class="form-letter">${escapeHtml(m.name)}</span></div>
+      <div class="card-desc-formula">${escapeHtml(m.description||'')}</div>
+      <div class="card-stats"><div class="card-pct">${count} answered</div><div class="card-meta">card only</div></div>`;
+    btn.addEventListener('click',()=>startFormulaRun([key],'Formulas · '+m.name));
+    grid.appendChild(btn);
+  });
+  host.appendChild(grid);
 }
 
 function ingestBank(data){
@@ -2241,7 +2328,13 @@ function ingestBank(data){
 }
 
 function goMainMenu(){ window.location.href='../index.html'; }
-function returnToQuiz(){ quizActive=false; clearWireLayer(); renderHub(); showView('hubView'); }
+function returnToQuiz(){
+  quizActive=false; formulaMode=false; formulaKeys=[]; formulaHintShown=false;
+  clearFormulaAdvance(); clearWireLayer();
+  document.body.classList.remove('formula-mode');
+  const hb=document.getElementById('formulaHintBox'); if(hb) hb.classList.remove('show');
+  renderHub(); showView('hubView');
+}
 document.getElementById('returnHubBtn').addEventListener('click', goMainMenu);
 
 async function loadEmbeddedBank(){
@@ -2284,7 +2377,41 @@ document.getElementById('resetSolvedBtn').addEventListener('click',()=>{
 });
 
 /* —— quiz engine —— */
+function startFormulaRun(keys, label){
+  if(!window.Pt1FormulaGen){ showToast('Formula generator not loaded'); return; }
+  clearFormulaAdvance();
+  formulaMode=true;
+  formulaKeys=(keys&&keys.length)?keys.slice():Pt1FormulaGen.allKeys();
+  formulaHintShown=false;
+  document.body.classList.add('formula-mode');
+  const q=Pt1FormulaGen.generateQuestion(formulaKeys);
+  questions=[q]; answers=[null]; current=0; locked=false; quizActive=true; runLabel=label||'Formulas';
+  startTime=Date.now();
+  if(elapsedTimer) clearInterval(elapsedTimer);
+  elapsedTimer=setInterval(()=>{ const e=Math.floor((Date.now()-startTime)/1000); document.getElementById('elapsed').textContent=String(Math.floor(e/60)).padStart(2,'0')+':'+String(e%60).padStart(2,'0'); },1000);
+  document.getElementById('quizTitle').textContent=runLabel;
+  document.getElementById('quizSub').textContent='Unlimited practice · Formulas answered: '+loadFormulaCount();
+  document.getElementById('statusText').textContent='Formulas';
+  document.getElementById('qTotal').textContent='∞';
+  document.getElementById('quizScreen').style.display='block';
+  document.getElementById('finalScreen').style.display='none';
+  const hb=document.getElementById('formulaHintBox'); if(hb) hb.classList.remove('show');
+  showView('quizView');
+  renderQuestion();
+}
+function pushNextFormulaQuestion(){
+  if(!formulaMode||!window.Pt1FormulaGen) return;
+  clearFormulaAdvance();
+  formulaHintShown=false;
+  const hb=document.getElementById('formulaHintBox'); if(hb) hb.classList.remove('show');
+  const q=Pt1FormulaGen.generateQuestion(formulaKeys);
+  questions=[q]; answers=[null]; current=0; locked=false;
+  renderQuestion();
+}
 function startRun(pool, label){
+  formulaMode=false; formulaKeys=[]; formulaHintShown=false; clearFormulaAdvance();
+  document.body.classList.remove('formula-mode');
+  const hb=document.getElementById('formulaHintBox'); if(hb) hb.classList.remove('show');
   const deck=prepareDeck(pool);
   if(!deck.length){ showToast('Nothing left in this set · reset solved to replay'); return; }
   questions=deck; answers=new Array(questions.length).fill(null); current=0; locked=false; quizActive=true; runLabel=label;
@@ -2400,9 +2527,23 @@ function renderQuestion(){
   drawState=null;
   clearWireLayer();
   document.getElementById('qText').textContent=q.q;
-  document.getElementById('qNum').textContent=current+1;
-  document.getElementById('progressBar').style.width=Math.round((answers.filter((a,i)=>isAnswered(a,questions[i])).length/questions.length)*100)+'%';
-  renderNav(); updateCounters();
+  if(formulaMode){
+    document.getElementById('qNum').textContent=String(loadFormulaCount()+1);
+    document.getElementById('qTotal').textContent='∞';
+    document.getElementById('progressBar').style.width='0%';
+    const nav=document.getElementById('qNav');
+    nav.innerHTML='';
+    const pill=document.createElement('div');
+    pill.className='card-sub';
+    pill.style.margin='0';
+    pill.textContent='Formulas answered: '+loadFormulaCount();
+    nav.appendChild(pill);
+  } else {
+    document.getElementById('qNum').textContent=current+1;
+    document.getElementById('progressBar').style.width=Math.round((answers.filter((a,i)=>isAnswered(a,questions[i])).length/questions.length)*100)+'%';
+    renderNav();
+  }
+  updateCounters();
   document.getElementById('catTag').textContent=(isMatching(q)?'linking · ':'')+((q.cat||q.__form||'').toString().replace(/_/g,' '));
   const opts=document.getElementById('options'); opts.innerHTML='';
   const answered=isAnswered(answers[current], q);
@@ -2412,9 +2553,23 @@ function renderQuestion(){
   const fb=document.getElementById('feedback');
   if(answered){ fb.className='feedback good'; fb.textContent='✓ '+(q.explain||''); }
   else { fb.className='feedback idle'; fb.textContent=''; }
-  document.getElementById('backBtn').disabled=current===0;
+  document.getElementById('backBtn').disabled=formulaMode?true:(current===0);
   updateBackSkipGlow();
-  updateNextActionButton();
+  if(!formulaMode) updateNextActionButton();
+  else {
+    const nb=document.getElementById('nextBtn'); if(nb){ nb.disabled=true; nb.dataset.action='next'; }
+  }
+  // restore formula hint if previously shown this item
+  const hb=document.getElementById('formulaHintBox');
+  const ht=document.getElementById('formulaHintText');
+  if(hb&&ht){
+    if(formulaMode && formulaHintShown){
+      ht.textContent=(q.formulaHint||q.formulaEq||q.formulaName||'Use the family formula for this item.');
+      hb.classList.add('show');
+    } else {
+      hb.classList.remove('show');
+    }
+  }
 }
 
 function renderMcq(q, answered){
@@ -2779,7 +2934,20 @@ function selectAnswer(idx){
   fb.className='feedback good'; fb.textContent='✓ '+(q.explain||'');
   document.getElementById('mainPanel').classList.add('correct-pulse');
   setTimeout(()=>document.getElementById('mainPanel').classList.remove('correct-pulse'),650);
-  spawnConfetti(); renderNav(); updateNextActionButton(); updateCounters();
+  spawnConfetti();
+  if(formulaMode){
+    const n=loadFormulaCount()+1;
+    saveFormulaCount(n);
+    bumpFormulaMastery(q.formulaKey||'unknown', q._formulaVariant);
+    updateCounters();
+    // refresh answered pill
+    const nav=document.getElementById('qNav');
+    if(nav){ nav.innerHTML=''; const pill=document.createElement('div'); pill.className='card-sub'; pill.style.margin='0'; pill.textContent='Formulas answered: '+n; nav.appendChild(pill); }
+    clearFormulaAdvance();
+    formulaAdvanceTimer=setTimeout(()=>{ if(formulaMode&&quizActive) pushNextFormulaQuestion(); }, 1100);
+  } else {
+    renderNav(); updateNextActionButton(); updateCounters();
+  }
 }
 
 function goNext(){
@@ -2832,6 +3000,24 @@ function finishQuiz(){
 document.getElementById('nextBtn').addEventListener('click', goNext);
 document.getElementById('backBtn').addEventListener('click', goBack);
 document.getElementById('hubBtn').addEventListener('click', returnToQuiz);
+(function wireFormulaChrome(){
+  const showBtn=document.getElementById('formulaShowBtn');
+  const rollBtn=document.getElementById('formulaRollBtn');
+  if(showBtn) showBtn.addEventListener('click',()=>{
+    if(!formulaMode||!questions[current]) return;
+    const q=questions[current];
+    formulaHintShown=true;
+    const hb=document.getElementById('formulaHintBox');
+    const ht=document.getElementById('formulaHintText');
+    if(ht) ht.textContent=q.formulaHint||q.formulaEq||q.formulaName||'Use the family formula for this item.';
+    if(hb) hb.classList.add('show');
+  });
+  if(rollBtn) rollBtn.addEventListener('click',()=>{
+    if(!formulaMode||!quizActive) return;
+    clearFormulaAdvance();
+    pushNextFormulaQuestion();
+  });
+})();
 document.getElementById('againHubBtn').addEventListener('click', ()=>{ clearWireLayer(); returnToQuiz(); });
 document.getElementById('fsBtn').addEventListener('click', ()=>{ if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{}); else document.exitFullscreen(); });
 function jumpToQuestion(i){
@@ -2844,8 +3030,8 @@ document.addEventListener('keydown', e=>{
   const tag=(e.target&&e.target.tagName||'').toLowerCase();
   const typing=tag==='input'||tag==='textarea'||tag==='select'||(e.target&&e.target.isContentEditable);
   if(e.key==='f'||e.key==='F'){ if(!typing){ e.preventDefault(); document.getElementById('fsBtn').click(); } }
-  if(e.key==='Enter' && !typing) goNext();
-  if(quizActive && !typing && (e.key==='ArrowLeft'||e.key==='ArrowRight')){
+  if(e.key==='Enter' && !typing){ if(formulaMode) return; goNext(); }
+  if(quizActive && !typing && !formulaMode && (e.key==='ArrowLeft'||e.key==='ArrowRight')){
     e.preventDefault();
     jumpToQuestion(current+(e.key==='ArrowRight'?1:-1));
     return;
