@@ -1370,11 +1370,17 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
 .empty-note{color:var(--text-dim);font-family:var(--mono);font-size:.9rem;padding:18px;border:1px dashed var(--border);border-radius:16px}
 
 
-/* Settings open: hide brush/aura (modal is one stacking context; can't sit between backdrop & content) */
+/* Settings open: system pointer so modal is usable (custom ring/brush can't sit between backdrop & content).
+   Closing settings removes body.settings-open and restores quiz custom cursor when data-custom-cursor=on. */
+body.settings-open,
+body.settings-open .settings-modal,
+body.settings-open .settings-modal *{
+  cursor:auto!important;
+}
 body.settings-open .brushCursor,
 body.settings-open .brushCursor .aura,
 body.settings-open #cursor,
-body.settings-open #cursor.core{opacity:0!important;visibility:hidden!important}
+body.settings-open #cursor.core{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
 
 /* Wire colorizer accents across quiz chrome that previously ignored them */
 .mode-tab.active,
