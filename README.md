@@ -19,6 +19,7 @@ medphys-pt1/
     particles.js             # vendor (quiz mood FX path)
     colorizer-theme.js       # vendor theme engine (quiz; default amber)
     study-app.js             # markdown + accordion
+    cursor-idle.js           # ATC brushCursor idle auto-hide (all pages)
   assets/
     colorizer-panel.fragment.html  # vendor fragment (unused)
   data/bank.json

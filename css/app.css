@@ -521,6 +521,15 @@ body.cursor-idle .ps2-back-btn:hover{
   box-shadow:none!important;
 }
 body.cursor-idle .ps2-menu-item,
-body.cursor-idle .ps2-back-btn{
+body.cursor-idle .ps2-back-btn,
+body.cursor-idle .btn,
+body.cursor-idle .chapter-toggle{
   pointer-events:none;
+}
+body.cursor-idle .btn:hover,
+body.cursor-idle .btn.primary:hover,
+body.cursor-idle .chapter-toggle:hover{
+  transform:none!important;
+  filter:none!important;
+  box-shadow:none!important;
 }
