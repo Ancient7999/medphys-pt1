@@ -3077,6 +3077,49 @@ function celebrateLink(x,y){
   spawnFireworkBurst(x, Math.max(40,y-40), 18);
 }
 
+function isLockedMatchWire(q, ans, wire){
+  if(!wire || wire.leftId==null || wire.rightId==null) return false;
+  return !!(q && q.correct_pairs && ans && ans.pairs &&
+    ans.pairs[wire.leftId]===wire.rightId &&
+    q.correct_pairs[wire.leftId]===wire.rightId);
+}
+function isCompleteMatchRight(q, ans, rightId){
+  const leftIds=Object.keys((q&&q.correct_pairs)||{})
+    .filter(leftId=>q.correct_pairs[leftId]===rightId);
+  return leftIds.length>0 && leftIds.every(leftId=>ans && ans.pairs && ans.pairs[leftId]===rightId);
+}
+function clearableMatchWireEntries(q, ans){
+  return (ans && Array.isArray(ans.wires)?ans.wires:[])
+    .map((wire,index)=>({wire,index}))
+    .filter(entry=>!isLockedMatchWire(q,ans,entry.wire));
+}
+function updateClearDrawingsButton(q, ans){
+  const btn=document.getElementById('clearDrawingsBtn');
+  if(!btn) return;
+  btn.disabled=!!(ans && ans.correct) || clearableMatchWireEntries(q,ans).length===0;
+}
+function clearRandomMatchDrawings(q){
+  const ans=ensureMatchAns();
+  if(ans.correct) return;
+  const candidates=clearableMatchWireEntries(q,ans);
+  if(!candidates.length) return;
+  // Clear a random non-empty subset, but leave at least one drawing when
+  // there is more than one candidate. Correct locked wires are never candidates.
+  const maxRemove=candidates.length>1?candidates.length-1:1;
+  const removeCount=1+Math.floor(Math.random()*maxRemove);
+  const removed=shuffle(candidates).slice(0,removeCount);
+  const removedIndexes=new Set(removed.map(entry=>entry.index));
+  ans.wires=ans.wires.filter((wire,index)=>!removedIndexes.has(index));
+  removed.forEach(({wire})=>{
+    if(wire.leftId!=null && ans.pairs[wire.leftId]===wire.rightId){
+      delete ans.pairs[wire.leftId];
+    }
+  });
+  ans.checked=false;
+  ans.correct=false;
+  answers[current]=ans;
+  renderQuestion();
+}
 function renderMatching(q, ans){
   const opts=document.getElementById('options');
   const hint=document.createElement('p'); hint.className='match-hint';
@@ -3096,9 +3139,11 @@ function renderMatching(q, ans){
     const btn=document.createElement('button'); btn.type='button'; btn.className='match-item';
     btn.dataset.side=side; btn.dataset.id=item.id; btn.textContent=item.text;
     const leftLocked=side==='L' && ans.pairs && ans.pairs[item.id] && q.correct_pairs && q.correct_pairs[item.id]===ans.pairs[item.id];
-    const rightLocked=side==='R' && ans.pairs && Object.keys(ans.pairs).some(lid=>ans.pairs[lid]===item.id && q.correct_pairs && q.correct_pairs[lid]===item.id);
+    const rightPaired=side==='R' && ans.pairs && Object.keys(ans.pairs).some(lid=>ans.pairs[lid]===item.id && q.correct_pairs && q.correct_pairs[lid]===item.id);
+    const rightLocked=side==='R' && isCompleteMatchRight(q,ans,item.id);
     if(leftLocked){ btn.classList.add('paired','is-solved-link'); btn.disabled=true; }
     else if(rightLocked){ btn.classList.add('paired'); btn.disabled=true; }
+    else if(rightPaired){ btn.classList.add('paired'); }
     else if(ans.correct){ btn.disabled=true; }
     if(!btn.disabled) btn.addEventListener('pointerdown', ev=>beginDraw(ev,q,btn));
     return btn;
@@ -3109,6 +3154,14 @@ function renderMatching(q, ans){
   board.appendChild(leftCol); board.appendChild(rightCol);
   stage.appendChild(board); stage.appendChild(svg); opts.appendChild(stage);
   requestAnimationFrame(()=>paintWires(svg, ans.wires||[]));
+  const actions=document.createElement('div'); actions.className='match-actions';
+  const clear=document.createElement('button');
+  clear.type='button'; clear.id='clearDrawingsBtn'; clear.className='nav-btn';
+  clear.textContent='Clear drawings';
+  clear.title='Remove random incorrect or incomplete drawings; correct links stay locked';
+  clear.addEventListener('click',()=>clearRandomMatchDrawings(q));
+  actions.appendChild(clear); opts.appendChild(actions);
+  updateClearDrawingsButton(q,ans);
 }
 let dragScrollRAF=null;
 let dragScrollEl=null;
@@ -3205,9 +3258,9 @@ function onDrawUp(ev){
     const rightEl=drawState.side==='R'?src:hit;
     const isCorrect=!!(q.correct_pairs && q.correct_pairs[leftId]===rightId);
     if(isCorrect){
-      // Persist only correct pairs; drop any prior wire for this left/right
-      cur.wires=cur.wires.filter(w=>w.leftId!==leftId && w.rightId!==rightId);
-      Object.keys(cur.pairs).forEach(lid=>{ if(cur.pairs[lid]===rightId) delete cur.pairs[lid]; });
+      // Persist only correct pairs; replace this left's prior wire. A right
+      // may intentionally serve multiple lefts (e.g. shared base units).
+      cur.wires=cur.wires.filter(w=>w.leftId!==leftId);
       cur.pairs[leftId]=rightId;
       cur.wires.push({leftId,rightId,points:pts});
       cur.checked=false;
@@ -3216,11 +3269,12 @@ function onDrawUp(ev){
       leftEl.classList.add('paired','is-solved-link');
       leftEl.disabled=true;
       rightEl.classList.add('paired');
-      rightEl.disabled=true;
+      rightEl.disabled=isCompleteMatchRight(q,cur,rightId);
       const leftIds=(q.leftItems||[]).map(x=>x.id);
       const allGood=leftIds.every(id=>cur.pairs[id]===q.correct_pairs[id]);
       if(allGood){
         cur.correct=true; cur.checked=true; answers[current]=cur; locked=true; markSolved(q);
+        updateClearDrawingsButton(q,cur);
         const fb=document.getElementById('feedback');
         fb.className='feedback good'; fb.textContent='✓ '+(q.explain||'');
         document.getElementById('mainPanel').classList.add('correct-pulse');
@@ -3228,11 +3282,10 @@ function onDrawUp(ev){
         spawnConfetti(); renderNav(); updateNextActionButton(); updateCounters();
       }
     } else {
-      // Wrong link: do not store pair/wire or glow any choice
+      // Wrong links are intentionally silent: do not store, glow, or announce them.
       cur.checked=false; cur.correct=false;
       const fb=document.getElementById('feedback');
-      fb.className='feedback soft'; fb.textContent='not that one · try again';
-      clearTimeout(onDrawUp._t); onDrawUp._t=setTimeout(()=>{ if(!locked){ fb.className='feedback idle'; fb.textContent=''; } },900);
+      fb.className='feedback idle'; fb.textContent='';
     }
   } else if(pts.length){
     const loose={points:pts,loose:true};
@@ -3249,20 +3302,24 @@ function onDrawUp(ev){
     if(ans.pairs && q.correct_pairs){
       Object.keys(ans.pairs).forEach(lid=>{
         if(ans.pairs[lid]!==q.correct_pairs[lid]){
-          const rid=ans.pairs[lid];
           delete ans.pairs[lid];
-          ans.wires=(ans.wires||[]).filter(w=>w.leftId!==lid && w.rightId!==rid);
+          // Only this left's bad drawing is stale; preserve other correct
+          // links that may share the same right-hand meaning.
+          ans.wires=(ans.wires||[]).filter(w=>w.leftId!==lid);
         }
       });
     }
     document.querySelectorAll('.match-item').forEach(n=>{
       const isLeftSolved=n.dataset.side==='L' && ans.pairs[n.dataset.id] && q.correct_pairs && q.correct_pairs[n.dataset.id]===ans.pairs[n.dataset.id];
-      const isRightSolved=n.dataset.side==='R' && Object.keys(ans.pairs).some(lid=>ans.pairs[lid]===n.dataset.id && q.correct_pairs && q.correct_pairs[lid]===n.dataset.id);
-      n.classList.toggle('paired', isLeftSolved || isRightSolved);
+      const isRightPaired=n.dataset.side==='R' && Object.keys(ans.pairs).some(lid=>ans.pairs[lid]===n.dataset.id && q.correct_pairs && q.correct_pairs[lid]===n.dataset.id);
+      const isRightComplete=n.dataset.side==='R' && isCompleteMatchRight(q,ans,n.dataset.id);
+      n.classList.toggle('paired', isLeftSolved || isRightPaired);
       n.classList.toggle('is-solved-link', isLeftSolved);
       n.classList.remove('drawing');
-      if(isLeftSolved || isRightSolved) n.disabled=true;
+      if(isLeftSolved || isRightComplete) n.disabled=true;
+      else if(!ans.correct) n.disabled=false;
     });
+    updateClearDrawingsButton(q,ans);
   }
 }
 
