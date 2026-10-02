@@ -2968,15 +2968,16 @@ function renderNav(){
   questions.forEach((q,i)=>{
     const done=isAnswered(answers[i],q);
     const skipped=!done && isSkippedIndex(i);
+    const markedUnanswered=markUnanswered && !done && i!==questions.length-1;
     const b=document.createElement('button');
     b.type='button';
     b.className='q-nav-btn'
       +(i===current?' current':'')
       +(done?' done':'')
-      +((markUnanswered && !done)?' unanswered':'')
-      +((skipped && !(markUnanswered && !done))?' skipped':'');
+      +(markedUnanswered?' unanswered':'')
+      +((skipped && !markedUnanswered)?' skipped':'');
     b.classList.toggle('linking', isMatching(q));
-    if(skipped && !(markUnanswered && !done)) setSkipSparkleStyle(b);
+    if(skipped && !markedUnanswered) setSkipSparkleStyle(b);
     b.innerHTML=isMatching(q)
       ? '<span class=\"q-nav-icon\" aria-hidden=\"true\">🔗</span><span class=\"q-nav-number\">'+(i+1)+'</span>'
       : '<span class=\"q-nav-number\">'+(i+1)+'</span>';
@@ -3038,7 +3039,7 @@ function renderQuestion(){
   } else {
     document.getElementById('qNum').textContent=current+1;
     document.getElementById('progressBar').style.width=Math.round((answers.filter((a,i)=>isAnswered(a,questions[i])).length/questions.length)*100)+'%';
-    // Red unanswered marks appear as soon as the user lands on the final question
+    // Reveal red marks for earlier unanswered questions when the user lands on the final question
     if(questions.length>0 && current===questions.length-1 && !allQuestionsAnswered()){
       unansweredMarkersVisible=true;
     }
