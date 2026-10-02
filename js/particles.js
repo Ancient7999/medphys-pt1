@@ -63,11 +63,21 @@ colorBuffer = gl.createBuffer();
 sparkleBuffer = gl.createBuffer();
 }
 
-function initParticles(){particles=[];const count=1500;for(let i=0;i<count;i++){const sz=Math.random()*3.0+2.0;particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,size:sz,baseSize:sz,alpha:0,colorIndex:0,sparkleSpeed:2.0+Math.random()*6.0});}}initParticles();
+const BASE_PARTICLE_COUNT=1500;
+let layerCtl={particles:true,particleDensity:1,grid:true,calcOverlays:true};
+function desiredParticleCount(){return Math.max(0,Math.round(BASE_PARTICLE_COUNT*Math.max(0,Math.min(2,layerCtl.particleDensity||1))));}
+function initParticles(){particles=[];const count=desiredParticleCount();for(let i=0;i<count;i++){const sz=Math.random()*3.0+2.0;particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,size:sz,baseSize:sz,alpha:0,colorIndex:0,sparkleSpeed:2.0+Math.random()*6.0});}}
+function applyParticleLayerVisibility(){
+  if(canvas) canvas.style.display=layerCtl.particles?'':'none';
+  if(bgDiv) bgDiv.style.display=layerCtl.grid?'':'none';
+  if(!layerCtl.particles && gl){ try{ gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);}catch(e){} }
+}
+initParticles();
 function renderParticles() {
 const now = performance.now();
 const deltaTime = now - lastFrameTime;
 lastFrameTime = now;
+if(!layerCtl.particles){ updateOverlayCanvases(); requestAnimationFrame(renderParticles); return; }
 const timeScale = Math.min(deltaTime / 16.66, 4.0);
 const accent0 = particleAccentRgb;
 const [r,g,b] = accent0.split(',').map(n=>parseFloat(n)/255);
@@ -127,6 +137,7 @@ updateOverlayCanvases();
 requestAnimationFrame(renderParticles);
 }
 function updateOverlayCanvases() {
+if(!layerCtl.calcOverlays || !layerCtl.particles) return;
 const cw = document.getElementById('calculator-widget');
 if (!cw || cw.style.display === 'none') return;
 const overlays = cw.querySelectorAll('.calc-theme-overlay');
@@ -163,4 +174,43 @@ if (gl) { renderParticles(); }
   global.refreshParticleColors = refreshParticleColors;
   global.refreshThemeSVGs = refreshThemeSVGs;
   global.updateOverlayCanvases = updateOverlayCanvases;
+  global.BgParticles = {
+    getState: function(){ return { particles: !!layerCtl.particles, particleDensity: layerCtl.particleDensity, grid: !!layerCtl.grid, calcOverlays: !!layerCtl.calcOverlays, count: particles.length }; },
+    setEnabled: function(key, on){
+      if(key==='particles') layerCtl.particles=!!on;
+      else if(key==='grid') layerCtl.grid=!!on;
+      else if(key==='calcOverlays') layerCtl.calcOverlays=!!on;
+      applyParticleLayerVisibility();
+      if(key==='calcOverlays' || key==='particles'){
+        try{
+          var cw=document.getElementById('calculator-widget');
+          if(cw){
+            cw.querySelectorAll('.calc-theme-overlay').forEach(function(ov){
+              ov.style.display = (layerCtl.calcOverlays && layerCtl.particles) ? '' : 'none';
+              if(!(layerCtl.calcOverlays && layerCtl.particles)){
+                var c=ov.getContext('2d'); if(c) c.clearRect(0,0,ov.width,ov.height);
+              }
+            });
+          }
+        }catch(e){}
+      }
+    },
+    setDensity: function(d){
+      layerCtl.particleDensity=Math.max(0,Math.min(2,Number(d)||0));
+      initParticles();
+      applyParticleLayerVisibility();
+    },
+    applyState: function(st){
+      if(!st) return;
+      if('particles' in st) layerCtl.particles=!!st.particles;
+      if('grid' in st) layerCtl.grid=!!st.grid;
+      if('calcOverlays' in st) layerCtl.calcOverlays=!!st.calcOverlays;
+      if('particleDensity' in st) layerCtl.particleDensity=Math.max(0,Math.min(2,Number(st.particleDensity)||0));
+      initParticles();
+      applyParticleLayerVisibility();
+      this.setEnabled('calcOverlays', layerCtl.calcOverlays);
+    }
+  };
+  applyParticleLayerVisibility();
+  try{ refreshThemeSVGs(); }catch(e){}
 })(typeof window !== 'undefined' ? window : globalThis);

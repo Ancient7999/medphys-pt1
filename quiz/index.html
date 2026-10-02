@@ -568,6 +568,11 @@ html[data-quality="basic"]{
   --border:rgba(148,163,184,.35);
 }
 #fxCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+html.bg-edit-hide-skin body::before{opacity:0!important}
+html.bg-edit-hide-glows body{
+  background-image:none!important;
+  background-color:var(--bg)!important;
+}
 .app{position:relative;z-index:5;max-width:1800px;margin:0 auto;padding:36px 32px 96px}
 .view{display:none}
 .view.active{display:block}
@@ -2233,27 +2238,63 @@ function fxColors(){
 }
 function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
 addEventListener('resize', resize); resize();
-(function initFxParticles(){ const cols=fxColors();
-for(let i=0;i<14;i++) streams.push({x:Math.random()*W,y:Math.random()*H,len:30+Math.random()*70,speed:.45+Math.random()*1.1,a:.07+Math.random()*.14,color:cols[i%cols.length]});
-for(let i=0;i<22;i++) orbs.push({x:Math.random()*W,y:Math.random()*H,r:2+Math.random()*6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.22,a:.12+Math.random()*.28,color:cols[i%cols.length],pulse:Math.random()*6});
-})();
+const BASE_STREAM_COUNT=14, BASE_ORB_COUNT=22;
+const quizFxCtl={streams:true,orbs:true,fireworks:true,streamDensity:1,orbDensity:1,skinPattern:true,radialGlows:true};
+function rebuildStreams(){
+  streams.length=0; const cols=fxColors();
+  const n=Math.max(0,Math.round(BASE_STREAM_COUNT*Math.max(0,Math.min(2,quizFxCtl.streamDensity||1))));
+  for(let i=0;i<n;i++) streams.push({x:Math.random()*W,y:Math.random()*H,len:30+Math.random()*70,speed:.45+Math.random()*1.1,a:.07+Math.random()*.14,color:cols[i%cols.length]});
+}
+function rebuildOrbs(){
+  orbs.length=0; const cols=fxColors();
+  const n=Math.max(0,Math.round(BASE_ORB_COUNT*Math.max(0,Math.min(2,quizFxCtl.orbDensity||1))));
+  for(let i=0;i<n;i++) orbs.push({x:Math.random()*W,y:Math.random()*H,r:2+Math.random()*6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.22,a:.12+Math.random()*.28,color:cols[i%cols.length],pulse:Math.random()*6});
+}
+(function initFxParticles(){ rebuildStreams(); rebuildOrbs(); })();
+function applyQuizCssLayers(){
+  document.documentElement.classList.toggle('bg-edit-hide-skin', !quizFxCtl.skinPattern);
+  document.documentElement.classList.toggle('bg-edit-hide-glows', !quizFxCtl.radialGlows);
+  if(canvas) canvas.style.display=(quizFxCtl.streams||quizFxCtl.orbs||quizFxCtl.fireworks)?'':'none';
+}
 function spawnFireworkBurst(cx,cy,count=28){
+  if(!quizFxCtl.fireworks) return;
   const cols=fxColors();
   for(let i=0;i<count;i++){const angle=(Math.PI*2*i)/count+Math.random()*.3,speed=2.2+Math.random()*4.5;
     sparks.push({x:cx,y:cy,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,decay:.012+Math.random()*.018,color:cols[i%cols.length],r:1.5+Math.random()*2.5});}
 }
 function spawnConfetti(){ spawnFireworkBurst(W*.5,H*.28,26); }
-setInterval(()=>{ if(document.documentElement.getAttribute('data-quality')==='basic') return; if(Math.random()>.55) spawnFireworkBurst(Math.random()*W,Math.random()*H*.7,14); },2800);
+setInterval(()=>{ if(document.documentElement.getAttribute('data-quality')==='basic') return; if(!quizFxCtl.fireworks) return; if(Math.random()>.55) spawnFireworkBurst(Math.random()*W,Math.random()*H*.7,14); },2800);
 function tickFx(){
   if(document.documentElement.getAttribute('data-quality')==='basic'){ requestAnimationFrame(tickFx); return; }
   ctx.clearRect(0,0,W,H);
   const speed=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--particle-speed'))||1;
-  streams.forEach(s=>{ s.y+=s.speed*speed; if(s.y-s.len>H){s.y=-20;s.x=Math.random()*W;} const g=ctx.createLinearGradient(s.x,s.y-s.len,s.x,s.y); g.addColorStop(0,'transparent'); g.addColorStop(1,s.color); ctx.globalAlpha=s.a; ctx.strokeStyle=g; ctx.lineWidth=1.2; ctx.beginPath(); ctx.moveTo(s.x,s.y-s.len); ctx.lineTo(s.x,s.y); ctx.stroke(); });
-  orbs.forEach(o=>{ o.x+=o.vx*speed; o.y+=o.vy*speed; o.pulse+=0.02*speed; if(o.x<0||o.x>W)o.vx*=-1; if(o.y<0||o.y>H)o.vy*=-1; ctx.globalAlpha=o.a*(0.7+0.3*Math.sin(o.pulse)); ctx.fillStyle=o.color; ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,Math.PI*2); ctx.fill(); });
-  for(let i=sparks.length-1;i>=0;i--){ const p=sparks[i]; p.x+=p.vx; p.y+=p.vy; p.vy+=0.04; p.life-=p.decay; if(p.life<=0){sparks.splice(i,1);continue;} ctx.globalAlpha=p.life; ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); }
+  if(quizFxCtl.streams) streams.forEach(s=>{ s.y+=s.speed*speed; if(s.y-s.len>H){s.y=-20;s.x=Math.random()*W;} const g=ctx.createLinearGradient(s.x,s.y-s.len,s.x,s.y); g.addColorStop(0,'transparent'); g.addColorStop(1,s.color); ctx.globalAlpha=s.a; ctx.strokeStyle=g; ctx.lineWidth=1.2; ctx.beginPath(); ctx.moveTo(s.x,s.y-s.len); ctx.lineTo(s.x,s.y); ctx.stroke(); });
+  if(quizFxCtl.orbs) orbs.forEach(o=>{ o.x+=o.vx*speed; o.y+=o.vy*speed; o.pulse+=0.02*speed; if(o.x<0||o.x>W)o.vx*=-1; if(o.y<0||o.y>H)o.vy*=-1; ctx.globalAlpha=o.a*(0.7+0.3*Math.sin(o.pulse)); ctx.fillStyle=o.color; ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,Math.PI*2); ctx.fill(); });
+  if(quizFxCtl.fireworks){ for(let i=sparks.length-1;i>=0;i--){ const p=sparks[i]; p.x+=p.vx; p.y+=p.vy; p.vy+=0.04; p.life-=p.decay; if(p.life<=0){sparks.splice(i,1);continue;} ctx.globalAlpha=p.life; ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); } }
+  else if(sparks.length) sparks.length=0;
   ctx.globalAlpha=1; requestAnimationFrame(tickFx);
 }
 tickFx();
+window.BgQuizFx={
+  getState:function(){ return { streams:!!quizFxCtl.streams, orbs:!!quizFxCtl.orbs, fireworks:!!quizFxCtl.fireworks, streamDensity:quizFxCtl.streamDensity, orbDensity:quizFxCtl.orbDensity, skinPattern:!!quizFxCtl.skinPattern, radialGlows:!!quizFxCtl.radialGlows, streamCount:streams.length, orbCount:orbs.length }; },
+  setEnabled:function(key,on){
+    if(key in quizFxCtl && typeof quizFxCtl[key]==='boolean') quizFxCtl[key]=!!on;
+    applyQuizCssLayers();
+  },
+  setDensity:function(key,d){
+    const v=Math.max(0,Math.min(2,Number(d)||0));
+    if(key==='streamDensity'){ quizFxCtl.streamDensity=v; rebuildStreams(); }
+    else if(key==='orbDensity'){ quizFxCtl.orbDensity=v; rebuildOrbs(); }
+  },
+  applyState:function(st){
+    if(!st) return;
+    ['streams','orbs','fireworks','skinPattern','radialGlows'].forEach(function(k){ if(k in st) quizFxCtl[k]=!!st[k]; });
+    if('streamDensity' in st) quizFxCtl.streamDensity=Math.max(0,Math.min(2,Number(st.streamDensity)||0));
+    if('orbDensity' in st) quizFxCtl.orbDensity=Math.max(0,Math.min(2,Number(st.orbDensity)||0));
+    rebuildStreams(); rebuildOrbs(); applyQuizCssLayers();
+  }
+};
+applyQuizCssLayers();
 function customCursorOn(){ var root=document.documentElement; return root.getAttribute('data-custom-cursor')!=='off' && root.getAttribute('data-pointer-input')!=='touch'; }
 const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove', e=>{ if(!customCursorOn()) return; document.querySelectorAll('#cursor').forEach(el=>{ el.style.left=e.clientX+'px'; el.style.top=e.clientY+'px'; }); });
@@ -3900,8 +3941,9 @@ renderHub();
 </script>
 
 <!-- Colorizer: settings modal owns controls · particles → colorizer-theme -->
-<script src="../js/particles.js?v=20261003e"></script>
-<script src="../js/colorizer-theme.js?v=20261003f"></script>
+<script src="../js/particles.js?v=20261003g"></script>
+<script src="../js/bg-editor.js?v=20261003g"></script>
+<script src="../js/colorizer-theme.js?v=20261003g"></script>
 <script>
 // Keep FX + WebGL particles in sync when accent changes (refreshThemeSVGs also calls refreshFxAccentColors)
 (function(){
