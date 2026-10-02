@@ -44,6 +44,7 @@
     var modal = document.getElementById('settings-modal');
     if (modal) {
       modal.style.display = 'flex';
+      document.body.classList.add('settings-open');
       openSettingsPanel('general');
     }
   }
@@ -59,6 +60,7 @@
     }
     var modal = document.getElementById('settings-modal');
     if (modal) modal.style.display = 'none';
+    document.body.classList.remove('settings-open');
   }
   global.closeSettingsModal = closeSettingsModal;
 

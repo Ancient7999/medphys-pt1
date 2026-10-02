@@ -26,7 +26,7 @@
   color: var(--accent-0);
   text-shadow: 0 0 18px rgba(var(--accent-0-rgb), 0.45);
 }
-#returnHubBtn, #returnStudyBtn, #returnStudyBtnQuiz, #hubBtn {
+#returnHubBtn, #hubBtn {
   border-color: rgba(var(--accent-0-rgb), 0.45);
   color: var(--accent-0);
 }
@@ -63,24 +63,24 @@
 :root {
   --bg:#05070c;
   --bg2:#080c14;
-  --bg-glow:rgba(34,211,238,.06);
+  --bg-glow:rgba(var(--accent-0-rgb), .08);
   --grid-tint:transparent;
   --surface:rgba(14,22,40,0.72);
-  --border:rgba(34,211,238,0.35);
-  --cyan:#22d3ee;
-  --cyan-bright:#67e8f9;
-  --teal:#2dd4bf;
-  --gold:#fbbf24;
+  --border:rgba(var(--accent-0-rgb), 0.4);
+  --cyan:var(--accent-0);
+  --cyan-bright:var(--accent-1);
+  --teal:var(--accent-2);
+  --gold:var(--col-gold, #fbbf24);
   --amber:#f59e0b;
-  --lavender:#82b1ff;
-  --violet:#a78bfa;
+  --lavender:var(--accent-1);
+  --violet:var(--accent-3);
   --text:#e8edf5;
   --text-dim:#94a3b8;
   --success:#34d399;
   --error:#fb7185;
-  --accent:#22d3ee;
-  --accent-2:#fbbf24;
-  --mood-glow:rgba(34,211,238,.22);
+  --accent:var(--accent-0);
+  --accent-2:var(--accent-1);
+  --mood-glow:rgba(var(--accent-0-rgb), .28);
   --anim-speed:1;
   --pulse-ms:1600ms;
   --transition-ms:280ms;
@@ -191,14 +191,14 @@ body,button,.opt,.nav-btn,.fs-btn,.card,.mood-live,.mood-pick,.mood-tray,.timer-
 #cursor{
   position:fixed;width:var(--cur-w,28px);height:var(--cur-h,28px);
   border:var(--cur-border,2px solid var(--cyan));border-radius:var(--cur-radius,50%);
-  background:var(--cur-bg,transparent);pointer-events:none;z-index:9999;
+  background:var(--cur-bg,transparent);pointer-events:none;z-index:100001;
   transform:translate(-50%,-50%) var(--cur-rot,);
   transition:width .12s,height .12s,border-color var(--transition-ms),background var(--transition-ms),border-radius .2s,box-shadow .2s;
   mix-blend-mode:var(--cur-blend,screen);box-shadow:var(--cur-shadow,0 0 18px var(--mood-glow));
 }
 #cursor.core{
   width:var(--cur-core-w,7px);height:var(--cur-core-h,7px);background:var(--cur-core-bg,var(--gold));
-  border:none;border-radius:var(--cur-core-radius,50%);z-index:10000;
+  border:none;border-radius:var(--cur-core-radius,50%);z-index:100002;
   box-shadow:var(--cur-core-shadow,0 0 12px var(--gold));
   transform:translate(-50%,-50%) var(--cur-core-rot,);
   mix-blend-mode:normal;
@@ -770,11 +770,11 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
   border:1px solid rgba(251,191,36,.35);background:rgba(251,191,36,.1);color:#fde68a;
 }
 .profile-auth-banner.is-guest{
-  border-color:rgba(251,191,36,.4);background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(34,211,238,.08));
+  border-color:rgba(251,191,36,.4);background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(var(--accent-0-rgb),.08));
   color:#fde68a;
 }
 .profile-auth-banner.is-registered{
-  border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.1);color:var(--cyan-bright);
+  border-color:rgba(var(--accent-0-rgb),.4);background:rgba(var(--accent-0-rgb),.1);color:var(--cyan-bright);
 }
 .profile-auth-tabs{display:flex;gap:6px;margin:0 0 10px}
 .profile-auth-tab{
@@ -783,12 +783,12 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
   background:rgba(255,255,255,.04);border:1px solid var(--border);
 }
 .profile-auth-tab.is-active{
-  color:var(--cyan-bright);border-color:rgba(34,211,238,.45);background:rgba(34,211,238,.12);
+  color:var(--cyan-bright);border-color:rgba(var(--accent-0-rgb),.45);background:rgba(var(--accent-0-rgb),.12);
 }
 .profile-auth-lead{font-size:.8rem;color:var(--text-dim);margin:0 0 10px}
 .profile-auth-actions{display:flex;flex-direction:column;gap:8px;margin:4px 0 8px}
 .profile-auth-actions .btn-gold,.profile-auth-actions .btn-ghost{width:100%;min-width:0}
-.profile-auth-google{border-color:rgba(34,211,238,.35)!important}
+.profile-auth-google{border-color:rgba(var(--accent-0-rgb),.35)!important}
 .profile-auth-status{font-family:var(--mono);font-size:.7rem;color:var(--text-dim);min-height:1.2em;margin:0 0 8px}
 .profile-auth-status.is-error{color:#fca5a5}
 .profile-auth-signed{display:flex;flex-direction:column;gap:8px;margin:0 0 10px}
@@ -813,7 +813,7 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
   background:#e2e8f0;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.35);
 }
 .profile-switch input:checked + .profile-switch-slider{
-  background:rgba(34,211,238,.25);border-color:rgba(34,211,238,.55);
+  background:rgba(var(--accent-0-rgb),.25);border-color:rgba(var(--accent-0-rgb),.55);
 }
 .profile-switch input:checked + .profile-switch-slider::before{
   transform:translateX(20px);background:var(--cyan-bright);
@@ -853,7 +853,7 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
 }
 .chat-toggle{
   font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.02em;
-  padding:6px 12px;background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.35);color:var(--cyan-bright);
+  padding:6px 12px;background:rgba(var(--accent-0-rgb),.1);border-color:rgba(var(--accent-0-rgb),.35);color:var(--cyan-bright);
 }
 .chat-toggle:hover{box-shadow:0 0 14px var(--mood-glow)}
 .chat-minimize{width:28px;height:28px;padding:0;line-height:1;opacity:.75}
@@ -888,7 +888,7 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
   font:inherit;padding:6px 8px;border-radius:8px;border:1px solid transparent;
   background:transparent;color:var(--text);cursor:pointer;
 }
-.chat-friends-main:hover{border-color:var(--border);background:rgba(34,211,238,.08)}
+.chat-friends-main:hover{border-color:var(--border);background:rgba(var(--accent-0-rgb),.08)}
 .chat-friends-name{font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--cyan-bright);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chat-friends-status{font-family:var(--mono);font-size:.6rem;color:var(--text-dim)}
 .chat-friends-x,.chat-friends-add,.chat-ac-add{
@@ -896,7 +896,7 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
   border-radius:8px;border:1px solid transparent;background:transparent;color:var(--text-dim);cursor:pointer;
 }
 .chat-friends-x:hover{color:#fda4af;border-color:rgba(251,113,133,.4);background:rgba(251,113,133,.1)}
-.chat-friends-add:hover,.chat-ac-add:hover{color:var(--cyan-bright);border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.1)}
+.chat-friends-add:hover,.chat-ac-add:hover{color:var(--cyan-bright);border-color:rgba(var(--accent-0-rgb),.4);background:rgba(var(--accent-0-rgb),.1)}
 .chat-friends-actions{display:flex;gap:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.06);margin-top:4px}
 .chat-ac-row{display:flex;align-items:center;gap:4px}
 .chat-ac-row .chat-ac-item{flex:1}
@@ -909,7 +909,7 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
 }
 .chat-empty{color:var(--text-dim);font-family:var(--mono);font-size:.72rem;padding:12px 4px;text-align:center}
 .chat-msg{margin:0 0 8px;padding:6px 8px;border-radius:10px;background:rgba(255,255,255,.03)}
-.chat-msg.mine{background:rgba(34,211,238,.08)}
+.chat-msg.mine{background:rgba(var(--accent-0-rgb),.08)}
 .chat-msg-head{display:flex;align-items:center;justify-content:flex-start;gap:6px;margin-bottom:2px;flex-wrap:wrap}
 .chat-msg-tag{
   font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.02em;
@@ -939,8 +939,8 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
   font-family:var(--mono);font-size:.72rem;text-align:left;padding:4px 6px;border-radius:8px;
   background:transparent;border:1px solid transparent;color:var(--text);
 }
-.chat-channel-opt:hover{border-color:var(--border);background:rgba(34,211,238,.08)}
-.chat-channel-opt.active{border-color:rgba(34,211,238,.45);background:rgba(34,211,238,.1)}
+.chat-channel-opt:hover{border-color:var(--border);background:rgba(var(--accent-0-rgb),.08)}
+.chat-channel-opt.active{border-color:rgba(var(--accent-0-rgb),.45);background:rgba(var(--accent-0-rgb),.1)}
 .chat-channel-opt.dimmed{opacity:.72}
 .chat-vis-btn{
   flex-shrink:0;width:28px;height:28px;padding:0;line-height:1;font-size:.85rem;
@@ -964,8 +964,8 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
 .chat-input:focus{outline:2px solid var(--cyan-bright);outline-offset:1px}
 .chat-send{
   width:38px;height:38px;border-radius:12px;flex-shrink:0;
-  background:linear-gradient(145deg,rgba(34,211,238,.25),rgba(251,191,36,.15));
-  border-color:rgba(34,211,238,.45);color:var(--cyan-bright);font-size:1rem;
+  background:linear-gradient(145deg,rgba(var(--accent-0-rgb),.25),rgba(251,191,36,.15));
+  border-color:rgba(var(--accent-0-rgb),.45);color:var(--cyan-bright);font-size:1rem;
 }
 .chat-send:hover{box-shadow:0 0 14px var(--mood-glow)}
 .chat-tool-btn{font-family:var(--mono);font-size:.65rem;padding:5px 9px}
@@ -1022,7 +1022,7 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
   backdrop-filter:blur(12px);font-family:var(--mono);font-size:.62rem;
   pointer-events:auto;
 }
-.party-timer-chip--focus{border-color:rgba(34,211,238,.4)}
+.party-timer-chip--focus{border-color:rgba(var(--accent-0-rgb),.4)}
 .party-timer-chip--break{border-color:rgba(251,191,36,.45)}
 .ptc-name{font-weight:700;max-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)}
 .ptc-mode{color:var(--text-dim);text-transform:uppercase;letter-spacing:.04em;font-size:.55rem}
@@ -1129,7 +1129,7 @@ body.party-nav-locked #formGrid .card{opacity:.45;filter:grayscale(.3)}
 .lobby-seat-num{font-family:var(--mono);font-size:.62rem;color:var(--text-dim);margin-bottom:4px}
 .lobby-seat-empty{font-size:.72rem;color:var(--text-dim);opacity:.7}
 .lobby-seat-occ,.lobby-bench-chip{
-  padding:6px 8px;border-radius:8px;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.35);
+  padding:6px 8px;border-radius:8px;background:rgba(var(--accent-0-rgb),.1);border:1px solid rgba(var(--accent-0-rgb),.35);
   font-size:.75rem;cursor:grab;
 }
 .lobby-bench{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
@@ -1141,7 +1141,7 @@ body.party-nav-locked #formGrid .card{opacity:.45;filter:grayscale(.3)}
   background:transparent;color:var(--text-dim);cursor:pointer;font-family:var(--mono);transition:all .2s;
 }
 .kb-mode-btn:hover{border-color:var(--cyan);color:var(--cyan-bright)}
-.kb-mode-btn.active{border-color:var(--cyan);background:rgba(34,211,238,.12);color:var(--cyan-bright);box-shadow:0 2px 8px var(--mood-glow)}
+.kb-mode-btn.active{border-color:var(--cyan);background:rgba(var(--accent-0-rgb),.12);color:var(--cyan-bright);box-shadow:0 2px 8px var(--mood-glow)}
 .split-mode-bar{
   position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:85;
   padding:8px 12px;border-radius:999px;background:rgba(8,12,20,.85);border:1px solid var(--border);backdrop-filter:blur(12px);
@@ -1178,7 +1178,7 @@ body.party-nav-locked #formGrid .card{opacity:.45;filter:grayscale(.3)}
   background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:10px;color:var(--text);
   padding:10px 12px;font:inherit;font-size:.9rem;text-align:left;cursor:pointer;
 }
-.pane-opt-btn:hover:not(:disabled){border-color:var(--cyan);background:rgba(34,211,238,.08)}
+.pane-opt-btn:hover:not(:disabled){border-color:var(--cyan);background:rgba(var(--accent-0-rgb),.08)}
 .pane-opt-btn.correct{border-color:var(--success);background:rgba(52,211,153,.1)}
 .pane-opt-btn.wrong{border-color:var(--error);background:rgba(251,113,133,.1)}
 .pane-opt-btn.ai-hover{border-color:hsla(var(--friend-hue,180),70%,55%,.7);box-shadow:0 0 8px hsla(var(--friend-hue,180),70%,50%,.25)}
@@ -1198,7 +1198,7 @@ body.split-quiz-active #chatDock{z-index:60}
   padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:transparent;
   color:var(--text-dim);font:inherit;font-size:.72rem;font-family:var(--mono);cursor:pointer;
 }
-.mp-mode-pill.active{border-color:var(--cyan);color:var(--cyan-bright);background:rgba(34,211,238,.12)}
+.mp-mode-pill.active{border-color:var(--cyan);color:var(--cyan-bright);background:rgba(var(--accent-0-rgb),.12)}
 .mp-mode-pill:disabled{opacity:.45;cursor:default}
 .lobby-row-wrap{display:flex;gap:6px;align-items:stretch}
 .lobby-row-wrap .lobby-row{flex:1}
@@ -1357,6 +1357,42 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
 .section-h{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin:18px 0 10px}
 .empty-note{color:var(--text-dim);font-family:var(--mono);font-size:.9rem;padding:18px;border:1px dashed var(--border);border-radius:16px}
 
+
+/* Settings open: hide brush/aura (modal is one stacking context; can't sit between backdrop & content) */
+body.settings-open .brushCursor,
+body.settings-open .brushCursor .aura,
+body.settings-open #cursor,
+body.settings-open #cursor.core{opacity:0!important;visibility:hidden!important}
+
+/* Wire colorizer accents across quiz chrome that previously ignored them */
+.mode-tab.active,
+.q-nav-btn.current,
+.fs-btn:hover,
+.hub-back button:hover,
+.quiz-settings-btn:hover{
+  border-color:var(--accent-0)!important;
+  color:var(--accent-0)!important;
+  background:rgba(var(--accent-0-rgb),.14)!important;
+  box-shadow:0 0 18px rgba(var(--accent-0-rgb),.35)!important;
+}
+.mode-tab:hover{border-color:var(--accent-1);color:var(--accent-1)}
+.card:hover,.card:focus-visible{border-color:var(--accent-1)!important;box-shadow:0 0 28px rgba(var(--accent-0-rgb),.4),0 18px 40px -12px rgba(0,0,0,.55)!important}
+.card-pct,.card-meta,.form-letter{color:var(--accent-0)!important}
+.track-fill{background:linear-gradient(90deg,var(--accent-0),var(--accent-1),var(--accent-2))!important}
+.opt:hover:not(:disabled){border-color:var(--accent-0)!important;background:rgba(var(--accent-0-rgb),.12)!important;box-shadow:0 0 20px rgba(var(--accent-0-rgb),.3)!important}
+.nav-btn.primary,.btn-gold,.cta-glow{background:linear-gradient(135deg,var(--accent-0),var(--accent-1))!important;box-shadow:0 12px 32px rgba(var(--accent-0-rgb),.35)!important}
+.status-dot{background:radial-gradient(circle at 30% 30%,var(--accent-1),var(--accent-0) 50%,var(--accent-4))!important;box-shadow:0 0 18px rgba(var(--accent-0-rgb),.45)!important}
+.cat-tag{border-color:rgba(var(--accent-0-rgb),.4)!important;color:var(--accent-1)!important;background:rgba(var(--accent-0-rgb),.12)!important}
+.panel{border-color:rgba(var(--accent-0-rgb),.4)!important}
+.section-h{color:var(--accent-1)!important}
+a, .portal-card .go{color:var(--accent-1)}
+.pref-row input[type="checkbox"], .pref-row input[type="radio"]{accent-color:var(--accent-0)}
+.kb-mode-btn.active,.mp-mode-pill.active,.chat-channel-opt.active{
+  border-color:var(--accent-0)!important;
+  background:rgba(var(--accent-0-rgb),.12)!important;
+  color:var(--accent-1)!important;
+}
+
 </style>
 <body>
 <canvas id="fxCanvas"></canvas>
@@ -1366,7 +1402,11 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
 
 <div class="settings-wrapper" id="settings-wrapper">
   <button class="settings-btn" id="settings-btn" title="Theme / Colorizer" aria-label="Open theme settings">
-    <span class="settings-icon">⚙</span>
+<svg class="settings-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
+fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="3"/>
+<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+</svg>
   </button>
 </div>
 
@@ -1465,7 +1505,6 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
 
     <div class="hub-back" style="display:flex;flex-wrap:wrap;gap:10px;">
       <button type="button" id="returnHubBtn">← Main Menu</button>
-      <button type="button" id="returnStudyBtn">Study</button>
     </div>
     <div class="load-row">
       <button class="fs-btn" type="button" id="resetSolvedBtn">Reset solved</button>
@@ -1490,7 +1529,6 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
     </div>
     <div class="header-right">
       <button class="fs-btn" type="button" id="hubBtn">← Return to Quiz</button>
-      <button class="fs-btn" type="button" id="returnStudyBtnQuiz">Study</button>
       <button class="fs-btn" type="button" id="fsBtn">Fullscreen · F</button>
     </div>
   </div>
@@ -1821,11 +1859,8 @@ function ingestBank(data){
 }
 
 function goMainMenu(){ window.location.href='../index.html'; }
-function goStudy(){ window.location.href='../study.html'; }
 function returnToQuiz(){ quizActive=false; clearWireLayer(); renderHub(); showView('hubView'); }
 document.getElementById('returnHubBtn').addEventListener('click', goMainMenu);
-document.getElementById('returnStudyBtn').addEventListener('click', goStudy);
-document.getElementById('returnStudyBtnQuiz').addEventListener('click', goStudy);
 
 async function loadEmbeddedBank(){
   const paths=['../data/bank.json','./data/bank.json','/data/bank.json'];
