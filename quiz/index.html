@@ -1645,14 +1645,14 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
     rgba(255,255,255,.08) 64%,
     transparent 100%);
   transform:translateX(-190%) skewX(-16deg);
-  animation:navSoftSheen 18s ease-in-out infinite alternate;
+  animation:navSoftSheen 7s ease-in-out infinite alternate;
   will-change:transform,opacity;
 }
 .q-nav-btn:nth-child(3n+1).unanswered::before,
 .q-nav-btn:nth-child(3n+1).skipped:not(.done)::before{animation-delay:-6s}
 .q-nav-btn:nth-child(3n+2).unanswered::before,
 .q-nav-btn:nth-child(3n+2).skipped:not(.done)::before{animation-delay:-12s}
-#backBtn.has-skips-behind::before{animation-duration:22s;animation-delay:-3s}
+#backBtn.has-skips-behind::before{animation-duration:9s;animation-delay:-3s}
 .q-nav-btn.unanswered::after{z-index:2}
 @keyframes navSoftSheen{
   0%{transform:translateX(-190%) skewX(-16deg);opacity:.12}
