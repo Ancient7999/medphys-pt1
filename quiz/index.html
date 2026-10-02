@@ -2125,7 +2125,7 @@ refreshFxAccentColors();
 let BANK=null;
 let questions=[], answers=[], current=0, locked=false, quizActive=false, startTime=0, elapsedTimer=null, drawState=null, runLabel='';
 let formulaMode=false, formulaKeys=[], formulaCurrentKey='', formulaAdvanceTimer=null, formulaAdvanceRaf=null, formulaHintShown=false;
-const FORMULA_ADVANCE_MS=2500;
+const FORMULA_ADVANCE_MS=3200;
 const FORMULA_COUNT_KEY='pt1_formula_count';
 const FORMULA_MASTERY_KEY='pt1_formula_mastery_v1';
 function loadFormulaCount(){ const n=parseInt(lsGet(FORMULA_COUNT_KEY)||'0',10); return Number.isFinite(n)&&n>0?n:0; }
