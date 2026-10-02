@@ -1633,6 +1633,32 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   14%{opacity:1}
   100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}
 }
+.link-border-laser{position:fixed;inset:0;z-index:241;pointer-events:none;overflow:hidden}
+.link-border-laser .border-laser-layer{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.link-border-laser .border-laser-path{
+  fill:none;stroke-linecap:round;stroke-linejoin:round;
+  opacity:0;will-change:opacity,stroke-dashoffset;
+  animation:linkBorderLaserTravel var(--beam-dur,2500ms) linear forwards;
+}
+.link-border-laser .border-laser-glow{
+  stroke:rgba(var(--accent-0-rgb),.42);stroke-width:6.5;
+  filter:drop-shadow(0 0 10px rgba(var(--accent-0-rgb),.55));
+}
+.link-border-laser .border-laser-core{
+  stroke:var(--accent-0);stroke-width:2.4;
+  filter:drop-shadow(0 0 5px rgba(var(--accent-0-rgb),.95)) drop-shadow(0 0 14px rgba(var(--accent-0-rgb),.6)) drop-shadow(0 0 24px rgba(var(--accent-1-rgb),.35));
+}
+.link-border-laser .border-laser-core-b{
+  stroke:var(--accent-1);stroke-width:1.6;
+  filter:drop-shadow(0 0 4px rgba(var(--accent-1-rgb),.9)) drop-shadow(0 0 12px rgba(var(--accent-0-rgb),.4));
+  animation-delay:calc(var(--beam-dur,2500ms) * .08);
+}
+@keyframes linkBorderLaserTravel{
+  0%{opacity:0;stroke-dashoffset:var(--dash-from,0)}
+  8%{opacity:1}
+  88%{opacity:1}
+  100%{opacity:0;stroke-dashoffset:calc(var(--dash-from,0) - var(--plen))}
+}
 .q-nav-btn{appearance:none;min-width:2rem;height:1.85rem;padding:0 .45rem;border-radius:9px;border:1px solid rgba(var(--accent-0-rgb),.22);background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.08) 0%,rgba(10,14,22,.55) 100%);color:var(--text-dim);font-family:var(--mono);font-size:.72rem;font-weight:700;line-height:1;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .18s,background .18s,color .18s,box-shadow .18s}
 .q-nav-btn.linking{min-width:3.15rem}
 .q-nav-icon{margin-right:.2rem;font-family:system-ui,sans-serif;font-size:.8rem;line-height:1;vertical-align:-.04em}
@@ -3240,23 +3266,31 @@ function relayoutWires(){
 }
 addEventListener('scroll',relayoutWires,true);
 addEventListener('resize',relayoutWires);
-function celebrateLink(x,y){
-  /* Accent-tinted sparkle laser: longer beams with per-side variable length,
-     viewport wall bounce, slower life. Colors from live --accent-* CSS vars. */
+function celebrateLink(x,y,leftEl,rightEl){
+  /* Accent spark laser + perimeter lasers on the matched left/right items.
+     Duration shared: min 2s, often 2.5–3s, rarely ~3.5s, very rarely 4s max. */
   const W=window.innerWidth, H=window.innerHeight;
   const pad=2;
   const bounds={left:pad,top:pad,right:Math.max(pad+1,W-pad),bottom:Math.max(pad+1,H-pad)};
-  const life=2000+Math.random()*500;
+  const r=Math.random();
+  let life;
+  if(r<0.55) life=2500+Math.random()*500;       /* often 2.5–3s */
+  else if(r<0.82) life=2000+Math.random()*400;  /* 2.0–2.4s */
+  else if(r<0.96) life=3200+Math.random()*400;  /* rarely ~3.2–3.6s */
+  else life=3600+Math.random()*400;             /* very rarely up to 4s */
+  life=Math.min(4000,Math.max(2000,life));
+  const lifeMs=life.toFixed(0)+'ms';
+
   const wrap=document.createElement('div');
   wrap.className='link-spark-laser';
-  wrap.style.setProperty('--beam-dur',life.toFixed(0)+'ms');
+  wrap.style.setProperty('--beam-dur',lifeMs);
   wrap.setAttribute('aria-hidden','true');
 
   function randomBeamLength(){
     const maxDim=Math.max(W,H);
-    const r=Math.random();
-    if(r<0.3) return maxDim*(0.9+Math.random()*0.75); /* cross-screen */
-    if(r<0.7) return 240+Math.random()*320; /* medium-long */
+    const rr=Math.random();
+    if(rr<0.3) return maxDim*(0.9+Math.random()*0.75); /* cross-screen */
+    if(rr<0.7) return 240+Math.random()*320; /* medium-long */
     return 160+Math.random()*160; /* still longer than legacy half-beams */
   }
   function traceLaser(ox,oy,dx,dy,length){
@@ -3320,7 +3354,6 @@ function celebrateLink(x,y){
       pl.setAttribute('points',points);
       pl.style.animationDelay=spec.delay.toFixed(0)+'ms';
       svg.appendChild(pl);
-      /* path length for draw-in; approximate via polyline length */
       let plen=0;
       for(let i=1;i<pts.length;i++){
         const dx=pts[i].x-pts[i-1].x, dy=pts[i].y-pts[i-1].y;
@@ -3349,11 +3382,82 @@ function celebrateLink(x,y){
     const dist=36+Math.random()*72;
     sp.style.setProperty('--sx',(Math.cos(ang)*dist).toFixed(1)+'px');
     sp.style.setProperty('--sy',(Math.sin(ang)*dist).toFixed(1)+'px');
-    sp.style.setProperty('--spark-dur',(900+Math.random()*700)+'ms');
+    sp.style.setProperty('--spark-dur',Math.min(life,900+Math.random()*700).toFixed(0)+'ms');
     wrap.appendChild(sp);
   }
   document.body.appendChild(wrap);
-  setTimeout(()=>wrap.remove(),life+120);
+
+  /* Edge lasers: travel the borders of the matched left + right choice items */
+  const els=[leftEl,rightEl].filter(el=>el && el.getBoundingClientRect);
+  let borderWrap=null;
+  if(els.length){
+    borderWrap=document.createElement('div');
+    borderWrap.className='link-border-laser';
+    borderWrap.style.setProperty('--beam-dur',lifeMs);
+    borderWrap.setAttribute('aria-hidden','true');
+    const bsvg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    bsvg.setAttribute('class','border-laser-layer');
+    bsvg.setAttribute('width','100%');
+    bsvg.setAttribute('height','100%');
+    bsvg.setAttribute('viewBox','0 0 '+W+' '+H);
+    bsvg.setAttribute('preserveAspectRatio','none');
+
+    function roundedRectD(x0,y0,w,h,rad){
+      const r=Math.max(0,Math.min(rad,w/2,h/2));
+      return 'M '+(x0+r)+','+y0+
+        ' H '+(x0+w-r)+
+        ' A '+r+','+r+' 0 0 1 '+(x0+w)+','+(y0+r)+
+        ' V '+(y0+h-r)+
+        ' A '+r+','+r+' 0 0 1 '+(x0+w-r)+','+(y0+h)+
+        ' H '+(x0+r)+
+        ' A '+r+','+r+' 0 0 1 '+x0+','+(y0+h-r)+
+        ' V '+(y0+r)+
+        ' A '+r+','+r+' 0 0 1 '+(x0+r)+','+y0+
+        ' Z';
+    }
+
+    els.forEach((el,idx)=>{
+      const rect=el.getBoundingClientRect();
+      if(!(rect.width>2 && rect.height>2)) return;
+      const cs=getComputedStyle(el);
+      const br=parseFloat(cs.borderTopLeftRadius)||14;
+      const d=roundedRectD(rect.left,rect.top,rect.width,rect.height,br);
+      const probe=document.createElementNS('http://www.w3.org/2000/svg','path');
+      probe.setAttribute('d',d);
+      bsvg.appendChild(probe);
+      const plen=Math.max(1,probe.getTotalLength());
+      bsvg.removeChild(probe);
+      const dash=Math.max(36,Math.min(120,plen*0.18));
+      const gap=Math.max(1,plen-dash);
+      const classes=[
+        'border-laser-path border-laser-glow',
+        'border-laser-path border-laser-core',
+        'border-laser-path border-laser-core-b'
+      ];
+      classes.forEach((cls,ci)=>{
+        const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+        p.setAttribute('class',cls);
+        p.setAttribute('d',d);
+        p.style.setProperty('--plen',plen.toFixed(1));
+        /* Segment travels the perimeter; stagger second item / secondary core */
+        const startOff=(ci===2 ? dash*0.55 : 0)+(idx*plen*0.12);
+        const from=(-startOff).toFixed(1);
+        p.style.setProperty('--dash-from',from);
+        p.style.strokeDasharray=dash.toFixed(1)+' '+gap.toFixed(1);
+        p.style.strokeDashoffset=from;
+        bsvg.appendChild(p);
+      });
+    });
+    borderWrap.appendChild(bsvg);
+    document.body.appendChild(borderWrap);
+  }
+
+  setTimeout(()=>{
+    wrap.remove();
+    if(borderWrap) borderWrap.remove();
+  },life+140);
+}
+
 }
 
 function isLockedMatchWire(q, ans, wire){
@@ -3583,7 +3687,7 @@ function onDrawUp(ev){
       cur.pairs[leftId]=rightId;
       cur.wires.push({leftId,rightId,points:pts,color:currentWireColor()});
       cur.checked=false;
-      celebrateLink(ev.clientX, ev.clientY);
+      celebrateLink(ev.clientX, ev.clientY, leftEl, rightEl);
       // Glow + lock left in place (no full redraw)
       leftEl.classList.add('paired','is-solved-link');
       leftEl.disabled=true;
