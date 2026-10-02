@@ -118,7 +118,6 @@ Velocity rises **10×** in the narrowed section.
 
 **Clinical framing:** vascular narrowing (stenosis) → higher blood speed in the throat of the stenosis (continuity), before pressure effects (Bernoulli).
 
-### Exam MCQ style fact
 
 *Why does velocity increase at a carotid stenosis?* Primary continuity answer: **A decreases → v increases** (Bernoulli explains the accompanying **pressure drop**, not the velocity rise itself).
 

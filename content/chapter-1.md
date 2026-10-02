@@ -180,7 +180,7 @@ Stress = F / A
 SI unit: N/m² = Pascal (Pa)
 ```
 
-When you apply an external force, a restoring force develops in the opposite direction inside the material. That restoring force per unit area is stress.
+**How this formula is made:** F is the restoring force inside the material (newtons); A is the cross-sectional area that force acts through (m²). Stress is force divided by area — same push concentrated on a smaller area means larger stress. When you apply an external force, a restoring force develops in the opposite direction inside the material; that restoring force per unit area is stress.
 
 ### Strain
 
@@ -191,6 +191,8 @@ Strain = (deformation in direction of force) / (original dimension)
 For length: Strain = ΔL / L₀
 Dimensionless — NO units
 ```
+
+**How this formula is made:** ΔL is the change in length; L₀ is the original length. Strain is a ratio of two lengths, so the units cancel — it is a pure number. It answers “how much did the object stretch (or shorten) relative to how long it was?”
 
 ### Stress in the human body (examples)
 
@@ -220,6 +222,11 @@ Stress ∝ Strain  (within elastic limit)
 Stress = Modulus × Strain
 Modulus = Stress / Strain
 ```
+
+**How these are assembled (each form separately):**
+- **Stress ∝ Strain:** within the elastic limit, doubling the stress doubles the strain — a direct proportion, not yet a full equation.
+- **Stress = Modulus × Strain:** insert the constant of proportionality (the modulus) so the proportion becomes an equation you can calculate with.
+- **Modulus = Stress / Strain:** rearrange to isolate that constant — how much stress you need per unit of strain. Larger modulus means stiffer material.
 
 Beyond the elastic limit → **permanent (plastic) deformation**. At the **breaking point** the material fails.
 
@@ -252,6 +259,8 @@ Force along the **axis (length)** of the object.
 Longitudinal strain = ΔL / L
 ```
 
+**How this formula is made:** ΔL is the length change along the axis; L is the original length. Same idea as general strain, specialised to stretch or compression along one axis.
+
 ### 2 · Shear stress
 
 Force **parallel to the surface** (tangential). Material slides like a pack of cards.
@@ -260,7 +269,7 @@ Force **parallel to the surface** (tangential). Material slides like a pack of c
 Shear strain = Δx / L
 ```
 
-Δx = sideways displacement of one face; L = perpendicular height/thickness.
+**How this formula is made:** Δx is the sideways (tangential) displacement of one face; L is the perpendicular height or thickness. Dividing sideways shift by height gives a dimensionless measure of how much the material has been skewed (like sliding a pack of cards).
 
 ### 3 · Hydraulic (volume) stress
 
@@ -269,6 +278,8 @@ Uniform pressure from a fluid **from all sides**. Shape unchanged; **volume** ch
 ```
 Hydraulic (volume) strain = ΔV / V
 ```
+
+**How this formula is made:** ΔV is the change in volume; V is the original volume. Uniform pressure from all sides changes size, not shape — so strain is written as a volume ratio, again dimensionless.
 
 ### Body examples
 
@@ -293,6 +304,12 @@ Y = (F / A) / (ΔL / L) = (F L) / (A ΔL)
 Unit: Pa
 ```
 
+**How Young’s modulus is assembled:**
+- Start from Hooke: modulus = stress / strain for this geometry.
+- Longitudinal stress is F/A (axial force over cross-section).
+- Longitudinal strain is ΔL/L (length change over original length).
+- Divide: Y = (F/A) ÷ (ΔL/L). Multiplying by L/L flips the strain fraction and gives the compact form Y = (F L) / (A ΔL).
+
 Larger Y → stiffer → more stress needed for a small length change. Cortical bone Y ≈ **16 × 10⁹ Pa** (≈ 15–20 GPa in literature).
 
 ### Shear modulus (G)
@@ -303,7 +320,7 @@ G = (F / A) / (Δx / L)
 Unit: Pa
 ```
 
-Resistance to **shape** change without volume change.
+**How the shear modulus is assembled:** shear stress is the tangential force per area F/A; shear strain is Δx/L. G is that stress divided by that strain — how much tangential stress you need for a given sideways skew. Resistance to **shape** change without volume change.
 
 ### Bulk modulus (B)
 
@@ -313,7 +330,7 @@ B = (F / A) / (ΔV / V)
 Unit: Pa
 ```
 
-Resistance to **volume** change. Water B ≈ 2.2 × 10⁹ Pa (nearly incompressible).
+**How the bulk modulus is assembled:** hydraulic stress is the uniform pressure F/A from all sides; hydraulic strain is ΔV/V. B is pressure divided by fractional volume change — how much pressure you need to squeeze the volume by a given fraction. Resistance to **volume** change. Water B ≈ 2.2 × 10⁹ Pa (nearly incompressible).
 
 ### Side-by-side
 
@@ -381,12 +398,12 @@ A 40 cm femur compresses only ~3.75 mm (~1%) before failure — narrow safety ma
 
 ```
 Physical quantity = Numerical value × Unit
-Stress = F / A                         [Pa]
-Strain = ΔL / L₀                       [dimensionless]
-Hooke (elastic): Stress ∝ Strain
-Y = (F/A) / (ΔL/L)
-G = (F/A) / (Δx/L)
-B = (F/A) / (ΔV/V)
+Stress = F / A                         [Pa]   ← force ÷ area
+Strain = ΔL / L₀                       [dimensionless]   ← change ÷ original
+Hooke (elastic): Stress ∝ Strain       ← proportion; modulus = stress/strain
+Y = (F/A) / (ΔL/L)                     ← axial stress ÷ length strain
+G = (F/A) / (Δx/L)                     ← tangential stress ÷ shear strain
+B = (F/A) / (ΔV/V)                     ← uniform pressure ÷ volume strain
 ```
 
 ### States quick table
