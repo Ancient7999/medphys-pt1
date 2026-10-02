@@ -3267,18 +3267,18 @@ function relayoutWires(){
 addEventListener('scroll',relayoutWires,true);
 addEventListener('resize',relayoutWires);
 function celebrateLink(x,y,leftEl,rightEl){
-  /* Accent spark laser + perimeter lasers on the matched left/right items.
-     Duration shared: min 2s, often 2.5–3s, rarely ~3.5s, very rarely 4s max. */
+  /* Accent spark + perimeter lasers on matched items; shared life duration. */
   const W=window.innerWidth, H=window.innerHeight;
   const pad=2;
   const bounds={left:pad,top:pad,right:Math.max(pad+1,W-pad),bottom:Math.max(pad+1,H-pad)};
   const r=Math.random();
   let life;
-  if(r<0.55) life=2500+Math.random()*500;       /* often 2.5–3s */
-  else if(r<0.82) life=2000+Math.random()*400;  /* 2.0–2.4s */
-  else if(r<0.96) life=3200+Math.random()*400;  /* rarely ~3.2–3.6s */
-  else life=3600+Math.random()*400;             /* very rarely up to 4s */
-  life=Math.min(4000,Math.max(2000,life));
+  if(r<0.52) life=2500+Math.random()*500;       /* common 2.5–3s */
+  else if(r<0.78) life=2000+Math.random()*400;  /* 2.0–2.4s */
+  else if(r<0.90) life=3300+Math.random()*400;  /* uncommon ~3.3–3.7s */
+  else if(r<0.97) life=4000+Math.random()*500;  /* rare ~4–4.5s */
+  else life=4500+Math.random()*500;             /* very rare up to 5s */
+  life=Math.min(5000,Math.max(2000,life));
   const lifeMs=life.toFixed(0)+'ms';
 
   const wrap=document.createElement('div');
