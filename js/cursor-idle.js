@@ -24,7 +24,7 @@
       'html:not([data-pointer-input="touch"]) *{cursor:none !important;}' +
       '.brushCursor{position:fixed;pointer-events:none;z-index:2147483647;width:20px;height:20px;border-radius:50%;' +
       'background:radial-gradient(circle,var(--accent-0) 0,var(--accent-0) 8px,rgba(var(--accent-0-rgb),0.8) 8px,rgba(var(--accent-0-rgb),0.8) 10px);' +
-      'transform:translate(-50%,-50%);left:-100px;top:-100px;transition:opacity 0.2s ease;}' +
+      'transform:translate(-50%,-50%);left:-100px;top:-100px;outline:2px solid rgba(255,255,255,0.9);outline-offset:1px;box-shadow:0 0 0 1px rgba(0,0,0,0.85);transition:opacity 0.2s ease;}' +
       '.brushCursor.hidden{opacity:0;}' +
       '.aura{position:absolute;width:100px;height:100px;left:calc(50% - 50px);top:calc(50% - 50px);' +
       'background:radial-gradient(circle,rgba(var(--accent-0-rgb),0.5) 0%,rgba(var(--accent-0-rgb),0) 70%);' +
