@@ -2,11 +2,11 @@ This README is AI-generated.
 
 Open the Medical Physics Periodic Test 1 interface.
 
-https://ancient7999.github.io/medphys-pt1/
+https://SonicUnligmated.github.io/medphys-pt1/
 
 # Medical Physics Periodic Test 1 — Main Menu · Study · Quiz
 
-GitHub Pages app for **Phys101 Medical Physics** Periodic Test 1.
+GitHub Pages app for **Medical Physics** Periodic Test 1.
 
 **Scope:** Chapters 1–3 **through Bernoulli only**.
 
