@@ -18,7 +18,7 @@
     density: {
       name: 'Density',
       description: 'ρ = m / V',
-      variants: ['ρ', 'm', 'V', 'SG']
+      variants: ['ρ', 'm', 'V', 'SG', 'g/cm³→kg/m³']
     },
     pressureForce: {
       name: 'Pressure & force',
@@ -126,6 +126,41 @@
     const all = shuffle([correctLabel].concat(wrongLabels.slice(0, 3)));
     while (all.length < 4) all.push(wrongLabels[all.length] || ('— ' + all.length));
     return { options: all.slice(0, 4), correct: all.indexOf(correctLabel) };
+  }
+
+  /**
+   * Density unit-conversion MCQ options.
+   * Usually all choices share kg/m³; occasionally mix g/m³, kg/cm³, mg/m³ etc.
+   * Only the correct kg/m³ conversion is right — mixed-unit distractors use wrong magnitudes.
+   */
+  function buildDensityConversionOpts(rhoGcm, ansKgm, digits) {
+    const d = digits == null ? 3 : digits;
+    // ~25% of conversion Qs: mixed choice units (random, not every-N)
+    if (Math.random() >= 0.25) {
+      const built = buildOpts(ansKgm, 'kg/m³', d, [0.001, 0.01, 0.1, 10, 100, 0.001]);
+      built.mixedUnits = false;
+      return built;
+    }
+    const correctLabel = fmtWithUnit(ansKgm, 'kg/m³', d);
+    // Wrong number and/or wrong unit — never an equivalent density in another unit.
+    const wrongPool = [
+      fmtWithUnit(ansKgm, 'g/m³', d),
+      fmtWithUnit(rhoGcm, 'kg/cm³', d),
+      fmtWithUnit(ansKgm, 'mg/m³', d),
+      fmtWithUnit(rhoGcm, 'kg/m³', d),
+      fmtWithUnit(rhoGcm * 100, 'kg/m³', d),
+      fmtWithUnit(ansKgm * 10, 'g/m³', d),
+      fmtWithUnit(rhoGcm * 10, 'kg/cm³', d),
+      fmtWithUnit(ansKgm * 100, 'mg/m³', d),
+      fmtWithUnit(rhoGcm * 1e6, 'mg/m³', d)
+    ];
+    const uniq = [];
+    wrongPool.forEach(function (lab) {
+      if (lab !== correctLabel && uniq.indexOf(lab) < 0) uniq.push(lab);
+    });
+    const built = buildStringOpts(correctLabel, shuffle(uniq));
+    built.mixedUnits = true;
+    return built;
   }
 
   function pack(meta) {
@@ -263,7 +298,7 @@
   }
 
   function generateDensityQuestion() {
-    const variant = randInt(0, 3);
+    const variant = randInt(0, 4);
     const dims = pick([
       [5, 6, 8], [3, 4, 5], [6, 7, 8], [4, 5, 6], [2, 5, 8], [8, 5, 3]
     ]);
@@ -319,7 +354,7 @@
       ];
       explain = 'V = m/ρ = ' + fmtSci(V, 3) + ' cm³.';
       built = buildOpts(ans, unit, digits);
-    } else {
+    } else if (variant === 3) {
       q = 'A substance has density ' + fmtSci(rho, 3) + ' g/cm³. Taking the density of water as 1.00 g/cm³, what is its specific gravity?';
       ans = rho; unit = ''; digits = 3;
       formulaHint = 'SG = ρ_substance / ρ_water';
@@ -335,6 +370,31 @@
       ];
       explain = 'SG = ' + fmtSci(rho, 3) + ' / 1.00 = ' + fmtSci(rho, 3) + '.';
       built = buildOpts(ans, '', digits);
+    } else {
+      // Unit conversion: g/cm³ → kg/m³ (occasionally mixed choice units)
+      const rhoConv = pick([0.25, 0.5, 0.8, 1, 1.2, 2.5, 2.7, 4.0, 7.8, 8.0]);
+      const ansKgm = rhoConv * 1000;
+      digits = 3;
+      if (Math.random() < 0.45) {
+        q = fmtSci(rhoConv, 3) + ' g/cm³ = ? kg/m³';
+      } else {
+        q = 'A density of ' + fmtSci(rhoConv, 3) + ' g/cm³ is equal to which value in kg/m³?';
+      }
+      formulaHint = '(g/cm³) × 1000 = kg/m³';
+      formulaMap = [
+        mapLine(fmtSci(rhoConv, 3) + ' g/cm³', 'ρ')
+      ];
+      formulaPlugIn = fmtSci(rhoConv, 3) + ' × 1000';
+      formulaSteps = [
+        '1 g = 10⁻³ kg and 1 cm³ = 10⁻⁶ m³, so 1 g/cm³ = 10³ kg/m³',
+        'ρ = ' + formulaPlugIn,
+        '= ' + fmtSci(ansKgm, 3) + ' kg/m³'
+      ];
+      built = buildDensityConversionOpts(rhoConv, ansKgm, digits);
+      explain = fmtSci(rhoConv, 3) + ' g/cm³ × 1000 = ' + fmtSci(ansKgm, 3) + ' kg/m³.';
+      if (built.mixedUnits) {
+        explain += ' Some choices use other units — only the correct kg/m³ value is right.';
+      }
     }
     return pack({
       key: 'density', variant: variant, q: q,
