@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study · Medical Physics PT1</title>
+<link rel="stylesheet" href="css/theme-vars.css">
+<link rel="stylesheet" href="css/colorizer.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="study-app">
+  <header class="study-header">
+    <div>
+      <h1>Study Interface</h1>
+      <p class="sub">Chapters folded until opened · accents from Options</p>
+    </div>
+    <div class="study-actions">
+      <a class="btn" href="index.html">← Hub</a>
+      <a class="btn primary" href="quiz/index.html">Open Quiz Portal</a>
+      <button class="btn" type="button" id="fsBtn">Fullscreen</button>
+    </div>
+  </header>
+
+  <div class="chapter-list" id="chapterList"></div>
+  <p class="foot">Instrument Serif · Outfit · Space Mono · theme key atc_theme_color_v1 · content/*.md</p>
+</div>
+
+<!-- Hidden colorizer inputs so theme engine can restore accents from localStorage -->
+<div style="display:none" aria-hidden="true">
+  <input type="color" id="accent-color-picker" value="#FF8800">
+  <input type="text" id="accent-hex-input" value="#FF8800">
+  <input type="range" id="accent-strength-slider" min="0" max="100" value="64">
+  <span id="strength-value-display">64</span>
+  <div id="custom-presets-area"></div>
+  <input type="checkbox" id="light-mode-toggle">
+</div>
+
+<script src="js/particles.js"></script>
+<script src="js/colorizer-theme.js"></script>
+<script src="js/study-app.js"></script>
+</body>
+</html>

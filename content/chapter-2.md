@@ -1,8 +1,5 @@
 # Chapter 2 — Fluids at Rest
 
-**Phys101 Medical Physics · Formative / fluids statics (Dr. Syed lectures)**  
-Topics: what is a fluid · density & specific gravity · pressure · atmospheric & gauge pressure · barometer · open-tube manometer · Pascal's principle · buoyancy & Archimedes
-
 ---
 
 ## 1. Overview & learning map

@@ -1,8 +1,5 @@
 # Chapter 1 — Matter & Mechanical Properties
 
-**Phys101 Medical Physics · Foundation Year · Lectures 1–2**  
-Topics: physical quantities & units · phases of matter · mechanical properties · stress & strain · Hooke's law · Young's / Shear / Bulk moduli · bone biomechanics
-
 ---
 
 ## 1. Overview & learning map
@@ -10,7 +7,7 @@ Topics: physical quantities & units · phases of matter · mechanical properties
 ### Intended outcomes
 
 - Define a physical quantity and distinguish base vs derived quantities and unit systems.
-- Compare solid, liquid, and gas (plus plasma / BEC) with medical examples.
+- Compare solid, liquid, and gas (plus plasma / Bose–Einstein condensate (BEC)) with medical examples.
 - Define elasticity, plasticity, ductility, malleability, and strength.
 - Define stress and strain; state Hooke's law up to the elastic limit.
 - Write and use Young's, Shear, and Bulk moduli.
@@ -21,7 +18,7 @@ Topics: physical quantities & units · phases of matter · mechanical properties
 | Topic | Core idea |
 |-------|-----------|
 | Physical quantities | Measured property = number × unit |
-| Unit systems | CGS, FPS, MKS, SI (7 base units) |
+| Unit systems | centimetre–gram–second (CGS), foot–pound–second (FPS), metre–kilogram–second (MKS), International System of Units (SI) (7 base units) |
 | Phases of matter | Solid / liquid / gas; fluids = liquid + gas |
 | Mechanical properties | Elasticity ↔ plasticity; ductility, malleability, strength |
 | Stress & strain | F/A and ΔL/L₀ |
@@ -57,12 +54,12 @@ Both parts matter — "5" alone is not a quantity; "metres" alone is not a quant
 
 | System | Base length / mass / time |
 |--------|---------------------------|
-| **CGS** | centimetre, gram, second |
-| **FPS** | foot, pound (lb), second |
-| **MKS** | metre, kilogram, second |
-| **SI** | International System — 7 base units |
+| **centimetre–gram–second (CGS)** | centimetre, gram, second |
+| **foot–pound–second (FPS)** | foot, pound (lb), second |
+| **metre–kilogram–second (MKS)** | metre, kilogram, second |
+| **International System of Units (SI)** | 7 base units |
 
-### Seven SI base units
+### Seven International System of Units (SI) base units
 
 | Quantity | Unit | Symbol |
 |----------|------|--------|
@@ -73,11 +70,6 @@ Both parts matter — "5" alone is not a quantity; "metres" alone is not a quant
 | Electric current | ampere | A |
 | Luminous intensity | candela | Cd |
 | Amount of substance | mole | mol |
-
-### Key points
-
-- In medicine, a unit mistake (mg vs g, °C vs K) can be fatal — always carry the unit.
-- Force (newton), pressure (pascal), energy (joule) are **derived**, not base.
 
 ---
 
@@ -111,14 +103,37 @@ Additional states: **plasma** (ionised gas) and **Bose–Einstein condensate (BE
 
 ### Phase changes
 
-| Process | From → To |
-|---------|-----------|
-| Melting | solid → liquid |
-| Freezing | liquid → solid |
-| Vaporization | liquid → gas |
-| Condensation | gas → liquid |
-| Sublimation | solid → gas (directly) |
-| Deposition | gas → solid (directly; e.g. CO₂ ↔ dry ice) |
+<div class="phase-diagram" role="img" aria-label="Phase-change diagram linking solid, liquid, and gas">
+<svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+  <defs>
+    <linearGradient id="pgSolid" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="rgba(var(--accent-0-rgb),0.35)"/><stop offset="100%" stop-color="rgba(var(--accent-4-rgb),0.15)"/></linearGradient>
+    <linearGradient id="pgLiquid" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="rgba(var(--accent-1-rgb),0.35)"/><stop offset="100%" stop-color="rgba(var(--accent-6-rgb),0.15)"/></linearGradient>
+    <linearGradient id="pgGas" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="rgba(var(--accent-8-rgb),0.35)"/><stop offset="100%" stop-color="rgba(var(--accent-2-rgb),0.12)"/></linearGradient>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--accent-0)"/></marker>
+  </defs>
+  <rect x="40" y="90" width="140" height="72" rx="12" fill="url(#pgSolid)" stroke="var(--accent-0)" stroke-width="2"/>
+  <text x="110" y="132" text-anchor="middle" fill="var(--col-text-main)" font-family="Outfit,sans-serif" font-size="18" font-weight="600">Solid</text>
+  <rect x="250" y="90" width="140" height="72" rx="12" fill="url(#pgLiquid)" stroke="var(--accent-1)" stroke-width="2"/>
+  <text x="320" y="132" text-anchor="middle" fill="var(--col-text-main)" font-family="Outfit,sans-serif" font-size="18" font-weight="600">Liquid</text>
+  <rect x="460" y="90" width="140" height="72" rx="12" fill="url(#pgGas)" stroke="var(--accent-8)" stroke-width="2"/>
+  <text x="530" y="132" text-anchor="middle" fill="var(--col-text-main)" font-family="Outfit,sans-serif" font-size="18" font-weight="600">Gas</text>
+  <!-- Melting / Freezing -->
+  <path d="M185 108 H245" stroke="var(--accent-0)" stroke-width="2" marker-end="url(#arr)" fill="none"/>
+  <text x="215" y="98" text-anchor="middle" fill="var(--accent-0)" font-size="11" font-family="Space Mono,monospace">melting</text>
+  <path d="M245 144 H185" stroke="var(--accent-0)" stroke-width="2" marker-end="url(#arr)" fill="none"/>
+  <text x="215" y="168" text-anchor="middle" fill="var(--col-text-muted)" font-size="11" font-family="Space Mono,monospace">freezing</text>
+  <!-- Vaporization / Condensation -->
+  <path d="M395 108 H455" stroke="var(--accent-1)" stroke-width="2" marker-end="url(#arr)" fill="none"/>
+  <text x="425" y="98" text-anchor="middle" fill="var(--accent-1)" font-size="11" font-family="Space Mono,monospace">vaporization</text>
+  <path d="M455 144 H395" stroke="var(--accent-1)" stroke-width="2" marker-end="url(#arr)" fill="none"/>
+  <text x="425" y="168" text-anchor="middle" fill="var(--col-text-muted)" font-size="11" font-family="Space Mono,monospace">condensation</text>
+  <!-- Sublimation / Deposition (arcs) -->
+  <path d="M110 90 C110 28, 530 28, 530 90" stroke="var(--accent-8)" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <text x="320" y="24" text-anchor="middle" fill="var(--accent-8)" font-size="11" font-family="Space Mono,monospace">sublimation (solid → gas)</text>
+  <path d="M530 162 C530 240, 110 240, 110 162" stroke="var(--col-text-muted)" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+  <text x="320" y="258" text-anchor="middle" fill="var(--col-text-muted)" font-size="11" font-family="Space Mono,monospace">deposition (gas → solid · e.g. CO₂ ↔ dry ice)</text>
+</svg>
+</div>
 
 ### Tip — ideal liquids
 

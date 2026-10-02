@@ -1,9 +1,6 @@
 # Chapter 3 — Fluid Flow (through Bernoulli)
 
-**Phys101 Medical Physics · Lecture 3 (flow portion)**  
-**Scope for Periodic Test 1:** what is a fluid (flow) · laminar vs turbulent · mass & volume flow rates · equation of continuity · Bernoulli's equation · medical applications of continuity & Bernoulli  
-
-**Excluded from this chapter (later lectures):** viscosity, Poiseuille's law, Laplace's law, Reynolds number, surface tension, pulmonary surfactant, alveoli/bronchial/diaphragm deep content.
+> **Out of scope for PT1 (later lectures):** viscosity, Poiseuille's law, Laplace's law, Reynolds number, surface tension, pulmonary surfactant, alveoli/bronchial/diaphragm deep content.
 
 ---
 

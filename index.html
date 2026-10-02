@@ -1,804 +1,149 @@
 <!DOCTYPE html>
-<html lang="en" class="mood-happy" data-custom-cursor="on">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Medical Physics PT1 · Study</title>
-<script>
-(function(){
-  try{
-    var c=localStorage.getItem('pt1_custom_cursor');
-    var curOn=!(c==='0'||c==='false'||c==='off');
-    document.documentElement.setAttribute('data-custom-cursor', curOn?'on':'off');
-  }catch(e){
-    document.documentElement.setAttribute('data-custom-cursor','on');
-  }
-})();
-</script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
-
-:root {
-  /* Hooke quiet-luxury neutrals */
-  --bg: #0c0908;
-  --bg2: #14100c;
-  --surface: rgba(26, 20, 16, 0.95);
-  --surface2: rgba(38, 30, 22, 0.7);
-  --ink: #1a1410;
-  --cream: #f5ead6;
-  --text: #efe3ca;
-  --text-dim: #a89273;
-  --text-dim2: #6b5c47;
-  --brass: #d4a24c;
-  --brass-bright: #f0c878;
-  --brass-dim: #8a6820;
-  /* Mood accents (overridden by mood classes) */
-  --cyan: #fbbf24;
-  --cyan-bright: #fde68a;
-  --teal: #f59e0b;
-  --gold: #fcd34d;
-  --accent: #fbbf24;
-  --accent-2: #f59e0b;
-  --border: rgba(212, 162, 76, 0.28);
-  --border-strong: rgba(212, 162, 76, 0.55);
-  --mood-glow: rgba(251, 191, 36, 0.28);
-  --bg-glow: rgba(251, 191, 36, 0.08);
-  --success: #7ba05b;
-  --error: #d96565;
-  --head: 'Instrument Serif', Georgia, serif;
-  --body: 'Outfit', system-ui, sans-serif;
-  --mono: 'Space Mono', ui-monospace, monospace;
-  --transition-ms: 280ms;
-}
-
-/* Mood themes — same token names as quiz */
-html.mood-happy {
-  --bg:#0c0904; --bg2:#140e06; --bg-glow:rgba(251,191,36,.08);
-  --accent:#fbbf24; --accent-2:#f59e0b; --cyan:#fbbf24; --cyan-bright:#fde68a; --teal:#f59e0b;
-  --border:rgba(251,191,36,.4); --border-strong:rgba(251,191,36,.62); --mood-glow:rgba(251,191,36,.28); --gold:#fcd34d;
-  --transition-ms:380ms;
-}
-html.mood-calm {
-  --bg:#040c0b; --bg2:#071412; --bg-glow:rgba(45,212,191,.07);
-  --accent:#34d399; --accent-2:#6ee7b7; --cyan:#34d399; --cyan-bright:#6ee7b7; --teal:#2dd4bf;
-  --border:rgba(52,211,153,.4); --border-strong:rgba(52,211,153,.62); --mood-glow:rgba(52,211,153,.25); --gold:#a7f3d0;
-  --transition-ms:400ms;
-}
-html.mood-neutral {
-  --bg:#06080e; --bg2:#0a0e16; --bg-glow:rgba(96,165,250,.06);
-  --accent:#60a5fa; --accent-2:#93c5fd; --cyan:#60a5fa; --cyan-bright:#93c5fd; --teal:#38bdf8;
-  --border:rgba(96,165,250,.4); --border-strong:rgba(96,165,250,.62); --mood-glow:rgba(96,165,250,.25); --gold:#93c5fd;
-}
-html.mood-sleepy {
-  --bg:#020208; --bg2:#05040c; --bg-glow:rgba(99,102,241,.035);
-  --accent:#6d5bbd; --accent-2:#5b4a9e; --cyan:#7c6bb8; --cyan-bright:#9b8fd4; --teal:#5b5f9a;
-  --border:rgba(99,102,241,.28); --border-strong:rgba(99,102,241,.5); --mood-glow:rgba(99,102,241,.14); --gold:#8b83b8;
-  --transition-ms:300ms;
-}
-html.mood-fierce {
-  --bg:#070301; --bg2:#0e0603; --bg-glow:rgba(194,65,12,.05);
-  --accent:#fb923c; --accent-2:#f97316; --cyan:#fb923c; --cyan-bright:#fdba74; --teal:#ea580c;
-  --border:rgba(251,146,60,.42); --border-strong:rgba(251,146,60,.65); --mood-glow:rgba(251,146,60,.28); --gold:#fdba74;
-  --transition-ms:160ms;
-}
-html.mood-mad {
-  --bg:#050101; --bg2:#0a0303; --bg-glow:rgba(185,28,28,.045);
-  --accent:#f87171; --accent-2:#ef4444; --cyan:#f87171; --cyan-bright:#fca5a5; --teal:#dc2626;
-  --border:rgba(248,113,113,.45); --border-strong:rgba(248,113,113,.68); --mood-glow:rgba(239,68,68,.3); --gold:#fca5a5;
-  --transition-ms:140ms;
-}
-html.mood-sad {
-  --bg:#020406; --bg2:#05080c; --bg-glow:rgba(71,85,105,.03);
-  --accent:#7dd3fc; --accent-2:#64748b; --cyan:#7dd3fc; --cyan-bright:#bae6fd; --teal:#64748b;
-  --border:rgba(125,211,252,.32); --border-strong:rgba(125,211,252,.55); --mood-glow:rgba(100,116,139,.22); --gold:#94a3b8;
-  --transition-ms:450ms;
-}
-html.mood-crying {
-  --bg:#01020a; --bg2:#040612; --bg-glow:rgba(67,56,202,.03);
-  --accent:#818cf8; --accent-2:#6366f1; --cyan:#818cf8; --cyan-bright:#a5b4fc; --teal:#6366f1;
-  --border:rgba(129,140,248,.35); --border-strong:rgba(129,140,248,.58); --mood-glow:rgba(99,102,241,.2); --gold:#a5b4fc;
-  --transition-ms:500ms;
-}
-html.mood-starstruck {
-  --bg:#0c040a; --bg2:#140610; --bg-glow:rgba(236,72,153,.08);
-  --accent:#ec4899; --accent-2:#f472b6; --cyan:#ec4899; --cyan-bright:#fbcfe8; --teal:#db2777;
-  --border:rgba(236,72,153,.4); --border-strong:rgba(236,72,153,.62); --mood-glow:rgba(236,72,153,.28); --gold:#f9a8d4;
-  --transition-ms:320ms;
-}
-html.mood-cool {
-  --bg:#020609; --bg2:#040c14; --bg-glow:rgba(14,165,233,.07);
-  --accent:#0ea5e9; --accent-2:#38bdf8; --cyan:#0ea5e9; --cyan-bright:#bae6fd; --teal:#0284c7;
-  --border:rgba(14,165,233,.4); --border-strong:rgba(14,165,233,.62); --mood-glow:rgba(14,165,233,.25); --gold:#7dd3fc;
-  --transition-ms:260ms;
-}
-html.mood-smile {
-  --bg:#0c0804; --bg2:#140f06; --bg-glow:rgba(251,146,60,.07);
-  --accent:#fb923c; --accent-2:#fdba74; --cyan:#fb923c; --cyan-bright:#fed7aa; --teal:#f97316;
-  --border:rgba(251,146,60,.4); --border-strong:rgba(251,146,60,.62); --mood-glow:rgba(251,146,60,.25); --gold:#fbd5a5;
-  --transition-ms:340ms;
-}
-html.mood-thinking {
-  --bg:#04040c; --bg2:#080818; --bg-glow:rgba(99,102,241,.06);
-  --accent:#6366f1; --accent-2:#818cf8; --cyan:#6366f1; --cyan-bright:#c7d2fe; --teal:#4f46e5;
-  --border:rgba(99,102,241,.4); --border-strong:rgba(99,102,241,.62); --mood-glow:rgba(99,102,241,.25); --gold:#a5b4fc;
-  --transition-ms:360ms;
-}
-html.mood-zen {
-  --bg:#06040c; --bg2:#0c0818; --bg-glow:rgba(168,85,247,.06);
-  --accent:#a855f7; --accent-2:#c084fc; --cyan:#a855f7; --cyan-bright:#e9d5ff; --teal:#9333ea;
-  --border:rgba(168,85,247,.4); --border-strong:rgba(168,85,247,.62); --mood-glow:rgba(168,85,247,.25); --gold:#d8b4fe;
-  --transition-ms:420ms;
-}
-html.mood-firedup {
-  --bg:#0c0202; --bg2:#180404; --bg-glow:rgba(239,68,68,.08);
-  --accent:#ef4444; --accent-2:#f87171; --cyan:#ef4444; --cyan-bright:#fecaca; --teal:#dc2626;
-  --border:rgba(239,68,68,.45); --border-strong:rgba(239,68,68,.68); --mood-glow:rgba(239,68,68,.3); --gold:#fca5a5;
-  --transition-ms:150ms;
-}
-html.mood-strong {
-  --bg:#020c06; --bg2:#04180c; --bg-glow:rgba(16,185,129,.07);
-  --accent:#10b981; --accent-2:#34d399; --cyan:#10b981; --cyan-bright:#a7f3d0; --teal:#059669;
-  --border:rgba(16,185,129,.4); --border-strong:rgba(16,185,129,.62); --mood-glow:rgba(16,185,129,.28); --gold:#6ee7b7;
-  --transition-ms:220ms;
-}
-html.mood-sleep {
-  --bg:#010205; --bg2:#02040a; --bg-glow:rgba(30,58,138,.04);
-  --accent:#1e3a8a; --accent-2:#1e40af; --cyan:#1e40af; --cyan-bright:#93c5fd; --teal:#172554;
-  --border:rgba(30,64,175,.35); --border-strong:rgba(30,64,175,.58); --mood-glow:rgba(30,58,138,.18); --gold:#60a5fa;
-  --transition-ms:550ms;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html[data-custom-cursor="on"] body,
-html[data-custom-cursor="on"] button,
-html[data-custom-cursor="on"] .tab,
-html[data-custom-cursor="on"] .btn,
-html[data-custom-cursor="on"] .mood-live,
-html[data-custom-cursor="on"] .mood-pick,
-html[data-custom-cursor="on"] a {
-  cursor: none !important;
-}
-
-#cursor {
-  position: fixed; width: 22px; height: 22px;
-  border: 2px solid var(--brass);
-  border-radius: 50%; pointer-events: none; z-index: 9999;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 16px color-mix(in srgb, var(--brass) 55%, transparent), inset 0 0 10px color-mix(in srgb, var(--brass) 25%, transparent);
-  transition: width .12s, height .12s, border-color .15s, background .15s;
-  mix-blend-mode: screen;
-}
-#cursor.core {
-  width: 5px; height: 5px; border: none;
-  background: var(--cyan-bright);
-  border-radius: 50%; z-index: 10000;
-  box-shadow: 0 0 10px var(--cyan-bright);
-  mix-blend-mode: normal;
-}
-#cursor.active {
-  width: 36px; height: 36px;
-  border-color: var(--cyan-bright);
-  background: color-mix(in srgb, var(--cyan) 12%, transparent);
-}
-html[data-custom-cursor="off"] #cursor { display: none !important; }
-html[data-custom-cursor="off"] body,
-html[data-custom-cursor="off"] button,
-html[data-custom-cursor="off"] .tab,
-html[data-custom-cursor="off"] .btn,
-html[data-custom-cursor="off"] a { cursor: auto !important; }
-
-::selection {
-  background: color-mix(in srgb, var(--accent) 42%, transparent);
-  color: var(--cream);
-}
-::-moz-selection {
-  background: color-mix(in srgb, var(--accent) 42%, transparent);
-  color: var(--cream);
-}
-
-body {
-  background:
-    radial-gradient(ellipse at 15% -5%, var(--bg-glow), transparent 45%),
-    radial-gradient(ellipse at 90% 105%, var(--mood-glow), transparent 48%),
-    linear-gradient(165deg, var(--bg) 0%, var(--bg2) 48%, var(--bg) 100%);
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: var(--body);
-  min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
-  transition: background var(--transition-ms), background-color .5s, color .3s;
-}
-
-body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background-image:
-    repeating-linear-gradient(0deg, color-mix(in srgb, var(--brass) 10%, transparent) 0 1px, transparent 1px 40px),
-    repeating-linear-gradient(90deg, color-mix(in srgb, var(--brass) 10%, transparent) 0 1px, transparent 1px 40px);
-  mask-image: radial-gradient(ellipse at 50% 40%, black 35%, transparent 90%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 35%, transparent 90%);
-  opacity: .85;
-}
-
-.app {
-  position: relative; z-index: 5;
-  max-width: 1100px; margin: 0 auto;
-  padding: 40px 28px 72px;
-}
-
-/* HEADER */
-.header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 22px; gap: 20px; flex-wrap: wrap;
-}
-.header-left h1 {
-  font-family: var(--head);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 400; font-style: italic;
-  letter-spacing: -0.02em;
-  background: linear-gradient(120deg, var(--cream) 0%, var(--brass) 40%, var(--brass-bright) 65%, var(--cyan-bright) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.05;
-}
-.header-left .sub {
-  color: var(--text-dim); font-size: .92rem; margin-top: 8px;
-  font-family: var(--mono); letter-spacing: .04em;
-}
-.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-
-.btn {
-  font-family: var(--mono); font-size: .82rem;
-  color: var(--brass); border: 1px solid var(--border-strong);
-  padding: 10px 18px; border-radius: 4px;
-  background: color-mix(in srgb, var(--brass) 8%, transparent);
-  transition: all .2s; letter-spacing: .04em;
-  text-decoration: none; display: inline-flex; align-items: center;
-}
-.btn:hover {
-  background: color-mix(in srgb, var(--brass) 18%, transparent);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--brass) 30%, transparent);
-  color: var(--brass-bright);
-}
-.btn.primary {
-  color: var(--ink);
-  background: linear-gradient(135deg, var(--cream), var(--brass) 40%, var(--brass-bright) 70%, var(--cyan-bright));
-  border-color: color-mix(in srgb, var(--brass) 50%, transparent);
-  font-weight: 700;
-  box-shadow: 0 12px 32px color-mix(in srgb, var(--brass) 28%, transparent);
-}
-.btn.primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 16px 40px color-mix(in srgb, var(--brass) 40%, transparent);
-  color: var(--ink);
-}
-
-/* Mood dock — related to quiz */
-.mood-dock {
-  position: fixed; bottom: 20px; right: 20px; z-index: 40;
-  display: flex; align-items: center; gap: .55rem;
-  background: rgba(12, 9, 8, .72);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: .55rem .7rem;
-  backdrop-filter: blur(18px) saturate(1.1);
-  box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 18px var(--mood-glow);
-}
-.mood-live {
-  font-size: 1.45rem; line-height: 1;
-  background: rgba(255,255,255,.04);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  width: 2.4rem; height: 2.4rem;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform .2s, box-shadow var(--transition-ms), border-color var(--transition-ms);
-  padding: 0;
-}
-.mood-live:hover, .mood-dock.open .mood-live {
-  transform: scale(1.08);
-  box-shadow: 0 0 16px var(--mood-glow);
-}
-.mood-tray {
-  display: none;
-  position: absolute; bottom: calc(100% + 10px); right: 0;
-  width: min(92vw, 320px);
-  background: rgba(12, 9, 8, .94);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: .55rem;
-  box-shadow: 0 12px 36px rgba(0,0,0,.55), 0 0 16px var(--mood-glow);
-  backdrop-filter: blur(16px);
-}
-.mood-dock.open .mood-tray { display: block; }
-.mood-tray-row { display: flex; flex-wrap: wrap; gap: .28rem; justify-content: center; }
-.mood-pick {
-  font-size: 1.35rem; background: transparent;
-  border: 1px solid transparent; border-radius: 50%;
-  width: 2.2rem; height: 2.2rem;
-  display: inline-flex; align-items: center; justify-content: center;
-  transition: transform .18s, background .18s, border-color .18s, box-shadow .18s;
-  padding: 0; line-height: 1;
-}
-.mood-pick:hover {
-  transform: scale(1.15) translateY(-1px);
-  background: rgba(255,255,255,.08);
-  border-color: var(--border);
-  box-shadow: 0 0 14px var(--mood-glow);
-}
-.mood-pick.active {
-  border-color: var(--cyan);
-  background: color-mix(in srgb, var(--cyan) 14%, transparent);
-  box-shadow: 0 0 14px var(--mood-glow);
-}
-.mood-hint {
-  font-family: var(--mono); font-size: .62rem;
-  color: var(--text-dim); letter-spacing: .06em;
-  text-transform: uppercase; margin-top: .35rem; text-align: center;
-}
-
-/* Tabs — Hooke chips */
-.tabs {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin-bottom: 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid color-mix(in srgb, var(--brass) 18%, transparent);
-}
-.tab {
-  font-family: var(--mono); font-size: .84rem;
-  padding: 10px 16px; border-radius: 4px;
-  border: 1px solid var(--border);
-  background: rgba(26, 20, 16, .5);
-  color: var(--text-dim);
-  transition: all .18s;
-  letter-spacing: .02em;
-}
-.tab:hover {
-  background: color-mix(in srgb, var(--brass) 12%, transparent);
-  border-color: var(--brass);
-  color: var(--text);
-  box-shadow: 0 0 18px color-mix(in srgb, var(--brass) 18%, transparent);
-}
-.tab.active {
-  background: linear-gradient(135deg, color-mix(in srgb, var(--brass) 22%, transparent), color-mix(in srgb, var(--cyan) 16%, transparent));
-  border-color: var(--brass);
-  color: var(--brass-bright);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--brass) 22%, transparent);
-}
-
-/* Instrument plate panel */
-.panel {
-  background: var(--surface);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-top: 4px solid var(--brass);
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--brass) 6%, transparent),
-    0 32px 80px -20px rgba(0, 0, 0, .9),
-    inset 0 1px 0 rgba(245, 234, 214, .04);
-  position: relative;
-}
-.panel::before,
-.panel::after {
-  content: '';
-  position: absolute; top: 14px;
-  width: 8px; height: 8px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #f5ead6, #d4a24c 60%, #1a1410);
-}
-.panel::before {
-  left: 20px;
-  box-shadow:
-    16px 0 0 0 color-mix(in srgb, var(--cyan) 75%, transparent),
-    32px 0 0 0 color-mix(in srgb, var(--error) 70%, transparent);
-}
-.panel::after {
-  right: 20px;
-  box-shadow:
-    -16px 0 0 0 color-mix(in srgb, var(--cyan) 75%, transparent),
-    -32px 0 0 0 color-mix(in srgb, var(--error) 70%, transparent);
-}
-
-.status-bar {
-  display: flex; align-items: center; gap: 12px;
-  padding: 18px 24px 14px 80px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(12, 9, 8, .65);
-  font-family: var(--mono); font-size: .82rem;
-  color: var(--text-dim); letter-spacing: .04em;
-}
-.status-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, var(--cream), var(--brass));
-  box-shadow: 0 0 12px color-mix(in srgb, var(--brass) 85%, transparent);
-  animation: pulseDot 2s ease-in-out infinite;
-  flex-shrink: 0;
-}
-@keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .35; transform: scale(.7); }
-}
-
-.panel-body { padding: 28px 32px 36px; }
-
-.md { line-height: 1.68; font-size: 1.05rem; animation: fadeIn .35s ease; }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.md h1, .md h2, .md h3, .md h4 {
-  font-family: var(--head);
-  font-weight: 400;
-  line-height: 1.25;
-  margin: 1.35em 0 .55em;
-}
-.md h1 {
-  font-size: 2rem; margin-top: 0;
-  color: var(--brass-bright);
-  display: flex; align-items: center; gap: 12px;
-}
-.md h1::before {
-  content: '';
-  width: 30px; height: 1px;
-  background: linear-gradient(90deg, var(--brass), transparent);
-  flex-shrink: 0;
-}
-.md h2 { font-size: 1.5rem; color: var(--brass-bright); }
-.md h3 {
-  font-size: 1.22rem; color: var(--cyan-bright);
-  font-style: italic; letter-spacing: .005em;
-}
-.md h4 { font-size: 1.05rem; color: var(--gold); }
-.md p, .md li { color: var(--text); }
-.md ul, .md ol { margin: 8px 0 8px 22px; }
-.md li { margin-bottom: 5px; }
-.md a { color: var(--cyan-bright); }
-.md strong { color: var(--brass-bright); font-weight: 600; }
-.md em { color: var(--cyan-bright); font-style: italic; }
-.md code, .md pre { font-family: var(--mono); font-size: .9em; }
-.md code {
-  background: rgba(12, 9, 8, .75);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: .12em .4em;
-  color: var(--brass-bright);
-}
-.md pre {
-  background: rgba(12, 9, 8, .75);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--brass);
-  border-radius: 0 4px 4px 0;
-  padding: 14px 20px;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  margin: 14px 0;
-  color: var(--brass-bright);
-  line-height: 1.7;
-}
-.md pre code { background: none; border: none; padding: 0; color: inherit; }
-.md table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1em 0;
-  font-size: .95rem;
-  overflow-x: auto;
-  display: block;
-}
-.md th, .md td {
-  border: 1px solid var(--border);
-  padding: 9px 12px;
-  text-align: left;
-  vertical-align: top;
-}
-.md th {
-  font-family: var(--mono);
-  font-size: .78rem;
-  color: var(--brass-bright);
-  background: rgba(12, 9, 8, .55);
-  letter-spacing: .04em;
-}
-.md blockquote {
-  margin: 1em 0;
-  padding: .35em 0 .35em 1em;
-  border-left: 3px solid var(--brass);
-  color: var(--text-dim);
-  background: linear-gradient(90deg, color-mix(in srgb, var(--brass) 6%, transparent), transparent);
-}
-.md hr {
-  border: none;
-  border-top: 1px solid color-mix(in srgb, var(--brass) 22%, transparent);
-  margin: 1.6em 0;
-}
-.md del, .md s {
-  color: var(--text-dim2);
-  text-decoration: line-through;
-  opacity: .75;
-}
-
-.panel-body::-webkit-scrollbar { width: 8px; }
-.panel-body::-webkit-scrollbar-track { background: rgba(0,0,0,.3); border-radius: 4px; }
-.panel-body::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--brass), var(--brass-dim));
-  border-radius: 4px;
-}
-
-.foot {
-  margin-top: 18px;
-  font-family: var(--mono);
-  font-size: .68rem;
-  color: var(--text-dim);
-  opacity: .75;
-  letter-spacing: .02em;
-}
-
-@media (max-width: 640px) {
-  .app { padding: 24px 14px 88px; }
-  .panel-body { padding: 20px 16px 28px; }
-  .status-bar { padding-left: 72px; font-size: .72rem; }
-  .header-left h1 { font-size: 1.75rem; }
-  .mood-dock { bottom: 12px; right: 12px; }
-}
-</style>
+<title>Medical Physics · Periodic Test 1</title>
+<link rel="stylesheet" href="css/theme-vars.css">
+<link rel="stylesheet" href="css/colorizer.css">
+<link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-<div id="cursor"></div>
-<div id="cursor" class="core"></div>
-
-<div class="app">
-  <header class="header">
-    <div class="header-left">
-      <h1>Medical Physics · Periodic Test 1</h1>
-      <p class="sub">Study portal · chapters 1–3 through Bernoulli</p>
-    </div>
-    <div class="actions">
-      <a class="btn primary" href="quiz/index.html">Open Quiz Portal</a>
-      <button class="btn" type="button" id="fsBtn">Fullscreen</button>
-    </div>
-  </header>
-
-  <nav class="tabs" role="tablist" aria-label="Chapters">
-    <button class="tab active" type="button" role="tab" data-src="content/chapter-1.md" data-label="Chapter 1" aria-selected="true">Chapter 1 · Matter &amp; mechanics</button>
-    <button class="tab" type="button" role="tab" data-src="content/chapter-2.md" data-label="Chapter 2" aria-selected="false">Chapter 2 · Fluids at rest</button>
-    <button class="tab" type="button" role="tab" data-src="content/chapter-3.md" data-label="Chapter 3" aria-selected="false">Chapter 3 · Flow → Bernoulli</button>
-  </nav>
-
-  <section class="panel">
-    <div class="status-bar">
-      <span class="status-dot" aria-hidden="true"></span>
-      <span id="status">Loading chapter…</span>
-    </div>
-    <div class="panel-body">
-      <article class="md" id="content"></article>
-    </div>
-  </section>
-  <p class="foot">Instrument Serif · Outfit · Space Mono · mood synced with quiz · bank: data/bank.json · serve over http(s)</p>
-</div>
-
-<div class="mood-dock" id="moodDock">
-  <button type="button" class="mood-live" id="liveMoodBtn" title="Choose mood theme" aria-haspopup="true" aria-expanded="false">😊</button>
-  <div class="mood-tray" id="moodTray" role="listbox" aria-label="Mood themes">
-    <div class="mood-tray-row">
-      <button type="button" class="mood-pick" data-mood="😊" title="Happy">😊</button>
-      <button type="button" class="mood-pick" data-mood="🤩" title="Starstruck">🤩</button>
-      <button type="button" class="mood-pick" data-mood="😎" title="Cool">😎</button>
-      <button type="button" class="mood-pick" data-mood="🙂" title="Smile">🙂</button>
-      <button type="button" class="mood-pick" data-mood="😐" title="Neutral">😐</button>
-      <button type="button" class="mood-pick" data-mood="😌" title="Calm">😌</button>
-      <button type="button" class="mood-pick" data-mood="🧘" title="Zen">🧘</button>
-      <button type="button" class="mood-pick" data-mood="😤" title="Frustrated">😤</button>
-      <button type="button" class="mood-pick" data-mood="🔥" title="Fired up">🔥</button>
-      <button type="button" class="mood-pick" data-mood="😠" title="Mad">😠</button>
-      <button type="button" class="mood-pick" data-mood="😢" title="Sad">😢</button>
-      <button type="button" class="mood-pick" data-mood="😭" title="Crying">😭</button>
-      <button type="button" class="mood-pick" data-mood="🥱" title="Sleepy">🥱</button>
-      <button type="button" class="mood-pick" data-mood="😴" title="Sleep">😴</button>
-      <button type="button" class="mood-pick" data-mood="🤔" title="Thinking">🤔</button>
-      <button type="button" class="mood-pick" data-mood="💪" title="Strong">💪</button>
-    </div>
-    <p class="mood-hint">Shared with quiz</p>
+<div id="ps2-home" class="ps2-screen">
+  <h1 class="ps2-title">Medical Physics · Periodic Test 1</h1>
+  <div class="ps2-menu" role="menu">
+    <button type="button" class="ps2-menu-item hero" id="menuQuiz" role="menuitem">
+      <span class="ps2-icon">⚔</span>
+      <span class="ps2-label">Quiz Interface
+        <span class="ps2-sub">Practice bank · categories, forms, mixture</span>
+      </span>
+    </button>
+    <button type="button" class="ps2-menu-item quiet" id="menuStudy" role="menuitem">
+      <span class="ps2-icon">📖</span>
+      <span class="ps2-label">Study Interface
+        <span class="ps2-sub">Chapters 1–3 · folded until opened</span>
+      </span>
+    </button>
+    <button type="button" class="ps2-menu-item neutral" id="menuOptions" role="menuitem">
+      <span class="ps2-icon">⚙</span>
+      <span class="ps2-label">Options
+        <span class="ps2-sub">Accent presets · color strength · theme</span>
+      </span>
+    </button>
+  </div>
+  <div class="ps2-tip-bar">
+    <kbd>↑</kbd><kbd>↓</kbd> Navigate
+    <span class="tip-sep">·</span>
+    <kbd>Enter</kbd> Select
+    <span class="tip-sep">·</span>
+    <kbd>Esc</kbd> Back
   </div>
 </div>
 
+<div id="ps2-options" class="ps2-screen" style="display:none; justify-content:flex-start; padding-top:48px;">
+  <button type="button" class="ps2-back-btn" id="optionsBack">← Back</button>
+  <h2 class="ps2-title" style="font-size:clamp(1.4rem,3vw,2rem); margin:0 0 22px; animation:none;">Options</h2>
+  <div class="options-mount" id="colorizer-mount">
+    <div class="settings-panel-title">Theme · Colorizer</div>
+    <!-- Copied from assets/colorizer-panel.fragment.html (unchanged controls / IDs) -->
+<div class="setting-item" style="padding-top:20px; position:relative;">
+<div style="font-size:0.75em; font-weight:bold; color:var(--col-text-muted); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:16px; opacity:0.6;">Theme</div>
+<button title="Reset Theme to Defaults" onclick="resetThemeToDefaults()" style="position:absolute; top:20px; right:0; background:transparent; border:1px solid var(--col-error); color:var(--col-error); border-radius:6px; padding:3px 8px; font-size:0.8em; ">↺</button>
+<span class="setting-item-label">Accent Color</span>
+<div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+<div class="preset-swatches" style="margin:0; flex-shrink:0;">
+<button class="preset-swatch" data-hex="#00bbcc" style="background:#00bbcc;" title="Cyan" onclick="applyPreset('#00bbcc', false)"></button>
+<button class="preset-swatch" data-hex="#8833ff" style="background:#8833ff;" title="Violet" onclick="applyPreset('#8833ff', false, 32)"></button>
+<button class="preset-swatch" data-hex="#000000" style="background:#000000;" title="Obsidian" onclick="applyPreset('#000000', false, 90)"></button>
+<button class="preset-swatch" data-hex="#ff8800" style="background:#ff8800;" title="Amber" onclick="applyPreset('#ff8800', false)"></button>
+<button class="preset-swatch" data-hex="#ff0000" style="background:#ff0000;" title="Red" onclick="applyPreset('#ff0000', false, 32)"></button>
+</div>
+<div id="custom-presets-area" style="display:flex;gap:6px;align-items:center;"></div>
+<div id="theme-lock-colorPicker" style="display:flex; gap:8px; align-items:center; margin-left:auto;">
+<input type="color" id="accent-color-picker" value="#FF8800" style="width:40px;height:40px;border:none;border-radius:8px;flex-shrink:0;">
+<input type="text" id="accent-hex-input" value="#FF8800" maxlength="7" class="number-input" style="width:100px; font-family:monospace; font-size:0.85em;">
+</div>
+</div>
+</div>
+<div class="setting-item" id="theme-lock-colorStrength" style="border-top:1px solid var(--col-border-light); padding-top:20px;">
+<span class="setting-item-label">Color Strength: <span id="strength-value-display" style="color:var(--accent-0);">64</span></span>
+<div style="display:flex; gap:10px; align-items:center;">
+<span style="font-size:0.82em; color:var(--col-text-muted);">Subtle</span>
+<input type="range" id="accent-strength-slider" min="0" max="100" value="64" style="flex:1; ">
+<span style="font-size:0.82em; color:var(--col-text-muted);">Vibrant</span>
+</div>
+</div>
+<div class="setting-item" style="border-top:1px solid var(--col-border-light); padding-top:20px; display:none;">
+<span class="setting-item-label">Reset Theme</span>
+<button class="btn btn-secondary" style="border-color:var(--col-error); color:var(--col-error);" onclick="resetThemeToDefaults()">Reset Theme to Defaults</button>
+<p class="setting-item-desc">Resets accent color, hue shift, and dark mode.</p>
+</div>
+<div class="setting-item" style="display: none;">
+<span class="setting-item-label">Appearance</span>
+<div class="toggle-container" style="margin:0; justify-content:flex-start;">
+<span class="toggle-label">Dark</span>
+<label class="toggle-switch">
+<input type="checkbox" id="light-mode-toggle">
+<span class="toggle-slider"></span>
+</label>
+<span class="toggle-label">Light</span>
+</div>
+</div>
+  </div>
+</div>
+
+<script src="js/particles.js"></script>
+<script src="js/colorizer-theme.js"></script>
 <script>
-const contentEl = document.getElementById('content');
-const statusEl = document.getElementById('status');
-const cache = Object.create(null);
+(function(){
+  var home = document.getElementById('ps2-home');
+  var options = document.getElementById('ps2-options');
+  var items = Array.prototype.slice.call(document.querySelectorAll('#ps2-home .ps2-menu-item'));
+  var focusIdx = 0;
 
-function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
-function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
-
-/* —— custom cursor (Hooke-style) —— */
-function customCursorOn(){ return document.documentElement.getAttribute('data-custom-cursor') !== 'off'; }
-const cursorRing = document.querySelector('#cursor:not(.core)');
-document.addEventListener('mousemove', e => {
-  if(!customCursorOn()) return;
-  document.querySelectorAll('#cursor').forEach(el => {
-    el.style.left = e.clientX + 'px';
-    el.style.top = e.clientY + 'px';
-  });
-});
-document.addEventListener('mousedown', () => { if(customCursorOn() && cursorRing) cursorRing.classList.add('active'); });
-document.addEventListener('mouseup', () => { if(cursorRing) cursorRing.classList.remove('active'); });
-
-/* —— mood (shared key with quiz) —— */
-const MOODS = [
-  {emoji:'😊',cls:'mood-happy',label:'Happy'},{emoji:'🤩',cls:'mood-starstruck',label:'Starstruck'},{emoji:'😎',cls:'mood-cool',label:'Cool'},{emoji:'🙂',cls:'mood-smile',label:'Smile'},
-  {emoji:'😐',cls:'mood-neutral',label:'Neutral'},{emoji:'🤔',cls:'mood-thinking',label:'Thinking'},
-  {emoji:'😌',cls:'mood-calm',label:'Calm'},{emoji:'🧘',cls:'mood-zen',label:'Zen'},
-  {emoji:'😤',cls:'mood-fierce',label:'Frustrated'},{emoji:'🔥',cls:'mood-firedup',label:'Fired up'},{emoji:'💪',cls:'mood-strong',label:'Strong'},
-  {emoji:'😠',cls:'mood-mad',label:'Mad'},{emoji:'😢',cls:'mood-sad',label:'Sad'},{emoji:'😭',cls:'mood-crying',label:'Crying'},
-  {emoji:'🥱',cls:'mood-sleepy',label:'Sleepy'},{emoji:'😴',cls:'mood-sleep',label:'Sleep'}
-];
-const MOOD_CLASSES = MOODS.map(m => m.cls);
-const liveMoodBtn = document.getElementById('liveMoodBtn');
-const moodDock = document.getElementById('moodDock');
-
-function resolveMood(e){ return MOODS.find(x => x.emoji === e) || {emoji: e || '😊', cls: 'mood-happy', label: 'Happy'}; }
-function applyLiveMood(emoji){
-  const m = resolveMood(emoji);
-  document.documentElement.classList.remove(...MOOD_CLASSES);
-  document.documentElement.classList.add(m.cls);
-  liveMoodBtn.textContent = m.emoji;
-  liveMoodBtn.title = 'Mood: ' + m.label;
-  document.querySelectorAll('.mood-pick').forEach(p => p.classList.toggle('active', p.dataset.mood === m.emoji));
-  lsSet('pt1_live_mood', m.emoji);
-}
-function openMoodTray(open){
-  moodDock.classList.toggle('open', !!open);
-  liveMoodBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-}
-let moodCloseTimer = null;
-moodDock.addEventListener('mouseenter', () => { clearTimeout(moodCloseTimer); openMoodTray(true); });
-moodDock.addEventListener('mouseleave', () => { moodCloseTimer = setTimeout(() => openMoodTray(false), 420); });
-liveMoodBtn.addEventListener('click', e => { e.stopPropagation(); openMoodTray(!moodDock.classList.contains('open')); });
-document.getElementById('moodTray').addEventListener('click', e => {
-  const p = e.target.closest('.mood-pick');
-  if(p) applyLiveMood(p.dataset.mood);
-});
-document.addEventListener('click', e => { if(!moodDock.contains(e.target)) openMoodTray(false); });
-applyLiveMood(lsGet('pt1_live_mood') || '😊');
-
-function escapeHtml(s){
-  return String(s)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
-}
-
-/** Lightweight Markdown → HTML (headings, lists, tables, code, emphasis, strikethrough). */
-function renderMarkdown(md){
-  const lines = md.replace(/\r\n/g,'\n').split('\n');
-  const out = [];
-  let i = 0;
-  let inCode = false;
-  let codeBuf = [];
-  let listType = null;
-
-  function closeList(){
-    if(listType){ out.push(listType === 'ol' ? '</ol>' : '</ul>'); listType = null; }
+  function showHome(){
+    home.style.display = 'flex';
+    options.style.display = 'none';
+    updateFocus();
   }
-
-  function inline(t){
-    t = escapeHtml(t);
-    t = t.replace(/`([^`]+)`/g, '<code>$1</code>');
-    t = t.replace(/~~([^~]+)~~/g, '<del>$1</del>');
-    t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    t = t.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-    return t;
+  function showOptions(){
+    home.style.display = 'none';
+    options.style.display = 'flex';
   }
-
-  while(i < lines.length){
-    const line = lines[i];
-
-    if(line.startsWith('```')){
-      if(inCode){
-        out.push('<pre><code>' + escapeHtml(codeBuf.join('\n')) + '</code></pre>');
-        codeBuf = []; inCode = false;
-      } else {
-        closeList();
-        inCode = true;
-      }
-      i++; continue;
-    }
-    if(inCode){ codeBuf.push(line); i++; continue; }
-
-    if(/^\s*\|/.test(line) && i + 1 < lines.length && /^\s*\|?\s*[-:| ]+\|/.test(lines[i+1])){
-      closeList();
-      const rows = [];
-      while(i < lines.length && /^\s*\|/.test(lines[i])){
-        const cells = lines[i].trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(c => c.trim());
-        rows.push(cells);
-        i++;
-        if(i < lines.length && /^\s*\|?\s*[-:| ]+\|/.test(lines[i]) && rows.length === 1){
-          i++;
-        } else if(rows.length > 1 && i < lines.length && /^\s*\|?\s*[-:| ]+\|/.test(lines[i])){
-          i++;
-        } else if(!/^\s*\|/.test(lines[i] || '')){
-          break;
-        }
-      }
-      if(rows.length){
-        let html = '<table><thead><tr>' + rows[0].map(c => '<th>' + inline(c) + '</th>').join('') + '</tr></thead><tbody>';
-        for(let r = 1; r < rows.length; r++){
-          html += '<tr>' + rows[r].map(c => '<td>' + inline(c) + '</td>').join('') + '</tr>';
-        }
-        html += '</tbody></table>';
-        out.push(html);
-      }
-      continue;
-    }
-
-    if(/^---+\s*$/.test(line)){ closeList(); out.push('<hr>'); i++; continue; }
-
-    const hm = /^(#{1,4})\s+(.*)$/.exec(line);
-    if(hm){
-      closeList();
-      const level = hm[1].length;
-      out.push('<h' + level + '>' + inline(hm[2]) + '</h' + level + '>');
-      i++; continue;
-    }
-
-    const ul = /^\s*[-*]\s+(.*)$/.exec(line);
-    if(ul){
-      if(listType !== 'ul'){ closeList(); out.push('<ul>'); listType = 'ul'; }
-      out.push('<li>' + inline(ul[1]) + '</li>');
-      i++; continue;
-    }
-    const ol = /^\s*\d+\.\s+(.*)$/.exec(line);
-    if(ol){
-      if(listType !== 'ol'){ closeList(); out.push('<ol>'); listType = 'ol'; }
-      out.push('<li>' + inline(ol[1]) + '</li>');
-      i++; continue;
-    }
-
-    if(!line.trim()){ closeList(); i++; continue; }
-
-    closeList();
-    out.push('<p>' + inline(line) + '</p>');
-    i++;
-  }
-  closeList();
-  if(inCode) out.push('<pre><code>' + escapeHtml(codeBuf.join('\n')) + '</code></pre>');
-  return out.join('\n');
-}
-
-async function loadChapter(src, label){
-  statusEl.textContent = 'Loading ' + label + '…';
-  try{
-    if(!cache[src]){
-      const res = await fetch(src, { cache: 'no-store' });
-      if(!res.ok) throw new Error(src + ' → ' + res.status);
-      cache[src] = await res.text();
-    }
-    contentEl.innerHTML = renderMarkdown(cache[src]);
-    statusEl.textContent = label + ' · from ' + src;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }catch(err){
-    contentEl.innerHTML = '<p><strong>Could not load chapter.</strong></p><p>Serve this folder over http(s) or GitHub Pages so <code>fetch</code> can read Markdown. file:// is usually blocked.</p><pre><code>' + escapeHtml(String(err)) + '</code></pre>';
-    statusEl.textContent = 'Load failed';
-  }
-}
-
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => {
-      t.classList.toggle('active', t === tab);
-      t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+  function updateFocus(){
+    items.forEach(function(el, i){
+      el.classList.toggle('focused', i === focusIdx);
     });
-    loadChapter(tab.dataset.src, tab.dataset.label);
+  }
+
+  document.getElementById('menuQuiz').addEventListener('click', function(){
+    window.location.href = 'quiz/index.html';
   });
-});
+  document.getElementById('menuStudy').addEventListener('click', function(){
+    window.location.href = 'study.html';
+  });
+  document.getElementById('menuOptions').addEventListener('click', showOptions);
+  document.getElementById('optionsBack').addEventListener('click', showHome);
 
-document.getElementById('fsBtn').addEventListener('click', () => {
-  if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{});
-  else document.exitFullscreen();
-});
+  document.addEventListener('keydown', function(e){
+    if(options.style.display !== 'none' && options.style.display !== ''){
+      if(e.key === 'Escape'){ e.preventDefault(); showHome(); }
+      return;
+    }
+    if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
+      e.preventDefault(); focusIdx = (focusIdx + 1) % items.length; updateFocus();
+    } else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
+      e.preventDefault(); focusIdx = (focusIdx - 1 + items.length) % items.length; updateFocus();
+    } else if(e.key === 'Enter'){
+      e.preventDefault(); if(items[focusIdx]) items[focusIdx].click();
+    }
+  });
 
-const first = document.querySelector('.tab.active');
-loadChapter(first.dataset.src, first.dataset.label);
+  items.forEach(function(el, i){
+    el.addEventListener('mouseenter', function(){ focusIdx = i; updateFocus(); });
+  });
+  updateFocus();
+})();
 </script>
 </body>
 </html>

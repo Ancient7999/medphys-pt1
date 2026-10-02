@@ -1,64 +1,58 @@
-# Medical Physics Periodic Test 1 — Study + Quiz Portal
+# Medical Physics Periodic Test 1 — Hub · Study · Quiz
 
-Local, GitHub-ready folder for **Phys101 Medical Physics** formative / Periodic Test 1 study material and a practice quiz portal.
+GitHub Pages app for **Phys101 Medical Physics** Periodic Test 1.
 
-**Scope:** Chapters 1–3 **through Bernoulli only** (no viscosity / Poiseuille / Laplace / Reynolds / surface tension deep content).
+**Scope:** Chapters 1–3 **through Bernoulli only**.
 
 ## Layout
 
 ```
 medphys-pt1/
-  README.md
-  NOTES.md
-  index.html              # study shell (3 chapter tabs + Open Quiz Portal)
-  quiz/index.html         # quiz portal (adapted skeleton; bank via fetch)
-  data/bank.json          # 198-item question bank
-  content/
-    chapter-1.md          # Matter & mechanical properties (incl. Hooke's law theory)
-    chapter-2.md          # Fluids at rest
-    chapter-3.md          # Fluid flow through Bernoulli
+  index.html                 # ATC-style hub (Quiz / Study / Options)
+  study.html                 # folded chapter study
+  quiz/index.html            # quiz portal (bank via fetch)
+  css/
+    theme-vars.css           # COPIED from calculator (unchanged)
+    colorizer.css            # COPIED from calculator (unchanged)
+    app.css                  # hub + study chrome (Hooke fonts + accent bridge)
+  js/
+    particles.js             # COPIED from calculator (unchanged)
+    colorizer-theme.js       # COPIED from calculator (unchanged)
+    study-app.js             # markdown + accordion
+  assets/
+    colorizer-panel.fragment.html  # COPIED (unchanged)
+  data/bank.json
+  content/chapter-1.md … chapter-3.md
 ```
 
-## Run locally
+## Hub menu
 
-`fetch` for Markdown / JSON does **not** work reliably from `file://`. Use a static server:
+Title: **Medical Physics · Periodic Test 1**
+
+| Item | Behaviour |
+|------|-----------|
+| **Quiz Interface** | Hero CTA (flowing glow + glossy shine) → `quiz/` |
+| **Study Interface** | Quiet / demure → `study.html` (chapters collapsed) |
+| **Options** | Mounts calculator colorizer (presets, strength, `atc_theme_color_v1`) |
+
+Script order on pages that theme: `particles.js` → `colorizer-theme.js`.
+
+## Run locally
 
 ```bash
 cd medphys-pt1
 python3 -m http.server 8080
-# open http://localhost:8080/
-# quiz: http://localhost:8080/quiz/
+# Hub:   http://localhost:8080/
+# Study: http://localhost:8080/study.html
+# Quiz:  http://localhost:8080/quiz/
 ```
 
 ## GitHub Pages
 
-If this repo is published at `https://<user>.github.io/<repo>/`:
+- Hub: `https://ancient7999.github.io/medphys-pt1/`
+- Study: `https://ancient7999.github.io/medphys-pt1/study.html`
+- Quiz: `https://ancient7999.github.io/medphys-pt1/quiz/`
 
-- Study: `https://<user>.github.io/<repo>/`
-- Quiz: `https://<user>.github.io/<repo>/quiz/`
-- Bank fetch path used by the quiz: `../data/bank.json` → `https://<user>.github.io/<repo>/data/bank.json`
+## Fonts
 
-No remote is configured yet; this folder is prepared locally only.
-
-## Product links
-
-- Study header: **Open Quiz Portal** (next to Fullscreen) → `quiz/index.html`
-- Quiz hub + quiz run header: **Return to study** → `../index.html`
-
-## Fonts (design tokens only)
-
-From the Hooke's Law **practical** HTML reference (not exam content):
-
-- **Instrument Serif** — headings (`--head`)
-- **Outfit** — body (`--body`)
-- **Space Mono** — mono / UI chrome (`--mono`)
-
-Hooke's **law theory** belongs in Chapter 1 study content; the practical worksheet itself is not study material.
-
-## Quiz bank
-
-- Source copy: `data/bank.json` (198 items: MCQ + matching)
-- Categories align to the three chapters
-- Load-JSON UI was removed from the skeleton; the bank loads automatically via `fetch`
-
-See `NOTES.md` for decisions and what was stripped from the quiz skeleton.
+Instrument Serif · Outfit · Space Mono (Hooke demure), driven by colorizer `--accent-*`.

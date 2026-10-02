@@ -4,6 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medical Physics PT1 · Quiz</title>
+<link rel="stylesheet" href="../css/theme-vars.css">
+<link rel="stylesheet" href="../css/colorizer.css">
+<style id="accent-bridge">
+:root {
+  --accent: var(--accent-0);
+  --accent-2: var(--accent-1);
+  --cyan: var(--accent-0);
+  --cyan-bright: var(--accent-1);
+  --teal: var(--accent-2);
+  --gold: var(--col-gold);
+  --border: rgba(var(--accent-0-rgb), 0.4);
+  --mood-glow: rgba(var(--accent-0-rgb), 0.28);
+  --bg-glow: rgba(var(--accent-0-rgb), 0.08);
+  --label-y: #FFD700;
+}
+.btn-gold, .fs-btn:hover, .mode-tab.active, .cat-btn:hover {
+  border-color: var(--accent-0) !important;
+}
+.hub-wrap h1, #hubTitle, #quizTitle {
+  color: var(--accent-0);
+  text-shadow: 0 0 18px rgba(var(--accent-0-rgb), 0.45);
+}
+#returnHubBtn, #returnHubBtnQuiz, #returnStudyBtn, #returnStudyBtnQuiz {
+  border-color: rgba(var(--accent-0-rgb), 0.45);
+  color: var(--accent-0);
+}
+.cta-glow {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-0), var(--accent-1)) !important;
+  color: #000 !important; font-weight: 700;
+  box-shadow: 0 0 28px rgba(var(--accent-0-rgb), 0.5), inset 0 1px 0 rgba(255,255,255,0.25);
+  animation: quiz-cta-flow 3s ease-in-out infinite;
+  background-size: 200% 100% !important;
+}
+@keyframes quiz-cta-flow {
+  0%,100%{background-position:0% 50%;box-shadow:0 0 22px rgba(var(--accent-0-rgb),.4)}
+  50%{background-position:100% 50%;box-shadow:0 0 40px rgba(var(--accent-0-rgb),.7)}
+}
+</style>
 <script>
 (function(){
   try{
@@ -1373,8 +1412,9 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
     <p class="hub-kicker" id="hubKicker">Medical Physics · Form A · 198 items</p>
     <div class="sub" id="hubSub">Bank from data/bank.json · pick a category or form</div>
 
-    <div class="hub-back">
-      <button type="button" id="returnStudyBtn">← Return to study</button>
+    <div class="hub-back" style="display:flex;flex-wrap:wrap;gap:10px;">
+      <button type="button" id="returnHubBtn">← Return to hub</button>
+      <button type="button" id="returnStudyBtn">Study</button>
     </div>
     <div class="load-row">
       <button class="fs-btn" type="button" id="resetSolvedBtn">Reset solved</button>
@@ -1405,8 +1445,9 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
       <div class="sub" id="quizSub">practice run</div>
     </div>
     <div class="header-right">
-      <button class="fs-btn" type="button" id="returnStudyBtnQuiz">← Return to study</button>
-      <button class="fs-btn" type="button" id="hubBtn">← Main Menu</button>
+      <button class="fs-btn" type="button" id="returnHubBtnQuiz">← Hub</button>
+      <button class="fs-btn" type="button" id="returnStudyBtnQuiz">Study</button>
+      <button class="fs-btn" type="button" id="hubBtn">← Quiz menu</button>
       <button class="fs-btn" type="button" id="fsBtn">Fullscreen · F</button>
     </div>
   </div>
@@ -1792,7 +1833,10 @@ function ingestBank(data){
   renderHub();
 }
 
-function goStudy(){ window.location.href='../index.html'; }
+function goHub(){ window.location.href='../index.html'; }
+function goStudy(){ window.location.href='../study.html'; }
+document.getElementById('returnHubBtn').addEventListener('click', goHub);
+document.getElementById('returnHubBtnQuiz').addEventListener('click', goHub);
 document.getElementById('returnStudyBtn').addEventListener('click', goStudy);
 document.getElementById('returnStudyBtnQuiz').addEventListener('click', goStudy);
 
@@ -2281,5 +2325,19 @@ document.addEventListener('keydown', e=>{
 applyLiveMood(lsGet('pt1_live_mood')||'😊');
 renderHub();
 </script>
+
+<!-- Colorizer theme sync (atc_theme_color_v1) — particles → colorizer-theme -->
+<div style="display:none" aria-hidden="true">
+  <input type="color" id="accent-color-picker" value="#FF8800">
+  <input type="text" id="accent-hex-input" value="#FF8800" maxlength="7">
+  <input type="range" id="accent-strength-slider" min="0" max="100" value="64">
+  <span id="strength-value-display">64</span>
+  <div id="custom-presets-area"></div>
+  <div class="preset-swatches"></div>
+  <input type="checkbox" id="light-mode-toggle">
+</div>
+<script src="../js/particles.js"></script>
+<script src="../js/colorizer-theme.js"></script>
 </body>
+
 </html>
