@@ -1,9 +1,10 @@
 /* Particle field + calculator theme-overlay canvases (canvas transparency / mix-blend-mode:screen)
-   Fade-in/out drifting particles only — no orbit, swirl, circular, or formula-formation motion. */
+   ONLY simple fade-in/out linear drifts. No orbits, sprinkles, sparkle variants,
+   formula formations, swirl, circular paths, or residual ATC Math particle types. */
 (function (global) {
   'use strict';
   if (typeof global.globalBlobs === 'undefined') {
-    global.globalBlobs = null; // optional; referenced by theme/cosmic roam but unused for calc overlays
+    global.globalBlobs = null;
   }
 
 (function(){
@@ -24,7 +25,6 @@ canvas.id = "el-arquitecto-particle-canvas";
 canvas.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;mix-blend-mode:screen;";
 document.body.appendChild(canvas);
 const bgDiv = document.createElement('div'); bgDiv.id = 'el-arquitecto-bg-layer'; document.body.appendChild(bgDiv);
-let ctx = null;
 let particles = [];
 function resizeCanvas() {
 canvas.width = window.innerWidth;
@@ -34,13 +34,11 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 const gl = canvas.getContext("webgl", { alpha: true, antialias: true });
 let program, positionLoc, sizeLoc, alphaLoc, resolutionLoc, colorLoc;
-let positionBuffer, sizeBuffer, alphaBuffer, colorBuffer, sparkleBuffer;
-let colorIndexLoc, sparkleSpeedLoc, timeLoc;
-const startTime = Date.now();
+let positionBuffer, sizeBuffer, alphaBuffer;
 let lastFrameTime = performance.now();
 if (gl) {
-const vsSource = `attribute vec2 a_position;attribute float a_size;attribute float a_alpha;attribute float a_colorIndex;attribute float a_sparkleSpeed;uniform vec2 u_resolution;uniform float u_time;varying float v_alpha;varying float v_colorIndex;varying float v_sparkleSpeed;void main(){vec2 zeroToOne=a_position/u_resolution;vec2 zeroToTwo=zeroToOne*2.0;vec2 clipSpace=zeroToTwo-1.0;gl_Position=vec4(clipSpace*vec2(1,-1),0,1);gl_PointSize=a_size*2.0;v_alpha=a_alpha;v_colorIndex=a_colorIndex;v_sparkleSpeed=a_sparkleSpeed;}`;
-const fsSource = `precision mediump float;varying float v_alpha;varying float v_colorIndex;varying float v_sparkleSpeed;uniform vec3 u_accentColor;uniform float u_time;void main(){vec2 coord=gl_PointCoord-vec2(0.5);float dist=length(coord);if(dist>0.5)discard;float glow=1.0-(dist*2.0);glow=pow(glow,2.5);vec3 color=u_accentColor;float sparkle=1.0;if(v_colorIndex>0.5){float lift=0.35;if(v_colorIndex>3.5)lift=0.2;color=mix(u_accentColor,vec3(1.0),lift);sparkle=0.6+0.4*sin(u_time*v_sparkleSpeed);}float finalAlpha=v_alpha*glow*sparkle;gl_FragColor=vec4(color,finalAlpha);}`;
+const vsSource = `attribute vec2 a_position;attribute float a_size;attribute float a_alpha;uniform vec2 u_resolution;varying float v_alpha;void main(){vec2 zeroToOne=a_position/u_resolution;vec2 zeroToTwo=zeroToOne*2.0;vec2 clipSpace=zeroToTwo-1.0;gl_Position=vec4(clipSpace*vec2(1,-1),0,1);gl_PointSize=a_size*2.0;v_alpha=a_alpha;}`;
+const fsSource = `precision mediump float;varying float v_alpha;uniform vec3 u_accentColor;void main(){vec2 coord=gl_PointCoord-vec2(0.5);float dist=length(coord);if(dist>0.5)discard;float glow=1.0-(dist*2.0);glow=pow(glow,2.5);gl_FragColor=vec4(u_accentColor,v_alpha*glow);}`;
 function createShader(gl,type,source){const shader=gl.createShader(type);gl.shaderSource(shader,source);gl.compileShader(shader);return shader;}
 const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
 const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
@@ -51,31 +49,23 @@ gl.linkProgram(program);
 positionLoc = gl.getAttribLocation(program, "a_position");
 sizeLoc = gl.getAttribLocation(program, "a_size");
 alphaLoc = gl.getAttribLocation(program, "a_alpha");
-colorIndexLoc = gl.getAttribLocation(program, "a_colorIndex");
-sparkleSpeedLoc = gl.getAttribLocation(program, "a_sparkleSpeed");
 resolutionLoc = gl.getUniformLocation(program, "u_resolution");
 colorLoc = gl.getUniformLocation(program, "u_accentColor");
-timeLoc = gl.getUniformLocation(program, "u_time");
 positionBuffer = gl.createBuffer();
 sizeBuffer = gl.createBuffer();
 alphaBuffer = gl.createBuffer();
-colorBuffer = gl.createBuffer();
-sparkleBuffer = gl.createBuffer();
 }
 
 function resetDriftParticle(p, randomizeLife){
-const sz=Math.random()*2.2+1.2;
+const sz=Math.random()*2.0+1.4;
 p.x=Math.random()*canvas.width;
 p.y=Math.random()*canvas.height;
-p.vx=(Math.random()-0.5)*0.28;
-p.vy=(Math.random()-0.5)*0.28;
+p.vx=(Math.random()-0.5)*0.25;
+p.vy=(Math.random()-0.5)*0.25;
 p.size=sz;
-p.baseSize=sz;
-p.colorIndex=0;
-p.sparkleSpeed=1.5+Math.random()*4.0;
 p.fadeIn=0.0035+Math.random()*0.0045;
 p.fadeOut=0.0025+Math.random()*0.004;
-p.hold=0.35+Math.random()*0.45;
+p.hold=0.28+Math.random()*0.32;
 if (randomizeLife) {
 if (Math.random() < 0.5) {
 p.phase='in';
@@ -91,7 +81,8 @@ p.alpha=0;
 }
 function initParticles(){
 particles=[];
-const count=420;
+// Soft ambient field only — no dense ATC Math sprinkles / orbit rings.
+const count=160;
 for(let i=0;i<count;i++){
 const p={};
 resetDriftParticle(p,true);
@@ -110,7 +101,7 @@ const positions = new Float32Array(particles.length * 2);
 const sizes = new Float32Array(particles.length);
 const alphas = new Float32Array(particles.length);
 particles.forEach((p, i) => {
-// Linear drift only — never orbit/swirl/circular (no angle/radius updates).
+// Linear drift only.
 p.x += p.vx * timeScale;
 p.y += p.vy * timeScale;
 if (p.x < -10) p.x = canvas.width + 10;
@@ -154,19 +145,7 @@ gl.bindBuffer(gl.ARRAY_BUFFER, alphaBuffer);
 gl.bufferData(gl.ARRAY_BUFFER, alphas, gl.DYNAMIC_DRAW);
 gl.enableVertexAttribArray(alphaLoc);
 gl.vertexAttribPointer(alphaLoc, 1, gl.FLOAT, false, 0, 0);
-const colorIndices = new Float32Array(particles.length);
-const sparkleSpeeds = new Float32Array(particles.length);
-particles.forEach((p, i) => { colorIndices[i] = p.colorIndex || 0; sparkleSpeeds[i] = p.sparkleSpeed || 2.0; });
-gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
-gl.bufferData(gl.ARRAY_BUFFER, colorIndices, gl.DYNAMIC_DRAW);
-gl.enableVertexAttribArray(colorIndexLoc);
-gl.vertexAttribPointer(colorIndexLoc, 1, gl.FLOAT, false, 0, 0);
-gl.bindBuffer(gl.ARRAY_BUFFER, sparkleBuffer);
-gl.bufferData(gl.ARRAY_BUFFER, sparkleSpeeds, gl.DYNAMIC_DRAW);
-gl.enableVertexAttribArray(sparkleSpeedLoc);
-gl.vertexAttribPointer(sparkleSpeedLoc, 1, gl.FLOAT, false, 0, 0);
 gl.uniform2f(resolutionLoc, gl.canvas.width, gl.canvas.height);
-gl.uniform1f(timeLoc, now * 0.001);
 gl.drawArrays(gl.POINTS, 0, particles.length);
 }
 updateOverlayCanvases();
@@ -193,10 +172,9 @@ const r = p.size;
 if (lx < -r || lx > w + r || ly < -r || ly > h + r) return;
 const a = p.alpha || 0;
 if (a <= 0) return;
-const pRgb = rgb;
 const grad = ctx.createRadialGradient(lx, ly, 0, lx, ly, r);
-grad.addColorStop(0, `rgba(${pRgb},${a})`);
-grad.addColorStop(1, `rgba(${pRgb},0)`);
+grad.addColorStop(0, `rgba(${rgb},${a})`);
+grad.addColorStop(1, `rgba(${rgb},0)`);
 ctx.beginPath();
 ctx.arc(lx, ly, r, 0, Math.PI * 2);
 ctx.fillStyle = grad;

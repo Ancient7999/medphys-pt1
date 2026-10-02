@@ -720,6 +720,69 @@ settingsBtn.addEventListener('mouseenter', function() {
   var dur = slow ? (9 + Math.random() * 5) : (5.0 + Math.random() * 0.8);
   settingsBtn.style.setProperty('--gear-dur', dur.toFixed(2) + 's');
 });
+// Long-hover fade: after random 5–7s continuous hover, fade opacity to 0.05 over 3s.
+// On mouseleave, restore with accelerating ease over ~2.5–4s. Cancel pending fade if leave early.
+(function wireSettingsBtnHoverFade(btn) {
+  var hoverTimer = null;
+  var fadeRaf = null;
+  var fadeToken = 0;
+
+  function cancelHoverTimer() {
+    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+  }
+  function cancelRaf() {
+    if (fadeRaf) { cancelAnimationFrame(fadeRaf); fadeRaf = null; }
+  }
+  function currentOpacity() {
+    var v = parseFloat(btn.style.opacity);
+    return Number.isFinite(v) ? v : 1;
+  }
+  function setOpacity(v) {
+    btn.style.opacity = String(v);
+  }
+  function animateOpacity(from, to, durationMs, easeFn) {
+    cancelRaf();
+    var token = ++fadeToken;
+    var start = performance.now();
+    function frame(now) {
+      if (token !== fadeToken) return;
+      var t = Math.min(1, (now - start) / durationMs);
+      setOpacity(from + (to - from) * easeFn(t));
+      if (t < 1) fadeRaf = requestAnimationFrame(frame);
+      else fadeRaf = null;
+    }
+    fadeRaf = requestAnimationFrame(frame);
+  }
+  function easeLinear(t) { return t; }
+  // Accelerating restore (ease-in cubic).
+  function easeInAccel(t) { return t * t * t; }
+
+  btn.addEventListener('mouseenter', function() {
+    cancelHoverTimer();
+    // If mid-restore, keep current opacity and arm a fresh delay from here.
+    cancelRaf();
+    fadeToken++;
+    var delay = 5000 + Math.random() * 2000; // 5–7s
+    hoverTimer = setTimeout(function() {
+      hoverTimer = null;
+      var from = currentOpacity();
+      animateOpacity(from, 0.05, 3000, easeLinear);
+    }, delay);
+  });
+
+  btn.addEventListener('mouseleave', function() {
+    cancelHoverTimer(); // cancel pending fade if leave early
+    var from = currentOpacity();
+    if (from >= 0.999) {
+      cancelRaf();
+      fadeToken++;
+      setOpacity(1);
+      return;
+    }
+    var dur = 2500 + Math.random() * 1500; // 2.5–4s
+    animateOpacity(from, 1, dur, easeInAccel);
+  });
+})(settingsBtn);
 }
 if (settingsCloseBtn) {
 settingsCloseBtn.addEventListener('click', function(e) {
