@@ -186,7 +186,7 @@ Non-invasive measurement of **velocity and direction** of blood flow. Applicatio
 - Fetal circulation assessment  
 - Cardiac valve assessment (**Doppler echocardiography**) — pressure gradients relate to velocity via Bernoulli-type relations in clinical practice  
 
-### Conclusion (lecture)
+### Conclusion
 
 Bernoulli relates pressure, velocity, and height in moving fluids; explains pressure drop when velocity rises; underpins understanding of arterial/valve flow, stenosis assessment, Doppler-based gradients, and devices such as Venturi masks.
 
