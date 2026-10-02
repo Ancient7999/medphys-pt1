@@ -2863,29 +2863,63 @@ function firstUnansweredIndex(){
   }
   return -1;
 }
+function nextUnansweredIndex(after){
+  const start=typeof after==='number'?after:-1;
+  for(let i=start+1;i<questions.length;i++){
+    if(!isAnswered(answers[i], questions[i])) return i;
+  }
+  for(let i=0;i<=start && i<questions.length;i++){
+    if(!isAnswered(answers[i], questions[i])) return i;
+  }
+  return -1;
+}
 function allQuestionsAnswered(){
   return questions.length>0 && firstUnansweredIndex()===-1;
+}
+function afterAnswerProgress(){
+  renderNav();
+  updateCounters();
+  if(allQuestionsAnswered()){
+    unansweredMarkersVisible=false;
+    const btn=document.getElementById('nextBtn');
+    if(btn){
+      btn.textContent='Finish ✓';
+      btn.dataset.action='finish';
+      btn.disabled=false;
+    }
+    // All done — auto-open Run complete (no extra Finish click)
+    clearTimeout(afterAnswerProgress._finishT);
+    afterAnswerProgress._finishT=setTimeout(function(){ if(quizActive && allQuestionsAnswered()) finishQuiz(); }, 700);
+    return;
+  }
+  updateNextActionButton();
 }
 function updateNextActionButton(){
   const btn=document.getElementById('nextBtn');
   if(!btn) return;
-  const atLast=current===questions.length-1;
+  const atLast=questions.length>0 && current===questions.length-1;
   const answeredHere=isAnswered(answers[current], questions[current]);
   const firstOpen=firstUnansweredIndex();
   btn.dataset.action='next';
+  delete btn.dataset.target;
   if(!atLast){
     btn.textContent='Next →';
     btn.disabled=!answeredHere;
     return;
   }
-  // On final question: Finish only if everything is answered
+  // Last question: stay on greyed Next until this item is answered
+  if(!answeredHere){
+    btn.textContent='Next →';
+    btn.disabled=true;
+    return;
+  }
+  // Answered last: Finish if complete, else return to first unanswered
   if(allQuestionsAnswered()){
     btn.textContent='Finish ✓';
     btn.dataset.action='finish';
-    btn.disabled=!answeredHere;
+    btn.disabled=false;
     return;
   }
-  // Still missing answers — mark nav and offer jump to first open
   if(firstOpen>=0){
     btn.textContent='Return to question '+(firstOpen+1);
     btn.dataset.action='return-unanswered';
@@ -2894,7 +2928,7 @@ function updateNextActionButton(){
   } else {
     btn.textContent='Finish ✓';
     btn.dataset.action='finish';
-    btn.disabled=true;
+    btn.disabled=false;
   }
 }
 function isSkippedIndex(i){
@@ -3004,6 +3038,10 @@ function renderQuestion(){
   } else {
     document.getElementById('qNum').textContent=current+1;
     document.getElementById('progressBar').style.width=Math.round((answers.filter((a,i)=>isAnswered(a,questions[i])).length/questions.length)*100)+'%';
+    // Red unanswered marks appear as soon as the user lands on the final question
+    if(questions.length>0 && current===questions.length-1 && !allQuestionsAnswered()){
+      unansweredMarkersVisible=true;
+    }
     renderNav();
   }
   updateCounters();
@@ -3461,7 +3499,7 @@ function onDrawUp(ev){
         fb.className='feedback good'; fb.textContent='✓ '+(q.explain||'');
         document.getElementById('mainPanel').classList.add('correct-pulse');
         setTimeout(()=>document.getElementById('mainPanel').classList.remove('correct-pulse'),650);
-        spawnConfetti(); renderNav(); updateNextActionButton(); updateCounters();
+        spawnConfetti(); afterAnswerProgress();
       }
     } else {
       // Wrong links are intentionally silent: do not store, glow, or announce them.
@@ -3552,7 +3590,7 @@ function selectAnswer(idx){
     // Longer wait with emptying bar; auto = least-solved; New question = random.
     startFormulaAdvanceCountdown();
   } else {
-    renderNav(); updateNextActionButton(); updateCounters();
+    afterAnswerProgress();
   }
 }
 
@@ -3568,7 +3606,21 @@ function goNext(){
     renderQuestion();
     return;
   }
+  if(action==='finish'){
+    if(allQuestionsAnswered()) finishQuiz();
+    return;
+  }
   if(!locked||!isAnswered(answers[current], questions[current])) return;
+  // After last-question unanswered flow: Next jumps to next unanswered (not Q+1)
+  if(unansweredMarkersVisible && !allQuestionsAnswered()){
+    const nextOpen=nextUnansweredIndex(current);
+    if(nextOpen>=0){
+      current=nextOpen;
+      locked=isAnswered(answers[current], questions[current]);
+      renderQuestion();
+      return;
+    }
+  }
   if(current<questions.length-1){ current++; locked=isAnswered(answers[current], questions[current]); renderQuestion(); }
   else {
     if(!allQuestionsAnswered()){
