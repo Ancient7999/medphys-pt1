@@ -748,6 +748,10 @@ body.formula-mode.formula-waiting .formula-advance-wrap{display:block}
 .opt.soft-wrong{border-color:rgba(var(--accent-0-rgb),.5);border-left-color:var(--accent-0);background:rgba(var(--accent-0-rgb),.06);color:var(--text);animation:softReject calc(420ms / var(--anim-speed)) ease}
 .opt.wrong{border-color:rgba(var(--accent-0-rgb),.5);border-left-color:var(--accent-0);background:rgba(var(--accent-0-rgb),.06);color:var(--text)}
 .feedback{margin-top:14px;padding:14px 16px;border-radius:12px;font-size:1rem;line-height:1.5;min-height:48px;font-family:var(--body)}
+/* Formula explanations and revealed formula text need a little more reading
+   room than the compact quiz chrome. */
+body.formula-mode .feedback{font-size:1.08rem}
+body.formula-mode .formula-hint-box{font-size:.98rem}
 .feedback.good{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.28);color:var(--success)}
 .feedback.soft{background:rgba(var(--accent-0-rgb),.08);border:1px solid rgba(var(--accent-0-rgb),.25);color:var(--accent-1)}
 .feedback.bad{background:rgba(251,113,133,.1);border:1px solid rgba(251,113,133,.28);color:var(--error)}
@@ -1517,13 +1521,17 @@ body.split-quiz-active #chatDock{z-index:60}
 /* A left term is only a drag origin. Keep its pressed/drawing state quiet so
    selecting one term never makes the whole Terms column look selected. Solved
    lefts are the one intentional exception and retain their completion glow. */
-.match-col-left .match-item.drawing:not(.is-solved-link),
-.match-col-left .match-item.active:not(.is-solved-link),
-.match-col-left .match-item:active:not(.is-solved-link){
+.match-col-left .match-item:not(.is-solved-link):hover,
+.match-col-left .match-item:not(.is-solved-link):active,
+.match-col-left .match-item:not(.is-solved-link):focus,
+.match-col-left .match-item:not(.is-solved-link):focus-visible,
+.match-col-left .match-item:not(.is-solved-link).drawing,
+.match-col-left .match-item:not(.is-solved-link).active{
   border-color:var(--border)!important;
   background:rgba(0,0,0,.42)!important;
   box-shadow:none!important;
   transform:none!important;
+  outline:none!important;
   filter:none!important;
 }
 /* While drawing: kill transitions + suppress hover/active/focus glow on every
@@ -3276,6 +3284,10 @@ function onDrawUp(ev){
   src.removeEventListener('pointerup', onDrawUp);
   src.removeEventListener('pointercancel', onDrawUp);
   src.classList.remove('drawing');
+  // Pointer interaction should not leave a term focused/activated after the
+  // draw ends; solved terms are re-applied below as the only left glow.
+  src.classList.remove('active');
+  src.blur();
   const under=document.elementFromPoint(ev.clientX, ev.clientY);
   const hit=under&&under.closest?under.closest('.match-item'):null;
   const svg=document.querySelector('.match-wires');
@@ -3339,15 +3351,25 @@ function onDrawUp(ev){
         }
       });
     }
-    document.querySelectorAll('.match-item').forEach(n=>{
-      const isLeftSolved=n.dataset.side==='L' && ans.pairs[n.dataset.id] && q.correct_pairs && q.correct_pairs[n.dataset.id]===ans.pairs[n.dataset.id];
-      const isRightPaired=n.dataset.side==='R' && Object.keys(ans.pairs).some(lid=>ans.pairs[lid]===n.dataset.id && q.correct_pairs && q.correct_pairs[lid]===n.dataset.id);
-      const isRightComplete=n.dataset.side==='R' && isCompleteMatchRight(q,ans,n.dataset.id);
-      n.classList.toggle('paired', isLeftSolved || isRightPaired);
-      n.classList.toggle('is-solved-link', isLeftSolved);
-      n.classList.remove('drawing');
-      if(isLeftSolved || isRightComplete) n.disabled=true;
-      else if(!ans.correct) n.disabled=false;
+    // Reconcile each side independently. Left terms only ever receive the
+    // solved-link state for their own correct pair; never mark the whole left
+    // column as active/paired during a draw.
+    document.querySelectorAll('.match-col-left .match-item').forEach(n=>{
+      const isLeftSolved=!!(ans.pairs[n.dataset.id] && q.correct_pairs &&
+        q.correct_pairs[n.dataset.id]===ans.pairs[n.dataset.id]);
+      n.classList.toggle('paired',isLeftSolved);
+      n.classList.toggle('is-solved-link',isLeftSolved);
+      n.classList.remove('drawing','active');
+      n.disabled=!!(isLeftSolved || ans.correct);
+    });
+    document.querySelectorAll('.match-col-right .match-item').forEach(n=>{
+      const isRightPaired=Object.keys(ans.pairs).some(lid=>
+        ans.pairs[lid]===n.dataset.id && q.correct_pairs &&
+        q.correct_pairs[lid]===n.dataset.id);
+      const isRightComplete=isCompleteMatchRight(q,ans,n.dataset.id);
+      n.classList.toggle('paired',isRightPaired);
+      n.classList.remove('drawing','active');
+      n.disabled=!!(isRightComplete || ans.correct);
     });
     updateClearDrawingsButton(q,ans);
   }
