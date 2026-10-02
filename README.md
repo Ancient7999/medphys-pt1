@@ -43,7 +43,7 @@ Title: **Medical Physics · Periodic Test 1** · shared colorizer theme via `atc
 - Chapter 2: Fluids at Rest (all Ch2 cats)
 - Chapter 3: Mass Flow & Bernoulli
 
-Shuffle prefs live under **Quiz settings**. From a run, **Return to Quiz** goes to the forms list (not the main menu).
+Shuffle prefs live under **Quiz settings**. From a run, **Return to interface** goes to the forms list (not the main menu).
 
 ## Run locally
 
