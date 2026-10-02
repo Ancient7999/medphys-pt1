@@ -1,0 +1,3047 @@
+{
+  "id": "medical-physics-merged-bank",
+  "subject": "Medical Physics",
+  "subjectId": "medical_physics",
+  "title": "Medical Physics Formative 1, through mass flow and Bernoulli",
+  "formSize": 198,
+  "forms": [
+    "A"
+  ],
+  "bank": {
+    "A": [
+      {
+        "id": "PHY00001",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which of the following is the cleanest definition of a physical quantity?",
+        "options": [
+          "A unit written with no numerical value",
+          "A measured property with a number and a unit",
+          "A property seen without any measurement",
+          "A solid object that merely occupies space"
+        ],
+        "correct": 1,
+        "explain": "A physical quantity is a measurable property written as a number times a unit, as in 10 kg or 37 °C. A bare unit, an unmeasured observation, and a mere object do not complete that pair."
+      },
+      {
+        "id": "PHY00002",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "How many base quantities does the SI system have, and what is the SI unit of temperature?",
+        "options": [
+          "7 base quantities; kelvin (K)",
+          "3 base quantities; kelvin (K)",
+          "9 base quantities; degree Fahrenheit",
+          "5 base quantities; degree Celsius"
+        ],
+        "correct": 0,
+        "explain": "The SI system has 7 base quantities, and temperature's base unit is the kelvin The seven are: length (m), mass (kg), time (s), temperature (K), electric current (A), luminous intensity (Cd), amount of substance (mol). Notice temperature is kelvin, not Celsius, Celsius is a derived scale defined from kelvin (0 °C = 273.15 K). In medical physics calculations, always convert to kelvin first"
+      },
+      {
+        "id": "PHY00003",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which of the following is a DERIVED quantity, not a base quantity?",
+        "options": [
+          "Length",
+          "Area",
+          "Mass",
+          "Time"
+        ],
+        "correct": 1,
+        "explain": "Area = length × length, so it is built from base quantities and is derived Derived quantities are made from base quantities by multiplication or division. Examples: Area = L²; Speed = L/T; Force = M·L/T² (= newton); Pressure = M/(L·T²) (= pascal). Mass, time, and length are all base, they can't be reduced further. You can spot derived quantities because their units are combinations (m², m/s, kg·m/s²)."
+      },
+      {
+        "id": "PHY00004",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "In the CGS system, the units of length, mass, and time are:",
+        "options": [
+          "metre, gram, second",
+          "metre, kilogram, second",
+          "centimetre, gram, second",
+          "foot, pound, second"
+        ],
+        "correct": 2,
+        "explain": "CGS = centimetre - gram - second. FPS = foot - pound - second. MKS = metre - kilogram - second Memory trick: the letters name the units. CGS: Centimetre, Gram, Second. FPS: Foot, Pound, Second. MKS: Metre, Kilogram, Second. SI is the modern international standard and uses the MKS structure (metre, kilogram, second) plus the other four base units. Medical physics uses SI almost exclusively."
+      },
+      {
+        "id": "PHY00005",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which of the following is NOT matter?",
+        "options": [
+          "Bone",
+          "Blood",
+          "Air in the lungs",
+          "Light"
+        ],
+        "correct": 3,
+        "explain": "Matter must have mass and occupy space. Light has neither rest mass nor volume, it is not matter Light is electromagnetic radiation, photons are massless and take up no volume, so they don't count as matter even though they carry energy and momentum. Bone (solid), blood (liquid), and air in the lungs (gas) are all matter. This is why we can say 'matter is everywhere in the human body', every tissue is matter, but the signals and radiation passing through it are not."
+      },
+      {
+        "id": "PHY00006",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Rank the intermolecular forces from strongest to weakest across the three common states:",
+        "options": [
+          "Solid > Liquid > Gas",
+          "Liquid > Solid > Gas",
+          "Gas > Solid > Liquid",
+          "Gas > Liquid > Solid"
+        ],
+        "correct": 0,
+        "explain": "Solids hold their molecules most tightly, gases least tightly Strong intermolecular forces explain why solids are rigid and cannot be compressed. Weak forces explain why gases expand to fill any container and compress easily. In the body: bone molecules are locked in a rigid lattice (strong IMF); blood molecules slide past each other (moderate IMF); air molecules zip around freely (weak IMF). This is why gas exchange in lungs relies on volume change, but bone can support your body weight."
+      },
+      {
+        "id": "PHY00007",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which ordering of DIFFUSION rate is correct?",
+        "options": [
+          "Liquid > Gas > Solid",
+          "Diffusion is equal in all three",
+          "Solid > Liquid > Gas",
+          "Gas > Liquid > Solid"
+        ],
+        "correct": 3,
+        "explain": "Diffusion is fastest in gases because their molecules move fastest and are furthest apart Diffusion = movement of particles from high concentration to low concentration. Gases: fast (perfume fills a room in seconds). Liquids: slower (food colouring in water takes minutes). Solids: extremely slow (dye in ice barely moves at all). Medical application: oxygen diffuses rapidly from alveoli into blood (gas-to-liquid) but the transport of oxygen around the whole body depends on bulk flow (blood circulation), not diffusion alone"
+      },
+      {
+        "id": "PHY00008",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Kinetic energy of particles is temperature-dependent. Which statement is correct?",
+        "options": [
+          "Kinetic energy does not depend on temperature",
+          "Solids have the highest kinetic energy",
+          "Gases have the highest kinetic energy",
+          "All three states have equal kinetic energy"
+        ],
+        "correct": 2,
+        "explain": "At a given temperature, gases have the highest particle kinetic energy and solids the lowest. Solid particles mainly vibrate in place; liquid particles slide; gas particles move rapidly. Temperature measures average kinetic energy."
+      },
+      {
+        "id": "PHY00009",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which pair correctly distinguishes elasticity from plasticity?",
+        "options": [
+          "Elasticity deforms permanently; plasticity returns to shape",
+          "Elasticity returns to shape; plasticity deforms permanently",
+          "Elasticity and plasticity both return to the original shape",
+          "Elasticity and plasticity both leave a permanent set"
+        ],
+        "correct": 1,
+        "explain": "Elasticity is recovery of shape after the load is removed. Plasticity is the permanent set that remains. Swapping the two, or giving both the same outcome, reverses or erases that split."
+      },
+      {
+        "id": "PHY00010",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "What is the difference between ductility and malleability?",
+        "options": [
+          "Ductility means sheets; malleability means wires",
+          "Ductility and malleability both mean compressibility",
+          "Ductility and malleability both mean fracture resistance",
+          "Ductility means wires; malleability means sheets"
+        ],
+        "correct": 3,
+        "explain": "Ductility is drawing into thin wires. Malleability is hammering or rolling into sheets. The swapped pair, and the two shared meanings, are not that split."
+      },
+      {
+        "id": "PHY00011",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Stress is defined as:",
+        "options": [
+          "Area / Force",
+          "Force × time",
+          "Force × Area",
+          "Force / Area"
+        ],
+        "correct": 3,
+        "explain": "Stress = F / A. SI unit: N/m² = Pascal (Pa) Stress is the internal restoring force per unit area that develops in response to an external force. Same force on a smaller area = higher stress. This is why thin bones (osteoporosis) fracture more easily than thick ones under the same body weight: F is the same but A is smaller, so stress = F/A is larger. Also why a sharp knife cuts more easily than a blunt one: the same force concentrated on a tiny area generates enormous stress."
+      },
+      {
+        "id": "PHY00012",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Strain is best described as:",
+        "options": [
+          "Same quantity as stress, units of pascal",
+          "Relative length change, with no units",
+          "Force per unit area, units of pascal",
+          "Force times area, units of newton metre"
+        ],
+        "correct": 1,
+        "explain": "Strain is the deformation divided by the original dimension, so the units cancel. Stress is force per area in pascals, and force times area is not a strain."
+      },
+      {
+        "id": "PHY00013",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Hooke's Law states that stress and strain are proportional up to which point?",
+        "options": [
+          "The breaking point of the loaded specimen",
+          "The proportional limit",
+          "The melting point of the loaded specimen",
+          "The boiling point of the loaded specimen"
+        ],
+        "correct": 1,
+        "explain": "Hooke's law holds while stress stays proportional to strain, which ends at the proportional limit (also called the elastic limit). The breaking point is later, and melting or boiling are thermal changes, not that limit."
+      },
+      {
+        "id": "PHY00014",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which of the following is a medical example of stress in the human body?",
+        "options": [
+          "Blood pressure acting on vessel walls",
+          "Light passing through the lens of the eye",
+          "Sound travelling along the ear canal",
+          "Photosynthesis inside a green leaf"
+        ],
+        "correct": 0,
+        "explain": "Blood pressure on a vessel wall is force per area, which is stress. Light, sound, and photosynthesis are not that force on a surface."
+      },
+      {
+        "id": "PHY00015",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which state of matter is described as having a definite size and shape and being unable to be compressed?",
+        "options": [
+          "Solid",
+          "Plasma",
+          "Gas",
+          "Liquid"
+        ],
+        "correct": 0,
+        "explain": "Solids have definite shape and volume, high density, strong intermolecular forces, and cannot be compressed Bone is the medical example of a solid: rigid, definite shape, cannot be compressed. Compare: liquids (blood) have no definite shape but a nearly fixed volume, and are not easily compressible; gases (air in the lungs) have neither definite shape nor volume and are easily compressible. This hierarchy is why the skeleton (solid) can support the body while the bloodstream (liquid) can flow and the lungs (gas) can expand and contract with each breath."
+      },
+      {
+        "id": "PHY00016",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which of the following is an ADDITIONAL state of matter beyond solid, liquid, and gas?",
+        "options": [
+          "Ordinary water vapour phase",
+          "Frozen crystalline ice phase",
+          "Pressurized steam-cloud phase",
+          "Bose-Einstein condensate"
+        ],
+        "correct": 3,
+        "explain": "Beyond solid, liquid, and gas, the additional state named here is the Bose-Einstein condensate. Vapour, ice, and steam are ordinary phases of water, not a further state."
+      },
+      {
+        "id": "PHY00017",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which statement about ideal liquids is correct?",
+        "options": [
+          "Ideal liquids compress fully, and they exist in nature",
+          "Ideal liquids do not compress, and none exist in nature",
+          "Ideal liquids exist in nature as pure water alone",
+          "Ideal liquids outpull solids in intermolecular force"
+        ],
+        "correct": 1,
+        "explain": "An ideal liquid is defined as incompressible, and no real liquid meets that ideal. Compressibility, pure water, and a stronger force than solids are not that definition."
+      },
+      {
+        "id": "PHY00018",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which of the following is not one of the five mechanical properties?",
+        "options": [
+          "Malleability",
+          "Strength",
+          "Conductivity",
+          "Elasticity"
+        ],
+        "correct": 2,
+        "explain": "The five mechanical properties are elasticity, plasticity, ductility, malleability, and strength. Conductivity is an electrical/thermal property Conductivity describes how well a material transmits heat or electricity, that's an electrical/thermal property, not a mechanical one. Mechanical properties describe how a material responds to forces: does it return to shape (elastic), deform permanently (plastic), draw into wires (ductile), hammer into sheets (malleable), or resist failure (strength)? Bone's mechanical properties are what let it bear load; its electrical properties (if any) would be a different chapter."
+      },
+      {
+        "id": "PHY00019",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A bone that bends slightly under load and returns to its original shape when the load is removed is displaying:",
+        "options": [
+          "Malleability",
+          "Ductility",
+          "Plasticity",
+          "Elasticity"
+        ],
+        "correct": 3,
+        "explain": "Elasticity = returns to original shape after force removal. This is normal bone behaviour under physiological loads Bone is actually both: elastic under small loads (walking, mild exercise) and plastic under extreme loads (a fall, repeated overloading). Under normal walking, bone flexes by a fraction of a millimetre and returns fully. Under marathon-level repetitive loading, it enters the plastic zone and develops stress fractures. This dual behaviour is why rest days are important for athletes, they allow bone to recover before plastic damage accumulates."
+      },
+      {
+        "id": "PHY00020",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "What happens when a material is loaded beyond its elastic limit?",
+        "options": [
+          "It gains mass",
+          "It returns to its original shape",
+          "It permanently deforms",
+          "It melts"
+        ],
+        "correct": 2,
+        "explain": "Beyond the elastic limit, deformation becomes permanent. Continue loading and the material reaches its breaking point The stress-strain curve past the elastic limit flattens (plastic region), the material keeps deforming without much additional stress. Remove the force and it stays deformed. Examples: bending a paperclip, stretching a rubber band too far, overloading a bone into a stress fracture. Complete failure occurs at the breaking point, where the material fractures, tears, or shatters."
+      },
+      {
+        "id": "PHY00021",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which of the following correctly reports a measured mass as a physical quantity?",
+        "options": [
+          "5 N",
+          "10 m",
+          "10 kg",
+          "5 Pa"
+        ],
+        "correct": 2,
+        "explain": "A measured mass needs a number and the mass unit. 10 kg has both. 5 N is a force, 10 m is a length, and 5 Pa is a pressure; each has a number and a unit but none reports mass."
+      },
+      {
+        "id": "PHY00022",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Pressure on teeth during chewing is an example of:",
+        "options": [
+          "Stress on the tooth surface",
+          "Diffusion through the enamel",
+          "Sublimation of the dentine",
+          "Elasticity within the enamel"
+        ],
+        "correct": 0,
+        "explain": "Chewing presses force onto the tooth face, which is stress, force per area. Diffusion, sublimation, and elasticity name other properties and are not what that bite applies."
+      },
+      {
+        "id": "PHY00023",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which statement about solids is FALSE?",
+        "options": [
+          "They are easily compressed",
+          "They have a definite shape",
+          "They have strong intermolecular forces",
+          "They are highly dense"
+        ],
+        "correct": 0,
+        "explain": "Solids are NOT easily compressed, strong intermolecular forces lock particles in place That's why you can't push your hand through a table or compress a bone. Molecules in a solid are packed tightly with strong IMF, so pushing them closer requires enormous pressure. Gases, with weak IMF and large spacing, compress easily (that's why a syringe can compress air but not water). In the body, the incompressibility of bone is what allows it to support the weight of everything above it"
+      },
+      {
+        "id": "PHY00024",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Malleability is the property of being:",
+        "options": [
+          "Sublimated directly to gas",
+          "Drawn into thin wires",
+          "Hammered or rolled into sheets",
+          "Vaporised at low temperature"
+        ],
+        "correct": 2,
+        "explain": "Malleable = can be hammered/rolled into sheets. Ductile = can be drawn into wires Gold is famously malleable, a single gram can be hammered into a sheet of about 1 m². Copper is ductile, it's drawn into the wires in your house. Both require atoms to slide past each other without breaking bonds, but 'malleable' means the deformation is compression into flat sheets, while 'ductile' means the deformation is tension into thin wires. Bone is neither, because its mineral structure resists both kinds of deformation."
+      },
+      {
+        "id": "PHY00025",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "The strength of a material refers to its ability to:",
+        "options": [
+          "Bend repeatedly without fracturing",
+          "Withstand stress without failure",
+          "Conduct charge without resistance",
+          "Dissolve fully without residue"
+        ],
+        "correct": 1,
+        "explain": "Strength is the ability to carry applied stress without failure. Bending without fracture is closer to toughness, and conduction or dissolving are not mechanical strength."
+      },
+      {
+        "id": "PHY00026",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A bone under 5 × 10⁶ Pa of stress shows a strain of 0.0025. What is the Young's modulus of this sample?",
+        "options": [
+          "2 × 10⁶ Pa",
+          "1.25 × 10⁴ Pa",
+          "0.0005 Pa",
+          "2 × 10⁹ Pa"
+        ],
+        "correct": 3,
+        "explain": "Y = stress / strain = (5×10⁶) / (2.5×10⁻³) = 2 × 10⁹ Pa = 2 GPa That's 2 GPa, which is in the range of real bone (cortical bone ~15-20 GPa, cancellous bone ~1-2 GPa). The formula is just Y = stress / strain, the slope of the linear (elastic) portion of the stress-strain curve. If you plot stress on the y-axis and strain on the x-axis, Young's modulus is the slope of the straight line before the material yields."
+      },
+      {
+        "id": "PHY00027",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Blood in the human body is best classified as which state of matter?",
+        "options": [
+          "Gas",
+          "Plasma",
+          "Solid",
+          "Liquid"
+        ],
+        "correct": 3,
+        "explain": "Blood behaves as a liquid: no definite shape, nearly fixed volume, moderate intermolecular forces, not easily compressible Technically blood is a suspension of cells in plasma, but it is the working example of a liquid. Its key liquid properties: takes the shape of its container (arteries, veins), has a nearly fixed volume at constant pressure, and cannot be easily compressed. This is why pressure waves (the pulse) travel through blood so predictably, the liquid is nearly incompressible, so the pressure transmits almost instantly along the vessel."
+      },
+      {
+        "id": "PHY00028",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which of the following is not one of the four unit systems?",
+        "options": [
+          "GPS",
+          "CGS",
+          "MKS",
+          "SI"
+        ],
+        "correct": 0,
+        "explain": "names CGS, FPS, MKS, and SI. GPS is a positioning system, not a unit system CGS: centimetre-gram-second. FPS: foot-pound-second. MKS: metre-kilogram-second. SI: International System of Units, the modern standard with 7 base units. GPS (Global Positioning System) is a navigation technology, a common trap word because it sounds scientific. Also note: SI is the modern descendant of MKS; they share metre, kilogram, and second as base units."
+      },
+      {
+        "id": "PHY00029",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "What is the constant of proportionality between stress and strain called?",
+        "options": [
+          "Strain coefficient",
+          "Modulus of elasticity",
+          "Elastic limit",
+          "Hooke constant"
+        ],
+        "correct": 1,
+        "explain": "Modulus of elasticity = Stress / Strain. It is a material property within the elastic limit The same material has the same modulus regardless of sample size. Steel has a Young's modulus of about 200 GPa whether it is a wire or a bridge beam. That is what makes modulus useful: it lets you compare materials independently of the shape you happen to be testing."
+      },
+      {
+        "id": "PHY00030",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which formula correctly represents the modulus of elasticity?",
+        "options": [
+          "Stress × Strain",
+          "Stress / Strain",
+          "Stress + Strain",
+          "Strain / Stress"
+        ],
+        "correct": 1,
+        "explain": "Modulus = Stress / Strain. Units: pascal (Pa), because strain is dimensionless If 100 MPa of stress produces 0.0005 strain, modulus = 100×10⁶ / 5×10⁻⁴ = 2 × 10¹¹ Pa = 200 GPa, the modulus of steel. Larger modulus = stiffer material = more stress needed to deform it."
+      },
+      {
+        "id": "PHY00031",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "How many types of modulus of elasticity exist, and what are they?",
+        "options": [
+          "Four: tensile, compressive, shear, and torsional",
+          "One: Young's modulus, with no further type",
+          "Two: a linear modulus and a nonlinear modulus",
+          "Three: Young's, shear, and bulk modulus"
+        ],
+        "correct": 3,
+        "explain": "Three moduli follow the three loadings: Young's for longitudinal strain, shear modulus for shear strain, and bulk modulus for volume strain. Four named loadings, a single modulus, or a linear-nonlinear split are not that set."
+      },
+      {
+        "id": "PHY00032",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Longitudinal stress is applied:",
+        "options": [
+          "At the two end faces alone",
+          "Parallel to the loaded face",
+          "Uniformly inward from all sides",
+          "Along the long axis of the object"
+        ],
+        "correct": 3,
+        "explain": "Longitudinal stress is applied along the axis, stretching or compressing the length. A parallel force is shear, equal pressure from all sides is hydraulic stress, and end faces alone do not define the loading."
+      },
+      {
+        "id": "PHY00033",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Longitudinal strain is calculated as:",
+        "options": [
+          "ΔL × L",
+          "ΔL / L",
+          "L / ΔL",
+          "ΔL + L"
+        ],
+        "correct": 1,
+        "explain": "Longitudinal strain = ΔL / L, where ΔL is the change in length and L is the original length. It is dimensionless Bone length 0.20 m stretched to 0.20012 m. ΔL = 0.00012 m. Strain = 0.00012 / 0.20 = 0.0006. No units. This is the exact strain used in the cortical bone problem, and it is the same ratio no matter how long the specimen is."
+      },
+      {
+        "id": "PHY00034",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Young's modulus is calculated as:",
+        "options": [
+          "(ΔL/L) / (F/A)",
+          "F × A × ΔL / L",
+          "F/A × ΔL/L",
+          "(F/A) / (ΔL/L)"
+        ],
+        "correct": 3,
+        "explain": "Young's modulus = Longitudinal stress / Longitudinal strain = (F/A) / (ΔL/L). Units: Pa Young's modulus is the slope of the linear (elastic) part of a stress-strain graph. Steeper slope = stiffer material. Diamond has a Young's modulus of about 1000 GPa, extremely stiff. Rubber has a Young's modulus of about 0.01 GPa, very compliant. Bone sits at around 16 GPa, between the two."
+      },
+      {
+        "id": "PHY00035",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Shear strain is calculated as:",
+        "options": [
+          "Δx / L",
+          "Δx × L",
+          "ΔL / L",
+          "ΔV / V"
+        ],
+        "correct": 0,
+        "explain": "Shear strain = Δx / L, where Δx is the horizontal displacement of one face and L is the perpendicular height Push the top of a thick book sideways, the top cover slides by Δx while the bottom stays put. Shear strain = Δx divided by height. No units, it is a ratio of two lengths, like all strains."
+      },
+      {
+        "id": "PHY00036",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Shear modulus is calculated as:",
+        "options": [
+          "(Δx/L) / (F/A)",
+          "(F/A) / (ΔV/V)",
+          "(F/A) / (ΔL/L)",
+          "(F/A) / (Δx/L)"
+        ],
+        "correct": 3,
+        "explain": "Shear modulus = Shear stress / Shear strain = (F/A) / (Δx/L). Units: Pa When you twist a rod, each cross-section rotates relative to the one below, that is shear. The shear modulus tells you how much twist you get for a given torque. Metals have a high shear modulus (steel ≈ 80 GPa); rubber has a low shear modulus (≈ 1 MPa), which is why rubber is easy to twist."
+      },
+      {
+        "id": "PHY00037",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Bulk modulus is calculated as:",
+        "options": [
+          "(F/A) / (ΔL/L)",
+          "(F/A) / (ΔV/V)",
+          "(ΔV/V) / (F/A)",
+          "(F/A) × (ΔV/V)"
+        ],
+        "correct": 1,
+        "explain": "Bulk modulus = Hydraulic stress / Hydraulic strain = (F/A) / (ΔV/V). Units: Pa A balloon underwater shrinks in volume without changing shape. Pressure P = F/A produces a fractional volume change ΔV/V. The ratio is the bulk modulus. Water has a bulk modulus of about 2.2 GPa, extremely hard to compress. Gases have a small bulk modulus, which is why they compress easily."
+      },
+      {
+        "id": "PHY00038",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Hydraulic (volume) stress is:",
+        "options": [
+          "Uniform pressure inward from all sides",
+          "A tangential force along the surface",
+          "A single force applied at one point",
+          "A lengthwise force along the object axis"
+        ],
+        "correct": 0,
+        "explain": "Hydraulic stress is a uniform pressure applied from all sides by a fluid. A tangential force is shear, a point force is not a volume stress, and a lengthwise force is longitudinal."
+      },
+      {
+        "id": "PHY00039",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Larger the Young's modulus of a material means:",
+        "options": [
+          "The material is softer",
+          "The material is more brittle",
+          "Less stress is required to produce a small deformation",
+          "More stress is required to produce a small change in length"
+        ],
+        "correct": 3,
+        "explain": "Higher Young's modulus = stiffer material. More stress is required for the same strain Steel (Young's modulus ≈ 200 GPa) vs rubber (Young's modulus ≈ 0.01 GPa). To stretch a steel rod by 0.1% takes 20,000× more stress than stretching rubber by the same fraction. Bone's Young's modulus (~16 GPa) puts it much closer to steel, bone is stiff enough to bear the body's weight without sagging."
+      },
+      {
+        "id": "PHY00040",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Cortical bone specimen: L = 0.20 m, A = 1.0×10⁻⁴ m², F = 1000 N, ΔL = 0.12 mm. Calculate the Young's modulus.",
+        "options": [
+          "1.67 × 10⁹ Pa",
+          "1.67 × 10¹⁰ Pa",
+          "1.67 × 10¹¹ Pa",
+          "6.00 × 10⁶ Pa"
+        ],
+        "correct": 1,
+        "explain": "Stress = F/A = 1000 / 1.0×10⁻⁴ = 1.0×10⁷ Pa. Strain = ΔL/L = 1.2×10⁻⁴ / 0.20 = 6.0×10⁻⁴. Young's modulus Y = stress/strain = 1.0×10⁷ / 6.0×10⁻⁴ = 1.67×10¹⁰ Pa."
+      },
+      {
+        "id": "PHY00041",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Femur: L = 0.4 m, Young's modulus = 16×10⁹ Pa, max stress = 150×10⁶ Pa. Find maximum compression ΔL before breaking.",
+        "options": [
+          "3.75 mm",
+          "0.375 mm",
+          "37.5 mm",
+          "0.00375 mm"
+        ],
+        "correct": 0,
+        "explain": "Strain = stress / Young's modulus = 150×10⁶ / 16×10⁹ = 0.009375. ΔL = strain × L = 0.009375 × 0.4 = 0.00375 m = 3.75 mm A 40 cm femur can compress by only about 3.75 mm before reaching its breaking stress, less than 1% of its length. That narrow margin is exactly why a fall from standing height can break a hip in an elderly patient: the load exceeds the stress limit, and the small elastic range is quickly exceeded."
+      },
+      {
+        "id": "PHY00042",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "What are the units of strain?",
+        "options": [
+          "Pascal (Pa), or N/m²",
+          "Dimensionless, no units",
+          "Newton (N), a force unit",
+          "Metre (m), a length unit"
+        ],
+        "correct": 1,
+        "explain": "Strain is a ratio of two lengths, so it has no units. Pascal and newton per square metre belong to stress, and newton and metre are base or derived units of force and length."
+      },
+      {
+        "id": "PHY00043",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "What happens to a material loaded beyond its elastic limit?",
+        "options": [
+          "It becomes more elastic than before",
+          "It loses mass but keeps its shape",
+          "It returns fully to its old shape",
+          "It deforms permanently, then breaks"
+        ],
+        "correct": 3,
+        "explain": "Past the elastic limit the deformation is permanent, and further load leads to break. Recovery of shape belongs inside the limit, and the load does not add elasticity or remove mass."
+      },
+      {
+        "id": "PHY00044",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A cylinder is stretched lengthwise by a change in length ΔL. This loading represents:",
+        "options": [
+          "Compressive stress along the length",
+          "Shear stress across the side face",
+          "Hydraulic stress from every side",
+          "Tensile stress along the length"
+        ],
+        "correct": 3,
+        "explain": "A lengthwise stretch is tensile longitudinal stress. Compression shortens the length, shear slides the face, and hydraulic stress pushes from every side."
+      },
+      {
+        "id": "PHY00045",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A cylinder has its top face displaced sideways by Δx while the base stays fixed. This loading represents:",
+        "options": [
+          "Tensile stress",
+          "Shear stress",
+          "Hydraulic stress",
+          "Compressive stress"
+        ],
+        "correct": 1,
+        "explain": "Force parallel to the surface causing sliding is shear stress. The cylinder deforms like a pack of playing cards pushed sideways Notice the height L doesn't change, only the horizontal displacement Δx changes. That is the hallmark of shear: no length change, only angular distortion. Shear stress is what your vertebral discs experience when you rotate your torso."
+      },
+      {
+        "id": "PHY00046",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A sphere shrinks in volume under pressure applied by a surrounding fluid. This loading represents:",
+        "options": [
+          "Shear stress",
+          "Hydraulic stress",
+          "Tensile stress at a point",
+          "Longitudinal stress"
+        ],
+        "correct": 1,
+        "explain": "Uniform pressure applied from all directions producing a volume change ΔV without shape change is hydraulic stress (also called volume stress). It is isotropic and can only change volume, never shape. Shear, tensile, and longitudinal stress are directional loadings."
+      },
+      {
+        "id": "PHY00047",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "When a bone bends, the side being compressed is under ______ stress, while the side being stretched is under ______ stress.",
+        "options": [
+          "shear; bulk",
+          "hydraulic; tensile",
+          "tensile; compressive",
+          "compressive; tensile"
+        ],
+        "correct": 3,
+        "explain": "When a long bone bends, one side is squeezed (compressive) and the opposite side is stretched (tensile). Both are forms of longitudinal stress This is why long bones typically fracture on the tension side first, bone is weaker in tension than in compression. Clinically, this is why a bending force on a limb produces a fracture that starts on the side being stretched. diagram labels both regions, plus the fracture point."
+      },
+      {
+        "id": "PHY00048",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "How does osteoporosis affect the Young's modulus of bone?",
+        "options": [
+          "It increases bone mass, not the modulus",
+          "It raises the modulus and stiffens bone",
+          "It lowers the modulus and embrittles bone",
+          "It leaves the modulus entirely unchanged"
+        ],
+        "correct": 2,
+        "explain": "Osteoporosis lowers Young's modulus, so less stress produces the same strain and the bone fractures more readily. It does not raise stiffness, leave the modulus alone, or act only by adding mass."
+      },
+      {
+        "id": "PHY00049",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Osteogenesis imperfecta is a condition in which:",
+        "options": [
+          "Bones have an unusually high Young's modulus",
+          "Bones are brittle with lower Young's modulus",
+          "Joints fail while bone modulus stays normal",
+          "Bones become more elastic than normal bone"
+        ],
+        "correct": 1,
+        "explain": "Osteogenesis imperfecta leaves bone brittle, with a lower Young's modulus and easy fracture. The modulus is not raised, the defect is not confined to joints, and the bone is not more elastic."
+      },
+      {
+        "id": "PHY00050",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Loss of elasticity in blood vessels is significant because it:",
+        "options": [
+          "It improves the circulation in the vessel",
+          "It leads toward cardiovascular disease",
+          "It changes the vein diameter alone",
+          "It leaves the circulation clinically unchanged"
+        ],
+        "correct": 1,
+        "explain": "Loss of vessel elasticity is linked with cardiovascular disease. It does not improve circulation, act on vein diameter alone, or leave the circulation unchanged."
+      },
+      {
+        "id": "PHY00051",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which pairing of stress and unit is correct?",
+        "options": [
+          "Stress, joule",
+          "Stress, metre",
+          "Stress, dimensionless",
+          "Stress, pascal"
+        ],
+        "correct": 3,
+        "explain": "Stress = Force / Area, so its SI unit is the pascal (Pa) = N/m². Strain is dimensionless; joule and metre are not stress units. Stress and pressure share the pascal because both are force per unit area."
+      },
+      {
+        "id": "PHY00052",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "The modulus of elasticity reflects which property of a material?",
+        "options": [
+          "Its electrical conductivity",
+          "Its surface color and shine",
+          "Its stiffness under deformation",
+          "Its temperature when loaded"
+        ],
+        "correct": 2,
+        "explain": "The modulus of elasticity is stress divided by strain, so it measures stiffness, the resistance to deformation. Color, temperature, and conductivity are unrelated."
+      },
+      {
+        "id": "PHY00053",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Tensile stress applied to a material causes it to:",
+        "options": [
+          "Shorten in length",
+          "Stretch in length",
+          "Decrease in volume",
+          "Change shape without changing length"
+        ],
+        "correct": 1,
+        "explain": "Tensile stress pulls the material along its axis, causing elongation (stretching) The word 'tensile' shares a root with 'tension', both imply pulling. A muscle pulling on its tendon is tensile stress on that tendon. Compressive stress is the opposite: pushing ends together, shortening the object. Both produce ΔL, but with opposite signs. Both are forms of longitudinal stress."
+      },
+      {
+        "id": "PHY00054",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Compressive stress applied to a material causes it to:",
+        "options": [
+          "Shorten in length",
+          "Rotate about its axis",
+          "Change volume without changing length",
+          "Stretch in length"
+        ],
+        "correct": 0,
+        "explain": "Compressive stress pushes the ends together, shortening the material. It is a form of longitudinal stress The femur problem is a compressive stress example: the bone shortens slightly under load before it fractures. Bone is actually stronger in compression than in tension, that is why fractures usually start on the tension side of a bending bone, and why vertebral compression fractures are a hallmark of osteoporosis (the vertebrae are loaded in compression)."
+      },
+      {
+        "id": "PHY00055",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Shear deformation is described as being somewhat like:",
+        "options": [
+          "A balloon expanding under pressure",
+          "A spring stretched along its length",
+          "A sponge soaking up added water",
+          "A pack of cards pushed sideways"
+        ],
+        "correct": 3,
+        "explain": "Shear slides layers sideways, like a pack of cards pushed at the top. A balloon and a sponge change volume, and a spring stretch is longitudinal strain."
+      },
+      {
+        "id": "PHY00056",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Hydraulic stress produces which kind of deformation?",
+        "options": [
+          "Both length and shape change together",
+          "Length change, with the shape held fixed",
+          "Angular distortion, with volume held fixed",
+          "Volume change, with the shape held fixed"
+        ],
+        "correct": 3,
+        "explain": "Hydraulic stress is a uniform pressure from all sides, so the volume changes and the shape does not. A length change is longitudinal, and an angular distortion is shear."
+      },
+      {
+        "id": "PHY00057",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Why is the Young's modulus clinically useful for assessing bone health?",
+        "options": [
+          "It records the surface color of bone",
+          "It tracks stiffness and fracture risk",
+          "It records the temperature of the bone",
+          "It records the chronological age of bone"
+        ],
+        "correct": 1,
+        "explain": "Young's modulus measures stiffness under elastic load, so a fall in it flags easier fracture. Color, temperature, and age are not what the modulus reports."
+      },
+      {
+        "id": "PHY00058",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Which statement best explains why liquids and gases are both classified as fluids?",
+        "options": [
+          "They flow and deform continuously under shear",
+          "They share one density at every temperature",
+          "They contain a single kind of molecule each",
+          "They keep a fixed shape under every load"
+        ],
+        "correct": 0,
+        "explain": "Liquids and gases are fluids because they flow from high pressure to low pressure and keep deforming under shear. They do not share one density, one molecular type, or a fixed shape."
+      },
+      {
+        "id": "PHY00059",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "The density (ρ) of an object is defined as:",
+        "options": [
+          "volume / mass",
+          "force / area",
+          "mass × volume",
+          "mass / volume"
+        ],
+        "correct": 3,
+        "explain": "Density ρ = mass m / volume V. SI unit: kg/m³ Density is an intrinsic property: a litre of water and a cup of water have the same density. Mass and volume change with sample size, but their ratio does not. This is what makes density useful for identifying materials."
+      },
+      {
+        "id": "PHY00060",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A block measures 5.0 cm × 6.0 cm × 8.0 cm and has a mass of 960 g. What is its density?",
+        "options": [
+          "4.8 g/cm³",
+          "2.5 g/cm³",
+          "3.0 g/cm³",
+          "4.0 g/cm³"
+        ],
+        "correct": 3,
+        "explain": "Volume = 5 × 6 × 8 = 240 cm³. Density = 960 / 240 = 4.0 g/cm³ In SI units, this is 4000 kg/m³, about four times the density of water. Materials in this range include titanium (4.5 g/cm³) and some ceramics. The specific gravity of this block is 4.0."
+      },
+      {
+        "id": "PHY00061",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A glass block measures 8 cm × 5 cm × 3 cm and has a density of 2.5 g/cm³. What is its mass?",
+        "options": [
+          "150 g",
+          "240 g",
+          "300 g",
+          "375 g"
+        ],
+        "correct": 2,
+        "explain": "Volume = 8 × 5 × 3 = 120 cm³. Mass = density × volume = 2.5 × 120 = 300 g Always identify which two quantities you know and which you need. Here you know density and dimensions (which give volume), and you need mass. Rearranging ρ = m/V gives m = ρV. This is the same relationship used in the metal-block example, just in the other direction."
+      },
+      {
+        "id": "PHY00062",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What is the specific gravity of a substance?",
+        "options": [
+          "Mass of the sample divided by volume",
+          "Density of the sample divided by water",
+          "Volume of the sample divided by mass",
+          "Density of the sample multiplied by g"
+        ],
+        "correct": 1,
+        "explain": "Specific gravity is the density of the substance divided by the density of water, a ratio with no units. Mass over volume is density itself, volume over mass is its reciprocal, and multiplying by g produces a weight density."
+      },
+      {
+        "id": "PHY00063",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "How do you convert a density given in g/cm³ to kg/m³?",
+        "options": [
+          "Multiply by 100",
+          "Add 1000",
+          "Divide by 1000",
+          "Multiply by 1000"
+        ],
+        "correct": 3,
+        "explain": "Multiply by 1000. For example, 1 g/cm³ = 1000 kg/m³ The factor of 1000 comes from the conversion of both mass (1 kg = 1000 g) and length (1 m = 100 cm, so 1 m³ = 10⁶ cm³). Combining: (1000 g / 10⁶ cm³) = 10⁻³ g/cm³ per kg/m³, which inverts to the multiplication factor of 1000. So 2 g/cm³ = 2000 kg/m³."
+      },
+      {
+        "id": "PHY00064",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Pressure is defined as:",
+        "options": [
+          "Mass / volume",
+          "Force × area",
+          "Force / area",
+          "Area / force"
+        ],
+        "correct": 2,
+        "explain": "Pressure P = Force / Area = mg / A. SI unit: pascal (Pa) = N/m² Pressure measures how concentrated a force is over a surface. The same force applied over a smaller area gives a larger pressure, this is why a sharp knife cuts more easily than a blunt one. In fluids, pressure is the fundamental quantity that determines flow and forces on submerged objects."
+      },
+      {
+        "id": "PHY00065",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "In a static fluid, how does pressure behave at a given depth?",
+        "options": [
+          "It acts downward at that depth",
+          "It acts upward at that depth",
+          "It acts equally in every direction",
+          "It acts sideways at that depth"
+        ],
+        "correct": 2,
+        "explain": "In a fluid at rest, pressure at one depth pushes equally in every direction. A single direction, down, up, or sideways, would set the fluid moving."
+      },
+      {
+        "id": "PHY00066",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "The force exerted by a fluid on a submerged object is always:",
+        "options": [
+          "Perpendicular to the surface, rising with depth",
+          "Tangent to the surface, falling with depth",
+          "Absent from the surface at every depth",
+          "Parallel to the surface, constant with depth"
+        ],
+        "correct": 0,
+        "explain": "A fluid at rest pushes perpendicular to a surface, and that push grows with depth. A tangent or parallel force is shear, and the force is not zero."
+      },
+      {
+        "id": "PHY00067",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Which expression gives the pressure at a depth h below the surface of a liquid of density ρ?",
+        "options": [
+          "P = gh / ρ",
+          "P = ρg / h",
+          "P = ρ / (gh)",
+          "P = ρgh"
+        ],
+        "correct": 3,
+        "explain": "P = ρgh. It is derived from P = F/A, substituting the weight of the fluid column above the depth h The derivation goes: P = mg/A. Mass = ρV = ρ(Ah). Substituting gives P = ρAhg/A = ρgh. The area cancels, which is why the pressure at a given depth depends only on the fluid and depth, not on the shape or size of the container"
+      },
+      {
+        "id": "PHY00068",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "The pressure on an object at depth h in a liquid, measured from atmospheric level, is called:",
+        "options": [
+          "Dynamic pressure",
+          "Absolute pressure",
+          "Gauge pressure",
+          "Vapour pressure"
+        ],
+        "correct": 2,
+        "explain": "Gauge pressure P_G = ρgh. It measures the excess over atmospheric pressure Gauge pressure is what a diver's depth gauge reads. It ignores the atmospheric pressure already acting on the surface. Absolute pressure, by contrast, adds atmospheric pressure to gauge pressure: P_abs = P_atm + P_G."
+      },
+      {
+        "id": "PHY00069",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "At sea level, what is the value of standard atmospheric pressure in pascals?",
+        "options": [
+          "1.013 × 10³ Pa",
+          "1.013 × 10⁴ Pa",
+          "1.013 × 10⁵ Pa",
+          "1.013 × 10⁶ Pa"
+        ],
+        "correct": 2,
+        "explain": "1 atm = 1.013 × 10⁵ Pa = 1.013 × 10⁵ N/m² This is roughly 101 kilopascals, or just over 1 bar. It is the pressure that a column of mercury 76 cm tall exerts at its base, which is exactly what the mercury barometer demonstrates. The reason we are not crushed by this pressure is that our internal pressure matches it"
+      },
+      {
+        "id": "PHY00070",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Which of the following is a correct equivalent for 1 atm?",
+        "options": [
+          "1 atm = 100 torr = 1.0 lb/in²",
+          "1 atm = 76 torr = 10.0 lb/in²",
+          "1 atm = 1000 torr = 100.0 lb/in²",
+          "1 atm = 760 torr = 14.7 lb/in²"
+        ],
+        "correct": 3,
+        "explain": "1 atm = 1.013 × 10⁵ Pa = 760 torr = 14.7 lb/in² The 760 torr value comes directly from the barometer: the mercury column is 760 mm (76 cm) tall. Torr and mmHg are identical units, both named after Torricelli. The lb/in² value is the imperial equivalent, useful in some medical and engineering contexts."
+      },
+      {
+        "id": "PHY00071",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What is the purpose of the mercury barometer developed by Torricelli?",
+        "options": [
+          "To measure the density of a fluid",
+          "To measure the buoyant force on a body",
+          "To measure the pressure of arterial blood",
+          "To measure the pressure of the atmosphere"
+        ],
+        "correct": 3,
+        "explain": "Torricelli's mercury barometer measures atmospheric pressure from the height of the mercury column. Density, buoyancy, and arterial pressure are other measurements."
+      },
+      {
+        "id": "PHY00072",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A mercury barometer shows a column of 76 cm. If water were used instead, approximately how tall would the column need to be?",
+        "options": [
+          "About 76.0 m",
+          "About 1.0 m",
+          "About 5.0 m",
+          "About 10.3 m"
+        ],
+        "correct": 3,
+        "explain": "Using h = P / (ρg) with P = 1.013 × 10⁵ Pa, ρ = 1000 kg/m³, and g = 9.8 m/s²: h ≈ 10.33 m The 13.6× density difference between mercury and water means the water column must be 13.6× taller than the mercury column (76 cm × 13.6 ≈ 10.3 m). This is why mercury is preferred, a water barometer would be inconveniently tall."
+      },
+      {
+        "id": "PHY00073",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "An open-tube manometer is used primarily to measure:",
+        "options": [
+          "Fluid density",
+          "Gas pressure in a container",
+          "Buoyant force",
+          "Velocity of a moving fluid"
+        ],
+        "correct": 1,
+        "explain": "The open-tube manometer measures gas pressure in a container. It is a U-shaped tube half-filled with a liquid One end connects to the container whose pressure is being measured; the other end is open to atmosphere. The difference in liquid heights on the two sides corresponds to the difference between the container pressure and atmospheric pressure, this is the gauge pressure."
+      },
+      {
+        "id": "PHY00074",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Which equation correctly relates absolute pressure, atmospheric pressure, and gauge pressure?",
+        "options": [
+          "P_abs = P_atm + P_gauge",
+          "P_gauge = P_abs + P_atm",
+          "P_atm = P_abs + P_gauge",
+          "P_abs = P_atm − P_gauge"
+        ],
+        "correct": 0,
+        "explain": "P_abs = P_atm + P_gauge. Absolute pressure is the sum of atmospheric and gauge pressure This is one of the most important relationships in the chapter. If a tyre gauge reads 30 psi (gauge), the absolute pressure inside the tyre is about 44.7 psi (14.7 psi atmospheric + 30 psi gauge). Gauge pressure answers 'how much above atmosphere?', absolute pressure answers 'how much above vacuum?'."
+      },
+      {
+        "id": "PHY00075",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "In a manometer, the gauge pressure of a gas in a container is given by:",
+        "options": [
+          "P_atm − ρgh",
+          "ρg / h",
+          "ρgh",
+          "P_atm + ρgh"
+        ],
+        "correct": 2,
+        "explain": "Gauge pressure = ρgΔh, where Δh is the height difference between the two liquid levels in the manometer The height difference Δh is what the manometer physically measures. Multiplying by ρg converts that column height to a pressure. If the liquid level on the container side is lower, the container pressure exceeds atmospheric, the gauge pressure is positive. If it is higher, the container is under vacuum relative to atmosphere, the gauge pressure is negative."
+      },
+      {
+        "id": "PHY00076",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A diver is at a depth where the gauge pressure reads 4.41 × 10⁵ Pa in fresh water (ρ = 1000 kg/m³, g = 9.8 m/s²). How deep is the diver?",
+        "options": [
+          "49.0 m",
+          "22.5 m",
+          "35.0 m",
+          "45.0 m"
+        ],
+        "correct": 3,
+        "explain": "h = P_G / (ρg) = 4.41 × 10⁵ / (1000 × 9.8) = 45.0 m The gauge pressure is roughly 4.5 atmospheres above surface. At 10.3 m depth, water alone adds 1 atm of gauge pressure; at 45 m it adds about 4.4 atm. Divers must ascend slowly to avoid decompression sickness, a consequence of the physics of pressure at depth."
+      },
+      {
+        "id": "PHY00077",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What is the absolute pressure at a depth of 20 m in fresh water, given ρ = 1000 kg/m³, g = 9.8 m/s², and P_atm = 1.013 × 10⁵ Pa?",
+        "options": [
+          "1.013 × 10⁵ Pa",
+          "2.973 × 10⁵ Pa",
+          "3.5 × 10⁵ Pa",
+          "9.8 × 10⁵ Pa"
+        ],
+        "correct": 1,
+        "explain": "P_gauge = 1000 × 9.8 × 20 = 1.96 × 10⁵ Pa. P_abs = 1.013 × 10⁵ + 1.96 × 10⁵ = 2.973 × 10⁵ Pa Notice the absolute pressure at 20 m is roughly 3 times atmospheric pressure. This is a useful rule of thumb: every 10 metres of water adds about 1 atm of gauge pressure. Depth in metres divided by 10 gives an approximate gauge pressure in atmospheres."
+      },
+      {
+        "id": "PHY00078",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Pascal's principle states that:",
+        "options": [
+          "A pressure change is transmitted equally throughout",
+          "Pressure equals density times gravity times height",
+          "Buoyant force equals the weight of fluid displaced",
+          "Pressure falls steadily as depth in the fluid rises"
+        ],
+        "correct": 0,
+        "explain": "Pascal's principle says an external pressure applied to a confined fluid is transmitted undiminished throughout the fluid. Density times g times height is pressure at depth, buoyant force is Archimedes, and pressure rises, not falls, with depth."
+      },
+      {
+        "id": "PHY00079",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A hydraulic system has a small piston of area 0.02 m² and a large piston of area 0.8 m². If 150 N is applied on the small piston, what is the output force on the large piston?",
+        "options": [
+          "6000 N",
+          "12000 N",
+          "1500 N",
+          "3000 N"
+        ],
+        "correct": 0,
+        "explain": "F_out = F_in × (A_out / A_in) = 150 × (0.8 / 0.02) = 150 × 40 = 6000 N The area ratio here is 40:1, so the force is amplified 40 times. This is the mechanical advantage of the hydraulic system. To achieve this, the small piston must move 40 times farther than the large piston, energy is conserved, but the force is multiplied."
+      },
+      {
+        "id": "PHY00080",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "The buoyant force on a submerged object arises because:",
+        "options": [
+          "Gravity acts on the object alone",
+          "The fluid itself supplies the weight",
+          "Top and bottom pressures are unequal",
+          "The object's density supplies the force"
+        ],
+        "correct": 2,
+        "explain": "Pressure increases with depth, so the upward push on the bottom face exceeds the downward push on the top face. That difference is the buoyant force. Gravity, fluid weight, and object density do not by themselves name that difference."
+      },
+      {
+        "id": "PHY00081",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Archimedes' Principle states that the magnitude of the buoyant force is equal to:",
+        "options": [
+          "The weight of the submerged object itself",
+          "The weight of the fluid the object displaces",
+          "The mass of the object multiplied by g",
+          "The density of the object times its volume"
+        ],
+        "correct": 1,
+        "explain": "Archimedes' principle sets the buoyant force equal to the weight of the fluid displaced. The object's own weight, its mass times g, and density times volume are not that displaced weight."
+      },
+      {
+        "id": "PHY00082",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Which statement correctly describes a fluid?",
+        "options": [
+          "It continuously deforms under shear stress",
+          "It has no density",
+          "It cannot flow",
+          "It maintains a fixed shape under shear"
+        ],
+        "correct": 0,
+        "explain": "A fluid is a substance that continuously deforms under shear stress This is the formal definition that distinguishes fluids from solids. A solid under shear deforms by a finite amount and then reaches equilibrium. A fluid under any nonzero shear stress continues to deform indefinitely, it flows. This is why fluids can be poured, pumped, and shaped by their containers."
+      },
+      {
+        "id": "PHY00083",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Which of the following is the SI unit of pressure?",
+        "options": [
+          "Joule (J)",
+          "Kilogram (kg)",
+          "Newton (N)",
+          "Pascal (Pa)"
+        ],
+        "correct": 3,
+        "explain": "The SI unit of pressure is the pascal (Pa), which equals one newton per square metre (N/m²) One pascal is a very small pressure, about the pressure of a single sheet of paper resting on a table. Atmospheric pressure is about 101,300 Pa, and blood pressure is typically expressed in mmHg, where 1 mmHg ≈ 133 Pa. The pascal is defined directly from force and area."
+      },
+      {
+        "id": "PHY00084",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "How much mass of fluid does a box of volume 0.4 m³ displace when fully submerged in fresh water (ρ = 1000 kg/m³)?",
+        "options": [
+          "4000 kg",
+          "0.4 kg",
+          "40 kg",
+          "400 kg"
+        ],
+        "correct": 3,
+        "explain": "m_f = ρV = 1000 × 0.4 = 400 kg of fluid displaced The displaced mass is what generates the buoyant force: F_B = m_f g = 400 × 9.8 = 3920 N. Notice this is independent of the object's own mass. A very heavy object that is fully submerged still displaces 400 kg of water and still experiences 3920 N of buoyancy."
+      },
+      {
+        "id": "PHY00085",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What is the buoyant force on a sphere of volume 0.6 m³ fully submerged in a fluid of density 850 kg/m³? (g = 9.8 m/s²)",
+        "options": [
+          "4998 N",
+          "5010 N",
+          "5100 N",
+          "6000 N"
+        ],
+        "correct": 0,
+        "explain": "F_B = ρgV = 850 × 9.8 × 0.6 = 4998 N Using a less dense fluid (850 kg/m³, similar to some oils) gives less buoyant force than water would. For the same volume, buoyancy scales linearly with fluid density. This is why an object that sinks in water might float in mercury (13,600 kg/m³), the buoyant force is 13.6 times larger."
+      },
+      {
+        "id": "PHY00086",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A hydraulic press has a small piston of area 0.015 m² and a large piston of area 1.2 m². What output force results from an input force of 200 N?",
+        "options": [
+          "8000 N",
+          "16000 N",
+          "24000 N",
+          "2400 N"
+        ],
+        "correct": 1,
+        "explain": "F_out = F_in × (A_out / A_in) = 200 × (1.2 / 0.015) = 200 × 80 = 16,000 N The area ratio is 80:1, so the force multiplication is 80×. This is the essence of hydraulic presses, which are used industrially to shape metal and in medical devices like some operating tables. The trade-off is that the small piston must travel 80 times farther than the large piston moves."
+      },
+      {
+        "id": "PHY00087",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What is the gauge pressure at a depth of 25 m in a lake (ρ = 1000 kg/m³, g = 9.8 m/s²)?",
+        "options": [
+          "1.013 × 10⁵ Pa",
+          "3.46 × 10⁵ Pa",
+          "2.45 × 10⁴ Pa",
+          "2.45 × 10⁵ Pa"
+        ],
+        "correct": 3,
+        "explain": "P_G = ρgh = 1000 × 9.8 × 25 = 2.45 × 10⁵ Pa That is approximately 2.4 atm of gauge pressure. The absolute pressure at that depth would be P_atm + P_G = 1.013 × 10⁵ + 2.45 × 10⁵ ≈ 3.46 × 10⁵ Pa. Gauge pressure is what most pressure gauges in diving, plumbing, and tire applications actually measure."
+      },
+      {
+        "id": "PHY00088",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Convert a systolic pressure of 150 mmHg to pascals. (1 mmHg ≈ 133.3 Pa)",
+        "options": [
+          "200,000 Pa",
+          "150 Pa",
+          "2000 Pa",
+          "20,000 Pa"
+        ],
+        "correct": 3,
+        "explain": "150 × 133.3 ≈ 19,995 Pa ≈ 2.0 × 10⁴ Pa In SI units, a systolic pressure of 150 mmHg is about 20 kilopascals. This is much smaller than atmospheric pressure (101 kPa), which is why blood pressure is normally expressed in mmHg, the numbers are more convenient for clinical use. A systolic of 150 mmHg is considered high."
+      },
+      {
+        "id": "PHY00089",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A wooden block floats in water with 40% of its volume submerged. If its total volume is 0.02 m³ and water density is 1000 kg/m³, what is the buoyant force on the block? (g = 9.8 m/s²)",
+        "options": [
+          "78.4 N",
+          "98.0 N",
+          "196.0 N",
+          "200.0 N"
+        ],
+        "correct": 0,
+        "explain": "Volume submerged = 0.4 × 0.02 = 0.008 m³. F_B = ρgV_sub = 1000 × 9.8 × 0.008 = 78.4 N For a floating object, the buoyant force equals the object's weight. So if we know the buoyant force is 78.4 N, the block's mass is 78.4/9.8 = 8 kg. The 40% submergence tells us the wood's density is 40% of water's, i.e., 400 kg/m³. Floating fraction is a direct indicator of relative density."
+      },
+      {
+        "id": "PHY00090",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What is the net upward force on a submerged object if its weight is 250 N and the buoyant force is 320 N?",
+        "options": [
+          "250 N upward",
+          "320 N upward",
+          "570 N upward",
+          "70 N upward"
+        ],
+        "correct": 3,
+        "explain": "Net force = F_B − weight = 320 − 250 = 70 N upward. The object rises toward the surface The buoyant force and weight act in opposite directions. When F_B exceeds the weight, the object experiences a net upward force and rises. This is what happens when you release an inflated balloon underwater or when a cork rises from the bottom of a bucket. When F_B is less than the weight, the object sinks."
+      },
+      {
+        "id": "PHY00091",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "In a manometer connected to a gas container, the liquid on the container side is 20 cm lower than the liquid on the atmosphere side. If the liquid is mercury (ρ = 13,600 kg/m³) and g = 9.8 m/s², what is the gauge pressure of the gas?",
+        "options": [
+          "1.33 × 10⁴ Pa",
+          "1.33 × 10⁵ Pa",
+          "2.67 × 10⁴ Pa",
+          "2.67 × 10⁵ Pa"
+        ],
+        "correct": 2,
+        "explain": "P_gauge = ρgΔh = 13,600 × 9.8 × 0.20 = 26,656 Pa ≈ 2.67 × 10⁴ Pa The height difference is 20 cm = 0.20 m. Because mercury is so dense, even a modest height difference produces a large pressure reading. The container pressure is about 0.26 atm above atmospheric pressure. For water instead of mercury, the same gauge pressure would require a 2.72 m height difference."
+      },
+      {
+        "id": "PHY00092",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Which of the following is the MOST convenient reason mercury is used in barometers instead of water?",
+        "options": [
+          "Mercury has essentially no vapour pressure",
+          "Mercury costs less than water to obtain",
+          "Mercury's density keeps the column short",
+          "Mercury is safer to handle than water"
+        ],
+        "correct": 2,
+        "explain": "Mercury is about 13.6 times as dense as water, so a 1 atm column is about 0.76 m instead of 10.3 m. Cost and safety do not favour mercury, and a low vapour pressure is useful but not the reason the column is manageable."
+      },
+      {
+        "id": "PHY00093",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "How much does the gauge pressure increase for every 10 m of depth in fresh water? (ρ = 1000 kg/m³, g = 9.8 m/s²)",
+        "options": [
+          "About 980 Pa, near 0.01 atm",
+          "About 9.8 kPa, near 0.1 atm",
+          "About 98 kPa, near 1 atm",
+          "About 980 kPa, near 10 atm"
+        ],
+        "correct": 2,
+        "explain": "Gauge pressure rises by ρ g h = 1000 × 9.8 × 10 = 9.8×10⁴ Pa, about 98 kPa, close to 1 atm."
+      },
+      {
+        "id": "PHY00094",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "In Pascal's principle, if the area of the small piston is halved while the applied force stays the same, what happens to the pressure in the hydraulic fluid?",
+        "options": [
+          "It doubles",
+          "It stays the same",
+          "It becomes zero",
+          "It halves"
+        ],
+        "correct": 0,
+        "explain": "P = F / A. Halving the area A with constant force F doubles the pressure The pressure is transmitted unchanged throughout the confined fluid, so doubling the input pressure doubles the output pressure. On the output side, this doubled pressure acts on the large piston and produces twice the output force. This is how reducing the input area amplifies the force multiplication of a hydraulic system."
+      },
+      {
+        "id": "PHY00095",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Which of the following best explains why our cells are not crushed by atmospheric pressure?",
+        "options": [
+          "Outside pressure is too small to crush cells",
+          "A vacuum shield keeps outside pressure off",
+          "Body tissues carry no pressure of their own",
+          "Cell pressure balances atmospheric pressure"
+        ],
+        "correct": 3,
+        "explain": "Cells are not crushed because internal pressure matches the surrounding atmospheric pressure. Atmospheric pressure is large, the body is not in a vacuum, and tissues are not pressure-free."
+      },
+      {
+        "id": "PHY00096",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A 0.9 m³ block floats in seawater (ρ = 1025 kg/m³) with 60% of its volume submerged. What is the buoyant force on the block? (g = 9.8 m/s²)",
+        "options": [
+          "10250 N",
+          "5425 N",
+          "6027 N",
+          "9040 N"
+        ],
+        "correct": 1,
+        "explain": "Volume submerged = 0.6 × 0.9 = 0.54 m³. F_B = ρgV_sub = 1025 × 9.8 × 0.54 ≈ 5425 N. The buoyant force equals the weight of the displaced seawater, not the weight of the whole block. If the block's own weight is less than 5425 N, it will rise further; if more, it will sink further. The 60% figure implies the block's density is 0.6 × 1025 = 615 kg/m³, quite light, similar to some woods."
+      },
+      {
+        "id": "PHY00097",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "The water barometer column is 10.33 m tall at 1 atm. If the local atmospheric pressure drops to 0.98 atm, what is the new column height?",
+        "options": [
+          "About 9.9 m",
+          "About 10.1 m",
+          "About 10.33 m",
+          "About 10.6 m"
+        ],
+        "correct": 1,
+        "explain": "h ∝ P. New h = 10.33 × (0.98 / 1.00) = 10.12 m ≈ 10.1 m The barometer height is directly proportional to atmospheric pressure. A 2% drop in pressure gives a 2% drop in column height. Real mercury barometers used this principle historically for weather prediction, a falling mercury column indicated an approaching low-pressure system, often bringing storms."
+      },
+      {
+        "id": "PHY00098",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A swimmer at 5 m depth in fresh water (ρ = 1000 kg/m³) feels a certain absolute pressure. At what depth would the swimmer feel twice that absolute pressure? (Take P_atm = 1.013 × 10⁵ Pa)",
+        "options": [
+          "About 10.33 m",
+          "About 15.33 m",
+          "About 20.33 m",
+          "About 5.33 m"
+        ],
+        "correct": 2,
+        "explain": "P_abs at 5 m = P_atm + ρgh = 1.013 × 10⁵ + (1000 × 9.8 × 5) = 1.013 × 10⁵ + 4.9 × 10⁴ = 1.503 × 10⁵ Pa. Twice that is 3.006 × 10⁵ Pa. Solving: 3.006 × 10⁵ = 1.013 × 10⁵ + 9800h to 9800h = 1.993 × 10⁵ to h ≈ 20.33 m This is a subtle problem: gauge pressure doubles when depth doubles, but absolute pressure does not double until depth more than quadruples. The extra 1 atm of atmospheric pressure at the surface means that at 5 m (absolute pressure 1.5 atm), doubling gives 3 atm, which occurs at about 20.33 m. Reading the question carefully, 'absolute pressure' vs 'gauge pressure', makes all the difference."
+      },
+      {
+        "id": "PHY00099",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "What are the two types of fluid flow?",
+        "options": [
+          "Rotational and irrotational",
+          "Steady and unsteady",
+          "Compressible and incompressible",
+          "Streamline and turbulent"
+        ],
+        "correct": 3,
+        "explain": "The two types of fluid flow taught here are streamline (also called laminar) and turbulent. Laminar flow is smooth and orderly in parallel layers; turbulent flow is disordered and swirling. Rotational/irrotational, steady/unsteady, and compressible/incompressible are other fluid classifications, not the pair asked for."
+      },
+      {
+        "id": "PHY00100",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which statement best describes laminar blood flow?",
+        "options": [
+          "Flow that always produces an audible murmur",
+          "Irregular swirling, with layers mixing freely",
+          "Smooth, orderly flow in parallel layers",
+          "Flow that occurs in veins and nowhere else"
+        ],
+        "correct": 2,
+        "explain": "Laminar flow is smooth and orderly, with blood moving in parallel layers. Swirls and murmurs belong to turbulence, and laminar flow is not limited to veins."
+      },
+      {
+        "id": "PHY00101",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which statement best describes turbulent blood flow?",
+        "options": [
+          "Smooth, orderly flow in parallel layers",
+          "Irregular swirling once speed is very high",
+          "Flow that is confined to the aorta",
+          "Flow with no energy loss or added resistance"
+        ],
+        "correct": 1,
+        "explain": "Turbulent flow is irregular swirling, and it appears when speed becomes very high. Parallel layers are laminar, the aorta is not the only site, and turbulence dissipates energy and raises resistance."
+      },
+      {
+        "id": "PHY00102",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Normal blood flow in a healthy artery is:",
+        "options": [
+          "Laminar",
+          "A mix of laminar and turbulent",
+          "Always stationary",
+          "Turbulent"
+        ],
+        "correct": 0,
+        "explain": "Normal blood flow in a healthy artery is laminar: smooth and orderly. Turbulence appears when the vessel is narrowed or when velocity becomes very high. A healthy artery with normal flow maintains laminar conditions."
+      },
+      {
+        "id": "PHY00103",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Blood flow through a narrowed artery is expected to be:",
+        "options": [
+          "Stationary",
+          "Independent of area",
+          "Laminar",
+          "Turbulent"
+        ],
+        "correct": 3,
+        "explain": "Blood flow through a narrowed artery becomes turbulent. Heart valve disease may also produce turbulence and heart murmurs The narrowing forces blood to speed up (continuity), and the high-speed jet passing through the narrow region disrupts the smooth parallel layers, producing turbulence. This is also why murmurs are heard with a stethoscope, the turbulent flow creates audible vibrations."
+      },
+      {
+        "id": "PHY00104",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Mass flow rate is defined as:",
+        "options": [
+          "The pressure divided by the area",
+          "The amount of volume passing a point per unit time",
+          "The amount of mass passing a given point per unit time",
+          "The force exerted by a fluid on the tube wall"
+        ],
+        "correct": 2,
+        "explain": "Mass flow rate is the amount of mass that passes a given point per unit time It is written as mass divided by time. The SI unit is kg/s. This is different from volume flow rate, which measures how much volume passes per unit time (m³/s). Both describe 'how much' passes, but one tracks mass and the other tracks volume."
+      },
+      {
+        "id": "PHY00105",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which of the following is the correct final formula for mass flow rate?",
+        "options": [
+          "ρ A / v",
+          "ρ A v",
+          "A v / ρ",
+          "ρ v / A"
+        ],
+        "correct": 1,
+        "explain": "Mass flow rate = ρ A v, where ρ is density, A is cross-sectional area, and v is the velocity of the fluid Derivation: mass flow rate = mass / time = ρV / t = ρ(A × l) / t = ρA(l / t) = ρAv. The term l / t is the velocity v. Units check: kg/m³ × m² × m/s = kg/s."
+      },
+      {
+        "id": "PHY00106",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Volume flow rate is calculated as:",
+        "options": [
+          "A v",
+          "A / v",
+          "ρ / (A v)",
+          "ρ A v"
+        ],
+        "correct": 0,
+        "explain": "Volume flow rate Q = A v, where A is cross-sectional area and v is velocity Volume flow rate measures how much volume passes a point per unit time, with units m³/s. Mass flow rate is simply density × volume flow rate: mass flow rate = ρ × (A v) = ρ A v."
+      },
+      {
+        "id": "PHY00107",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "The equation of continuity in its general form is:",
+        "options": [
+          "P₁ + ½ ρ v₁² = P₂ + ½ ρ v₂²",
+          "Q = A / v",
+          "A₁ v₁ = A₂ v₂",
+          "ρ₁ A₁ v₁ = ρ₂ A₂ v₂"
+        ],
+        "correct": 3,
+        "explain": "As long as no fluid is added or removed, mass flow is conserved: ρ₁ A₁ v₁ = ρ₂ A₂ v₂. For an incompressible fluid the densities cancel to give A₁ v₁ = A₂ v₂. P₁ + ½ ρ v₁² = P₂ + ½ ρ v₂² is a Bernoulli fragment (same height), and Q = A / v inverts the volume-flow relation."
+      },
+      {
+        "id": "PHY00108",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "For an incompressible fluid, the equation of continuity simplifies to:",
+        "options": [
+          "v₁ / A₁ = v₂ / A₂",
+          "A₁ v₁ = A₂ v₂",
+          "P₁ v₁ = P₂ v₂",
+          "ρ₁ A₁ = ρ₂ A₂"
+        ],
+        "correct": 1,
+        "explain": "When density is constant (typical for liquids), the ρ terms cancel: A₁ v₁ = A₂ v₂ Blood is essentially incompressible, so this simplified form applies directly to blood flow. It means that where the vessel is narrower, velocity must be higher, and where the vessel is wider, velocity must be lower, the product of area and velocity is preserved."
+      },
+      {
+        "id": "PHY00109",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "A blood vessel narrows from A₁ = 0.1 m² (V₁ = 0.5 m/s) to A₂ = 0.01 m². What is V₂?",
+        "options": [
+          "0.05 m/s",
+          "0.5 m/s",
+          "5 m/s",
+          "50 m/s"
+        ],
+        "correct": 2,
+        "explain": "Using A₁V₁ = A₂V₂: V₂ = (A₁V₁) / A₂ = (0.1 × 0.5) / 0.01 = 5 m/s The area dropped by a factor of 10 (0.1 to 0.01), so the velocity increased by the same factor (0.5 to 5 m/s). This is exactly why blood speeds up as it passes through a stenosis. The product A × v is what must stay the same, not v alone"
+      },
+      {
+        "id": "PHY00110",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "For steady, incompressible, frictionless streamline flow, Bernoulli's principle keeps which three energy terms constant per unit volume? (Bernoulli's Principle)",
+        "options": [
+          "Pressure, potential energy, and kinetic energy",
+          "Density, flow speed, and cross-sectional area",
+          "Force, mass, and the resulting acceleration",
+          "Pressure, temperature, and contained volume"
+        ],
+        "correct": 0,
+        "explain": "Bernoulli's principle keeps pressure, gravitational potential energy per volume, and kinetic energy per volume constant along a streamline. Density with area, force with mass, and temperature with volume are other groupings."
+      },
+      {
+        "id": "PHY00111",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which of the following is the correct form of Bernoulli's equation? (Bernoulli's Principle)",
+        "options": [
+          "A₁ v₁ = A₂ v₂",
+          "P₁ / ρ₁ = P₂ / ρ₂",
+          "P₁ + ½ ρ v₁² + ρ g y₁ = P₂ + ½ ρ v₂² + ρ g y₂",
+          "P₁ × ½ ρ v₁² × ρ g y₁ = P₂ × ½ ρ v₂² × ρ g y₂"
+        ],
+        "correct": 2,
+        "explain": "Bernoulli's equation: P₁ + ½ ρ v₁² + ρ g y₁ = P₂ + ½ ρ v₂² + ρ g y₂, or compactly P + ½ ρ v² + ρ g h = Constant Note this is a sum, not a product. Each term contributes energy per unit volume: P (pressure energy), ½ρv² (kinetic energy per unit volume), ρgh (potential energy per unit volume). Along a streamline, these three trade off but the sum is preserved."
+      },
+      {
+        "id": "PHY00112",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "According to Bernoulli's principle, as velocity increases: (Bernoulli's Principle)",
+        "options": [
+          "Temperature increases",
+          "Pressure increases",
+          "Pressure decreases",
+          "Pressure stays the same"
+        ],
+        "correct": 2,
+        "explain": "As velocity increases, pressure decreases. In symbols: v ↑ ⇒ P ↓ This is the pressure-velocity trade-off: when a fluid speeds up along a streamline, its kinetic energy rises, and since total energy is conserved, its pressure energy must fall. In a narrowed artery, velocity rises and pressure drops, which can reduce tissue perfusion beyond the narrowing."
+      },
+      {
+        "id": "PHY00113",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "In a narrowed artery, Bernoulli's principle predicts: (Bernoulli's Principle)",
+        "options": [
+          "Velocity decreases and pressure increases",
+          "Velocity increases and pressure decreases",
+          "Velocity and pressure both increase",
+          "Velocity and pressure both decrease"
+        ],
+        "correct": 1,
+        "explain": "In a narrowed artery, velocity increases and pressure decreases. Blood supply to tissues may be reduced Continuity explains the velocity rise (smaller area to higher velocity). Bernoulli explains the pressure fall (higher velocity to lower pressure). Together, they describe why a stenosis is double trouble: faster flow at lower pressure, and possibly turbulence on top of that."
+      },
+      {
+        "id": "PHY00117",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "In laminar flow, where is the velocity of the blood highest?",
+        "options": [
+          "At the vessel wall",
+          "In the centre of the vessel",
+          "It is uniform across the vessel",
+          "Halfway between wall and centre"
+        ],
+        "correct": 1,
+        "explain": "Velocity is highest in the centre of the vessel and lowest near the vessel wall. The profile is parabolic The layer right at the wall is essentially stationary (no-slip condition), while the fluid in the centre moves fastest. This is why the velocity profile in laminar flow looks like a parabola, a smooth curve from zero at the wall to maximum at the centre."
+      },
+      {
+        "id": "PHY00118",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "What is the velocity profile of laminar blood flow described as?",
+        "options": [
+          "Parabolic",
+          "Random",
+          "Rectangular",
+          "Flat"
+        ],
+        "correct": 0,
+        "explain": "Laminar blood flow has a parabolic velocity profile: highest in the centre, lowest near the wall. Layers slide past one another smoothly, peaking at the centre and tapering toward the wall. Flat, random, and rectangular profiles do not describe that laminar pattern."
+      },
+      {
+        "id": "PHY00119",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "In turbulent blood flow, how do the layers move?",
+        "options": [
+          "Both radially and axially, so the layers mix",
+          "Neither radially nor axially, so layers stay put",
+          "Axially along the vessel, with no radial mixing",
+          "Radially across the vessel, with no axial motion"
+        ],
+        "correct": 0,
+        "explain": "In turbulent flow the layers mix and run both radially and axially. A stop, axial motion alone, or radial motion alone is not that mixed path."
+      },
+      {
+        "id": "PHY00120",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which of the following is not a cause of turbulent blood flow?",
+        "options": [
+          "Increased temperature of the blood",
+          "Vessel-wall irregularity in the lumen",
+          "A change in the speed of the blood",
+          "A stenosis narrowing the vessel lumen"
+        ],
+        "correct": 0,
+        "explain": "Turbulence is favoured by wall irregularity, a change in flow speed, or stenosis (narrowing) that speeds flow. A rise in blood temperature is not taught as a cause of turbulent blood flow in this unit."
+      },
+      {
+        "id": "PHY00121",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which of the following is a consequence of turbulent blood flow?",
+        "options": [
+          "Reduced energy loss in the vessel",
+          "Less perfusion and possible murmur",
+          "Decreased resistance to the flow",
+          "Faster nutrient delivery downstream"
+        ],
+        "correct": 1,
+        "explain": "Turbulence wastes energy, raises resistance, can reduce tissue perfusion, and can produce a murmur. It does not cut energy loss, lower resistance, or speed nutrient delivery."
+      },
+      {
+        "id": "PHY00130",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "What is the difference between mass flow rate and volume flow rate?",
+        "options": [
+          "Mass flow tracks volume per time; volume flow tracks mass per time",
+          "Mass flow and volume flow track one and the same quantity",
+          "Mass flow is reserved for gases; volume flow is reserved for liquids",
+          "Mass flow tracks mass per time; volume flow tracks volume per time"
+        ],
+        "correct": 3,
+        "explain": "Mass flow rate is mass per time, ρ A v. Volume flow rate is volume per time, A v. They are not the same quantity, not swapped, and not split by gas and liquid."
+      },
+      {
+        "id": "PHY00165",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Three cubes have the same dimensions. Which has the highest density?",
+        "options": [
+          "Wood",
+          "Gold",
+          "Paper",
+          "All three have equal densities"
+        ],
+        "correct": 1,
+        "explain": "Density is mass divided by volume. Equal dimensions mean equal volume, so the cube with the greatest mass has the greatest density. Gold is far denser than wood or paper, so the gold cube has the highest density. Equal size does not force equal density, and paper is the least dense of the three."
+      },
+      {
+        "id": "PHY00166",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A wooden block measuring 6 cm × 7 cm × 8 cm has a mass of 120 g. What is its density?",
+        "options": [
+          "0.75 g/cm³",
+          "1.15 g/cm³",
+          "2.55 g/cm³",
+          "0.35 g/cm³"
+        ],
+        "correct": 3,
+        "explain": "Volume is 6 × 7 × 8 = 336 cm³. Density is mass divided by volume, 120 / 336 = 0.357 g/cm³, which rounds to 0.35 g/cm³. The larger values treat the product of the edges as the density, or divide volume by mass, or add the edges to the mass."
+      },
+      {
+        "id": "PHY00167",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A wooden block has a mass of 20.0 g and dimensions 3.00 cm × 4.00 cm × 5.00 cm. What is its density?",
+        "options": [
+          "0.030 g/cm³",
+          "0.333 g/cm³",
+          "3.33 g/cm³",
+          "60.0 g/cm³"
+        ],
+        "correct": 1,
+        "explain": "Volume is 3.00 × 4.00 × 5.00 = 60.0 cm³. Density is 20.0 / 60.0 = 0.333 g/cm³. 3.33 g/cm³ inverts the division, 60.0 g/cm³ is the volume written as a density, and 0.030 g/cm³ drops a factor of ten."
+      },
+      {
+        "id": "PHY00168",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A plastic block measures 6 cm × 5 cm × 7 cm and has a density of 0.25 g/cm³. What is its mass?",
+        "options": [
+          "52.5 g",
+          "18.0 g",
+          "0.0083 g",
+          "105 g"
+        ],
+        "correct": 0,
+        "explain": "Volume is 6 × 5 × 7 = 210 cm³. Mass is density times volume, 0.25 × 210 = 52.5 g. 105 g uses twice the density, 18.0 g adds the edges, and 0.0083 g divides density by volume."
+      },
+      {
+        "id": "PHY00169",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "The pressure in a room is 1.368 × 10⁵ Pa. What force acts on a floor measuring 5 m × 5 m?",
+        "options": [
+          "1.68 × 10⁵ N",
+          "3.42 × 10⁶ N",
+          "4.68 × 10⁷ N",
+          "7.883 × 10⁸ N"
+        ],
+        "correct": 1,
+        "explain": "Force is pressure times area. Area is 25 m², so F = 1.368 × 10⁵ × 25 = 3.42 × 10⁶ N."
+      },
+      {
+        "id": "PHY00170",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A patient has a diastolic arterial pressure of 80 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
+        "options": [
+          "15.21 kPa",
+          "20.32 kPa",
+          "2.41 kPa",
+          "10.66 kPa"
+        ],
+        "correct": 3,
+        "explain": "80 / 760 × 1.013 × 10⁵ Pa = 1.066 × 10⁴ Pa = 10.66 kPa. 15.21 kPa and 20.32 kPa scale 80 mmHg as if it were about 114 mmHg or 152 mmHg, and 2.41 kPa drops a factor of about four."
+      },
+      {
+        "id": "PHY00171",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A patient has a systolic arterial pressure of 145 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
+        "options": [
+          "19.32 kPa",
+          "25.41 kPa",
+          "10.54 kPa",
+          "14.61 kPa"
+        ],
+        "correct": 0,
+        "explain": "145 / 760 × 1.013 × 10⁵ Pa = 1.932 × 10⁴ Pa = 19.32 kPa. 10.54 kPa is about half, 14.61 kPa treats 145 as roughly 110 mmHg, and 25.41 kPa overscales the conversion."
+      },
+      {
+        "id": "PHY00172",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A patient's systolic arterial pressure is 135 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
+        "options": [
+          "1.013 × 10³ Pa",
+          "1.35 × 10⁵ Pa",
+          "1.80 × 10⁴ Pa",
+          "7.60 × 10⁵ Pa"
+        ],
+        "correct": 2,
+        "explain": "135 / 760 × 1.013 × 10⁵ Pa = 1.80 × 10⁴ Pa. 1.35 × 10⁵ Pa copies the millimetres of mercury into pascals with a wrong power, 7.60 × 10⁵ Pa inflates one atmosphere, and 1.013 × 10³ Pa is a truncated atmosphere."
+      },
+      {
+        "id": "PHY00173",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What is the buoyant force on a box of volume 0.24 m³ fully submerged in fresh water of density 1000 kg/m³? Take g = 9.8 m/s².",
+        "options": [
+          "1000 N",
+          "1890 N",
+          "2352 N",
+          "4310 N"
+        ],
+        "correct": 2,
+        "explain": "Buoyant force equals the weight of displaced fluid, ρ g V = 1000 × 9.8 × 0.24 = 2352 N, upward. 1000 N is the density written as a force, 1890 N uses g = 7.9, and 4310 N nearly doubles the volume."
+      },
+      {
+        "id": "PHY00174",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A metal ball has a mass of 18 g and a density of 8 g/cm³. What is its volume?",
+        "options": [
+          "2.25 cm³",
+          "3.75 cm³",
+          "6.84 cm³",
+          "1.11 cm³"
+        ],
+        "correct": 0,
+        "explain": "Volume is mass divided by density, 18 / 8 = 2.25 cm³. 1.11 cm³ divides density by a wrong mass, 3.75 cm³ uses a density of about 4.8 g/cm³, and 6.84 cm³ subtracts density from mass."
+      },
+      {
+        "id": "PHY00175",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "How massive is a wooden block measuring 6 cm × 8 cm × 4 cm with a density of 0.35 g/cm³?",
+        "options": [
+          "41.45 g",
+          "67.20 g",
+          "7.20 g",
+          "13.15 g"
+        ],
+        "correct": 1,
+        "explain": "Volume is 6 × 8 × 4 = 192 cm³. Mass is 0.35 × 192 = 67.20 g. 7.20 g multiplies density by one edge, 13.15 g adds the edges, and 41.45 g uses about half the volume."
+      },
+      {
+        "id": "PHY00176",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Air pressure in a room is 1.368 × 10⁵ Pa and the air exerts a force of 3.42 × 10⁵ N on a table. What is the area of the table?",
+        "options": [
+          "2.5 m²",
+          "5 m²",
+          "10 m²",
+          "1.5 m²"
+        ],
+        "correct": 0,
+        "explain": "Area is force divided by pressure, 3.42 × 10⁵ / 1.368 × 10⁵ = 2.5 m². 5 m² and 10 m² drop a factor of two or four, and 1.5 m² divides the leading digits the wrong way."
+      },
+      {
+        "id": "PHY00177",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A pressure gauge on a diver reads 1.39 × 10⁵ Pa in fresh water of density 1000 kg/m³. How deep is the diver? Take g = 9.8 m/s².",
+        "options": [
+          "5.18 m",
+          "8.95 m",
+          "11.54 m",
+          "14.18 m"
+        ],
+        "correct": 3,
+        "explain": "Depth is gauge pressure divided by ρ g, 1.39 × 10⁵ / (1000 × 9.8) = 14.18 m. The smaller depths divide by 2 g, by 1.5 g, or use g = 12."
+      },
+      {
+        "id": "PHY00178",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A buoyant force of 2352 N acts on a box fully submerged in fresh water of density 1000 kg/m³. What is the volume of the box? Take g = 9.8 m/s².",
+        "options": [
+          "1.94 m³",
+          "23.24 m³",
+          "43.41 m³",
+          "0.24 m³"
+        ],
+        "correct": 3,
+        "explain": "Volume is buoyant force divided by ρ g, 2352 / (1000 × 9.8) = 0.24 m³. The larger volumes divide by g alone, by 100, or by a density far below that of water."
+      },
+      {
+        "id": "PHY00179",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What absolute pressure acts on a swimmer 30 m below the surface of fresh water of density 1000 kg/m³? Take atmospheric pressure as 1.0123 × 10⁵ Pa and g = 9.8 m/s².",
+        "options": [
+          "3.95 × 10⁵ Pa",
+          "4.21 × 10⁶ Pa",
+          "1.93 × 10⁵ Pa",
+          "2.45 × 10⁶ Pa"
+        ],
+        "correct": 0,
+        "explain": "Absolute pressure is atmospheric pressure plus ρ g h. ρ g h = 1000 × 9.8 × 30 = 2.94 × 10⁵ Pa, so P = 1.0123 × 10⁵ + 2.94 × 10⁵ = 3.95 × 10⁵ Pa. 1.93 × 10⁵ Pa understates the water column, and the 10⁶ Pa values multiply depth by an extra factor of ten."
+      },
+      {
+        "id": "PHY00180",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A hydraulic press has a large piston of area 0.20 m² and a small piston of area 0.02 m². What force on the small piston lifts a 3000 N object?",
+        "options": [
+          "450 N",
+          "50 N",
+          "150 N",
+          "300 N"
+        ],
+        "correct": 3,
+        "explain": "Pascal's principle keeps F/A the same, so F_small = 3000 × (0.02 / 0.20) = 300 N. 50 N and 150 N use area ratios of 1/60 and 1/20, and 450 N uses a ratio of 0.15."
+      },
+      {
+        "id": "PHY00181",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What gauge pressure does fresh water produce at a depth of 8.0 m? Take ρ = 1000 kg/m³ and g = 9.8 m/s².",
+        "options": [
+          "9800 Pa",
+          "78400 Pa",
+          "80 Pa",
+          "1.013 × 10⁵ Pa"
+        ],
+        "correct": 1,
+        "explain": "Gauge pressure is ρ g h = 1000 × 9.8 × 8.0 = 78400 Pa. 9800 Pa drops the depth, 80 Pa drops both density factors, and 1.013 × 10⁵ Pa is standard atmospheric pressure rather than the water column."
+      },
+      {
+        "id": "PHY00182",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A room is at 1.123 × 10⁵ Pa. What force does this pressure exert on a table measuring 2 m × 3 m?",
+        "options": [
+          "1.123 × 10⁵ N",
+          "1.87 × 10⁴ N",
+          "6.74 × 10⁴ N",
+          "6.74 × 10⁵ N"
+        ],
+        "correct": 3,
+        "explain": "Area is 6 m², so force is 1.123 × 10⁵ × 6 = 6.74 × 10⁵ N. 1.123 × 10⁵ N ignores the area, and the 10⁴ N values divide by the area or drop a factor of ten."
+      },
+      {
+        "id": "PHY00183",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A diver's gauge pressure is 2.67 × 10⁵ Pa in fresh water of density 1000 kg/m³. How deep is the diver? Take g = 9.8 m/s².",
+        "options": [
+          "2.72 m",
+          "27.2 m",
+          "0.0272 m",
+          "272 m"
+        ],
+        "correct": 1,
+        "explain": "Depth is 2.67 × 10⁵ / (1000 × 9.8) = 27.2 m. 0.0272 m and 2.72 m drop powers of ten, and 272 m multiplies by ten."
+      },
+      {
+        "id": "PHY00184",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "At a depth of 1000 m in water of density 1000 kg/m³, with atmospheric pressure 1.10 × 10⁵ Pa and g = 9.8 m/s², which pair of pressures is correct?",
+        "options": [
+          "Gauge pressure 1.10 × 10⁵ Pa and absolute pressure 9.91 × 10⁶ Pa",
+          "Gauge pressure 9.8 × 10⁶ Pa and absolute pressure 9.91 × 10⁶ Pa",
+          "Gauge pressure 1.10 × 10⁵ Pa and absolute pressure 9.80 × 10⁵ Pa",
+          "Gauge pressure 9.8 × 10⁶ Pa and absolute pressure 9.80 × 10⁵ Pa"
+        ],
+        "correct": 1,
+        "explain": "Gauge pressure is ρ g h = 1000 × 9.8 × 1000 = 9.8 × 10⁶ Pa. Absolute pressure adds the atmosphere, 9.8 × 10⁶ + 1.10 × 10⁵ = 9.91 × 10⁶ Pa. A gauge value of 1.10 × 10⁵ Pa is the atmosphere alone, and an absolute value of 9.80 × 10⁵ Pa drops a factor of ten."
+      },
+      {
+        "id": "PHY00185",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A hydraulic lift has a large piston of area 0.10 m² and a small piston of area 0.010 m². What force on the small piston lifts a 1500 N object?",
+        "options": [
+          "15 N",
+          "15000 N",
+          "150 N",
+          "1500 N"
+        ],
+        "correct": 2,
+        "explain": "F_small = 1500 × (0.010 / 0.10) = 150 N. 15 N drops a factor of ten, 15000 N inverts the area ratio, and 1500 N assumes the areas are equal."
+      },
+      {
+        "id": "PHY00186",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "What is the buoyant force on a fully submerged box of volume 0.5 m³ in fresh water of density 1000 kg/m³? Take g = 9.8 m/s².",
+        "options": [
+          "4900 N upward",
+          "490 N upward",
+          "500 N downward",
+          "19600 N upward"
+        ],
+        "correct": 0,
+        "explain": "Buoyant force is ρ g V = 1000 × 9.8 × 0.5 = 4900 N, directed upward. 19600 N uses a volume of 2 m³, 490 N drops a factor of ten, and 500 N downward has both the wrong magnitude and the wrong direction."
+      },
+      {
+        "id": "PHY00187",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which of the following is an SI base quantity with its correct SI unit?",
+        "options": [
+          "Pressure, pascal",
+          "Force, newton",
+          "Energy, joule",
+          "Mass, kilogram"
+        ],
+        "correct": 3,
+        "explain": "Mass is one of the seven SI base quantities, and its unit is the kilogram. Energy, pressure, and force are derived quantities: the joule, the pascal, and the newton are built from base units, so a correct unit name does not make them base quantities."
+      },
+      {
+        "id": "PHY00188",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which medical set is matched to the correct state of matter?",
+        "options": [
+          "Bone as solid, blood as gas, air in the lungs as liquid",
+          "Bone as gas, blood as liquid, air in the lungs as solid",
+          "Bone as solid, blood as liquid, air in the lungs as gas",
+          "Bone as liquid, blood as solid, air in the lungs as gas"
+        ],
+        "correct": 2,
+        "explain": "Bone keeps a definite shape and volume, so it is solid. Blood flows and takes the shape of its vessel while keeping a nearly fixed volume, so it is liquid. Air in the lungs expands to fill the available space, so it is gas."
+      },
+      {
+        "id": "PHY00189",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "When does shear stress occur in a material?",
+        "options": [
+          "When force acts perpendicular to the surface",
+          "When force acts parallel to the surface",
+          "When pressure acts equally in all directions",
+          "When force acts vertically downward only"
+        ],
+        "correct": 1,
+        "explain": "Shear stress is a tangential force per unit area, so the force is parallel to the surface and tends to slide layers past each other. A perpendicular force is longitudinal stress, equal pressure from all sides is hydraulic stress, and a downward force is not shear unless it is parallel to the face being considered."
+      },
+      {
+        "id": "PHY00190",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A force of 100 N acts over an area of 0.01 m². What stress is produced?",
+        "options": [
+          "100 Pa",
+          "1000 Pa",
+          "10000 Pa",
+          "10 Pa"
+        ],
+        "correct": 2,
+        "explain": "Stress is force divided by area, 100 / 0.01 = 10000 Pa. 10 Pa inverts the division, 100 Pa ignores the area, and 1000 Pa uses an area of 0.1 m²."
+      },
+      {
+        "id": "PHY00191",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A cortical bone has Young's modulus 16 × 10⁹ Pa and is subjected to a stress of 80 × 10⁶ Pa. What strain is produced?",
+        "options": [
+          "0.005",
+          "0.05",
+          "0.0005",
+          "0.002"
+        ],
+        "correct": 0,
+        "explain": "Within the elastic limit, strain is stress divided by Young's modulus, 80 × 10⁶ / 16 × 10⁹ = 0.005. 0.0005 drops a factor of ten, 0.002 uses a modulus of 40 × 10⁹ Pa, and 0.05 inverts a power of ten."
+      },
+      {
+        "id": "PHY00192",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Blood flows through a vessel of cross-sectional area 0.08 m² at 0.5 m/s. The vessel narrows to 0.02 m². What is the new speed, if the fluid is incompressible?",
+        "options": [
+          "8 m/s",
+          "0.125 m/s",
+          "0.5 m/s",
+          "2 m/s"
+        ],
+        "correct": 3,
+        "explain": "Continuity for an incompressible fluid gives A1 v1 = A2 v2, so v2 = 0.08 × 0.5 / 0.02 = 2 m/s. 0.125 m/s inverts the area ratio, 0.5 m/s assumes speed is unchanged, and 8 m/s uses a ratio of 16."
+      },
+      {
+        "id": "PHY00193",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which pair of conditions can raise blood speed or otherwise favour turbulent flow?",
+        "options": [
+          "A narrowed vessel, and a damaged or irregular valve",
+          "No blood movement, and a perfectly uniform vessel",
+          "A narrowed vessel, and a perfectly uniform vessel of unchanged area",
+          "A damaged valve, and a complete absence of blood movement"
+        ],
+        "correct": 0,
+        "explain": "A narrowed vessel raises speed by continuity, and a damaged or irregular valve disturbs the layers. Both favour turbulence. Absence of movement cannot raise speed, and a uniform vessel of unchanged area does not add the geometric trigger."
+      },
+      {
+        "id": "PHY00194",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which statement correctly separates matter from light?",
+        "options": [
+          "Matter has no mass, but it still occupies space",
+          "Solids alone are matter, and light is matter too",
+          "Light is matter, because it occupies space",
+          "Matter has mass and occupies space, unlike light"
+        ],
+        "correct": 3,
+        "explain": "Matter has mass and occupies space. Light carries energy and can fill a region, but it has no rest mass and is not matter. A massless object, a solids-only rule, and treating light as matter each fail that split."
+      },
+      {
+        "id": "PHY00195",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which state of matter has both a definite shape and a definite volume?",
+        "options": [
+          "Plasma, with no fixed shape or volume",
+          "A liquid, with fixed volume and no fixed shape",
+          "A solid, with fixed shape and fixed volume",
+          "A gas, with neither fixed shape nor volume"
+        ],
+        "correct": 2,
+        "explain": "A solid keeps both its shape and its volume. A liquid keeps volume but takes the container's shape, a gas keeps neither, and plasma likewise has no fixed shape or volume."
+      },
+      {
+        "id": "PHY00196",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which pairing of intermolecular force and diffusion rate is correct?",
+        "options": [
+          "Force strongest in solids, and diffusion fastest in solids",
+          "Force strongest in gases, and diffusion fastest in solids",
+          "Force strongest in solids, and diffusion fastest in gases",
+          "Force strongest in gases, and diffusion fastest in gases"
+        ],
+        "correct": 2,
+        "explain": "Intermolecular force runs solid, then liquid, then gas. Diffusion runs the other way: gas, then liquid, then solid."
+      },
+      {
+        "id": "PHY00197",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which feature most clearly marks turbulent flow rather than laminar flow?",
+        "options": [
+          "It appears when the speed is very low",
+          "It contains irregular swirls and eddies",
+          "It dissipates no energy as the fluid moves",
+          "It keeps every layer moving in a straight path"
+        ],
+        "correct": 1,
+        "explain": "Turbulent flow is irregular, with swirls and eddies and mixing between layers. Low speed, no energy loss, and straight layers belong to laminar flow, not turbulence."
+      },
+      {
+        "id": "PHY00198",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Under ordinary resting conditions in a healthy person, blood flow is usually:",
+        "options": [
+          "Vapor flow, with no liquid motion",
+          "No flow at all in the arteries",
+          "Laminar flow in parallel layers",
+          "Turbulent flow in every vessel"
+        ],
+        "correct": 2,
+        "explain": "At rest in a healthy artery, blood moves in smooth parallel layers, which is laminar flow. It is not vapor, not stationary, and not turbulent in every vessel."
+      },
+      {
+        "id": "PHY00199",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "In steady flow, with no fluid added or removed, what stays the same between two points?",
+        "options": [
+          "The fluid temperature at both points",
+          "The vessel diameter at both points",
+          "The fluid speed at both points",
+          "The flow rate at both points"
+        ],
+        "correct": 3,
+        "explain": "If nothing is added or removed, the flow rate into one section equals the flow rate out of the next. Temperature, diameter, and speed can all change along the path."
+      },
+      {
+        "id": "PHY00200",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "The cross-section of an incompressible vessel falls by a factor of 4. By what factor does the speed rise, in steady flow?",
+        "options": [
+          "By a factor of 2",
+          "By a factor of 4",
+          "By a factor of 8",
+          "By a factor of 16"
+        ],
+        "correct": 1,
+        "explain": "For an incompressible fluid, area times speed is constant, so speed rises by the same factor that area falls. A drop by 4 raises speed by 4, not by 2, 8, or 16."
+      },
+      {
+        "id": "PHY00201",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Loss of elasticity in blood-vessel walls is linked with which outcome?",
+        "options": [
+          "A rise in bone stiffness and fracture resistance",
+          "A fall in blood density with no vessel change",
+          "Cardiovascular disease from stiffer vessel walls",
+          "A change of blood from liquid into a gas"
+        ],
+        "correct": 2,
+        "explain": "When vessel walls lose elasticity they stiffen, and that loss is linked with cardiovascular disease. Bone stiffness, blood density, and a change of state are not that vessel effect."
+      },
+      {
+        "id": "PHY00202",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which body fluids are liquids, and which are gases, in the circulation and the airway?",
+        "options": [
+          "Blood, lymph, and plasma as liquids; oxygen, carbon dioxide, and air as gases",
+          "Blood, lymph, and plasma as gases; oxygen, carbon dioxide, and air as liquids",
+          "Blood and airway air as liquids; lymph, plasma, and oxygen as gases",
+          "Plasma and carbon dioxide as liquids; blood, lymph, and oxygen as gases"
+        ],
+        "correct": 0,
+        "explain": "Blood, lymph, and plasma are liquids. Oxygen, carbon dioxide, and air in the airway are gases. Swapping the two groups, or splitting one group across both states, breaks that pairing."
+      },
+      {
+        "id": "PHY00203",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Blood is treated as which kind of fluid in the continuity relation used for vessels?",
+        "options": [
+          "A gas whose density falls as it speeds up",
+          "A solid that keeps a fixed vessel shape",
+          "An incompressible liquid of steady density",
+          "A fluid whose density doubles in a narrow segment"
+        ],
+        "correct": 2,
+        "explain": "Blood is treated as incompressible, so density stays the same and continuity reduces to area times speed. A gas that thins, a solid, or a density that doubles would not give that reduction."
+      },
+      {
+        "id": "PHY00204",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "In carotid stenosis, why does blood speed rise in the narrowed segment?",
+        "options": [
+          "Bernoulli's relation lowers pressure, and speed follows pressure",
+          "The continuity relation keeps area times speed constant",
+          "Pascal's relation sends the same pressure to every point",
+          "Archimedes' relation equals the upward force to displaced weight"
+        ],
+        "correct": 1,
+        "explain": "Speed rises because the narrower area must carry the same flow, so area times speed stays constant. Bernoulli then accounts for the pressure drop that follows the higher speed. Pascal and Archimedes do not set that speed."
+      },
+      {
+        "id": "PHY00205",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Bernoulli's equation, for an ideal fluid, keeps which sum constant along a streamline? (Bernoulli's Principle)",
+        "options": [
+          "Pressure plus density times area plus flow speed",
+          "Pressure plus half density speed squared plus density g height",
+          "Pressure plus density speed squared plus density times g area",
+          "Pressure plus half density height squared plus density g speed"
+        ],
+        "correct": 1,
+        "explain": "The constant sum is pressure plus one-half density times speed squared plus density times g times height."
+      },
+      {
+        "id": "PHY00206",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Which set of conditions is assumed when Bernoulli's equation is applied? (Bernoulli's Principle)",
+        "options": [
+          "Unsteady flow, compressible fluid, high friction, swirling path",
+          "Steady flow, incompressible fluid, frictionless, streamline path",
+          "Steady flow, compressible gas, zero density, closed path",
+          "Unsteady flow, incompressible fluid, rising friction, stopped path"
+        ],
+        "correct": 1,
+        "explain": "Bernoulli's equation is written for steady, incompressible, frictionless (ideal), streamline flow. Unsteady flow, compressibility, frictional losses, or a swirling path falls outside that ideal case."
+      },
+      {
+        "id": "PHY00207",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "In a narrowed artery, continuity and Bernoulli assign which pair of changes? (Bernoulli's Principle)",
+        "options": [
+          "Speed falls by continuity, and pressure rises by Bernoulli",
+          "Speed rises by continuity, and pressure falls by Bernoulli",
+          "Speed rises by Bernoulli, and pressure falls by continuity",
+          "Speed and pressure both rise, by either relation"
+        ],
+        "correct": 1,
+        "explain": "Continuity raises speed where area falls. Bernoulli then lowers pressure where speed rises. Reversing either change, or giving both jobs to one relation, swaps the two results."
+      },
+      {
+        "id": "PHY00208",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "A Venturi mask controls the oxygen fraction by using which relation? (Bernoulli's Principle)",
+        "options": [
+          "Archimedes' relation on the displaced air",
+          "Pascal's relation in a closed liquid",
+          "Bernoulli's relation in the flowing gas",
+          "Hooke's relation in the mask wall"
+        ],
+        "correct": 2,
+        "explain": "A Venturi mask uses Bernoulli's relation in the flowing gas to set a controlled oxygen concentration. Buoyancy, a confined-liquid pressure, and elastic stretch do not set that fraction."
+      },
+      {
+        "id": "PHY00209",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "A murmur heard over a narrowed valve is produced by which change? (Bernoulli's Principle)",
+        "options": [
+          "High speed through the narrow valve, with turbulent flow",
+          "Low speed through a wide valve, with laminar flow",
+          "A stop in flow, with no motion across the valve",
+          "A rise in vessel-wall thickness, with no flow change"
+        ],
+        "correct": 0,
+        "explain": "A narrowed valve speeds the blood, the fast stream becomes turbulent, and that turbulence is heard as a murmur. A slow laminar stream, a stop, or a thicker wall does not make that sound."
+      },
+      {
+        "id": "PHY00210",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Doppler ultrasound is used to measure which feature of blood flow? (Bernoulli's Principle)",
+        "options": [
+          "The mass and the thickness of the vessel wall",
+          "The color and the brightness of the flowing blood",
+          "The heat and the temperature of the vessel wall",
+          "The speed and the direction of the flowing blood"
+        ],
+        "correct": 3,
+        "explain": "Doppler ultrasound reports the speed and the direction of blood in a vessel. Wall mass, blood color, and wall temperature are not what it measures."
+      },
+      {
+        "id": "PHY00211",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Blood flows at 0.25 m/s through a vessel of area 0.04 m². The vessel narrows to 0.01 m². What is the new speed, if the blood is incompressible?",
+        "options": [
+          "0.50 m/s",
+          "1.0 m/s",
+          "2.0 m/s",
+          "4.0 m/s"
+        ],
+        "correct": 1,
+        "explain": "Area times speed is constant, so 0.04 × 0.25 = 0.01 × v₂. That gives v₂ = 1.0 m/s."
+      },
+      {
+        "id": "PHY00212",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each modulus to the strain in its formula.",
+        "left": [
+          "Young's modulus",
+          "Shear modulus",
+          "Bulk modulus"
+        ],
+        "options": [
+          "Change in length over original length",
+          "Sideways shift over original length",
+          "Change in volume over original volume",
+          "Force times original length"
+        ],
+        "correct": [
+          0,
+          1,
+          2
+        ],
+        "explain": "Young's modulus uses longitudinal strain, ΔL/L. Shear modulus uses shear strain, Δx/L. Bulk modulus uses volume strain, ΔV/V. Force times length is not a strain."
+      },
+      {
+        "id": "PHY00213",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each stress to the way the force is applied.",
+        "left": [
+          "Longitudinal stress",
+          "Shear stress",
+          "Hydraulic stress"
+        ],
+        "options": [
+          "Along the long axis of the object",
+          "Parallel to the loaded face",
+          "Inward from all sides at once",
+          "At a single point on the face"
+        ],
+        "correct": [
+          0,
+          1,
+          2
+        ],
+        "explain": "Longitudinal stress pulls or pushes along the axis. Shear stress acts parallel to the face. Hydraulic stress is a uniform pressure from all sides. A single point force is none of the three."
+      },
+      {
+        "id": "PHY00214",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each mechanical property to the change it names.",
+        "left": [
+          "Elasticity",
+          "Plasticity",
+          "Ductility",
+          "Malleability"
+        ],
+        "options": [
+          "Return to the original shape",
+          "A permanent set after unloading",
+          "Drawing into a thin wire",
+          "Hammering into a thin sheet",
+          "Compressing with no volume change"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "explain": "Elasticity recovers shape. Plasticity leaves a permanent set. Ductility is drawing into wire. Malleability is hammering into sheet. A volume that does not change is compressibility's opposite, not one of these four."
+      },
+      {
+        "id": "PHY00215",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each state to its shape and volume.",
+        "left": [
+          "Solid",
+          "Liquid",
+          "Gas"
+        ],
+        "options": [
+          "Fixed shape and fixed volume",
+          "Fixed volume, no fixed shape",
+          "No fixed shape and no fixed volume",
+          "Fixed shape, no fixed volume"
+        ],
+        "correct": [
+          0,
+          1,
+          2
+        ],
+        "explain": "A solid keeps shape and volume. A liquid keeps volume and takes the container's shape. A gas keeps neither. A fixed shape with no fixed volume is not one of the three."
+      },
+      {
+        "id": "PHY00216",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each base quantity, named by its unit system, to the unit that system uses.",
+        "left": [
+          "Length (SI)",
+          "Length (CGS)",
+          "Length (MKS)",
+          "Length (FPS)",
+          "Mass (SI)",
+          "Mass (CGS)",
+          "Mass (MKS)",
+          "Mass (FPS)",
+          "Time (SI)",
+          "Time (CGS)",
+          "Time (MKS)",
+          "Time (FPS)"
+        ],
+        "options": [
+          "Metre",
+          "Centimetre",
+          "Foot",
+          "Kilogram",
+          "Gram",
+          "Pound",
+          "Second"
+        ],
+        "correct": [
+          0,
+          1,
+          0,
+          2,
+          3,
+          4,
+          3,
+          5,
+          6,
+          6,
+          6,
+          6
+        ],
+        "explain": "SI and MKS share the metre and the kilogram. CGS uses the centimetre and the gram. FPS uses the foot and the pound. Time is the second in all four systems."
+      },
+      {
+        "id": "PHY00217",
+        "type": "matching",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Match each pressure term to the relation that defines it.",
+        "left": [
+          "Absolute pressure",
+          "Gauge pressure",
+          "Atmospheric pressure",
+          "Pressure at depth"
+        ],
+        "options": [
+          "Gauge pressure plus atmospheric pressure",
+          "Absolute pressure minus atmospheric pressure",
+          "The pressure of the air at the surface",
+          "Density times g times depth",
+          "Force times area"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "explain": "Absolute pressure is gauge pressure plus atmospheric pressure. Gauge pressure is absolute minus atmospheric. Atmospheric pressure is the surface air pressure. Pressure at a depth is density times g times depth. Force times area is not a pressure."
+      },
+      {
+        "id": "PHY00218",
+        "type": "matching",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Match each relation to the job it does in a narrowed vessel. (Bernoulli's Principle)",
+        "left": [
+          "Continuity",
+          "Bernoulli",
+          "Pascal",
+          "Archimedes"
+        ],
+        "options": [
+          "Raises speed where area falls",
+          "Lowers pressure where speed rises",
+          "Sends a pressure change through a confined fluid",
+          "Sets buoyant force equal to displaced weight",
+          "Sets strain equal to stress over modulus"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "explain": "Continuity keeps area times speed constant, so a narrower segment is faster. Bernoulli then lowers pressure where speed is higher. Pascal transmits a pressure change through a confined fluid. Archimedes sets buoyancy equal to the weight of fluid displaced. Stress over modulus is a solid, not a flow relation."
+      },
+      {
+        "id": "PHY00219",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each measured quantity to the unit used for it.",
+        "options": [
+          "Pascal",
+          "Millimetre of mercury",
+          "Newton",
+          "Kilogram per cubic metre",
+          "No unit",
+          "Joule"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "explain": "Stress is force per area, so its unit is the pascal. A mercury column is read in millimetres of mercury. Force is the newton. Density is the kilogram per cubic metre. Strain is a ratio, so it has no unit. The joule is energy.",
+        "left": [
+          "Stress",
+          "Mercury-column pressure",
+          "Force",
+          "Density",
+          "Strain"
+        ]
+      },
+      {
+        "id": "PHY00220",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each symbol to the quantity it stands for.",
+        "options": [
+          "Volume",
+          "Velocity",
+          "Density",
+          "Stress",
+          "Strain",
+          "Mass flow rate",
+          "Volume flow rate"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "explain": "Capital V is volume and small v is velocity. ρ is density. σ is stress and ε is strain. The dotted m, ṁ, is mass flow rate. Q is volume flow rate.",
+        "left": [
+          "V",
+          "v",
+          "ρ",
+          "σ",
+          "ε",
+          "ṁ",
+          "Q"
+        ]
+      },
+      {
+        "id": "PHY00221",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each solid-mechanics formula to the quantity it defines.",
+        "options": [
+          "Stress",
+          "Longitudinal strain",
+          "Young's modulus",
+          "Shear modulus",
+          "Bulk modulus",
+          "Density",
+          "Force times area"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "explain": "Stress is force over area. Longitudinal strain is the change in length over the original length. Dividing that stress by that strain gives Young's modulus. Shear and bulk modulus use sideways shift and volume change in the same place. Density is mass over volume. Force times area is not one of these.",
+        "left": [
+          "F/A",
+          "ΔL/L",
+          "(F/A)/(ΔL/L)",
+          "(F/A)/(Δx/L)",
+          "(F/A)/(ΔV/V)",
+          "m/V"
+        ]
+      },
+      {
+        "id": "PHY00222",
+        "type": "matching",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Match each fluid formula to the quantity it defines.",
+        "options": [
+          "Pressure",
+          "Gauge pressure at a depth",
+          "Absolute pressure",
+          "Buoyant force",
+          "Force on the small piston",
+          "Mass flow rate",
+          "Volume flow rate"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "explain": "Pressure is force over area. Gauge pressure at a depth is density times g times depth. Absolute pressure adds atmospheric pressure to the gauge reading. Buoyant force is the weight of the displaced fluid, ρgV. The small-piston force is the large force times the small area over the large area. Mass flow rate is ρAv and volume flow rate is Av.",
+        "left": [
+          "F/A",
+          "ρgh",
+          "P_gauge + P_atm",
+          "ρgV",
+          "F_out × A_in / A_out",
+          "ρAv",
+          "Av"
+        ]
+      },
+      {
+        "id": "PHY00223",
+        "type": "matching",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Match each flow formula to the statement it makes. (Bernoulli's Principle)",
+        "options": [
+          "Continuity for a fluid whose density may change",
+          "Continuity for an incompressible liquid",
+          "Bernoulli's constant sum along a streamline",
+          "Mass flow rate as mass over time",
+          "Speed where the vessel has narrowed",
+          "Pressure times area over speed"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "explain": "The general continuity statement keeps ρAv the same at two points. If density does not change, area times speed is enough. Bernoulli keeps pressure, kinetic energy per volume, and potential energy per volume in one sum. Mass over time is mass flow rate. Speed in the narrow segment is the wide-segment product divided by the narrow area. Pressure times area over speed is not one of these.",
+        "left": [
+          "ρ1 A1 v1 = ρ2 A2 v2",
+          "A1 v1 = A2 v2",
+          "P + ½ρv² + ρgh",
+          "m/Δt",
+          "A1 v1 / A2"
+        ]
+      },
+      {
+        "id": "PHY00224",
+        "type": "matching",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Match each required quantity to the rearrangement that gives it.",
+        "options": [
+          "P × A",
+          "F_out × A_in / A_out",
+          "A1 v1 / A2",
+          "Stress × L / Y",
+          "m/V",
+          "P/A",
+          "A_out × F_out / A_out"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "explain": "Force is pressure times area, not pressure divided by area. The small-piston force is the large force times the small area over the large area. Dividing by the large area twice, or swapping the areas, does not give it. Narrow-segment speed is the incoming area-speed product divided by the narrow area. Compression is stress times length divided by Young's modulus. Density is mass divided by volume.",
+        "left": [
+          "Force, from pressure and area",
+          "Small-piston force",
+          "Narrow-segment speed",
+          "Compression before break",
+          "Density"
+        ]
+      },
+      {
+        "id": "PHY00225",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each point on a tensile test to what the specimen is doing there.",
+        "options": [
+          "Stress still proportional to strain",
+          "Last point of full shape recovery",
+          "Permanent set after unloading",
+          "Specimen fractures",
+          "Specimen melts"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "explain": "Up to the proportional limit, stress stays proportional to strain. The elastic limit is the last point at which the shape fully returns. Past that, the plastic region leaves a permanent set. The breaking point is fracture. Melting is a thermal change, not a point on this curve.",
+        "left": [
+          "Proportional limit",
+          "Elastic limit",
+          "Plastic region",
+          "Breaking point"
+        ]
+      },
+      {
+        "id": "PHY00226",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each unit to the class of quantity it belongs to.",
+        "options": [
+          "Base unit",
+          "Derived unit"
+        ],
+        "correct": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        "explain": "The metre, the kilogram, and the second are base units, for length, mass, and time. The newton, the pascal, and the metre per second are derived units, for force, pressure, and velocity.",
+        "left": [
+          "Metre",
+          "Kilogram",
+          "Second",
+          "Newton",
+          "Pascal",
+          "Metre per second"
+        ]
+      },
+      {
+        "id": "PHY00227",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Compared with an amorphous solid, a crystalline solid has particles in a repeating long-range ordered lattice. Which mechanical / thermal contrast best matches that structural difference?",
+        "options": [
+          "Crystalline solids melt sharply; amorphous solids soften over a range",
+          "Crystalline solids have no fixed positions; amorphous solids form a lattice",
+          "Amorphous solids are always more ductile than crystalline metals lacking order",
+          "Both solid types flow like a liquid while keeping a sharp melting point"
+        ],
+        "correct": 0,
+        "explain": "Crystalline solids have long-range order and typically melt sharply; amorphous solids lack long-range order and soften gradually (glass-like). Option B reverses the definitions. Option C is false: many crystalline metals are ductile/malleable, while many amorphous solids (e.g. glass) are brittle. Option D confuses solids with liquids. This is standard Phys101 enrichment linking structure to thermal/mechanical behaviour; the course slides do not name crystalline vs amorphous by term."
+      },
+      {
+        "id": "PHY00228",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which description fits particle motion in a flowing liquid?",
+        "options": [
+          "Particles slide past one another and have no rigid lattice",
+          "Particles stay locked in a repeating lattice",
+          "Particles have no fixed position and fill the whole container",
+          "Particles are randomly distributed with no contact at all"
+        ],
+        "correct": 0,
+        "explain": "In a liquid the particles slide past one another, which is what lets the liquid flow, and they are not locked in a lattice. Filling the container with no fixed position is the gas. A total absence of contact is not the liquid."
+      },
+      {
+        "id": "PHY00229",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which description fits the particles of a gas?",
+        "options": [
+          "Locked in a lattice, with fixed positions",
+          "Sliding in contact, taking the container's shape only",
+          "Rapid and random, with no fixed position, filling the container",
+          "Ordered in a crystal, filling only the bottom of the container"
+        ],
+        "correct": 2,
+        "explain": "Gas particles move rapidly and at random, have no fixed position, and fill the container. A lattice is a solid. Sliding in contact and taking the container's shape, without filling it, is a liquid."
+      },
+      {
+        "id": "PHY00230",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which state takes the shape of the container, and which state fills the container?",
+        "options": [
+          "Liquid takes the shape; gas fills the container",
+          "Gas takes the shape only; liquid fills the container",
+          "Solid takes the shape; liquid fills the container",
+          "Solid fills the container; gas keeps its own shape"
+        ],
+        "correct": 0,
+        "explain": "A liquid takes the container's shape and keeps its own volume. A gas fills the container. A solid keeps both shape and volume."
+      },
+      {
+        "id": "PHY00231",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A rubber band or a spring returns to its old shape after the load is removed. Which property is that?",
+        "options": [
+          "Plasticity",
+          "Elasticity",
+          "Ductility",
+          "Malleability"
+        ],
+        "correct": 1,
+        "explain": "Return to the original shape is elasticity. Plasticity is the permanent set left by repeated loading. Ductility is drawing into wire, and malleability is hammering into sheet."
+      },
+      {
+        "id": "PHY00232",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A rubber band or a spring is loaded repeatedly until it no longer returns to its old shape. Which property is that?",
+        "options": [
+          "Elasticity",
+          "Plasticity",
+          "Ductility",
+          "Malleability"
+        ],
+        "correct": 1,
+        "explain": "A permanent change of shape after repeated loading is plasticity. Elasticity would have returned the shape. Ductility and malleability name drawing into wire and hammering into sheet."
+      },
+      {
+        "id": "PHY00233",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Silver, gold, lead, and tin can be drawn into wire. Which property is that?",
+        "options": [
+          "Elasticity",
+          "Plasticity",
+          "Ductility",
+          "Malleability"
+        ],
+        "correct": 2,
+        "explain": "Drawing into wire is ductility, and silver, gold, lead, and tin show it. Elasticity recovers shape, plasticity is a permanent set, and malleability is hammering into sheet."
+      },
+      {
+        "id": "PHY00234",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "A force along the length of a rod, and a force parallel to a face, are which pair of stresses?",
+        "options": [
+          "Longitudinal stress, then shear stress",
+          "Shear stress, then hydraulic stress",
+          "Hydraulic stress, then longitudinal stress",
+          "Shear stress, then longitudinal stress"
+        ],
+        "correct": 0,
+        "explain": "A force along the length is longitudinal stress. A force parallel to a face is shear stress, the horizontal slide. Hydraulic stress comes from all sides, and the swapped pair reverses the two loadings."
+      },
+      {
+        "id": "PHY00235",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A density of 1 g/cm³ is equal to which value in kg/m³?",
+        "options": [
+          "1 kg/m³",
+          "10 kg/m³",
+          "100 kg/m³",
+          "1000 kg/m³"
+        ],
+        "correct": 3,
+        "explain": "One gram is 10⁻³ kg and one cubic centimetre is 10⁻⁶ m³, so 1 g/cm³ = 10⁻³ / 10⁻⁶ = 10³ kg/m³. Multiply the number in g/cm³ by 1000."
+      },
+      {
+        "id": "PHY00236",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "Standard atmospheric pressure is 101325 Pa. Which reading is the same pressure?",
+        "options": [
+          "760 mmHg",
+          "76 mmHg",
+          "1013 mmHg",
+          "10.3 mmHg"
+        ],
+        "correct": 0,
+        "explain": "101325 Pa is 1.01325 × 10⁵ Pa, which is 1 atm, and 1 atm supports 760 mm of mercury. A 76 mm column, a 1013 mm column, and a 10.3 mm column are not that reading. A water column for the same pressure is about 10.3 m, not 10.3 mm."
+      },
+      {
+        "id": "PHY00237",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "Mass flow rate is written Q = m/Δt, with m the mass. Which unit does that expression give?",
+        "options": [
+          "kg/s",
+          "m³/s",
+          "kg·m/s",
+          "N·s"
+        ],
+        "correct": 0,
+        "explain": "Mass divided by time is the kilogram per second. Cubic metre per second is volume flow rate. Kilogram metre per second is momentum, and the newton-second is impulse (not mass flow rate)."
+      },
+      {
+        "id": "PHY00238",
+        "type": "mcq",
+        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "q": "In the Bernoulli sum, which term is kinetic energy per unit volume, and which is potential energy per unit volume? (Bernoulli's Principle)",
+        "options": [
+          "½ρv² is kinetic; ρgh is potential",
+          "ρgh is kinetic; ½ρv² is potential",
+          "P is kinetic; ρgh is potential",
+          "½ρv² is kinetic; P is potential"
+        ],
+        "correct": 0,
+        "explain": "½ρv² is kinetic energy per unit volume. ρgh is gravitational potential energy per unit volume. P is pressure energy per unit volume, not kinetic and not potential."
+      },
+      {
+        "id": "PHY00239",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each derived quantity, named by its unit system, to the unit that system uses.",
+        "left": [
+          "Force (SI)",
+          "Force (CGS)",
+          "Force (MKS)",
+          "Force (FPS)",
+          "Pressure (SI)",
+          "Pressure (CGS)",
+          "Pressure (MKS)",
+          "Pressure (FPS)"
+        ],
+        "options": [
+          "Newton",
+          "Dyne",
+          "Pound-force",
+          "Pascal",
+          "Dyne per square centimetre",
+          "Pound per square inch",
+          "Joule"
+        ],
+        "correct": [
+          0,
+          1,
+          0,
+          2,
+          3,
+          4,
+          3,
+          5
+        ],
+        "explain": "SI and MKS share the newton for force and the pascal for pressure. CGS uses the dyne, and the dyne per square centimetre. FPS uses the pound-force, and the pound per square inch. The joule is energy, not force or pressure."
+      },
+      {
+        "id": "PHY00240",
+        "type": "matching",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Match each phase change to the correct state transition.",
+        "left": [
+          "Melting",
+          "Freezing",
+          "Vaporization",
+          "Condensation",
+          "Sublimation",
+          "Deposition"
+        ],
+        "options": [
+          "Solid to liquid",
+          "Liquid to solid",
+          "Liquid to gas",
+          "Gas to liquid",
+          "Solid to gas directly",
+          "Gas to solid directly"
+        ],
+        "correct": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "explain": "Melting is solid→liquid; freezing is liquid→solid; vaporization is liquid→gas; condensation is gas→liquid; sublimation is solid→gas directly; deposition is gas→solid directly (e.g. CO₂ forming dry ice). These six names are the phase-change set from Lecture 1."
+      },
+      {
+        "id": "PHY00241",
+        "type": "mcq",
+        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "q": "Which phase change is solid to gas directly, without becoming a liquid first?",
+        "options": [
+          "Melting",
+          "Condensation",
+          "Sublimation",
+          "Deposition"
+        ],
+        "correct": 2,
+        "explain": "Sublimation is solid→gas directly. Melting is solid→liquid; condensation is gas→liquid; deposition is gas→solid directly."
+      },
+      {
+        "id": "PHY00242",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "A metal block measures 4.0 cm × 5.0 cm × 6.0 cm and has a mass of 480 g. Taking the density of water as 1.0 g/cm³, what is the specific gravity of the metal?",
+        "options": [
+          "0.25",
+          "2.0",
+          "4.0",
+          "8.0"
+        ],
+        "correct": 2,
+        "explain": "Volume = 4.0 × 5.0 × 6.0 = 120 cm³. Density = 480 / 120 = 4.0 g/cm³. Specific gravity = ρ_substance / ρ_water = 4.0 / 1.0 = 4.0 (dimensionless). 0.25 inverts mass/volume; 2.0 undercounts the volume product; 8.0 treats an edge product incorrectly."
+      },
+      {
+        "id": "PHY00243",
+        "type": "mcq",
+        "cat": "Chapter 2: Fluid Dynamics",
+        "q": "An open-tube water manometer connected to a gas container shows a height difference Δh = 25 cm, with the container-side level lower. If ρ_water = 1000 kg/m³, g = 9.8 m/s², and P_atm = 1.013 × 10⁵ Pa, what is the absolute pressure of the gas?",
+        "options": [
+          "2.45 × 10³ Pa",
+          "9.88 × 10⁴ Pa",
+          "1.037 × 10⁵ Pa",
+          "1.258 × 10⁵ Pa"
+        ],
+        "correct": 2,
+        "explain": "Gauge pressure = ρgΔh = 1000 × 9.8 × 0.25 = 2450 Pa. Absolute pressure = P_atm + P_gauge = 1.013 × 10⁵ + 2450 = 1.0375 × 10⁵ Pa ≈ 1.037 × 10⁵ Pa. 2.45 × 10³ Pa is the gauge pressure alone; 9.88 × 10⁴ Pa subtracts gauge from atm; 1.258 × 10⁵ Pa overstates the column contribution."
+      }
+    ]
+  }
+}
