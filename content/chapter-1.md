@@ -367,15 +367,15 @@ Physiological behaviour of the body depends heavily on these mechanical properti
 
 ---
 
-## 10. Worked problems (from lecture)
+## 10. Worked problems
 
 ### Problem A — Cortical bone Young's modulus
 
-**Given:** L = 0.20 m; A = 1.0 × 10⁻⁴ m²; F = 1000 N (tensile); ΔL = 0.12 mm = 1.2 × 10⁻⁴ m.
+**Given:** L = 0.25 m; A = 1.5 × 10⁻⁴ m²; F = 1500 N (tensile); ΔL = 0.15 mm = 1.5 × 10⁻⁴ m.
 
 ```
-Stress = F/A = 1000 / 1.0×10⁻⁴ = 1.0 × 10⁷ Pa
-Strain = ΔL/L = 1.2×10⁻⁴ / 0.20 = 6.0 × 10⁻⁴
+Stress = F/A = 1500 / 1.5×10⁻⁴ = 1.0 × 10⁷ Pa
+Strain = ΔL/L = 1.5×10⁻⁴ / 0.25 = 6.0 × 10⁻⁴
 Y = Stress/Strain = 1.0×10⁷ / 6.0×10⁻⁴ = 1.67 × 10¹⁰ Pa ≈ 16.7 GPa
 ```
 
@@ -383,14 +383,14 @@ Matches typical cortical bone (15–20 GPa).
 
 ### Problem B — Femur compression before break
 
-**Given:** L = 0.4 m; Y = 16 × 10⁹ Pa; max stress = 150 × 10⁶ Pa.
+**Given:** L = 0.50 m; Y = 18 × 10⁹ Pa; max stress = 180 × 10⁶ Pa.
 
 ```
-Strain at break = Stress / Y = 150×10⁶ / 16×10⁹ = 0.009375
-ΔL = strain × L = 0.009375 × 0.4 = 0.00375 m = 3.75 mm
+Strain at break = Stress / Y = 180×10⁶ / 18×10⁹ = 0.010
+ΔL = strain × L = 0.010 × 0.50 = 0.0050 m = 5.0 mm
 ```
 
-A 40 cm femur compresses only ~3.75 mm (~1%) before failure — narrow safety margin.
+A 50 cm femur compresses only ~5.0 mm (1%) before failure — narrow safety margin.
 
 ---
 

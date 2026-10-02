@@ -16,7 +16,7 @@
 
 ---
 
-## 2. What is a fluid? (flow chapter framing)
+## 2. What is a fluid?
 
 A fluid can **flow** and **continuously change shape** under an external force. Fluids cannot resist static shear the way solids do.
 
@@ -85,7 +85,7 @@ Q = A v
 
 **How volume flow rate is assembled (separate from mass flow):** Q is volume per time. A fluid slug of cross-section A advancing at speed v sweeps volume A×v each second — so Q = A v. No density here: this tracks space occupied, not mass. Unit: **m³/s**.
 
-Often both are written with symbol Q in slides — check whether mass or volume is meant from context (ρAv vs Av).
+Often both use the symbol Q — check whether mass or volume is meant from context (ρAv vs Av).
 
 ---
 
@@ -118,14 +118,14 @@ Blood is treated as **essentially incompressible** → use A₁v₁ = A₂v₂.
 
 ### Worked example — stenosis
 
-A₁ = 0.1 m², v₁ = 0.5 m/s; A₂ = 0.01 m².
+A₁ = 0.08 m², v₁ = 0.4 m/s; A₂ = 0.02 m².
 
 ```
 A₁ v₁ = A₂ v₂
-v₂ = (0.1 × 0.5) / 0.01 = 5 m/s
+v₂ = (0.08 × 0.4) / 0.02 = 1.6 m/s
 ```
 
-Velocity rises **10×** in the narrowed section.
+Velocity rises **4×** in the narrowed section.
 
 **Clinical framing:** vascular narrowing (stenosis) raises blood speed in the throat of the stenosis (continuity), before pressure effects (Bernoulli).
 
@@ -194,7 +194,7 @@ High velocity through a narrowed valve → turbulence → **audible murmur** (st
 
 ### Doppler ultrasound & blood flow measurement
 
-Non-invasive measurement of **velocity and direction** of blood flow. Applications listed in lecture:
+Non-invasive measurement of **velocity and direction** of blood flow. Applications:
 
 - Carotid blood flow  
 - Detection of **DVT**  

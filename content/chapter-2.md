@@ -61,15 +61,15 @@ Specific gravity = ρ_substance / ρ_water
 ### Worked examples
 
 **Density of a wooden block**  
-Dimensions 3.00 cm × 4.00 cm × 5.00 cm; mass 20.0 g.  
-V = 60.0 cm³ → ρ = 20/60 = 0.333 g/cm³ = 333 kg/m³.
+Dimensions 2.50 cm × 4.00 cm × 6.00 cm; mass 30.0 g.  
+V = 60.0 cm³ → ρ = 30/60 = 0.500 g/cm³ = 500 kg/m³.
 
 **Mass from density**  
-Plastic 6 cm × 5 cm × 7 cm; ρ = 0.25 g/cm³.  
-V = 210 cm³ → m = ρV = 52.5 g.
+Plastic 5 cm × 4 cm × 8 cm; ρ = 0.30 g/cm³.  
+V = 160 cm³ → m = ρV = 48.0 g.
 
 **Metal block**  
-4 × 5 × 6 cm; m = 480 g → V = 120 cm³ → ρ = 4.0 g/cm³ = 4000 kg/m³ → SG = 4.0.
+3 × 4 × 5 cm; m = 300 g → V = 60 cm³ → ρ = 5.0 g/cm³ = 5000 kg/m³ → SG = 5.0.
 
 ---
 
@@ -121,16 +121,16 @@ P_G = ρ g h
 ### Worked examples
 
 **Force from room pressure**  
-P = 1.123 × 10⁵ Pa on a table 2 m × 3 m → A = 6 m² → F = PA = 6.738 × 10⁵ N ≈ 6.73 × 10⁵ N.
+P = 1.05 × 10⁵ Pa on a table 1.5 m × 2 m → A = 3 m² → F = PA = 3.15 × 10⁵ N.
 
 **Diver depth from gauge**  
-P_G = 2.67 × 10⁵ Pa; fresh water ρ = 1000 kg/m³.  
-h = P_G/(ρg) = 2.67×10⁵/(1000×9.8) ≈ 27.2 m.
+P_G = 1.96 × 10⁵ Pa; fresh water ρ = 1000 kg/m³.  
+h = P_G/(ρg) = 1.96×10⁵/(1000×9.8) = 20.0 m.
 
-**Ocean at 1 km**  
-ρ = 1000 kg/m³; h = 1000 m; P_atm = 1.10 × 10⁵ Pa (as in lecture problem).  
-P_G = ρgh = 1000×9.8×1000 = 9.8 × 10⁶ Pa.  
-P_abs = P_atm + P_G = 1.10×10⁵ + 9.8×10⁶ ≈ 9.91 × 10⁶ Pa.
+**Ocean at 800 m**  
+ρ = 1000 kg/m³; h = 800 m; P_atm = 1.013 × 10⁵ Pa.  
+P_G = ρgh = 1000×9.8×800 = 7.84 × 10⁶ Pa.  
+P_abs = P_atm + P_G = 1.013×10⁵ + 7.84×10⁶ ≈ 7.94 × 10⁶ Pa.
 
 ---
 
@@ -208,11 +208,11 @@ P_abs = P_atm + P_gauge
 ### Worked examples
 
 **Lake absolute pressure**  
-h = 15 m; ρ = 1000; g = 9.8; P_atm = 1.013×10⁵ Pa.  
-P_G = 1.47×10⁵ Pa; P_abs = 2.483×10⁵ Pa.
+h = 20 m; ρ = 1000; g = 9.8; P_atm = 1.013×10⁵ Pa.  
+P_G = 1.96×10⁵ Pa; P_abs = 2.973×10⁵ Pa.
 
-**Seawater 400 m**  
-ρ = 1025 kg/m³ → P_G ≈ 4.02×10⁶ Pa; P_abs ≈ 4.12×10⁶ Pa.
+**Seawater 250 m**  
+ρ = 1025 kg/m³ → P_G ≈ 2.51×10⁶ Pa; P_abs ≈ 2.61×10⁶ Pa.
 
 ---
 
@@ -244,15 +244,15 @@ Press small pedal piston → pressure transmits uniformly through the liquid →
 
 ### Worked examples
 
-**Hydraulic lift (lecture numbers)**  
-A_out = 0.1 m²; A_in = 0.01 m²; lift 1500 N.  
-F_in = F_out × (A_in/A_out) = 1500 × (0.01/0.1) = **150 N**.
+**Hydraulic lift**  
+A_out = 0.20 m²; A_in = 0.02 m²; lift 1800 N.  
+F_in = F_out × (A_in/A_out) = 1800 × (0.02/0.20) = **180 N**.
 
 **Another lift**  
-A_out = 0.5 m²; A_in = 0.025 m²; load 2000 N → F_in = 100 N (20× advantage).
+A_out = 0.40 m²; A_in = 0.02 m²; load 2400 N → F_in = 120 N (20× advantage).
 
 **Press**  
-A_in = 0.02 m²; A_out = 1.6 m²; F_in = 250 N → F_out = 20,000 N (80×).
+A_in = 0.025 m²; A_out = 1.5 m²; F_in = 200 N → F_out = 12,000 N (60×).
 
 ---
 
@@ -289,18 +289,18 @@ Apparent weight = Actual weight − F_B
 
 ### Worked example
 
-Fully submerged box V = 0.5 m³ in fresh water ρ = 1000 kg/m³.  
-F_B = ρVg = 1000 × 0.5 × 9.8 = **4900 N**.
+Fully submerged box V = 0.40 m³ in fresh water ρ = 1000 kg/m³.  
+F_B = ρVg = 1000 × 0.40 × 9.8 = **3920 N**.
 
 ### Swimmer pressure (absolute)
 
-8 m below fresh water surface; P_atm = 1.013×10⁵ Pa.  
-P_G = ρgh = 1000×9.8×8 = 7.84×10⁴ Pa.  
-P_abs = P_atm + P_G ≈ 1.80×10⁵ Pa.
+10 m below fresh water surface; P_atm = 1.013×10⁵ Pa.  
+P_G = ρgh = 1000×9.8×10 = 9.80×10⁴ Pa.  
+P_abs = P_atm + P_G ≈ 1.99×10⁵ Pa.
 
 ---
 
-## 10. Clinical / medical links (statics)
+## 10. Clinical / medical links
 
 | Physics | Medicine |
 |---------|----------|
