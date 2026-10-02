@@ -1588,7 +1588,39 @@ function shuffle(arr){
   for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); const t=a[i]; a[i]=a[j]; a[j]=t; }
   return a;
 }
-function isMatching(q){ return !!(q && (q.type==='matching' || q.correct_pairs)); }
+function isMatching(q){ return !!(q && (q.type==='matching' || q.correct_pairs || (Array.isArray(q&&q.left) && Array.isArray(q&&q.correct)))); }
+function matchRightId(i){
+  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if(i<26) return L[i];
+  i-=26; return L[Math.floor(i/26)]+L[i%26];
+}
+/** Normalize legacy matching {left,options,correct:idx[]} → working {leftItems,rightItems,correct_pairs}. Idempotent. */
+function normalizeMatching(q){
+  if(!q || !isMatching(q)) return q;
+  if(Array.isArray(q.leftItems) && Array.isArray(q.rightItems) && q.correct_pairs && typeof q.correct_pairs==='object'){
+    return q;
+  }
+  const left=Array.isArray(q.left)?q.left:(Array.isArray(q.prompts)?q.prompts:[]);
+  const options=Array.isArray(q.options)?q.options:(Array.isArray(q.right)?q.right:(Array.isArray(q.responses)?q.responses:[]));
+  const correct=Array.isArray(q.correct)?q.correct:[];
+  if(!left.length || !options.length || correct.length!==left.length) return q;
+  q.leftItems=left.map((t,i)=>({id:String(i+1), text:String(t)}));
+  q.rightItems=options.map((t,i)=>({id:matchRightId(i), text:String(t)}));
+  const pairs={};
+  correct.forEach((optIdx,i)=>{ pairs[String(i+1)]=matchRightId(optIdx); });
+  q.correct_pairs=pairs;
+  q.type=q.type||'matching';
+  return q;
+}
+function normalizeBankMatching(data){
+  if(!data || !data.bank) return data;
+  Object.keys(data.bank).forEach(form=>{
+    const qs=data.bank[form];
+    if(!Array.isArray(qs)) return;
+    qs.forEach(normalizeMatching);
+  });
+  return data;
+}
 function qid(q,i){ return String(q && (q.id!=null?q.id:('q_'+(q.q||'').slice(0,48)+'_'+i))); }
 function isAnswered(val,q){
   if(val==null) return false;
@@ -1883,6 +1915,7 @@ function renderHub(){
 
 function ingestBank(data){
   if(!data || !data.bank){ showToast('JSON needs a bank object'); return; }
+  normalizeBankMatching(data);
   BANK=data;
   document.getElementById('hubTitle').textContent='Medical Physics · Periodic Test 1';
   document.getElementById('hubKicker').textContent=allQuestions().length+' questions';

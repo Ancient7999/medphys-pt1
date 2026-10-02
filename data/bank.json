@@ -2338,22 +2338,43 @@
         "type": "matching",
         "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Match each modulus to the strain in its formula.",
-        "left": [
-          "Young's modulus",
-          "Shear modulus",
-          "Bulk modulus"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Young's modulus"
+          },
+          {
+            "id": "2",
+            "text": "Shear modulus"
+          },
+          {
+            "id": "3",
+            "text": "Bulk modulus"
+          }
         ],
-        "options": [
-          "Change in length over original length",
-          "Sideways shift over original length",
-          "Change in volume over original volume",
-          "Force times original length"
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Change in length over original length"
+          },
+          {
+            "id": "B",
+            "text": "Sideways shift over original length"
+          },
+          {
+            "id": "C",
+            "text": "Change in volume over original volume"
+          },
+          {
+            "id": "D",
+            "text": "Force times original length"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2
-        ],
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C"
+        },
         "explain": "Young's modulus uses longitudinal strain, ΔL/L. Shear modulus uses shear strain, Δx/L. Bulk modulus uses volume strain, ΔV/V. Force times length is not a strain."
       },
       {
@@ -2361,22 +2382,43 @@
         "type": "matching",
         "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Match each stress to the way the force is applied.",
-        "left": [
-          "Longitudinal stress",
-          "Shear stress",
-          "Hydraulic stress"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Longitudinal stress"
+          },
+          {
+            "id": "2",
+            "text": "Shear stress"
+          },
+          {
+            "id": "3",
+            "text": "Hydraulic stress"
+          }
         ],
-        "options": [
-          "Along the long axis of the object",
-          "Parallel to the loaded face",
-          "Inward from all sides at once",
-          "At a single point on the face"
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Along the long axis of the object"
+          },
+          {
+            "id": "B",
+            "text": "Parallel to the loaded face"
+          },
+          {
+            "id": "C",
+            "text": "Inward from all sides at once"
+          },
+          {
+            "id": "D",
+            "text": "At a single point on the face"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2
-        ],
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C"
+        },
         "explain": "Longitudinal stress pulls or pushes along the axis. Shear stress acts parallel to the face. Hydraulic stress is a uniform pressure from all sides. A single point force is none of the three."
       },
       {
@@ -2384,25 +2426,52 @@
         "type": "matching",
         "cat": "Chapter 1: Matter and Mechanical Properties",
         "q": "Match each mechanical property to the change it names.",
-        "left": [
-          "Elasticity",
-          "Plasticity",
-          "Ductility",
-          "Malleability"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Elasticity"
+          },
+          {
+            "id": "2",
+            "text": "Plasticity"
+          },
+          {
+            "id": "3",
+            "text": "Ductility"
+          },
+          {
+            "id": "4",
+            "text": "Malleability"
+          }
         ],
-        "options": [
-          "Return to the original shape",
-          "A permanent set after unloading",
-          "Drawing into a thin wire",
-          "Hammering into a thin sheet",
-          "Compressing with no volume change"
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Return to the original shape"
+          },
+          {
+            "id": "B",
+            "text": "A permanent set after unloading"
+          },
+          {
+            "id": "C",
+            "text": "Drawing into a thin wire"
+          },
+          {
+            "id": "D",
+            "text": "Hammering into a thin sheet"
+          },
+          {
+            "id": "E",
+            "text": "Compressing with no volume change"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3
-        ],
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D"
+        },
         "explain": "Elasticity recovers shape. Plasticity leaves a permanent set. Ductility is drawing into wire. Malleability is hammering into sheet. A volume that does not change is compressibility's opposite, not one of these four."
       },
       {
@@ -2410,22 +2479,43 @@
         "type": "matching",
         "cat": "Chapter 1: Matter and Mechanical Properties",
         "q": "Match each state to its shape and volume.",
-        "left": [
-          "Solid",
-          "Liquid",
-          "Gas"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Solid"
+          },
+          {
+            "id": "2",
+            "text": "Liquid"
+          },
+          {
+            "id": "3",
+            "text": "Gas"
+          }
         ],
-        "options": [
-          "Fixed shape and fixed volume",
-          "Fixed volume, no fixed shape",
-          "No fixed shape and no fixed volume",
-          "Fixed shape, no fixed volume"
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Fixed shape and fixed volume"
+          },
+          {
+            "id": "B",
+            "text": "Fixed volume, no fixed shape"
+          },
+          {
+            "id": "C",
+            "text": "No fixed shape and no fixed volume"
+          },
+          {
+            "id": "D",
+            "text": "Fixed shape, no fixed volume"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2
-        ],
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C"
+        },
         "explain": "A solid keeps shape and volume. A liquid keeps volume and takes the container's shape. A gas keeps neither. A fixed shape with no fixed volume is not one of the three."
       },
       {
@@ -2433,43 +2523,100 @@
         "type": "matching",
         "cat": "Chapter 1: Matter and Mechanical Properties",
         "q": "Match each base quantity, named by its unit system, to the unit that system uses.",
-        "left": [
-          "Length (SI)",
-          "Length (CGS)",
-          "Length (MKS)",
-          "Length (FPS)",
-          "Mass (SI)",
-          "Mass (CGS)",
-          "Mass (MKS)",
-          "Mass (FPS)",
-          "Time (SI)",
-          "Time (CGS)",
-          "Time (MKS)",
-          "Time (FPS)"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Length (SI)"
+          },
+          {
+            "id": "2",
+            "text": "Length (CGS)"
+          },
+          {
+            "id": "3",
+            "text": "Length (MKS)"
+          },
+          {
+            "id": "4",
+            "text": "Length (FPS)"
+          },
+          {
+            "id": "5",
+            "text": "Mass (SI)"
+          },
+          {
+            "id": "6",
+            "text": "Mass (CGS)"
+          },
+          {
+            "id": "7",
+            "text": "Mass (MKS)"
+          },
+          {
+            "id": "8",
+            "text": "Mass (FPS)"
+          },
+          {
+            "id": "9",
+            "text": "Time (SI)"
+          },
+          {
+            "id": "10",
+            "text": "Time (CGS)"
+          },
+          {
+            "id": "11",
+            "text": "Time (MKS)"
+          },
+          {
+            "id": "12",
+            "text": "Time (FPS)"
+          }
         ],
-        "options": [
-          "Metre",
-          "Centimetre",
-          "Foot",
-          "Kilogram",
-          "Gram",
-          "Pound",
-          "Second"
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Metre"
+          },
+          {
+            "id": "B",
+            "text": "Centimetre"
+          },
+          {
+            "id": "C",
+            "text": "Foot"
+          },
+          {
+            "id": "D",
+            "text": "Kilogram"
+          },
+          {
+            "id": "E",
+            "text": "Gram"
+          },
+          {
+            "id": "F",
+            "text": "Pound"
+          },
+          {
+            "id": "G",
+            "text": "Second"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          0,
-          2,
-          3,
-          4,
-          3,
-          5,
-          6,
-          6,
-          6,
-          6
-        ],
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "A",
+          "4": "C",
+          "5": "D",
+          "6": "E",
+          "7": "D",
+          "8": "F",
+          "9": "G",
+          "10": "G",
+          "11": "G",
+          "12": "G"
+        },
         "explain": "SI and MKS share the metre and the kilogram. CGS uses the centimetre and the gram. FPS uses the foot and the pound. Time is the second in all four systems."
       },
       {
@@ -2477,25 +2624,52 @@
         "type": "matching",
         "cat": "Chapter 2: Gauge Pressure",
         "q": "Match each pressure term to the relation that defines it.",
-        "left": [
-          "Absolute pressure",
-          "Gauge pressure",
-          "Atmospheric pressure",
-          "Pressure at depth"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Absolute pressure"
+          },
+          {
+            "id": "2",
+            "text": "Gauge pressure"
+          },
+          {
+            "id": "3",
+            "text": "Atmospheric pressure"
+          },
+          {
+            "id": "4",
+            "text": "Pressure at depth"
+          }
         ],
-        "options": [
-          "Gauge pressure plus atmospheric pressure",
-          "Absolute pressure minus atmospheric pressure",
-          "The pressure of the air at the surface",
-          "Density times g times depth",
-          "Force times area"
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Gauge pressure plus atmospheric pressure"
+          },
+          {
+            "id": "B",
+            "text": "Absolute pressure minus atmospheric pressure"
+          },
+          {
+            "id": "C",
+            "text": "The pressure of the air at the surface"
+          },
+          {
+            "id": "D",
+            "text": "Density times g times depth"
+          },
+          {
+            "id": "E",
+            "text": "Force times area"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3
-        ],
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D"
+        },
         "explain": "Absolute pressure is gauge pressure plus atmospheric pressure. Gauge pressure is absolute minus atmospheric. Atmospheric pressure is the surface air pressure. Pressure at a depth is density times g times depth. Force times area is not a pressure."
       },
       {
@@ -2503,25 +2677,52 @@
         "type": "matching",
         "cat": "Chapter 3: Bernoulli's Equation",
         "q": "Match each relation to the job it does in a narrowed vessel. (Bernoulli's Principle)",
-        "left": [
-          "Continuity",
-          "Bernoulli",
-          "Pascal",
-          "Archimedes"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Continuity"
+          },
+          {
+            "id": "2",
+            "text": "Bernoulli"
+          },
+          {
+            "id": "3",
+            "text": "Pascal"
+          },
+          {
+            "id": "4",
+            "text": "Archimedes"
+          }
         ],
-        "options": [
-          "Raises speed where area falls",
-          "Lowers pressure where speed rises",
-          "Sends a pressure change through a confined fluid",
-          "Sets buoyant force equal to displaced weight",
-          "Sets strain equal to stress over modulus"
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Raises speed where area falls"
+          },
+          {
+            "id": "B",
+            "text": "Lowers pressure where speed rises"
+          },
+          {
+            "id": "C",
+            "text": "Sends a pressure change through a confined fluid"
+          },
+          {
+            "id": "D",
+            "text": "Sets buoyant force equal to displaced weight"
+          },
+          {
+            "id": "E",
+            "text": "Sets strain equal to stress over modulus"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3
-        ],
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D"
+        },
         "explain": "Continuity keeps area times speed constant, so a narrower segment is faster. Bernoulli then lowers pressure where speed is higher. Pascal transmits a pressure change through a confined fluid. Archimedes sets buoyancy equal to the weight of fluid displaced. Stress over modulus is a solid, not a flow relation."
       },
       {
@@ -2529,241 +2730,517 @@
         "type": "matching",
         "cat": "Chapter 1: Matter and Mechanical Properties",
         "q": "Match each measured quantity to the unit used for it.",
-        "options": [
-          "Pascal",
-          "Millimetre of mercury",
-          "Newton",
-          "Kilogram per cubic metre",
-          "No unit",
-          "Joule"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Stress"
+          },
+          {
+            "id": "2",
+            "text": "Mercury-column pressure"
+          },
+          {
+            "id": "3",
+            "text": "Force"
+          },
+          {
+            "id": "4",
+            "text": "Density"
+          },
+          {
+            "id": "5",
+            "text": "Strain"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3,
-          4
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Pascal"
+          },
+          {
+            "id": "B",
+            "text": "Millimetre of mercury"
+          },
+          {
+            "id": "C",
+            "text": "Newton"
+          },
+          {
+            "id": "D",
+            "text": "Kilogram per cubic metre"
+          },
+          {
+            "id": "E",
+            "text": "No unit"
+          },
+          {
+            "id": "F",
+            "text": "Joule"
+          }
         ],
-        "explain": "Stress is force per area, so its unit is the pascal. A mercury column is read in millimetres of mercury. Force is the newton. Density is the kilogram per cubic metre. Strain is a ratio, so it has no unit. The joule is energy.",
-        "left": [
-          "Stress",
-          "Mercury-column pressure",
-          "Force",
-          "Density",
-          "Strain"
-        ]
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D",
+          "5": "E"
+        },
+        "explain": "Stress is force per area, so its unit is the pascal. A mercury column is read in millimetres of mercury. Force is the newton. Density is the kilogram per cubic metre. Strain is a ratio, so it has no unit. The joule is energy."
       },
       {
         "id": "PHY00220",
         "type": "matching",
         "cat": "Chapter 1: Matter and Mechanical Properties",
         "q": "Match each symbol to the quantity it stands for.",
-        "options": [
-          "Volume",
-          "Velocity",
-          "Density",
-          "Stress",
-          "Strain",
-          "Mass flow rate",
-          "Volume flow rate"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "V"
+          },
+          {
+            "id": "2",
+            "text": "v"
+          },
+          {
+            "id": "3",
+            "text": "ρ"
+          },
+          {
+            "id": "4",
+            "text": "σ"
+          },
+          {
+            "id": "5",
+            "text": "ε"
+          },
+          {
+            "id": "6",
+            "text": "ṁ"
+          },
+          {
+            "id": "7",
+            "text": "Q"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Volume"
+          },
+          {
+            "id": "B",
+            "text": "Velocity"
+          },
+          {
+            "id": "C",
+            "text": "Density"
+          },
+          {
+            "id": "D",
+            "text": "Stress"
+          },
+          {
+            "id": "E",
+            "text": "Strain"
+          },
+          {
+            "id": "F",
+            "text": "Mass flow rate"
+          },
+          {
+            "id": "G",
+            "text": "Volume flow rate"
+          }
         ],
-        "explain": "Capital V is volume and small v is velocity. ρ is density. σ is stress and ε is strain. The dotted m, ṁ, is mass flow rate. Q is volume flow rate.",
-        "left": [
-          "V",
-          "v",
-          "ρ",
-          "σ",
-          "ε",
-          "ṁ",
-          "Q"
-        ]
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D",
+          "5": "E",
+          "6": "F",
+          "7": "G"
+        },
+        "explain": "Capital V is volume and small v is velocity. ρ is density. σ is stress and ε is strain. The dotted m, ṁ, is mass flow rate. Q is volume flow rate."
       },
       {
         "id": "PHY00221",
         "type": "matching",
         "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Match each solid-mechanics formula to the quantity it defines.",
-        "options": [
-          "Stress",
-          "Longitudinal strain",
-          "Young's modulus",
-          "Shear modulus",
-          "Bulk modulus",
-          "Density",
-          "Force times area"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "F/A"
+          },
+          {
+            "id": "2",
+            "text": "ΔL/L"
+          },
+          {
+            "id": "3",
+            "text": "(F/A)/(ΔL/L)"
+          },
+          {
+            "id": "4",
+            "text": "(F/A)/(Δx/L)"
+          },
+          {
+            "id": "5",
+            "text": "(F/A)/(ΔV/V)"
+          },
+          {
+            "id": "6",
+            "text": "m/V"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Stress"
+          },
+          {
+            "id": "B",
+            "text": "Longitudinal strain"
+          },
+          {
+            "id": "C",
+            "text": "Young's modulus"
+          },
+          {
+            "id": "D",
+            "text": "Shear modulus"
+          },
+          {
+            "id": "E",
+            "text": "Bulk modulus"
+          },
+          {
+            "id": "F",
+            "text": "Density"
+          },
+          {
+            "id": "G",
+            "text": "Force times area"
+          }
         ],
-        "explain": "Stress is force over area. Longitudinal strain is the change in length over the original length. Dividing that stress by that strain gives Young's modulus. Shear and bulk modulus use sideways shift and volume change in the same place. Density is mass over volume. Force times area is not one of these.",
-        "left": [
-          "F/A",
-          "ΔL/L",
-          "(F/A)/(ΔL/L)",
-          "(F/A)/(Δx/L)",
-          "(F/A)/(ΔV/V)",
-          "m/V"
-        ]
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D",
+          "5": "E",
+          "6": "F"
+        },
+        "explain": "Stress is force over area. Longitudinal strain is the change in length over the original length. Dividing that stress by that strain gives Young's modulus. Shear and bulk modulus use sideways shift and volume change in the same place. Density is mass over volume. Force times area is not one of these."
       },
       {
         "id": "PHY00222",
         "type": "matching",
         "cat": "Chapter 2: Pressure in Fluids",
         "q": "Match each fluid formula to the quantity it defines.",
-        "options": [
-          "Pressure",
-          "Gauge pressure at a depth",
-          "Absolute pressure",
-          "Buoyant force",
-          "Force on the small piston",
-          "Mass flow rate",
-          "Volume flow rate"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "F/A"
+          },
+          {
+            "id": "2",
+            "text": "ρgh"
+          },
+          {
+            "id": "3",
+            "text": "P_gauge + P_atm"
+          },
+          {
+            "id": "4",
+            "text": "ρgV"
+          },
+          {
+            "id": "5",
+            "text": "F_out × A_in / A_out"
+          },
+          {
+            "id": "6",
+            "text": "ρAv"
+          },
+          {
+            "id": "7",
+            "text": "Av"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Pressure"
+          },
+          {
+            "id": "B",
+            "text": "Gauge pressure at a depth"
+          },
+          {
+            "id": "C",
+            "text": "Absolute pressure"
+          },
+          {
+            "id": "D",
+            "text": "Buoyant force"
+          },
+          {
+            "id": "E",
+            "text": "Force on the small piston"
+          },
+          {
+            "id": "F",
+            "text": "Mass flow rate"
+          },
+          {
+            "id": "G",
+            "text": "Volume flow rate"
+          }
         ],
-        "explain": "Pressure is force over area. Gauge pressure at a depth is density times g times depth. Absolute pressure adds atmospheric pressure to the gauge reading. Buoyant force is the weight of the displaced fluid, ρgV. The small-piston force is the large force times the small area over the large area. Mass flow rate is ρAv and volume flow rate is Av.",
-        "left": [
-          "F/A",
-          "ρgh",
-          "P_gauge + P_atm",
-          "ρgV",
-          "F_out × A_in / A_out",
-          "ρAv",
-          "Av"
-        ]
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D",
+          "5": "E",
+          "6": "F",
+          "7": "G"
+        },
+        "explain": "Pressure is force over area. Gauge pressure at a depth is density times g times depth. Absolute pressure adds atmospheric pressure to the gauge reading. Buoyant force is the weight of the displaced fluid, ρgV. The small-piston force is the large force times the small area over the large area. Mass flow rate is ρAv and volume flow rate is Av."
       },
       {
         "id": "PHY00223",
         "type": "matching",
         "cat": "Chapter 3: Bernoulli's Equation",
         "q": "Match each flow formula to the statement it makes. (Bernoulli's Principle)",
-        "options": [
-          "Continuity for a fluid whose density may change",
-          "Continuity for an incompressible liquid",
-          "Bernoulli's constant sum along a streamline",
-          "Mass flow rate as mass over time",
-          "Speed where the vessel has narrowed",
-          "Pressure times area over speed"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "ρ1 A1 v1 = ρ2 A2 v2"
+          },
+          {
+            "id": "2",
+            "text": "A1 v1 = A2 v2"
+          },
+          {
+            "id": "3",
+            "text": "P + ½ρv² + ρgh"
+          },
+          {
+            "id": "4",
+            "text": "m/Δt"
+          },
+          {
+            "id": "5",
+            "text": "A1 v1 / A2"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3,
-          4
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Continuity for a fluid whose density may change"
+          },
+          {
+            "id": "B",
+            "text": "Continuity for an incompressible liquid"
+          },
+          {
+            "id": "C",
+            "text": "Bernoulli's constant sum along a streamline"
+          },
+          {
+            "id": "D",
+            "text": "Mass flow rate as mass over time"
+          },
+          {
+            "id": "E",
+            "text": "Speed where the vessel has narrowed"
+          },
+          {
+            "id": "F",
+            "text": "Pressure times area over speed"
+          }
         ],
-        "explain": "The general continuity statement keeps ρAv the same at two points. If density does not change, area times speed is enough. Bernoulli keeps pressure, kinetic energy per volume, and potential energy per volume in one sum. Mass over time is mass flow rate. Speed in the narrow segment is the wide-segment product divided by the narrow area. Pressure times area over speed is not one of these.",
-        "left": [
-          "ρ1 A1 v1 = ρ2 A2 v2",
-          "A1 v1 = A2 v2",
-          "P + ½ρv² + ρgh",
-          "m/Δt",
-          "A1 v1 / A2"
-        ]
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D",
+          "5": "E"
+        },
+        "explain": "The general continuity statement keeps ρAv the same at two points. If density does not change, area times speed is enough. Bernoulli keeps pressure, kinetic energy per volume, and potential energy per volume in one sum. Mass over time is mass flow rate. Speed in the narrow segment is the wide-segment product divided by the narrow area. Pressure times area over speed is not one of these."
       },
       {
         "id": "PHY00224",
         "type": "matching",
         "cat": "Chapter 2: Pressure in Fluids",
         "q": "Match each required quantity to the rearrangement that gives it.",
-        "options": [
-          "P × A",
-          "F_out × A_in / A_out",
-          "A1 v1 / A2",
-          "Stress × L / Y",
-          "m/V",
-          "P/A",
-          "A_out × F_out / A_out"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Force, from pressure and area"
+          },
+          {
+            "id": "2",
+            "text": "Small-piston force"
+          },
+          {
+            "id": "3",
+            "text": "Narrow-segment speed"
+          },
+          {
+            "id": "4",
+            "text": "Compression before break"
+          },
+          {
+            "id": "5",
+            "text": "Density"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3,
-          4
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "P × A"
+          },
+          {
+            "id": "B",
+            "text": "F_out × A_in / A_out"
+          },
+          {
+            "id": "C",
+            "text": "A1 v1 / A2"
+          },
+          {
+            "id": "D",
+            "text": "Stress × L / Y"
+          },
+          {
+            "id": "E",
+            "text": "m/V"
+          },
+          {
+            "id": "F",
+            "text": "P/A"
+          },
+          {
+            "id": "G",
+            "text": "A_out × F_out / A_out"
+          }
         ],
-        "explain": "Force is pressure times area, not pressure divided by area. The small-piston force is the large force times the small area over the large area. Dividing by the large area twice, or swapping the areas, does not give it. Narrow-segment speed is the incoming area-speed product divided by the narrow area. Compression is stress times length divided by Young's modulus. Density is mass divided by volume.",
-        "left": [
-          "Force, from pressure and area",
-          "Small-piston force",
-          "Narrow-segment speed",
-          "Compression before break",
-          "Density"
-        ]
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D",
+          "5": "E"
+        },
+        "explain": "Force is pressure times area, not pressure divided by area. The small-piston force is the large force times the small area over the large area. Dividing by the large area twice, or swapping the areas, does not give it. Narrow-segment speed is the incoming area-speed product divided by the narrow area. Compression is stress times length divided by Young's modulus. Density is mass divided by volume."
       },
       {
         "id": "PHY00225",
         "type": "matching",
         "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Match each point on a tensile test to what the specimen is doing there.",
-        "options": [
-          "Stress still proportional to strain",
-          "Last point of full shape recovery",
-          "Permanent set after unloading",
-          "Specimen fractures",
-          "Specimen melts"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Proportional limit"
+          },
+          {
+            "id": "2",
+            "text": "Elastic limit"
+          },
+          {
+            "id": "3",
+            "text": "Plastic region"
+          },
+          {
+            "id": "4",
+            "text": "Breaking point"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Stress still proportional to strain"
+          },
+          {
+            "id": "B",
+            "text": "Last point of full shape recovery"
+          },
+          {
+            "id": "C",
+            "text": "Permanent set after unloading"
+          },
+          {
+            "id": "D",
+            "text": "Specimen fractures"
+          },
+          {
+            "id": "E",
+            "text": "Specimen melts"
+          }
         ],
-        "explain": "Up to the proportional limit, stress stays proportional to strain. The elastic limit is the last point at which the shape fully returns. Past that, the plastic region leaves a permanent set. The breaking point is fracture. Melting is a thermal change, not a point on this curve.",
-        "left": [
-          "Proportional limit",
-          "Elastic limit",
-          "Plastic region",
-          "Breaking point"
-        ]
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D"
+        },
+        "explain": "Up to the proportional limit, stress stays proportional to strain. The elastic limit is the last point at which the shape fully returns. Past that, the plastic region leaves a permanent set. The breaking point is fracture. Melting is a thermal change, not a point on this curve."
       },
       {
         "id": "PHY00226",
         "type": "matching",
         "cat": "Chapter 1: Matter and Mechanical Properties",
         "q": "Match each unit to the class of quantity it belongs to.",
-        "options": [
-          "Base unit",
-          "Derived unit"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Metre"
+          },
+          {
+            "id": "2",
+            "text": "Kilogram"
+          },
+          {
+            "id": "3",
+            "text": "Second"
+          },
+          {
+            "id": "4",
+            "text": "Newton"
+          },
+          {
+            "id": "5",
+            "text": "Pascal"
+          },
+          {
+            "id": "6",
+            "text": "Metre per second"
+          }
         ],
-        "correct": [
-          0,
-          0,
-          0,
-          1,
-          1,
-          1
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Base unit"
+          },
+          {
+            "id": "B",
+            "text": "Derived unit"
+          }
         ],
-        "explain": "The metre, the kilogram, and the second are base units, for length, mass, and time. The newton, the pascal, and the metre per second are derived units, for force, pressure, and velocity.",
-        "left": [
-          "Metre",
-          "Kilogram",
-          "Second",
-          "Newton",
-          "Pascal",
-          "Metre per second"
-        ]
+        "correct_pairs": {
+          "1": "A",
+          "2": "A",
+          "3": "A",
+          "4": "B",
+          "5": "B",
+          "6": "B"
+        },
+        "explain": "The metre, the kilogram, and the second are base units, for length, mass, and time. The newton, the pascal, and the metre per second are derived units, for force, pressure, and velocity."
       },
       {
         "id": "PHY00227",
@@ -2938,35 +3415,80 @@
         "type": "matching",
         "cat": "Chapter 1: Matter and Mechanical Properties",
         "q": "Match each derived quantity, named by its unit system, to the unit that system uses.",
-        "left": [
-          "Force (SI)",
-          "Force (CGS)",
-          "Force (MKS)",
-          "Force (FPS)",
-          "Pressure (SI)",
-          "Pressure (CGS)",
-          "Pressure (MKS)",
-          "Pressure (FPS)"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Force (SI)"
+          },
+          {
+            "id": "2",
+            "text": "Force (CGS)"
+          },
+          {
+            "id": "3",
+            "text": "Force (MKS)"
+          },
+          {
+            "id": "4",
+            "text": "Force (FPS)"
+          },
+          {
+            "id": "5",
+            "text": "Pressure (SI)"
+          },
+          {
+            "id": "6",
+            "text": "Pressure (CGS)"
+          },
+          {
+            "id": "7",
+            "text": "Pressure (MKS)"
+          },
+          {
+            "id": "8",
+            "text": "Pressure (FPS)"
+          }
         ],
-        "options": [
-          "Newton",
-          "Dyne",
-          "Pound-force",
-          "Pascal",
-          "Dyne per square centimetre",
-          "Pound per square inch",
-          "Joule"
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Newton"
+          },
+          {
+            "id": "B",
+            "text": "Dyne"
+          },
+          {
+            "id": "C",
+            "text": "Pound-force"
+          },
+          {
+            "id": "D",
+            "text": "Pascal"
+          },
+          {
+            "id": "E",
+            "text": "Dyne per square centimetre"
+          },
+          {
+            "id": "F",
+            "text": "Pound per square inch"
+          },
+          {
+            "id": "G",
+            "text": "Joule"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          0,
-          2,
-          3,
-          4,
-          3,
-          5
-        ],
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "A",
+          "4": "C",
+          "5": "D",
+          "6": "E",
+          "7": "D",
+          "8": "F"
+        },
         "explain": "SI and MKS share the newton for force and the pascal for pressure. CGS uses the dyne, and the dyne per square centimetre. FPS uses the pound-force, and the pound per square inch. The joule is energy, not force or pressure."
       },
       {
@@ -2974,30 +3496,66 @@
         "type": "matching",
         "cat": "Chapter 1: Matter and Mechanical Properties",
         "q": "Match each phase change to the correct state transition.",
-        "left": [
-          "Melting",
-          "Freezing",
-          "Vaporization",
-          "Condensation",
-          "Sublimation",
-          "Deposition"
+        "leftItems": [
+          {
+            "id": "1",
+            "text": "Melting"
+          },
+          {
+            "id": "2",
+            "text": "Freezing"
+          },
+          {
+            "id": "3",
+            "text": "Vaporization"
+          },
+          {
+            "id": "4",
+            "text": "Condensation"
+          },
+          {
+            "id": "5",
+            "text": "Sublimation"
+          },
+          {
+            "id": "6",
+            "text": "Deposition"
+          }
         ],
-        "options": [
-          "Solid to liquid",
-          "Liquid to solid",
-          "Liquid to gas",
-          "Gas to liquid",
-          "Solid to gas directly",
-          "Gas to solid directly"
+        "rightItems": [
+          {
+            "id": "A",
+            "text": "Solid to liquid"
+          },
+          {
+            "id": "B",
+            "text": "Liquid to solid"
+          },
+          {
+            "id": "C",
+            "text": "Liquid to gas"
+          },
+          {
+            "id": "D",
+            "text": "Gas to liquid"
+          },
+          {
+            "id": "E",
+            "text": "Solid to gas directly"
+          },
+          {
+            "id": "F",
+            "text": "Gas to solid directly"
+          }
         ],
-        "correct": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
+        "correct_pairs": {
+          "1": "A",
+          "2": "B",
+          "3": "C",
+          "4": "D",
+          "5": "E",
+          "6": "F"
+        },
         "explain": "Melting is solid→liquid; freezing is liquid→solid; vaporization is liquid→gas; condensation is gas→liquid; sublimation is solid→gas directly; deposition is gas→solid directly (e.g. CO₂ forming dry ice). These six names are the phase-change set from Lecture 1."
       },
       {
