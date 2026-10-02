@@ -1539,6 +1539,9 @@ html.link-drawing .match-item:hover:not(.drawing):not(.is-solved-link){
   100%{transform:translate(var(--dx,0px),-160px) scale(calc(var(--scale,.9)*1.25)) rotate(var(--spin,18deg));opacity:0}
 }
 .q-nav-btn{appearance:none;min-width:2rem;height:1.85rem;padding:0 .45rem;border-radius:9px;border:1px solid rgba(var(--accent-0-rgb),.22);background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.08) 0%,rgba(10,14,22,.55) 100%);color:var(--text-dim);font-family:var(--mono);font-size:.72rem;font-weight:700;line-height:1;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .18s,background .18s,color .18s,box-shadow .18s}
+.q-nav-btn.linking{min-width:3.15rem}
+.q-nav-icon{margin-right:.2rem;font-family:system-ui,sans-serif;font-size:.8rem;line-height:1;vertical-align:-.04em}
+.q-nav-number{font-variant-numeric:tabular-nums}
 .q-nav-btn:hover{border-color:rgba(var(--accent-0-rgb),.5);color:var(--accent-0);background:rgba(var(--accent-0-rgb),.12)}
 .q-nav-btn.current{background:rgba(var(--accent-0-rgb),.16);border-color:var(--accent-0);color:var(--accent-1);box-shadow:0 0 12px rgba(var(--accent-0-rgb),.3),inset 0 1px 0 rgba(255,255,255,.05)}
 .q-nav-btn.done{
@@ -2851,8 +2854,12 @@ function renderNav(){
       +(done?' done':'')
       +((markUnanswered && !done)?' unanswered':'')
       +((skipped && !(markUnanswered && !done))?' skipped':'');
-    b.textContent=String(i+1);
-    b.title=skipped?'Skipped — unanswered':(done?'Answered':'');
+    b.classList.toggle('linking', isMatching(q));
+    b.innerHTML=isMatching(q)
+      ? '<span class=\"q-nav-icon\" aria-hidden=\"true\">🔗</span><span class=\"q-nav-number\">'+(i+1)+'</span>'
+      : '<span class=\"q-nav-number\">'+(i+1)+'</span>';
+    b.title=isMatching(q)?'Linking question'+(skipped?' — skipped — unanswered':(done?' — answered':''))
+      :(skipped?'Skipped — unanswered':(done?'Answered':''));
     b.addEventListener('click',()=>{ current=i; locked=isAnswered(answers[i],q); renderQuestion(); });
     nav.appendChild(b);
   });
@@ -3391,10 +3398,6 @@ document.addEventListener('keydown', e=>{
     e.preventDefault();
     jumpToQuestion(current+(e.key==='ArrowRight'?1:-1));
     return;
-  }
-  if(quizActive && !locked && !typing && !formulaMode && questions[current] && !isMatching(questions[current])){
-    const map={a:0,b:1,c:2,d:3,'1':0,'2':1,'3':2,'4':3};
-    if(map[e.key.toLowerCase()]!=null) selectAnswer(map[e.key.toLowerCase()]);
   }
 });
 
