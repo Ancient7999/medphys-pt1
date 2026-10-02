@@ -57,6 +57,42 @@
     } else if(curOn){
       document.documentElement.setAttribute('data-cursor', 'ring-screen');
     }
+    var stacks={
+      'Instrument Serif':"'Instrument Serif',Georgia,serif",
+      'Space Mono':"'Space Mono',ui-monospace,monospace",
+      'Nunito':"'Nunito',system-ui,sans-serif",
+      'Outfit':"'Outfit',system-ui,sans-serif",
+      'Montserrat':"'Montserrat',system-ui,sans-serif",
+      'Roboto':"'Roboto',system-ui,sans-serif",
+      'Oswald':"'Oswald',system-ui,sans-serif",
+      'Playfair Display':"'Playfair Display',Georgia,serif",
+      'Bebas Neue':"'Bebas Neue',Impact,sans-serif",
+      'Permanent Marker':"'Permanent Marker',cursive",
+      'Pacifico':"'Pacifico',cursive",
+      'Indie Flower':"'Indie Flower',cursive",
+      'Comic Neue':"'Comic Neue',Comic Sans MS,cursive",
+      'Press Start 2P':"'Press Start 2P',monospace",
+      'Georgia':"Georgia,'Times New Roman',serif",
+      'Times New Roman':"'Times New Roman',Times,serif",
+      'Arial':"Arial,Helvetica,sans-serif",
+      'Verdana':"Verdana,Geneva,sans-serif",
+      'Trebuchet MS':"'Trebuchet MS',Helvetica,sans-serif",
+      'Courier New':"'Courier New',Courier,monospace",
+      'Impact':"Impact,Haettenschweiler,sans-serif"
+    };
+    var roles=[
+      ['ui','Outfit',['--font-ui','--body']],
+      ['head','Instrument Serif',['--font-head','--head']],
+      ['question','Instrument Serif',['--font-question']],
+      ['choice','Outfit',['--font-choice']],
+      ['nav','Space Mono',['--font-nav']],
+      ['mono','Space Mono',['--font-mono','--mono']]
+    ];
+    for(var ri=0;ri<roles.length;ri++){
+      var r=roles[ri], name=localStorage.getItem('pt1_font_'+r[0])||r[1];
+      var stack=stacks[name]||stacks[r[1]];
+      for(var vi=0;vi<r[2].length;vi++) document.documentElement.style.setProperty(r[2][vi],stack);
+    }
   }catch(e){
     document.documentElement.setAttribute('data-quality','full');
     document.documentElement.setAttribute('data-custom-cursor','on');
@@ -93,6 +129,12 @@
   --mono:'Space Mono',ui-monospace,monospace;
   --head:'Instrument Serif',Georgia,serif;
   --body:'Outfit',system-ui,sans-serif;
+  --font-ui:var(--body);
+  --font-head:var(--head);
+  --font-question:var(--head);
+  --font-choice:var(--body);
+  --font-nav:var(--mono);
+  --font-mono:var(--mono);
 }
 /* Mood themes — accents + full page background atmosphere (no pink) */
 html.mood-happy {
@@ -302,7 +344,7 @@ body{
     radial-gradient(ellipse var(--skin-glow-c, 40% 35%) at var(--skin-pos-c, 50% 50%), var(--skin-mid, transparent), transparent 65%),
     linear-gradient(165deg,var(--bg) 0%,var(--bg2) 48%,var(--bg) 100%) !important;
   background-color:var(--bg) !important;
-  color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden;position:relative;
+  color:var(--text);font-family:var(--font-ui,var(--body));min-height:100vh;overflow-x:hidden;position:relative;
   transition:background var(--transition-ms),background-color .5s,color .3s;
 }
 body::before{
@@ -438,7 +480,7 @@ html[data-quality="basic"]{
 .view.active{display:block}
 
 .hub-wrap{max-width:1600px;margin:0 auto}
-.hub-wrap h1{font-family:var(--head);font-size:2.45rem;font-weight:400;background:linear-gradient(120deg,var(--cyan-bright) 0%,var(--cyan) 35%,var(--teal) 65%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hub-wrap h1{font-family:var(--font-head,var(--head));font-size:2.45rem;font-weight:400;background:linear-gradient(120deg,var(--cyan-bright) 0%,var(--cyan) 35%,var(--teal) 65%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hub-wrap .hub-kicker{color:var(--text-dim);font-family:var(--mono);font-size:.95rem;margin:6px 0 0;opacity:.75;letter-spacing:.04em;text-transform:uppercase}
 .hub-wrap .sub{color:var(--text-dim);font-family:var(--mono);font-size:1rem;margin:10px 0 28px}
 .timer-dock{position:fixed;bottom:20px;right:20px;z-index:40;display:flex;align-items:center;gap:.65rem;background:rgba(8,12,20,.55);border:1px solid var(--border);border-radius:1.35rem;padding:.7rem .85rem;backdrop-filter:blur(18px) saturate(1.1);box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 18px var(--mood-glow);width:min(94vw,420px);max-width:min(94vw,420px);min-width:min(94vw,280px);min-height:5.6rem;height:5.6rem;box-sizing:border-box}
@@ -509,9 +551,9 @@ html[data-quality="basic"]{
 .card:active{transform:translateY(-1px) scale(.987)}
 .card:focus-visible{outline:2px solid var(--accent-1);outline-offset:3px;box-shadow:0 0 0 4px rgba(var(--accent-0-rgb),.22),0 0 24px rgba(var(--accent-0-rgb),.28)}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin:0}
-.form-letter{font-family:var(--head);font-style:italic;font-weight:400;font-size:1.18rem;line-height:1.25;color:var(--accent-0);letter-spacing:.01em}
+.form-letter{font-family:var(--font-head,var(--head));font-style:italic;font-weight:400;font-size:1.18rem;line-height:1.25;color:var(--accent-0);letter-spacing:.01em}
 .mood-stamp{font-size:1.7rem;min-height:1.7rem}
-.card-title{font-family:var(--head);font-style:italic;font-weight:400;font-size:1.22rem;margin:0;color:var(--text);line-height:1.3}
+.card-title{font-family:var(--font-head,var(--head));font-style:italic;font-weight:400;font-size:1.22rem;margin:0;color:var(--text);line-height:1.3}
 .card-sub{color:var(--text-dim);font-size:.8rem;font-family:var(--mono);letter-spacing:.02em;margin:0}
 .card-stats{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 14px;margin-top:auto;padding-top:12px;border-top:1px solid rgba(var(--accent-0-rgb),.14)}
 .card-pct{margin:0;font-family:var(--mono);font-size:1.05rem;font-weight:700;color:var(--accent-1);letter-spacing:.02em}
@@ -520,10 +562,10 @@ html[data-quality="basic"]{
 .foot{margin-top:24px;text-align:center;font-family:var(--mono);font-size:.62rem;color:var(--text-dim);opacity:.4}
 
 .header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;gap:16px;flex-wrap:wrap}
-.header-left h1{font-family:var(--head);font-style:italic;font-weight:400;font-size:1.85rem;line-height:1.2;letter-spacing:.02em;color:var(--accent-0);text-shadow:0 0 18px rgba(var(--accent-0-rgb),.45)}
+.header-left h1{font-family:var(--font-head,var(--head));font-style:italic;font-weight:400;font-size:1.85rem;line-height:1.2;letter-spacing:.02em;color:var(--accent-0);text-shadow:0 0 18px rgba(var(--accent-0-rgb),.45)}
 .header-left .sub{color:var(--text-dim);font-size:.85rem;margin-top:6px;font-family:var(--mono);letter-spacing:.02em;opacity:.85}
 .header-right{display:flex;gap:10px;flex-wrap:wrap}
-.fs-btn{font-family:var(--mono);font-size:.85rem;color:var(--accent-0);border:1px solid rgba(var(--accent-0-rgb),.28);padding:10px 16px;border-radius:999px;background:rgba(var(--accent-0-rgb),.08);transition:transform .2s,background .2s,border-color .2s,box-shadow .2s,color .2s}
+.fs-btn{font-family:var(--font-nav,var(--mono));font-size:.85rem;color:var(--accent-0);border:1px solid rgba(var(--accent-0-rgb),.28);padding:10px 16px;border-radius:999px;background:rgba(var(--accent-0-rgb),.08);transition:transform .2s,background .2s,border-color .2s,box-shadow .2s,color .2s}
 .fs-btn:hover{background:rgba(var(--accent-0-rgb),.14);border-color:rgba(var(--accent-0-rgb),.55);transform:translateY(-2px);box-shadow:0 0 18px rgba(var(--accent-0-rgb),.28)}
 .fs-btn:active{transform:scale(.97)}
 .fs-btn:focus-visible{outline:2px solid var(--accent-1);outline-offset:3px}
@@ -541,9 +583,9 @@ html[data-quality="basic"]{
 .track-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent-0),var(--accent-1),var(--accent-2));border-radius:99px;transition:width .35s ease}
 .q-count{font-family:var(--mono);font-size:.88rem;color:var(--text-dim);letter-spacing:.02em}
 .cat-tag{font-family:var(--mono);font-size:.68rem;padding:4px 10px;border-radius:999px;border:1px solid rgba(var(--accent-0-rgb),.28);color:var(--accent-1);background:rgba(var(--accent-0-rgb),.1);letter-spacing:.03em}
-.question{font-family:var(--head);font-style:italic;font-weight:400;font-size:1.55rem;line-height:1.4;margin-bottom:20px;color:var(--text);letter-spacing:.01em}
+.question{font-family:var(--font-question,var(--head));font-style:italic;font-weight:400;font-size:1.55rem;line-height:1.4;margin-bottom:20px;color:var(--text);letter-spacing:.01em}
 .options{display:flex;flex-direction:column;gap:12px}
-.opt{position:relative;background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.08) 0%,rgba(10,14,22,.62) 48%,rgba(8,10,16,.82) 100%);border:1px solid rgba(var(--accent-0-rgb),.2);border-left:3px solid rgba(var(--accent-0-rgb),.42);border-radius:14px;padding:16px 18px 16px 56px;font-size:1.12rem;line-height:1.45;text-align:left;color:var(--text);width:100%;font-family:var(--body);box-shadow:0 8px 22px -16px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.04);backdrop-filter:blur(10px) saturate(1.05);transition:transform .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease}
+.opt{position:relative;background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.08) 0%,rgba(10,14,22,.62) 48%,rgba(8,10,16,.82) 100%);border:1px solid rgba(var(--accent-0-rgb),.2);border-left:3px solid rgba(var(--accent-0-rgb),.42);border-radius:14px;padding:16px 18px 16px 56px;font-size:1.12rem;line-height:1.45;text-align:left;color:var(--text);width:100%;font-family:var(--font-choice,var(--body));box-shadow:0 8px 22px -16px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.04);backdrop-filter:blur(10px) saturate(1.05);transition:transform .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease}
 .opt::before{content:attr(data-key);position:absolute;left:14px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:.78rem;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(var(--accent-0-rgb),.1);border:1px solid rgba(var(--accent-0-rgb),.28);color:var(--accent-0);transition:border-color .2s ease,color .2s ease,background .2s ease,box-shadow .2s ease}
 .opt:hover:not(:disabled){border-color:rgba(var(--accent-0-rgb),.55);border-left-color:var(--accent-0);background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.16) 0%,rgba(10,14,22,.7) 48%,rgba(8,10,16,.88) 100%);transform:translateX(4px);box-shadow:0 0 20px rgba(var(--accent-0-rgb),.28),0 10px 24px -14px rgba(0,0,0,.5)}
 .opt:hover:not(:disabled)::before{border-color:var(--accent-0);color:var(--accent-1);background:rgba(var(--accent-0-rgb),.18);box-shadow:0 0 10px rgba(var(--accent-0-rgb),.25)}
@@ -558,7 +600,7 @@ html[data-quality="basic"]{
 .feedback.bad{background:rgba(251,113,133,.1);border:1px solid rgba(251,113,133,.28);color:var(--error)}
 .feedback.idle{background:transparent;border:none;color:var(--text-dim);font-family:var(--mono);font-size:.82rem}
 .nav{display:flex;gap:12px;justify-content:center;margin-top:18px;padding-top:16px;border-top:1px solid rgba(var(--accent-0-rgb),.14);flex-wrap:wrap}
-.nav-btn{font-family:var(--mono);font-size:.88rem;padding:11px 18px;border-radius:12px;border:1px solid rgba(var(--accent-0-rgb),.28);background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.06) 0%,rgba(10,14,22,.45) 100%);color:var(--text);box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:transform .2s,border-color .2s,box-shadow .2s,background .2s,color .2s}
+.nav-btn{font-family:var(--font-nav,var(--mono));font-size:.88rem;padding:11px 18px;border-radius:12px;border:1px solid rgba(var(--accent-0-rgb),.28);background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.06) 0%,rgba(10,14,22,.45) 100%);color:var(--text);box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:transform .2s,border-color .2s,box-shadow .2s,background .2s,color .2s}
 .nav-btn:hover:not(:disabled){border-color:rgba(var(--accent-0-rgb),.55);color:var(--accent-0);transform:translateY(-2px);box-shadow:0 8px 20px rgba(var(--accent-0-rgb),.22),inset 0 1px 0 rgba(255,255,255,.05);background:rgba(var(--accent-0-rgb),.1)}
 .nav-btn:active:not(:disabled){transform:scale(.97)}
 .nav-btn:focus-visible{outline:2px solid var(--accent-1);outline-offset:3px}
@@ -576,7 +618,7 @@ html[data-quality="basic"]{
 .final p{color:var(--text-dim);font-family:var(--mono);font-size:1rem;margin-bottom:6px}
 .final .score-big{font-size:2.8rem;font-weight:900;color:var(--gold);font-family:var(--mono);margin:12px 0}
 .final-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
-.final-actions button,.review-actions button{padding:13px 22px;border:none;border-radius:12px;font-weight:800;font-family:var(--mono);font-size:.95rem}
+.final-actions button,.review-actions button{padding:13px 22px;border:none;border-radius:12px;font-weight:800;font-family:var(--font-nav,var(--mono));font-size:.95rem}
 .results-scroll{text-align:left;max-height:min(58vh,620px);overflow-y:auto!important;overflow-x:hidden;margin:18px 0 8px;padding:4px 8px 8px 2px;border-top:1px solid var(--border);scrollbar-width:thin}
 .results-scroll .review-item{margin-top:12px}
 .results-heading{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin:14px 0 0;text-align:left}
@@ -828,7 +870,7 @@ html[data-quality="basic"]{
 .timer-dock.is-pomo-off{min-width:auto;width:auto;max-width:none;height:auto;min-height:0;padding:.55rem .7rem}
 
 .hub-back{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
-.hub-back button{font-family:var(--mono);font-size:.85rem;color:var(--cyan-bright);background:transparent;border:1px solid var(--border);border-radius:999px;padding:8px 14px;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}
+.hub-back button{font-family:var(--font-nav,var(--mono));font-size:.85rem;color:var(--cyan-bright);background:transparent;border:1px solid var(--border);border-radius:999px;padding:8px 14px;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}
 .hub-back button:hover{background:var(--mood-glow);border-color:var(--cyan);transform:translateY(-1px);box-shadow:0 0 18px var(--mood-glow)}
 .hub-back #resetSolvedBtn[hidden]{display:none!important}
 @media (max-width:720px){
@@ -1502,6 +1544,161 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <span class="setting-item-label">Reset Theme</span>
 <button class="btn btn-secondary" style="border-color:var(--col-error); color:var(--col-error);" onclick="resetThemeToDefaults()">Reset Theme to Defaults</button>
 <p class="setting-item-desc">Resets accent color, hue shift, and dark mode.</p>
+</div>
+<div class="setting-item" id="theme-font-picker" style="border-top:1px solid var(--col-border-light); padding-top:20px;">
+<span class="setting-item-label">Change Fonts</span>
+<p class="setting-item-desc" style="margin:0 0 12px;">Pick a font per UI role. Defaults match the current Quiz look (Outfit / Instrument Serif / Space Mono).</p>
+<div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-ui" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Body / UI</label>
+<select id="font-family-ui" class="font-family-select number-input" data-font-role="ui" title="General UI and body text" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif">Instrument</option>
+<option value="Space Mono">Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit" selected>Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-head" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Headings</label>
+<select id="font-family-head" class="font-family-select number-input" data-font-role="head" title="Titles and card headings" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif" selected>Instrument</option>
+<option value="Space Mono">Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit">Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-question" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Question stem</label>
+<select id="font-family-question" class="font-family-select number-input" data-font-role="question" title="Quiz question text" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif" selected>Instrument</option>
+<option value="Space Mono">Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit">Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-choice" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Choices</label>
+<select id="font-family-choice" class="font-family-select number-input" data-font-role="choice" title="Answer option cards" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif">Instrument</option>
+<option value="Space Mono">Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit" selected>Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-nav" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Buttons / Nav</label>
+<select id="font-family-nav" class="font-family-select number-input" data-font-role="nav" title="Navigator and action buttons" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif">Instrument</option>
+<option value="Space Mono" selected>Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit">Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-mono" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Mono / labels</label>
+<select id="font-family-mono" class="font-family-select number-input" data-font-role="mono" title="Status, timers, chrome labels" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif">Instrument</option>
+<option value="Space Mono" selected>Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit">Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div>
 </div>
 <div class="setting-item" id="theme-cursor-picker" style="border-top:1px solid var(--col-border-light); padding-top:20px;">
 <span class="setting-item-label">Custom Cursor</span>

@@ -25,6 +25,161 @@
 <span style="font-size:0.82em; color:var(--col-text-muted);">Vibrant</span>
 </div>
 </div>
+<div class="setting-item" id="theme-font-picker" style="border-top:1px solid var(--col-border-light); padding-top:20px;">
+<span class="setting-item-label">Change Fonts</span>
+<p class="setting-item-desc" style="margin:0 0 12px;">Pick a font per UI role. Defaults match the current Quiz look (Outfit / Instrument Serif / Space Mono).</p>
+<div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-ui" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Body / UI</label>
+<select id="font-family-ui" class="font-family-select number-input" data-font-role="ui" title="General UI and body text" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif">Instrument</option>
+<option value="Space Mono">Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit" selected>Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-head" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Headings</label>
+<select id="font-family-head" class="font-family-select number-input" data-font-role="head" title="Titles and card headings" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif" selected>Instrument</option>
+<option value="Space Mono">Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit">Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-question" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Question stem</label>
+<select id="font-family-question" class="font-family-select number-input" data-font-role="question" title="Quiz question text" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif" selected>Instrument</option>
+<option value="Space Mono">Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit">Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-choice" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Choices</label>
+<select id="font-family-choice" class="font-family-select number-input" data-font-role="choice" title="Answer option cards" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif">Instrument</option>
+<option value="Space Mono">Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit" selected>Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-nav" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Buttons / Nav</label>
+<select id="font-family-nav" class="font-family-select number-input" data-font-role="nav" title="Navigator and action buttons" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif">Instrument</option>
+<option value="Space Mono" selected>Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit">Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+<label for="font-family-mono" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Mono / labels</label>
+<select id="font-family-mono" class="font-family-select number-input" data-font-role="mono" title="Status, timers, chrome labels" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
+<option value="Instrument Serif">Instrument</option>
+<option value="Space Mono" selected>Space Mono</option>
+<option value="Nunito">Nunito</option>
+<option value="Outfit">Outfit</option>
+<option value="Montserrat">Montserrat</option>
+<option value="Roboto">Roboto</option>
+<option value="Oswald">Oswald</option>
+<option value="Playfair Display">Playfair</option>
+<option value="Bebas Neue">Bebas</option>
+<option value="Permanent Marker">Marker</option>
+<option value="Pacifico">Pacifico</option>
+<option value="Indie Flower">Indie Flower</option>
+<option value="Comic Neue">Comic Neue</option>
+<option value="Press Start 2P">Pixel</option>
+<option value="Georgia">Georgia</option>
+<option value="Times New Roman">Times</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="Trebuchet MS">Trebuchet</option>
+<option value="Courier New">Courier</option>
+<option value="Impact">Impact</option>
+</select>
+</div>
+</div>
 <div class="setting-item" id="theme-cursor-picker" style="border-top:1px solid var(--col-border-light); padding-top:20px;">
 <span class="setting-item-label">Custom Cursor</span>
 <p class="setting-item-desc" style="margin:0 0 12px;">Pick a cursor style. Theme accent recolors the live cursor.</p>

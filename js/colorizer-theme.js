@@ -238,6 +238,138 @@ global.resetThemeToDefaults = resetThemeToDefaults;
 
 
 
+
+  // —— Per-role font pickers (Quiz Theme settings) ——
+  var FONT_STORAGE_PREFIX = 'pt1_font_';
+  var FONT_ROLES = [
+    { id: 'ui', defaultName: 'Outfit', vars: ['--font-ui', '--body'] },
+    { id: 'head', defaultName: 'Instrument Serif', vars: ['--font-head', '--head'] },
+    { id: 'question', defaultName: 'Instrument Serif', vars: ['--font-question'] },
+    { id: 'choice', defaultName: 'Outfit', vars: ['--font-choice'] },
+    { id: 'nav', defaultName: 'Space Mono', vars: ['--font-nav'] },
+    { id: 'mono', defaultName: 'Space Mono', vars: ['--font-mono', '--mono'] }
+  ];
+  var FONT_STACKS = {
+    'Instrument Serif': "'Instrument Serif', Georgia, serif",
+    'Space Mono': "'Space Mono', ui-monospace, monospace",
+    'Nunito': "'Nunito', system-ui, sans-serif",
+    'Outfit': "'Outfit', system-ui, sans-serif",
+    'Montserrat': "'Montserrat', system-ui, sans-serif",
+    'Roboto': "'Roboto', system-ui, sans-serif",
+    'Oswald': "'Oswald', system-ui, sans-serif",
+    'Playfair Display': "'Playfair Display', Georgia, serif",
+    'Bebas Neue': "'Bebas Neue', Impact, sans-serif",
+    'Permanent Marker': "'Permanent Marker', cursive",
+    'Pacifico': "'Pacifico', cursive",
+    'Indie Flower': "'Indie Flower', cursive",
+    'Comic Neue': "'Comic Neue', Comic Sans MS, cursive",
+    'Press Start 2P': "'Press Start 2P', monospace",
+    'Georgia': "Georgia, 'Times New Roman', serif",
+    'Times New Roman': "'Times New Roman', Times, serif",
+    'Arial': "Arial, Helvetica, sans-serif",
+    'Verdana': "Verdana, Geneva, sans-serif",
+    'Trebuchet MS': "'Trebuchet MS', Helvetica, sans-serif",
+    'Courier New': "'Courier New', Courier, monospace",
+    'Impact': "Impact, Haettenschweiler, sans-serif"
+  };
+  var FONT_GOOGLE = {
+    'Instrument Serif': 'Instrument+Serif:ital@0;1',
+    'Space Mono': 'Space+Mono:wght@400;700',
+    'Nunito': 'Nunito:wght@400;500;600;700',
+    'Outfit': 'Outfit:wght@400;500;600;700',
+    'Montserrat': 'Montserrat:wght@400;500;600;700',
+    'Roboto': 'Roboto:wght@400;500;700',
+    'Oswald': 'Oswald:wght@400;500;600;700',
+    'Playfair Display': 'Playfair+Display:ital,wght@0,400;0,700;1,400',
+    'Bebas Neue': 'Bebas+Neue',
+    'Permanent Marker': 'Permanent+Marker',
+    'Pacifico': 'Pacifico',
+    'Indie Flower': 'Indie+Flower',
+    'Comic Neue': 'Comic+Neue:wght@400;700',
+    'Press Start 2P': 'Press+Start+2P'
+  };
+  var _loadedGoogleFonts = {};
+
+  function ensureGoogleFont(name) {
+    var spec = FONT_GOOGLE[name];
+    if (!spec || _loadedGoogleFonts[name]) return;
+    _loadedGoogleFonts[name] = true;
+    // Already bundled defaults are imported in page CSS; still fine to re-link.
+    var id = 'pt1-gfont-' + name.replace(/\s+/g, '-').toLowerCase();
+    if (document.getElementById(id)) return;
+    var link = document.createElement('link');
+    link.id = id;
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=' + spec + '&display=swap';
+    document.head.appendChild(link);
+  }
+
+  function fontStackFor(name, fallback) {
+    if (FONT_STACKS[name]) return FONT_STACKS[name];
+    if (FONT_STACKS[fallback]) return FONT_STACKS[fallback];
+    return FONT_STACKS['Outfit'];
+  }
+
+  function readFontRole(roleId, defaultName) {
+    try {
+      var v = localStorage.getItem(FONT_STORAGE_PREFIX + roleId);
+      if (v && FONT_STACKS[v]) return v;
+      // Migrate legacy single-key choice onto Body / UI only
+      if (roleId === 'ui') {
+        var legacy = localStorage.getItem('pt1_font_family');
+        if (legacy && FONT_STACKS[legacy]) return legacy;
+      }
+    } catch (e) {}
+    return defaultName;
+  }
+
+  function applyFontRole(roleId, name, persist) {
+    if (document.documentElement.classList.contains('study-page')) return;
+    var role = null;
+    for (var i = 0; i < FONT_ROLES.length; i++) {
+      if (FONT_ROLES[i].id === roleId) { role = FONT_ROLES[i]; break; }
+    }
+    if (!role) return;
+    if (!FONT_STACKS[name]) name = role.defaultName;
+    ensureGoogleFont(name);
+    var stack = fontStackFor(name, role.defaultName);
+    var root = document.documentElement;
+    for (var j = 0; j < role.vars.length; j++) {
+      root.style.setProperty(role.vars[j], stack);
+    }
+    if (persist !== false) {
+      try { localStorage.setItem(FONT_STORAGE_PREFIX + roleId, name); } catch (e) {}
+    }
+    var sel = document.getElementById('font-family-' + roleId);
+    if (sel && sel.value !== name) sel.value = name;
+  }
+
+  function applyAllFonts(persist) {
+    if (document.documentElement.classList.contains('study-page')) return;
+    for (var i = 0; i < FONT_ROLES.length; i++) {
+      var r = FONT_ROLES[i];
+      applyFontRole(r.id, readFontRole(r.id, r.defaultName), persist === true);
+    }
+  }
+
+  function wireFontPickers() {
+    applyAllFonts(false);
+    var panel = document.getElementById('theme-font-picker');
+    if (!panel || panel.dataset.wired === '1') return;
+    panel.dataset.wired = '1';
+    panel.addEventListener('change', function (e) {
+      var sel = e.target && e.target.closest ? e.target.closest('select.font-family-select') : null;
+      if (!sel || !panel.contains(sel)) return;
+      var role = sel.getAttribute('data-font-role');
+      if (!role) return;
+      applyFontRole(role, sel.value, true);
+    });
+  }
+
+  global.applyFontRole = applyFontRole;
+  global.applyAllFonts = applyAllFonts;
+  global.wireFontPickers = wireFontPickers;
+
   var CURSOR_SKIN_KEY = 'pt1_cursor_skin';
   var CURSOR_ON_KEY = 'pt1_custom_cursor';
   var CURSOR_SKINS = ['ring-screen','ring-tight','ring-gold','pill','beam-v','beam-h','diamond','comma'];
@@ -411,6 +543,7 @@ localStorage.setItem('atc_accent_strength', strengthSlider.value);
 loadAppSettings();
 applyThemeLocks();
 applyExtraGlow();
+wireFontPickers();
 wireCursorPicker();
 document.body.style.opacity = "1";
 })();
