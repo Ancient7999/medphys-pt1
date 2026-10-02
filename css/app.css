@@ -672,7 +672,7 @@ html.study-page .study-header .sub {
   font-family: var(--mono);
 }
 /* Study actions, including Main Menu, stay on the Vesper palette—not Quiz chrome. */
-html.study-page .btn {
+html.study-page .study-header .btn {
   font-family: var(--mono);
   color: #f8ecee;
   border: 1px solid rgba(232, 200, 136, 0.4);
@@ -681,7 +681,7 @@ html.study-page .btn {
   box-shadow: none;
   animation: none;
 }
-html.study-page .btn:hover {
+html.study-page .study-header .btn:hover {
   background: rgba(232, 160, 180, 0.14);
   border-color: #e8a0b4;
   color: #e8a0b4;
@@ -689,7 +689,7 @@ html.study-page .btn:hover {
   filter: none;
   transform: none;
 }
-html.study-page .btn.primary {
+html.study-page .study-header .btn.primary {
   color: #10080e;
   font-family: var(--head);
   font-weight: 700;
@@ -699,12 +699,12 @@ html.study-page .btn.primary {
   animation: none;
   background-size: auto;
 }
-html.study-page .btn.primary:hover {
+html.study-page .study-header .btn.primary:hover {
   filter: brightness(1.04);
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 14px 40px rgba(232, 160, 180, 0.38), 0 0 24px rgba(232, 200, 136, 0.22);
 }
-html.study-page .btn.primary::after { display: none; }
+html.study-page .study-header .btn.primary::after { display: none; }
 html.study-page .chapter-card {
   border: 1.5px solid rgba(232, 160, 180, 0.36);
   border-left: 1.5px solid rgba(232, 160, 180, 0.36);
