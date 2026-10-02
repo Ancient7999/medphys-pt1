@@ -1585,84 +1585,11 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
 .status-bar{flex-wrap:wrap;row-gap:10px;flex-direction:column;align-items:stretch}
 .status-lead{display:flex;align-items:center;gap:12px}
 .q-nav{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;margin-left:0;width:100%;justify-content:flex-start;direction:ltr}
-.link-spark-laser{position:fixed;inset:0;z-index:240;pointer-events:none;overflow:hidden}
-.link-spark-laser .laser-layer{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.link-spark-laser .laser-beam{
-  fill:none;stroke-linecap:round;stroke-linejoin:round;
-  opacity:0;will-change:opacity,stroke-dashoffset;
-  animation:linkLaserBeamLife var(--beam-dur,2100ms) cubic-bezier(.18,.72,.22,1) forwards;
-}
-.link-spark-laser .laser-beam-glow{
-  stroke:rgba(var(--accent-0-rgb),.38);stroke-width:7;
-  filter:drop-shadow(0 0 10px rgba(var(--accent-0-rgb),.55));
-}
-.link-spark-laser .laser-beam-a{
-  stroke:var(--accent-0);stroke-width:2.6;
-  filter:drop-shadow(0 0 5px rgba(var(--accent-0-rgb),.95)) drop-shadow(0 0 16px rgba(var(--accent-0-rgb),.65)) drop-shadow(0 0 28px rgba(var(--accent-1-rgb),.35));
-}
-.link-spark-laser .laser-beam-b-glow{
-  stroke:rgba(var(--accent-1-rgb),.32);stroke-width:5.5;
-  filter:drop-shadow(0 0 8px rgba(var(--accent-1-rgb),.5));
-}
-.link-spark-laser .laser-beam-b{
-  stroke:var(--accent-1);stroke-width:1.8;
-  filter:drop-shadow(0 0 5px rgba(var(--accent-1-rgb),.9)) drop-shadow(0 0 14px rgba(var(--accent-0-rgb),.45));
-}
-.link-spark-laser .laser-core{
-  position:absolute;width:16px;height:16px;margin-left:-8px;margin-top:-8px;border-radius:50%;
-  background:radial-gradient(circle,var(--accent-0) 0%,rgba(var(--accent-0-rgb),.55) 40%,transparent 70%);
-  box-shadow:0 0 12px rgba(var(--accent-0-rgb),.95),0 0 28px rgba(var(--accent-0-rgb),.55),0 0 40px rgba(var(--accent-1-rgb),.3);
-  animation:linkLaserCore var(--beam-dur,2100ms) ease-out forwards;
-}
-.link-spark-laser .laser-spark{
-  position:absolute;width:6px;height:6px;margin-left:-3px;margin-top:-3px;border-radius:50%;
-  background:var(--accent-0);box-shadow:0 0 8px rgba(var(--accent-0-rgb),1),0 0 16px rgba(var(--accent-1-rgb),.7);
-  animation:linkLaserSpark var(--spark-dur,1400ms) ease-out forwards;
-  --sx:0px;--sy:0px;
-}
-@keyframes linkLaserBeamLife{
-  0%{opacity:0;stroke-dashoffset:var(--plen)}
-  10%{opacity:1}
-  38%{opacity:1;stroke-dashoffset:0}
-  72%{opacity:1;stroke-dashoffset:0}
-  100%{opacity:0;stroke-dashoffset:0}
-}
-@keyframes linkLaserCore{
-  0%{transform:scale(.2);opacity:0}
-  12%{transform:scale(1.4);opacity:1}
-  55%{transform:scale(1);opacity:1}
-  100%{transform:scale(.35);opacity:0}
-}
-@keyframes linkLaserSpark{
-  0%{transform:translate(0,0) scale(.4);opacity:0}
-  14%{opacity:1}
-  100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}
-}
-.link-border-laser{position:fixed;inset:0;z-index:241;pointer-events:none;overflow:hidden}
-.link-border-laser .border-laser-layer{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.link-border-laser .border-laser-path{
-  fill:none;stroke-linecap:round;stroke-linejoin:round;
-  opacity:0;will-change:opacity,stroke-dashoffset;
-  animation:linkBorderLaserTravel var(--beam-dur,2500ms) linear forwards;
-}
-.link-border-laser .border-laser-glow{
-  stroke:rgba(var(--accent-0-rgb),.42);stroke-width:6.5;
-  filter:drop-shadow(0 0 10px rgba(var(--accent-0-rgb),.55));
-}
-.link-border-laser .border-laser-core{
-  stroke:var(--accent-0);stroke-width:2.4;
-  filter:drop-shadow(0 0 5px rgba(var(--accent-0-rgb),.95)) drop-shadow(0 0 14px rgba(var(--accent-0-rgb),.6)) drop-shadow(0 0 24px rgba(var(--accent-1-rgb),.35));
-}
-.link-border-laser .border-laser-core-b{
-  stroke:var(--accent-1);stroke-width:1.6;
-  filter:drop-shadow(0 0 4px rgba(var(--accent-1-rgb),.9)) drop-shadow(0 0 12px rgba(var(--accent-0-rgb),.4));
-  animation-delay:calc(var(--beam-dur,2500ms) * .08);
-}
-@keyframes linkBorderLaserTravel{
-  0%{opacity:0;stroke-dashoffset:var(--dash-from,0)}
-  8%{opacity:1}
-  88%{opacity:1}
-  100%{opacity:0;stroke-dashoffset:calc(var(--dash-from,0) - var(--plen))}
+.float-bit{position:fixed;z-index:240;pointer-events:none;font-size:1.45rem;line-height:1;filter:drop-shadow(0 6px 10px var(--mood-glow));animation:floatBloom var(--dur,1200ms) ease-out forwards}
+@keyframes floatBloom{
+  0%{transform:translate(0,0) scale(var(--scale,.9)) rotate(0deg);opacity:1}
+  70%{opacity:1}
+  100%{transform:translate(var(--dx,0px),-160px) scale(calc(var(--scale,.9)*1.25)) rotate(var(--spin,18deg));opacity:0}
 }
 .q-nav-btn{appearance:none;min-width:2rem;height:1.85rem;padding:0 .45rem;border-radius:9px;border:1px solid rgba(var(--accent-0-rgb),.22);background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.08) 0%,rgba(10,14,22,.55) 100%);color:var(--text-dim);font-family:var(--mono);font-size:.72rem;font-weight:700;line-height:1;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .18s,background .18s,color .18s,box-shadow .18s}
 .q-nav-btn.linking{min-width:3.15rem}
@@ -1690,13 +1617,13 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   box-shadow:0 0 8px rgba(244,63,94,.75);
   pointer-events:none;
 }
-/* Skipped: unanswered already passed — one intermittent sparkle per pill (faster / more frequent). */
+/* Skipped: one soft, intermittent sparkle per pill; position changes each pulse. */
 @keyframes skipSpark{
   0%,38%,100%{opacity:0;transform:scale(.3)}
   44%,52%{opacity:1;transform:scale(1.2)}
   70%,78%{opacity:1;transform:scale(1.1)}
 }
-/* Back button: especially frequent / punchier sparkles when skips are behind */
+/* Back button: a slower, desynced sparkle when skips are behind. */
 @keyframes skipSparkBack{
   0%,18%,36%,54%,72%,100%{opacity:0;transform:scale(.25)}
   6%,12%{opacity:1;transform:scale(1.35)}
@@ -1723,7 +1650,7 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   pointer-events:none;
   opacity:0;
   z-index:2;
-  animation:skipSpark var(--skip-duration,1.35s) ease-in-out infinite var(--skip-delay,0s);
+  animation:skipSpark var(--skip-duration,3.2s) ease-in-out infinite var(--skip-delay,0s);
 }
 #backBtn.has-skips-behind::before{
   content:'';
@@ -1737,7 +1664,7 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   pointer-events:none;
   opacity:0;
   z-index:2;
-  animation:skipSparkBack var(--skip-duration,.95s) ease-in-out infinite var(--skip-delay,0s);
+  animation:skipSparkBack var(--skip-duration,3.5s) ease-in-out infinite var(--skip-delay,0s);
 }
 html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) .match-item,html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) .q-nav-btn{cursor:none!important}
 
@@ -3026,15 +2953,25 @@ function hasSkipsBehind(){
   return false;
 }
 function setSkipSparkleStyle(el){
-  el.style.setProperty('--skip-x',(10+Math.random()*80).toFixed(1)+'%');
-  el.style.setProperty('--skip-y',(18+Math.random()*64).toFixed(1)+'%');
+  var randomizePosition=function(){
+    el.style.setProperty('--skip-x',(10+Math.random()*80).toFixed(1)+'%');
+    el.style.setProperty('--skip-y',(18+Math.random()*64).toFixed(1)+'%');
+  };
+  randomizePosition();
   var isBack = el && el.id === 'backBtn';
   if(isBack){
-    el.style.setProperty('--skip-delay',(-Math.random()*0.9).toFixed(2)+'s');
-    el.style.setProperty('--skip-duration',(0.7+Math.random()*0.45).toFixed(2)+'s');
+    el.style.setProperty('--skip-delay',(-Math.random()*2.4).toFixed(2)+'s');
+    el.style.setProperty('--skip-duration',(2.8+Math.random()*1.2).toFixed(2)+'s');
   } else {
-    el.style.setProperty('--skip-delay',(-Math.random()*1.6).toFixed(2)+'s');
-    el.style.setProperty('--skip-duration',(1.05+Math.random()*0.7).toFixed(2)+'s');
+    el.style.setProperty('--skip-delay',(-Math.random()*2.8).toFixed(2)+'s');
+    el.style.setProperty('--skip-duration',(2.5+Math.random()*1.3).toFixed(2)+'s');
+  }
+  /* Keep one glow in place, then move it only at the next pulse boundary. */
+  if(!el.dataset.skipSparkBound){
+    el.addEventListener('animationiteration',function(ev){
+      if(ev.animationName==='skipSpark' || ev.animationName==='skipSparkBack') randomizePosition();
+    });
+    el.dataset.skipSparkBound='1';
   }
 }
 function updateBackSkipGlow(){
@@ -3322,198 +3259,19 @@ function relayoutWires(){
 }
 addEventListener('scroll',relayoutWires,true);
 addEventListener('resize',relayoutWires);
-function celebrateLink(x,y,leftEl,rightEl){
-  /* Accent spark + perimeter lasers on matched items; shared life duration. */
-  const W=window.innerWidth, H=window.innerHeight;
-  const pad=2;
-  const bounds={left:pad,top:pad,right:Math.max(pad+1,W-pad),bottom:Math.max(pad+1,H-pad)};
-  const r=Math.random();
-  let life;
-  if(r<0.52) life=2500+Math.random()*500;       /* common 2.5–3s */
-  else if(r<0.78) life=2000+Math.random()*400;  /* 2.0–2.4s */
-  else if(r<0.90) life=3300+Math.random()*400;  /* uncommon ~3.3–3.7s */
-  else if(r<0.97) life=4000+Math.random()*500;  /* rare ~4–4.5s */
-  else life=4500+Math.random()*500;             /* very rare up to 5s */
-  life=Math.min(5000,Math.max(2000,life));
-  const lifeMs=life.toFixed(0)+'ms';
-
-  const wrap=document.createElement('div');
-  wrap.className='link-spark-laser';
-  wrap.style.setProperty('--beam-dur',lifeMs);
-  wrap.setAttribute('aria-hidden','true');
-
-  function randomBeamLength(){
-    const maxDim=Math.max(W,H);
-    const rr=Math.random();
-    if(rr<0.3) return maxDim*(0.9+Math.random()*0.75); /* cross-screen */
-    if(rr<0.7) return 240+Math.random()*320; /* medium-long */
-    return 160+Math.random()*160; /* still longer than legacy half-beams */
+function celebrateLink(x,y){
+  const bits=['😊','😄','🤩','🥳','🌸','🌺','🌼','🌷','💮','✨','🌻','💐'];
+  for(let i=0;i<16;i++){
+    const el=document.createElement('span'); el.className='float-bit'; el.textContent=bits[i%bits.length];
+    el.style.left=(x+(Math.random()*24-12))+'px'; el.style.top=y+'px';
+    el.style.setProperty('--dx',(Math.random()*120-60)+'px');
+    el.style.setProperty('--dur',(900+Math.random()*800)+'ms');
+    el.style.setProperty('--scale',(0.75+Math.random()*0.9).toFixed(2));
+    el.style.setProperty('--spin',((Math.random()*50)-20)+'deg');
+    document.body.appendChild(el); setTimeout(()=>el.remove(),1900);
   }
-  function traceLaser(ox,oy,dx,dy,length){
-    const pts=[{x:ox,y:oy}];
-    let px=ox,py=oy,vx=dx,vy=dy,rem=length;
-    const eps=0.35, maxBounces=14;
-    for(let b=0;b<maxBounces && rem>0.5;b++){
-      let tHit=Infinity, flipX=false, flipY=false;
-      function consider(t, hx, hy){
-        if(!(t>eps)) return;
-        if(t+1e-6<tHit){ tHit=t; flipX=hx; flipY=hy; }
-        else if(Math.abs(t-tHit)<=1e-6){ flipX=flipX||hx; flipY=flipY||hy; }
-      }
-      if(vx>1e-8) consider((bounds.right-px)/vx,true,false);
-      else if(vx<-1e-8) consider((bounds.left-px)/vx,true,false);
-      if(vy>1e-8) consider((bounds.bottom-py)/vy,false,true);
-      else if(vy<-1e-8) consider((bounds.top-py)/vy,false,true);
-      if(!(tHit<Infinity) || tHit>=rem){
-        pts.push({x:px+vx*rem,y:py+vy*rem});
-        break;
-      }
-      px+=vx*tHit; py+=vy*tHit;
-      if(flipX){ vx=-vx; px+=vx*eps; }
-      if(flipY){ vy=-vy; py+=vy*eps; }
-      px=Math.min(bounds.right,Math.max(bounds.left,px));
-      py=Math.min(bounds.bottom,Math.max(bounds.top,py));
-      pts.push({x:px,y:py});
-      rem-=tHit;
-    }
-    return pts;
-  }
-  function beamPoints(ox,oy,angle){
-    const c=Math.cos(angle), s=Math.sin(angle);
-    const lenA=randomBeamLength(), lenB=randomBeamLength();
-    const pos=traceLaser(ox,oy,c,s,lenA);
-    const neg=traceLaser(ox,oy,-c,-s,lenB);
-    return neg.slice(1).reverse().concat(pos);
-  }
-  function ptsAttr(pts){
-    return pts.map(p=>p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ');
-  }
-
-  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
-  svg.setAttribute('class','laser-layer');
-  svg.setAttribute('width','100%');
-  svg.setAttribute('height','100%');
-  svg.setAttribute('viewBox','0 0 '+W+' '+H);
-  svg.setAttribute('preserveAspectRatio','none');
-
-  const baseAng=(Math.random()*Math.PI)-Math.PI/2;
-  const beams=[
-    {ang:baseAng, glow:'laser-beam-glow', core:'laser-beam-a', delay:0},
-    {ang:baseAng+Math.PI*(0.38+Math.random()*0.18), glow:'laser-beam-b-glow', core:'laser-beam-b', delay:40+Math.random()*80}
-  ];
-  beams.forEach(spec=>{
-    const pts=beamPoints(x,y,spec.ang);
-    const points=ptsAttr(pts);
-    ['glow','core'].forEach(kind=>{
-      const pl=document.createElementNS('http://www.w3.org/2000/svg','polyline');
-      pl.setAttribute('class','laser-beam '+spec[kind]);
-      pl.setAttribute('points',points);
-      pl.style.animationDelay=spec.delay.toFixed(0)+'ms';
-      svg.appendChild(pl);
-      let plen=0;
-      for(let i=1;i<pts.length;i++){
-        const dx=pts[i].x-pts[i-1].x, dy=pts[i].y-pts[i-1].y;
-        plen+=Math.hypot(dx,dy);
-      }
-      plen=Math.max(1,plen);
-      pl.style.setProperty('--plen',plen.toFixed(1));
-      pl.style.strokeDasharray=String(plen);
-      pl.style.strokeDashoffset=String(plen);
-    });
-  });
-  wrap.appendChild(svg);
-
-  const core=document.createElement('span');
-  core.className='laser-core';
-  core.style.left=x+'px';
-  core.style.top=y+'px';
-  wrap.appendChild(core);
-
-  for(let i=0;i<10;i++){
-    const sp=document.createElement('span');
-    sp.className='laser-spark';
-    sp.style.left=x+'px';
-    sp.style.top=y+'px';
-    const ang=(Math.PI*2*i)/10+(Math.random()*.4);
-    const dist=36+Math.random()*72;
-    sp.style.setProperty('--sx',(Math.cos(ang)*dist).toFixed(1)+'px');
-    sp.style.setProperty('--sy',(Math.sin(ang)*dist).toFixed(1)+'px');
-    sp.style.setProperty('--spark-dur',Math.min(life,900+Math.random()*700).toFixed(0)+'ms');
-    wrap.appendChild(sp);
-  }
-  document.body.appendChild(wrap);
-
-  /* Edge lasers: travel the borders of the matched left + right choice items */
-  const els=[leftEl,rightEl].filter(el=>el && el.getBoundingClientRect);
-  let borderWrap=null;
-  if(els.length){
-    borderWrap=document.createElement('div');
-    borderWrap.className='link-border-laser';
-    borderWrap.style.setProperty('--beam-dur',lifeMs);
-    borderWrap.setAttribute('aria-hidden','true');
-    const bsvg=document.createElementNS('http://www.w3.org/2000/svg','svg');
-    bsvg.setAttribute('class','border-laser-layer');
-    bsvg.setAttribute('width','100%');
-    bsvg.setAttribute('height','100%');
-    bsvg.setAttribute('viewBox','0 0 '+W+' '+H);
-    bsvg.setAttribute('preserveAspectRatio','none');
-
-    function roundedRectD(x0,y0,w,h,rad){
-      const r=Math.max(0,Math.min(rad,w/2,h/2));
-      return 'M '+(x0+r)+','+y0+
-        ' H '+(x0+w-r)+
-        ' A '+r+','+r+' 0 0 1 '+(x0+w)+','+(y0+r)+
-        ' V '+(y0+h-r)+
-        ' A '+r+','+r+' 0 0 1 '+(x0+w-r)+','+(y0+h)+
-        ' H '+(x0+r)+
-        ' A '+r+','+r+' 0 0 1 '+x0+','+(y0+h-r)+
-        ' V '+(y0+r)+
-        ' A '+r+','+r+' 0 0 1 '+(x0+r)+','+y0+
-        ' Z';
-    }
-
-    els.forEach((el,idx)=>{
-      const rect=el.getBoundingClientRect();
-      if(!(rect.width>2 && rect.height>2)) return;
-      const cs=getComputedStyle(el);
-      const br=parseFloat(cs.borderTopLeftRadius)||14;
-      const d=roundedRectD(rect.left,rect.top,rect.width,rect.height,br);
-      const probe=document.createElementNS('http://www.w3.org/2000/svg','path');
-      probe.setAttribute('d',d);
-      bsvg.appendChild(probe);
-      const plen=Math.max(1,probe.getTotalLength());
-      bsvg.removeChild(probe);
-      const dash=Math.max(36,Math.min(120,plen*0.18));
-      const gap=Math.max(1,plen-dash);
-      const classes=[
-        'border-laser-path border-laser-glow',
-        'border-laser-path border-laser-core',
-        'border-laser-path border-laser-core-b'
-      ];
-      classes.forEach((cls,ci)=>{
-        const p=document.createElementNS('http://www.w3.org/2000/svg','path');
-        p.setAttribute('class',cls);
-        p.setAttribute('d',d);
-        p.style.setProperty('--plen',plen.toFixed(1));
-        /* Segment travels the perimeter; stagger second item / secondary core */
-        const startOff=(ci===2 ? dash*0.55 : 0)+(idx*plen*0.12);
-        const from=(-startOff).toFixed(1);
-        p.style.setProperty('--dash-from',from);
-        p.style.strokeDasharray=dash.toFixed(1)+' '+gap.toFixed(1);
-        p.style.strokeDashoffset=from;
-        bsvg.appendChild(p);
-      });
-    });
-    borderWrap.appendChild(bsvg);
-    document.body.appendChild(borderWrap);
-  }
-
-  setTimeout(()=>{
-    wrap.remove();
-    if(borderWrap) borderWrap.remove();
-  },life+140);
+  spawnFireworkBurst(x, Math.max(40,y-40), 18);
 }
-
 
 function isLockedMatchWire(q, ans, wire){
   if(!wire || wire.leftId==null || wire.rightId==null) return false;
@@ -3742,7 +3500,7 @@ function onDrawUp(ev){
       cur.pairs[leftId]=rightId;
       cur.wires.push({leftId,rightId,points:pts,color:currentWireColor()});
       cur.checked=false;
-      celebrateLink(ev.clientX, ev.clientY, leftEl, rightEl);
+      celebrateLink(ev.clientX, ev.clientY);
       // Glow + lock left in place (no full redraw)
       leftEl.classList.add('paired','is-solved-link');
       leftEl.disabled=true;
