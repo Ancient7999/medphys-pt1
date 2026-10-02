@@ -162,7 +162,7 @@ v ↓  ⇒  P ↑
 
 ---
 
-## 7. Medical applications of Bernoulli (and related continuity)
+## 7. Medical applications of Bernoulli
 
 ### Blood flow through narrowed arteries (stenosis / atherosclerosis)
 
