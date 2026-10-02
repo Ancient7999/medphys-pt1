@@ -1,25 +1,25 @@
 /* Quantifier-30 theme CSS variables — override these in consumer repos to retheme */
 :root {
---accent-0: #ff8800;
---accent-0-rgb: 255, 136, 0;
---accent-1: #00e5e5;
---accent-1-rgb: 0, 229, 229;
---accent-2: #00cccc;
---accent-2-rgb: 0, 204, 204;
---accent-3: #00aaaa;
---accent-3-rgb: 0, 170, 170;
---accent-4: #008888;
---accent-4-rgb: 0, 136, 136;
---accent-5: #004444;
---accent-5-rgb: 0, 68, 68;
---accent-6: #0096ff;
---accent-6-rgb: 0, 150, 255;
---accent-7: #0064ff;
---accent-7-rgb: 0, 100, 255;
---accent-8: #00b4ff;
---accent-8-rgb: 0, 180, 255;
---accent-9: #0082b4;
---accent-9-rgb: 0, 130, 180;
+--accent-0: #ffc583;
+--accent-0-rgb: 255, 197, 131;
+--accent-1: #ffb968;
+--accent-1-rgb: 255, 185, 104;
+--accent-2: #ffad4e;
+--accent-2-rgb: 255, 173, 78;
+--accent-3: #ff9f31;
+--accent-3-rgb: 255, 159, 49;
+--accent-4: #ff9010;
+--accent-4-rgb: 255, 144, 16;
+--accent-5: #e57a00;
+--accent-5-rgb: 229, 122, 0;
+--accent-6: #ffb662;
+--accent-6-rgb: 255, 182, 98;
+--accent-7: #ff9a27;
+--accent-7-rgb: 255, 154, 39;
+--accent-8: #ffc079;
+--accent-8-rgb: 255, 192, 121;
+--accent-9: #f88500;
+--accent-9-rgb: 248, 133, 0;
 --col-primary: var(--accent-0);
 --col-text-main: #ccc;
 --col-text-muted: #888;
@@ -62,8 +62,8 @@
 --col-result-wrong-border: var(--col-error);
 --col-result-neutral-bg: var(--col-bg-card);
 --col-result-neutral-border: var(--col-border-light);
---accent-deep: #004444;
---accent-deep-rgb: 0, 68, 68;
+--accent-deep: #8f4c00;
+--accent-deep-rgb: 143, 76, 0;
 --bg-tint-color: rgba(0,0,0,0);
 --bg-tint-color-high: rgba(0,0,0,0);
 }

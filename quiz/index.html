@@ -1606,12 +1606,27 @@ const canvas=document.getElementById('fxCanvas'); const ctx=canvas.getContext('2
 let W,H; const streams=[], orbs=[], sparks=[];
 function fxColors(){
   const cs=getComputedStyle(document.documentElement);
-  return [cs.getPropertyValue('--cyan').trim()||'#22d3ee', cs.getPropertyValue('--cyan-bright').trim()||'#67e8f9', cs.getPropertyValue('--teal').trim()||'#2dd4bf', cs.getPropertyValue('--gold').trim()||'#fbbf24', cs.getPropertyValue('--accent-2').trim()||'#82b1ff'];
+  function accentHex(i, fallback){
+    let v=(cs.getPropertyValue('--accent-'+i)||'').trim();
+    if(/^#[0-9A-Fa-f]{6}$/.test(v)) return v;
+    const rgb=(cs.getPropertyValue('--accent-'+i+'-rgb')||'').trim();
+    if(rgb){
+      const parts=rgb.split(',').map(function(n){return Math.max(0,Math.min(255,parseInt(n.trim(),10)||0));});
+      if(parts.length>=3){
+        return '#'+parts.slice(0,3).map(function(n){return n.toString(16).padStart(2,'0');}).join('');
+      }
+    }
+    return fallback;
+  }
+  // Always resolve to concrete hex from --accent-* (canvas cannot paint var(--cyan) aliases)
+  return [accentHex(0,'#ff8800'), accentHex(1,'#ffb968'), accentHex(2,'#ffad4e'), accentHex(3,'#ff9f31'), accentHex(4,'#ff9010')];
 }
 function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
 addEventListener('resize', resize); resize();
-for(let i=0;i<14;i++) streams.push({x:Math.random()*W,y:Math.random()*H,len:30+Math.random()*70,speed:.45+Math.random()*1.1,a:.07+Math.random()*.14,color:Math.random()>.4?'#22d3ee':'#fbbf24'});
-for(let i=0;i<22;i++) orbs.push({x:Math.random()*W,y:Math.random()*H,r:2+Math.random()*6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.22,a:.12+Math.random()*.28,color:fxColors()[i%5],pulse:Math.random()*6});
+(function initFxParticles(){ const cols=fxColors();
+for(let i=0;i<14;i++) streams.push({x:Math.random()*W,y:Math.random()*H,len:30+Math.random()*70,speed:.45+Math.random()*1.1,a:.07+Math.random()*.14,color:cols[i%cols.length]});
+for(let i=0;i<22;i++) orbs.push({x:Math.random()*W,y:Math.random()*H,r:2+Math.random()*6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.22,a:.12+Math.random()*.28,color:cols[i%cols.length],pulse:Math.random()*6});
+})();
 function spawnFireworkBurst(cx,cy,count=28){
   const cols=fxColors();
   for(let i=0;i<count;i++){const angle=(Math.PI*2*i)/count+Math.random()*.3,speed=2.2+Math.random()*4.5;
@@ -1661,9 +1676,10 @@ if(!document.documentElement.getAttribute('data-cursor')) document.documentEleme
 })();
 function refreshFxAccentColors(){
   const cols=fxColors();
-  streams.forEach((s,i)=>{ s.color=i%2?cols[0]:cols[3]; });
+  streams.forEach((s,i)=>{ s.color=cols[i%cols.length]; });
   orbs.forEach((o,i)=>{ o.color=cols[i%cols.length]; });
 }
+window.refreshFxAccentColors=refreshFxAccentColors;
 refreshFxAccentColors();
 
 /* —— bank + hub —— */
@@ -2365,16 +2381,10 @@ renderHub();
 <script src="../js/particles.js"></script>
 <script src="../js/colorizer-theme.js"></script>
 <script>
-// Keep FX stream colors in sync when accent changes via colorizer
+// Keep FX + WebGL particles in sync when accent changes (refreshThemeSVGs also calls refreshFxAccentColors)
 (function(){
-  var _orig = window.changeAccentColor;
-  if(typeof _orig === 'function'){
-    window.changeAccentColor = function(){
-      var r = _orig.apply(this, arguments);
-      try{ if(typeof refreshFxAccentColors === 'function') refreshFxAccentColors(); }catch(e){}
-      return r;
-    };
-  }
+  try{ if(typeof refreshFxAccentColors === 'function') refreshFxAccentColors(); }catch(e){}
+  try{ if(typeof refreshThemeSVGs === 'function') refreshThemeSVGs(); }catch(e){}
 })();
 </script>
 </body>
