@@ -163,6 +163,12 @@ b = hue2rgb(p,q,h-1/3);
 const toHex = x => Math.round(x*255).toString(16).padStart(2,'0');
 return '#' + toHex(r) + toHex(g) + toHex(b);
 }
+function refreshParticleEffects() {
+  try { refreshThemeSVGs(); } catch (e) {}
+  try {
+    if (typeof global.refreshFxAccentColors === 'function') global.refreshFxAccentColors();
+  } catch (e) {}
+}
 function changeAccentColor(newHex, strength = 100) {
 if (!newHex || newHex[0] !== '#' || newHex.length !== 7) return;
 let [hue, baseSat, baseLight] = hexToHsl(newHex);
@@ -192,7 +198,7 @@ const dg = parseInt(deepColor.slice(3,5),16);
 const db = parseInt(deepColor.slice(5,7),16);
 document.documentElement.style.setProperty('--accent-deep', deepColor);
 document.documentElement.style.setProperty('--accent-deep-rgb', `${dr}, ${dg}, ${db}`);
-refreshThemeSVGs();
+refreshParticleEffects();
 if (typeof globalBlobs !== 'undefined' && globalBlobs) {
 globalBlobs.forEach(blob => {
 blob.colorStops = [ `rgba(var(--accent-0-rgb), 0.32)`, `rgba(var(--accent-2-rgb), 0.08)`, `rgba(var(--accent-4-rgb), 0)`
@@ -230,7 +236,7 @@ if (hexInput) hexInput.value = '#FF8800';
 if (strengthSlider) strengthSlider.value = 64;
 if (strengthDisplay) strengthDisplay.textContent = 64;
 changeAccentColor('#FF8800', 64);
-refreshThemeSVGs();
+refreshParticleEffects();
 syncAllPresetHighlights();renderCustomPresets();
 }
 

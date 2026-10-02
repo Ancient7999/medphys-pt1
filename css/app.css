@@ -671,6 +671,7 @@ html.study-page .study-header .sub {
   color: #c4a0b0;
   font-family: var(--mono);
 }
+/* Study actions, including Main Menu, stay on the Vesper palette—not Quiz chrome. */
 html.study-page .btn {
   font-family: var(--mono);
   color: #f8ecee;

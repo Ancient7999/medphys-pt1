@@ -1551,8 +1551,6 @@ html.link-drawing .match-item:hover:not(.drawing):not(.is-solved-link){
 .q-nav-btn.done.current{box-shadow:0 0 18px rgba(var(--accent-0-rgb),.55),inset 0 1px 0 rgba(255,255,255,.08)}
 .q-nav-btn.unanswered{
   position:relative;
-  border-color:rgba(251,113,133,.55);
-  color:#fda4af;
 }
 .q-nav-btn.unanswered::after{
   content:'';
@@ -1563,10 +1561,6 @@ html.link-drawing .match-item:hover:not(.drawing):not(.is-solved-link){
   background:#f43f5e;
   box-shadow:0 0 8px rgba(244,63,94,.75);
   pointer-events:none;
-}
-.q-nav-btn.unanswered.current{
-  border-color:rgba(251,113,133,.8);
-  box-shadow:0 0 14px rgba(244,63,94,.35),inset 0 1px 0 rgba(255,255,255,.05);
 }
 /* Skipped: unanswered already passed — intermittent sparkles (not .done glow, not end-run red) */
 @keyframes skipSparkA{
@@ -2242,13 +2236,14 @@ function refreshFxAccentColors(){
   const cols=fxColors();
   streams.forEach((s,i)=>{ s.color=cols[i%cols.length]; });
   orbs.forEach((o,i)=>{ o.color=cols[i%cols.length]; });
+  sparks.forEach((p,i)=>{ p.color=cols[i%cols.length]; });
 }
 window.refreshFxAccentColors=refreshFxAccentColors;
 refreshFxAccentColors();
 
 /* —— bank + hub —— */
 let BANK=null;
-let questions=[], answers=[], current=0, locked=false, quizActive=false, startTime=0, elapsedTimer=null, drawState=null, runLabel='';
+let questions=[], answers=[], current=0, locked=false, quizActive=false, startTime=0, elapsedTimer=null, drawState=null, runLabel='', unansweredMarkersVisible=false;
 let formulaMode=false, formulaKeys=[], formulaCurrentKey='', formulaAdvanceTimer=null, formulaAdvanceRaf=null, formulaHintShown=false, formulaWrongCount=0, formulaHintLevel=0;
 const FORMULA_ADVANCE_MS=3200;
 const FORMULA_COUNT_KEY='pt1_formula_count';
@@ -2650,7 +2645,7 @@ function appendFormulaCard(grid){
   const total=loadFormulaCount();
   const btn=document.createElement('button'); btn.type='button'; btn.className='card formula-card';
   btn.innerHTML=`<div class="card-top"><span class="form-letter">Formulas</span></div>
-    <div class="card-desc-formula">Unlimited practice · cycles least-solved families</div>
+    <div class="card-desc-formula">Infinite practice with formula hints</div>
     <div class="card-stats"><div class="card-pct">${total} answered</div></div>`;
   btn.addEventListener('click',()=>startFormulaRun(Pt1FormulaGen.allKeys(),'Formulas'));
   grid.appendChild(btn);
@@ -2729,7 +2724,7 @@ function startFormulaRun(keys, label){
   formulaCurrentKey=least;
   const q=Pt1FormulaGen.generateQuestion([least]);
   formulaCurrentKey=q.formulaKey||least;
-  questions=[q]; answers=[null]; current=0; locked=false; quizActive=true; runLabel=label||'Formulas';
+  questions=[q]; answers=[null]; current=0; locked=false; quizActive=true; runLabel=label||'Formulas'; unansweredMarkersVisible=false;
   startTime=Date.now();
   if(elapsedTimer) clearInterval(elapsedTimer);
   elapsedTimer=setInterval(()=>{ const e=Math.floor((Date.now()-startTime)/1000); document.getElementById('elapsed').textContent=String(Math.floor(e/60)).padStart(2,'0')+':'+String(e%60).padStart(2,'0'); },1000);
@@ -2773,7 +2768,7 @@ function startRun(pool, label){
   setFormulaShowBtnUsed(false);
   const deck=prepareDeck(pool);
   if(!deck.length){ showToast('Nothing left in this set · reset solved to replay'); return; }
-  questions=deck; answers=new Array(questions.length).fill(null); current=0; locked=false; quizActive=true; runLabel=label;
+  questions=deck; answers=new Array(questions.length).fill(null); current=0; locked=false; quizActive=true; runLabel=label; unansweredMarkersVisible=false;
   startTime=Date.now();
   if(elapsedTimer) clearInterval(elapsedTimer);
   elapsedTimer=setInterval(()=>{ const e=Math.floor((Date.now()-startTime)/1000); document.getElementById('elapsed').textContent=String(Math.floor(e/60)).padStart(2,'0')+':'+String(e%60).padStart(2,'0'); },1000);
@@ -2846,8 +2841,7 @@ function updateBackSkipGlow(){
 }
 function renderNav(){
   const nav=document.getElementById('qNav'); nav.innerHTML='';
-  const atLast=current===questions.length-1;
-  const markUnanswered=atLast && !allQuestionsAnswered();
+  const markUnanswered=unansweredMarkersVisible && !allQuestionsAnswered();
   questions.forEach((q,i)=>{
     const done=isAnswered(answers[i],q);
     const skipped=!done && isSkippedIndex(i);
@@ -3320,6 +3314,7 @@ function goNext(){
   const btn=document.getElementById('nextBtn');
   const action=btn && btn.dataset.action;
   if(action==='return-unanswered'){
+    unansweredMarkersVisible=true;
     const target=parseInt(btn.dataset.target,10);
     if(!Number.isFinite(target) || target<0 || target>=questions.length) return;
     current=target;
@@ -3331,6 +3326,7 @@ function goNext(){
   if(current<questions.length-1){ current++; locked=isAnswered(answers[current], questions[current]); renderQuestion(); }
   else {
     if(!allQuestionsAnswered()){
+      unansweredMarkersVisible=true;
       updateNextActionButton();
       renderNav();
       return;

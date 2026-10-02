@@ -27,7 +27,9 @@
 function buildGridSVG(isLight){const c=isLight?'rgba(0,0,0,0.04)':'rgba(255,255,255,0.04)';return `<svg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'><path d='M0 0 L60 0 M0 0 L0 60' stroke='${c}' stroke-width='0.5' fill='none'/></svg>`;}
 let encodedGrid = '';
 function readAccentRgb(){const rs=getComputedStyle(document.documentElement);let raw=(rs.getPropertyValue('--accent-0-rgb')||'').trim();if(!raw){const hex=(rs.getPropertyValue('--accent-0')||'').trim();if(/^#[0-9A-Fa-f]{6}$/.test(hex)){raw=parseInt(hex.slice(1,3),16)+', '+parseInt(hex.slice(3,5),16)+', '+parseInt(hex.slice(5,7),16);}}return raw||'255, 136, 0';}
-function refreshThemeSVGs(){const rs=getComputedStyle(document.documentElement);const isLight=document.documentElement.classList.contains('light-mode');encodedGrid=encodeURIComponent(buildGridSVG(isLight).replace(/\s+/g,' '));const bgDiv=document.getElementById('el-arquitecto-bg-layer');if(bgDiv)bgDiv.style.backgroundImage=`url("data:image/svg+xml;charset=utf-8,${encodedGrid}")`;if(typeof global.refreshFxAccentColors==='function'){try{global.refreshFxAccentColors();}catch(e){}}if(typeof updateOverlayCanvases==='function'){try{updateOverlayCanvases();}catch(e){}}}
+let particleAccentRgb=readAccentRgb();
+function refreshParticleColors(){particleAccentRgb=readAccentRgb();}
+function refreshThemeSVGs(){const rs=getComputedStyle(document.documentElement);const isLight=document.documentElement.classList.contains('light-mode');encodedGrid=encodeURIComponent(buildGridSVG(isLight).replace(/\s+/g,' '));const bgDiv=document.getElementById('el-arquitecto-bg-layer');if(bgDiv)bgDiv.style.backgroundImage=`url("data:image/svg+xml;charset=utf-8,${encodedGrid}")`;refreshParticleColors();if(typeof global.refreshFxAccentColors==='function'){try{global.refreshFxAccentColors();}catch(e){}}if(typeof updateOverlayCanvases==='function'){try{updateOverlayCanvases();}catch(e){}}}
 const styleSheet = document.createElement('style');
 document.head.appendChild(styleSheet);
 styleSheet.textContent = `#el-arquitecto-bg-layer{content:'';position:fixed;top:0;left:0;width:100%;height:100%;z-index:-3;pointer-events:none;background-size:60px 60px;opacity:0.4;mix-blend-mode:multiply}#el-arquitecto-particle-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;mix-blend-mode:screen}`;
@@ -115,7 +117,7 @@ f.aParticles.forEach(function(p){p.formulaId=-1;p.locked=false;p.colorIndex=0;p.
 activeFormulas.splice(i, 1);
 }
 }
-const accent0 = readAccentRgb();
+const accent0 = particleAccentRgb;
 const [r,g,b] = accent0.split(',').map(n=>parseFloat(n)/255);
 const positions = new Float32Array(particles.length * 2);
 const sizes = new Float32Array(particles.length);
@@ -231,6 +233,7 @@ ctx.fill();
 }
 if (gl) { renderParticles(); }
 
+  global.refreshParticleColors = refreshParticleColors;
   global.refreshThemeSVGs = refreshThemeSVGs;
   global.updateOverlayCanvases = updateOverlayCanvases;
 })(typeof window !== 'undefined' ? window : globalThis);

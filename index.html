@@ -15,13 +15,13 @@
     <button type="button" class="ps2-menu-item hero" id="menuQuiz" role="menuitem">
       <span class="ps2-icon">⚔</span>
       <span class="ps2-label">Quiz Interface
-        <span class="ps2-sub">Practice bank · forms by chapter</span>
+        <span class="ps2-sub">Practice bank · questions and formulas</span>
       </span>
     </button>
     <button type="button" class="ps2-menu-item quiet" id="menuStudy" role="menuitem">
       <span class="ps2-icon">📖</span>
       <span class="ps2-label">Study Interface
-        <span class="ps2-sub">Chapters 1–3 · folded until opened</span>
+        <span class="ps2-sub">Periodic Test 1 study content</span>
       </span>
     </button>
     <button type="button" class="ps2-menu-item neutral" id="menuAbout" role="menuitem">
@@ -102,7 +102,7 @@
   /* window (not document): cursor-idle hideCursor runs on document first and clears .focused; ATC Math restores via window */
   window.addEventListener('keydown', function(e){
     if(about.style.display !== 'none' && about.style.display !== ''){
-      if(e.key === 'Escape'){ e.preventDefault(); showHome(); }
+      if(e.key === 'Escape' || e.key === 'Backspace'){ e.preventDefault(); showHome(); }
       return;
     }
     if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){

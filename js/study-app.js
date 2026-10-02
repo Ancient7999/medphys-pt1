@@ -271,6 +271,13 @@
     });
   }
 
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' || event.key === 'Backspace') {
+      event.preventDefault();
+      window.location.href = 'index.html';
+    }
+  });
+
   buildCards();
   document.body.style.opacity = '1';
 })();
