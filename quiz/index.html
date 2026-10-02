@@ -735,7 +735,7 @@ body.formula-mode.formula-waiting .formula-advance-wrap{display:block}
 .question{font-family:var(--font-question,var(--head));font-style:italic;font-weight:400;font-size:1.55rem;line-height:1.4;margin-bottom:20px;color:var(--text);letter-spacing:.01em}
 .question.is-linking-question{display:flex;align-items:flex-start;gap:.62em}
 .question-link-icon{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:1.18em;height:1.18em;margin-top:.12em;color:var(--accent-0);filter:drop-shadow(0 0 7px rgba(var(--accent-0-rgb),.42))}
-.question-link-icon svg{display:block;width:100%;height:100%;overflow:visible}
+.question-link-icon svg{display:block;width:100%;height:100%;overflow:visible;transform:rotate(28deg) scaleX(-1);transform-origin:center}
 .question-link-copy{min-width:0}
 .options{display:flex;flex-direction:column;gap:12px}
 .opt{position:relative;background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.08) 0%,rgba(10,14,22,.62) 48%,rgba(8,10,16,.82) 100%);border:1px solid rgba(var(--accent-0-rgb),.2);border-left:3px solid rgba(var(--accent-0-rgb),.42);border-radius:14px;padding:16px 18px 16px 56px;font-size:1.12rem;line-height:1.45;text-align:left;color:var(--text);width:100%;font-family:var(--font-choice,var(--body));box-shadow:0 8px 22px -16px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.04);backdrop-filter:blur(10px) saturate(1.05);transition:transform .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease}
@@ -2897,6 +2897,16 @@ function clearWireLayer(){
   if(wctx) wctx.clearRect(0,0,layer.width,layer.height);
   layer.style.display='none';
 }
+/* Same slender, angled pencil geometry as the link-drawing cursor above. */
+const LINK_PENCIL_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 38" aria-hidden="true" focusable="false">'+
+  '<defs><linearGradient id="link-pencil-gradient" x1="0" y1="0" x2="0" y2="38">'+
+  '<stop offset="0%" stop-color="var(--accent-1)"/><stop offset="9%" stop-color="var(--accent-1)"/>'+
+  '<stop offset="9%" stop-color="var(--accent-0)"/><stop offset="20%" stop-color="var(--accent-0)"/>'+
+  '<stop offset="20%" stop-color="var(--accent-2)"/><stop offset="66%" stop-color="var(--accent-2)"/>'+
+  '<stop offset="66%" stop-color="var(--accent-3)"/><stop offset="72%" stop-color="var(--accent-3)"/>'+
+  '<stop offset="72%" stop-color="var(--accent-1)"/><stop offset="86%" stop-color="var(--accent-1)"/>'+
+  '<stop offset="86%" stop-color="var(--text)"/><stop offset="100%" stop-color="var(--text)"/></linearGradient></defs>'+
+  '<path d="M3.6 0H8.4V3.8H9.36V7.22H8.4V25.08L6 38L3.6 25.08V7.22H2.64V3.8H3.6Z" fill="url(#link-pencil-gradient)"/></svg>';
 function renderQuestion(){
   const q=questions[current];
   drawState=null;
@@ -2908,7 +2918,7 @@ function renderQuestion(){
     const icon=document.createElement('span');
     icon.className='question-link-icon';
     icon.setAttribute('aria-hidden','true');
-    icon.textContent='✎';
+    icon.innerHTML=LINK_PENCIL_SVG;
     const copy=document.createElement('span');
     copy.className='question-link-copy';
     copy.textContent=q.q;
@@ -2971,6 +2981,25 @@ function ensureMatchAns(){
   cur.pairs=cur.pairs||{}; cur.wires=Array.isArray(cur.wires)?cur.wires:[]; answers[current]=cur; return cur;
 }
 function wirePoints(w){ if(w&&Array.isArray(w.points)&&w.points.length) return w.points; if(w&&w.x1!=null) return [{x:w.x1,y:w.y1},{x:w.x2,y:w.y2}]; return []; }
+function wireColorHex(value){
+  const raw=(value||'').toString().trim();
+  if(/^#[0-9a-f]{6}$/i.test(raw)) return raw;
+  if(/^#[0-9a-f]{3}$/i.test(raw)) return '#'+raw.slice(1).split('').map(ch=>ch+ch).join('');
+  const rgb=raw.match(/^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)/i);
+  if(rgb){
+    const nums=rgb.slice(1,4).map(n=>Math.max(0,Math.min(255,Math.round(Number(n)))));
+    if(nums.every(Number.isFinite)) return '#'+nums.map(n=>n.toString(16).padStart(2,'0')).join('');
+  }
+  return '';
+}
+function currentWireColor(){
+  const cs=getComputedStyle(document.documentElement);
+  const accent=wireColorHex(cs.getPropertyValue('--accent-1'));
+  if(accent) return accent;
+  const rgb=wireColorHex('rgb('+cs.getPropertyValue('--accent-1-rgb')+')');
+  if(rgb) return rgb;
+  return wireColorHex(cs.getPropertyValue('--accent-0')) || '#ffb968';
+}
 const MARK_GAP=11;
 const MARK_R=2.2;
 let committedMarks=null;
@@ -3068,26 +3097,25 @@ function paintWires(_ignored,wires,live){
   wctx.setTransform(dpr,0,0,dpr,0,0);
   wctx.clearRect(0,0,boxW,boxH);
   wctx.translate(r.left,r.top);
-  const cs=getComputedStyle(document.documentElement);
-  let ink=(cs.getPropertyValue('--accent-1')||'').trim();
-  if(!/^#[0-9A-Fa-f]{6}$/.test(ink)){
-    const rgb=(cs.getPropertyValue('--accent-1-rgb')||cs.getPropertyValue('--accent-0-rgb')||'').trim();
-    if(rgb){
-      const p=rgb.split(',').map(function(n){return Math.max(0,Math.min(255,parseInt(n.trim(),10)||0));});
-      if(p.length>=3) ink='#'+p.slice(0,3).map(function(n){return n.toString(16).padStart(2,'0');}).join('');
-    }
-  }
-  if(!/^#[0-9A-Fa-f]{6}$/.test(ink)) ink=(cs.getPropertyValue('--cyan-bright')||'').trim()||'#ffb968';
+  const ink=currentWireColor();
   wctx.globalCompositeOperation='source-over';
   wctx.globalAlpha=1;
-  wctx.strokeStyle=ink;
-  wctx.fillStyle=ink;
   wctx.lineWidth=2.2;
   wctx.lineCap='round';
   wctx.lineJoin='round';
   wctx.setLineDash([]);
-  (wires||[]).forEach(w=>strokePoly(wctx, wirePoints(w)));
+  // Each committed wire owns an absolute color. Only legacy wires without a
+  // color are migrated here; existing colors are never replaced on redraw.
+  (wires||[]).forEach(w=>{
+    const color=wireColorHex(w&&w.color) || ink;
+    if(w && w.color!==color) w.color=color;
+    wctx.strokeStyle=color;
+    wctx.fillStyle=color;
+    strokePoly(wctx, wirePoints(w));
+  });
   if(live&&live.points){
+    wctx.strokeStyle=ink;
+    wctx.fillStyle=ink;
     strokePoly(wctx, live.points);
     const last=live.points[live.points.length-1];
     if(last){ wctx.beginPath(); wctx.arc(last.x,last.y,2.2,0,Math.PI*2); wctx.fill(); }
@@ -3304,7 +3332,7 @@ function onDrawUp(ev){
       // may intentionally serve multiple lefts (e.g. shared base units).
       cur.wires=cur.wires.filter(w=>w.leftId!==leftId);
       cur.pairs[leftId]=rightId;
-      cur.wires.push({leftId,rightId,points:pts});
+      cur.wires.push({leftId,rightId,points:pts,color:currentWireColor()});
       cur.checked=false;
       celebrateLink(ev.clientX, ev.clientY);
       // Glow + lock left in place (no full redraw)
@@ -3330,7 +3358,7 @@ function onDrawUp(ev){
       fb.className='feedback idle'; fb.textContent='';
     }
   } else if(pts.length){
-    const loose={points:pts,loose:true};
+    const loose={points:pts,loose:true,color:currentWireColor()};
     if(drawState.side==='L') loose.leftId=drawState.id;
     else loose.rightId=drawState.id;
     cur.wires.push(loose);
