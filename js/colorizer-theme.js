@@ -372,82 +372,113 @@ global.resetThemeToDefaults = resetThemeToDefaults;
 
   var CURSOR_SKIN_KEY = 'pt1_cursor_skin';
   var CURSOR_ON_KEY = 'pt1_custom_cursor';
-  var CURSOR_SKINS = ['ring-screen','ring-tight','ring-gold','pill','beam-v','beam-h','diamond','comma'];
+  var CURSOR_SKINS = ['ring-screen','ring-tight','ring-gold','pill','beam-v','beam-h','diamond','comma','system'];
 
-  function currentCursorChoice() {
+  function isCustomCursorEnabled() {
+    try {
+      var on = localStorage.getItem(CURSOR_ON_KEY);
+      if (on === 'off' || on === '0' || on === 'false') return false;
+      if (on === 'on' || on === '1' || on === 'true') return true;
+    } catch (e) {}
+    return document.documentElement.getAttribute('data-custom-cursor') !== 'off';
+  }
+
+  function currentCursorSkin() {
     try {
       var skin = localStorage.getItem(CURSOR_SKIN_KEY);
-      var on = localStorage.getItem(CURSOR_ON_KEY);
-      if (skin === 'system' || skin === 'off' || on === 'off' || on === '0' || on === 'false') return 'system';
+      if (skin === 'off') skin = 'system';
       if (skin && CURSOR_SKINS.indexOf(skin) !== -1) return skin;
     } catch (e) {}
-    var attr = document.documentElement.getAttribute('data-custom-cursor');
-    if (attr === 'off') return 'system';
     var cur = document.documentElement.getAttribute('data-cursor');
     if (cur && CURSOR_SKINS.indexOf(cur) !== -1) return cur;
     return 'ring-screen';
   }
 
-  function syncCursorPickerUI() {
-    var choice = currentCursorChoice();
-    document.querySelectorAll('.cursor-skin-opt').forEach(function (btn) {
-      var v = btn.getAttribute('data-cursor-skin');
-      btn.classList.toggle('active', v === choice);
-      btn.setAttribute('aria-selected', v === choice ? 'true' : 'false');
-    });
+  /** @deprecated use currentCursorSkin — kept for any external callers */
+  function currentCursorChoice() {
+    return currentCursorSkin();
   }
 
-  function applyCursorChoice(value) {
+  function syncCursorPickerUI() {
+    var skin = currentCursorSkin();
+    var enabled = isCustomCursorEnabled();
+    document.querySelectorAll('.cursor-skin-opt').forEach(function (btn) {
+      var v = btn.getAttribute('data-cursor-skin');
+      btn.classList.toggle('active', v === skin);
+      btn.setAttribute('aria-selected', v === skin ? 'true' : 'false');
+    });
+    var toggle = document.getElementById('custom-cursor-toggle');
+    if (toggle) toggle.checked = enabled;
+    var grid = document.getElementById('cursor-skin-grid');
+    if (grid) grid.classList.toggle('cursor-skins-disabled', !enabled);
+  }
+
+  function applyCursorState(opts) {
     var root = document.documentElement;
-    var skin = value || 'ring-screen';
-    if (skin === 'system' || skin === 'off') {
-      root.setAttribute('data-custom-cursor', 'off');
-      try {
-        localStorage.setItem(CURSOR_ON_KEY, 'off');
-        localStorage.setItem(CURSOR_SKIN_KEY, 'system');
-      } catch (e) {}
-      document.querySelectorAll('.brushCursor').forEach(function (el) {
-        el.classList.add('hidden');
-      });
-      document.querySelectorAll('#cursor').forEach(function (el) {
-        el.classList.add('hidden');
-      });
+    var enabled = (opts && typeof opts.enabled === 'boolean')
+      ? opts.enabled
+      : isCustomCursorEnabled();
+    var skin = (opts && opts.skin) || currentCursorSkin();
+    if (skin === 'off') skin = 'system';
+    if (CURSOR_SKINS.indexOf(skin) === -1) skin = 'ring-screen';
+    try {
+      localStorage.setItem(CURSOR_ON_KEY, enabled ? 'on' : 'off');
+      localStorage.setItem(CURSOR_SKIN_KEY, skin);
+    } catch (e) {}
+    root.setAttribute('data-custom-cursor', enabled ? 'on' : 'off');
+    root.setAttribute('data-cursor', skin);
+    if (enabled) {
+      document.querySelectorAll('#cursor').forEach(function (el) { el.classList.remove('hidden'); });
+      document.querySelectorAll('.brushCursor').forEach(function (el) { el.classList.remove('hidden'); });
     } else {
-      if (CURSOR_SKINS.indexOf(skin) === -1) skin = 'ring-screen';
-      root.setAttribute('data-custom-cursor', 'on');
-      root.setAttribute('data-cursor', skin);
-      try {
-        localStorage.setItem(CURSOR_ON_KEY, 'on');
-        localStorage.setItem(CURSOR_SKIN_KEY, skin);
-      } catch (e) {}
-      document.querySelectorAll('#cursor').forEach(function (el) {
-        el.classList.remove('hidden');
-      });
-      document.querySelectorAll('.brushCursor').forEach(function (el) {
-        el.classList.remove('hidden');
-      });
+      document.querySelectorAll('#cursor').forEach(function (el) { el.classList.add('hidden'); });
+      document.querySelectorAll('.brushCursor').forEach(function (el) { el.classList.add('hidden'); });
     }
     syncCursorPickerUI();
   }
 
+  function applyCursorChoice(value) {
+    // Selecting a skin (including System) turns custom cursors ON and applies that skin.
+    applyCursorState({ enabled: true, skin: value || 'ring-screen' });
+  }
+
+  function setCustomCursorEnabled(on) {
+    applyCursorState({ enabled: !!on, skin: currentCursorSkin() });
+  }
+
   function wireCursorPicker() {
     var grid = document.getElementById('cursor-skin-grid');
-    if (!grid || grid.dataset.wired === '1') {
+    var toggle = document.getElementById('custom-cursor-toggle');
+    if (toggle && toggle.dataset.wired !== '1') {
+      toggle.dataset.wired = '1';
+      toggle.addEventListener('change', function () {
+        setCustomCursorEnabled(!!toggle.checked);
+      });
+    }
+    if (!grid) {
       syncCursorPickerUI();
       return;
     }
-    grid.dataset.wired = '1';
-    grid.addEventListener('click', function (e) {
-      var btn = e.target.closest('.cursor-skin-opt');
-      if (!btn || !grid.contains(btn)) return;
-      applyCursorChoice(btn.getAttribute('data-cursor-skin'));
-    });
-    // Restore saved choice onto the live page (boot may have set attrs already)
-    applyCursorChoice(currentCursorChoice());
+    var firstWire = grid.dataset.wired !== '1';
+    if (firstWire) {
+      grid.dataset.wired = '1';
+      grid.addEventListener('click', function (e) {
+        var btn = e.target.closest('.cursor-skin-opt');
+        if (!btn || !grid.contains(btn)) return;
+        if (grid.classList.contains('cursor-skins-disabled')) return;
+        applyCursorChoice(btn.getAttribute('data-cursor-skin'));
+      });
+      applyCursorState({ enabled: isCustomCursorEnabled(), skin: currentCursorSkin() });
+    } else {
+      syncCursorPickerUI();
+    }
   }
 
   global.applyCursorChoice = applyCursorChoice;
+  global.setCustomCursorEnabled = setCustomCursorEnabled;
   global.syncCursorPickerUI = syncCursorPickerUI;
+  global.isCustomCursorEnabled = isCustomCursorEnabled;
+  global.currentCursorSkin = currentCursorSkin;
 
 (function initThemeSystem() {
 const picker = document.getElementById('accent-color-picker');

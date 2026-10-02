@@ -212,7 +212,7 @@
     } else {
       q = 'A rod of original length ' + fmtSci(L, 2) + ' m extends by ' + fmtSci(dL, 3) + ' m. What is the longitudinal strain?';
       ans = strain; unit = ''; digits = 3;
-      formulaHint = 'Strain = ΔL / L  (dimensionless)';
+      formulaHint = 'Strain = ΔL / L';
       formulaMap = [
         mapLine(fmtWithUnit(L, 'm', 2), 'L'),
         mapLine(fmtWithUnit(dL, 'm', 3), 'ΔL')
@@ -271,7 +271,7 @@
     } else {
       q = 'A substance has density ' + fmtSci(rho, 3) + ' g/cm³. Taking the density of water as 1.00 g/cm³, what is its specific gravity?';
       ans = rho; unit = ''; digits = 3;
-      formulaHint = 'SG = ρ_substance / ρ_water  (dimensionless)';
+      formulaHint = 'SG = ρ_substance / ρ_water';
       formulaMap = [
         mapLine(fmtSci(rho, 3) + ' g/cm³', 'ρ_substance'),
         mapLine('1.00 g/cm³', 'ρ_water')
@@ -408,7 +408,7 @@
     } else {
       q = 'At a depth of ' + h + ' m in fresh water of density 1000 kg/m³, what is the gauge pressure?';
       ans = PG; unit = 'Pa'; digits = 3;
-      formulaHint = 'P_G = ρ g h  (gauge excludes P_atm)';
+      formulaHint = 'P_G = ρ g h';
       formulaMap = [
         mapLine(h + ' m', 'h'),
         mapLine('1000 kg/m³', 'ρ'),
@@ -657,7 +657,7 @@
       const dP = rho * G * dh;
       q = 'A fluid of density 1000 kg/m³ moves slowly up a height change of ' + fmtSci(dh, 2) + ' m, with kinetic terms negligible. Using Bernoulli, by how much does pressure fall?';
       ans = dP; unit = 'Pa'; digits = 3;
-      formulaHint = 'Negligible speed change: ΔP ≈ ρ g Δh  (from P + ρgh = const)';
+      formulaHint = 'ΔP ≈ ρ g Δh';
       formulaMap = [
         mapLine(fmtWithUnit(dh, 'm', 2), 'Δh'),
         mapLine('1000 kg/m³', 'ρ'),
