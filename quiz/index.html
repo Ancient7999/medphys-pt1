@@ -2453,7 +2453,7 @@ function appendFormulaCard(grid){
   const total=loadFormulaCount();
   const btn=document.createElement('button'); btn.type='button'; btn.className='card formula-card';
   btn.innerHTML=`<div class="card-top"><span class="form-letter">Formulas</span></div>
-    <div class="card-desc-formula">Unlimited practice · Ch1–3 through Bernoulli · cycles least-solved families</div>
+    <div class="card-desc-formula">Unlimited practice · cycles least-solved families</div>
     <div class="card-stats"><div class="card-pct">${total} answered</div><div class="card-meta">does not affect chapter progress</div></div>`;
   btn.addEventListener('click',()=>startFormulaRun(Pt1FormulaGen.allKeys(),'Formulas'));
   grid.appendChild(btn);
