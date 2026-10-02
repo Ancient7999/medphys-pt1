@@ -1580,53 +1580,57 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
 .status-bar{flex-wrap:wrap;row-gap:10px;flex-direction:column;align-items:stretch}
 .status-lead{display:flex;align-items:center;gap:12px}
 .q-nav{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;margin-left:0;width:100%;justify-content:flex-start;direction:ltr}
-.link-spark-laser{position:fixed;z-index:240;pointer-events:none;width:0;height:0;left:0;top:0}
+.link-spark-laser{position:fixed;inset:0;z-index:240;pointer-events:none;overflow:hidden}
+.link-spark-laser .laser-layer{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .link-spark-laser .laser-beam{
-  position:absolute;left:0;top:0;width:150px;height:3px;margin-left:-75px;margin-top:-1.5px;border-radius:999px;
-  background:linear-gradient(90deg,transparent 0%,rgba(var(--accent-0-rgb),.12) 12%,var(--accent-0) 50%,rgba(var(--accent-0-rgb),.12) 88%,transparent 100%);
-  box-shadow:0 0 6px rgba(var(--accent-0-rgb),.95),0 0 16px rgba(var(--accent-0-rgb),.7),0 0 32px rgba(var(--accent-1-rgb),.4);
-  transform-origin:center center;will-change:transform,opacity;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;
+  opacity:0;will-change:opacity,stroke-dashoffset;
+  animation:linkLaserBeamLife var(--beam-dur,2100ms) cubic-bezier(.18,.72,.22,1) forwards;
 }
-.link-spark-laser .laser-beam-a{animation:linkLaserSpinA 780ms cubic-bezier(.2,.7,.2,1) forwards}
+.link-spark-laser .laser-beam-glow{
+  stroke:rgba(var(--accent-0-rgb),.38);stroke-width:7;
+  filter:drop-shadow(0 0 10px rgba(var(--accent-0-rgb),.55));
+}
+.link-spark-laser .laser-beam-a{
+  stroke:var(--accent-0);stroke-width:2.6;
+  filter:drop-shadow(0 0 5px rgba(var(--accent-0-rgb),.95)) drop-shadow(0 0 16px rgba(var(--accent-0-rgb),.65)) drop-shadow(0 0 28px rgba(var(--accent-1-rgb),.35));
+}
+.link-spark-laser .laser-beam-b-glow{
+  stroke:rgba(var(--accent-1-rgb),.32);stroke-width:5.5;
+  filter:drop-shadow(0 0 8px rgba(var(--accent-1-rgb),.5));
+}
 .link-spark-laser .laser-beam-b{
-  width:110px;height:2px;margin-left:-55px;margin-top:-1px;opacity:.85;
-  background:linear-gradient(90deg,transparent 0%,rgba(var(--accent-1-rgb),.2) 18%,var(--accent-1) 50%,rgba(var(--accent-1-rgb),.2) 82%,transparent 100%);
-  box-shadow:0 0 8px rgba(var(--accent-1-rgb),.8),0 0 20px rgba(var(--accent-0-rgb),.45);
-  animation:linkLaserSpinB 780ms cubic-bezier(.2,.7,.2,1) forwards;
+  stroke:var(--accent-1);stroke-width:1.8;
+  filter:drop-shadow(0 0 5px rgba(var(--accent-1-rgb),.9)) drop-shadow(0 0 14px rgba(var(--accent-0-rgb),.45));
 }
 .link-spark-laser .laser-core{
-  position:absolute;left:0;top:0;width:14px;height:14px;margin-left:-7px;margin-top:-7px;border-radius:50%;
+  position:absolute;width:16px;height:16px;margin-left:-8px;margin-top:-8px;border-radius:50%;
   background:radial-gradient(circle,var(--accent-0) 0%,rgba(var(--accent-0-rgb),.55) 40%,transparent 70%);
-  box-shadow:0 0 12px rgba(var(--accent-0-rgb),.95),0 0 28px rgba(var(--accent-0-rgb),.55);
-  animation:linkLaserCore 780ms ease-out forwards;
+  box-shadow:0 0 12px rgba(var(--accent-0-rgb),.95),0 0 28px rgba(var(--accent-0-rgb),.55),0 0 40px rgba(var(--accent-1-rgb),.3);
+  animation:linkLaserCore var(--beam-dur,2100ms) ease-out forwards;
 }
 .link-spark-laser .laser-spark{
-  position:absolute;left:0;top:0;width:6px;height:6px;margin-left:-3px;margin-top:-3px;border-radius:50%;
+  position:absolute;width:6px;height:6px;margin-left:-3px;margin-top:-3px;border-radius:50%;
   background:var(--accent-0);box-shadow:0 0 8px rgba(var(--accent-0-rgb),1),0 0 16px rgba(var(--accent-1-rgb),.7);
-  animation:linkLaserSpark var(--spark-dur,700ms) ease-out forwards;
+  animation:linkLaserSpark var(--spark-dur,1400ms) ease-out forwards;
   --sx:0px;--sy:0px;
 }
-@keyframes linkLaserSpinA{
-  0%{transform:rotate(-18deg) scaleX(.15);opacity:0}
-  12%{opacity:1;transform:rotate(28deg) scaleX(1)}
-  72%{opacity:1;transform:rotate(248deg) scaleX(1)}
-  100%{opacity:0;transform:rotate(360deg) scaleX(.35)}
-}
-@keyframes linkLaserSpinB{
-  0%{transform:rotate(72deg) scaleX(.1);opacity:0}
-  12%{opacity:.9;transform:rotate(118deg) scaleX(1)}
-  72%{opacity:.85;transform:rotate(338deg) scaleX(1)}
-  100%{opacity:0;transform:rotate(450deg) scaleX(.3)}
+@keyframes linkLaserBeamLife{
+  0%{opacity:0;stroke-dashoffset:var(--plen)}
+  10%{opacity:1}
+  38%{opacity:1;stroke-dashoffset:0}
+  72%{opacity:1;stroke-dashoffset:0}
+  100%{opacity:0;stroke-dashoffset:0}
 }
 @keyframes linkLaserCore{
   0%{transform:scale(.2);opacity:0}
-  18%{transform:scale(1.35);opacity:1}
+  12%{transform:scale(1.4);opacity:1}
   55%{transform:scale(1);opacity:1}
-  100%{transform:scale(.4);opacity:0}
+  100%{transform:scale(.35);opacity:0}
 }
 @keyframes linkLaserSpark{
   0%{transform:translate(0,0) scale(.4);opacity:0}
-  20%{opacity:1}
+  14%{opacity:1}
   100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}
 }
 .q-nav-btn{appearance:none;min-width:2rem;height:1.85rem;padding:0 .45rem;border-radius:9px;border:1px solid rgba(var(--accent-0-rgb),.22);background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.08) 0%,rgba(10,14,22,.55) 100%);color:var(--text-dim);font-family:var(--mono);font-size:.72rem;font-weight:700;line-height:1;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .18s,background .18s,color .18s,box-shadow .18s}
@@ -3237,29 +3241,119 @@ function relayoutWires(){
 addEventListener('scroll',relayoutWires,true);
 addEventListener('resize',relayoutWires);
 function celebrateLink(x,y){
-  /* Accent-tinted sparkle laser: spawns at the match, rotates briefly, fades out.
-     Colors come from live --accent-* CSS vars so colorizer changes apply to new lasers. */
+  /* Accent-tinted sparkle laser: longer beams with per-side variable length,
+     viewport wall bounce, slower life. Colors from live --accent-* CSS vars. */
+  const W=window.innerWidth, H=window.innerHeight;
+  const pad=2;
+  const bounds={left:pad,top:pad,right:Math.max(pad+1,W-pad),bottom:Math.max(pad+1,H-pad)};
+  const life=2000+Math.random()*500;
   const wrap=document.createElement('div');
   wrap.className='link-spark-laser';
-  wrap.style.left=x+'px';
-  wrap.style.top=y+'px';
+  wrap.style.setProperty('--beam-dur',life.toFixed(0)+'ms');
   wrap.setAttribute('aria-hidden','true');
-  wrap.innerHTML=
-    '<span class="laser-beam laser-beam-a"></span>'+
-    '<span class="laser-beam laser-beam-b"></span>'+
-    '<span class="laser-core"></span>';
-  for(let i=0;i<8;i++){
+
+  function randomBeamLength(){
+    const maxDim=Math.max(W,H);
+    const r=Math.random();
+    if(r<0.3) return maxDim*(0.9+Math.random()*0.75); /* cross-screen */
+    if(r<0.7) return 240+Math.random()*320; /* medium-long */
+    return 160+Math.random()*160; /* still longer than legacy half-beams */
+  }
+  function traceLaser(ox,oy,dx,dy,length){
+    const pts=[{x:ox,y:oy}];
+    let px=ox,py=oy,vx=dx,vy=dy,rem=length;
+    const eps=0.35, maxBounces=14;
+    for(let b=0;b<maxBounces && rem>0.5;b++){
+      let tHit=Infinity, flipX=false, flipY=false;
+      function consider(t, hx, hy){
+        if(!(t>eps)) return;
+        if(t+1e-6<tHit){ tHit=t; flipX=hx; flipY=hy; }
+        else if(Math.abs(t-tHit)<=1e-6){ flipX=flipX||hx; flipY=flipY||hy; }
+      }
+      if(vx>1e-8) consider((bounds.right-px)/vx,true,false);
+      else if(vx<-1e-8) consider((bounds.left-px)/vx,true,false);
+      if(vy>1e-8) consider((bounds.bottom-py)/vy,false,true);
+      else if(vy<-1e-8) consider((bounds.top-py)/vy,false,true);
+      if(!(tHit<Infinity) || tHit>=rem){
+        pts.push({x:px+vx*rem,y:py+vy*rem});
+        break;
+      }
+      px+=vx*tHit; py+=vy*tHit;
+      if(flipX){ vx=-vx; px+=vx*eps; }
+      if(flipY){ vy=-vy; py+=vy*eps; }
+      px=Math.min(bounds.right,Math.max(bounds.left,px));
+      py=Math.min(bounds.bottom,Math.max(bounds.top,py));
+      pts.push({x:px,y:py});
+      rem-=tHit;
+    }
+    return pts;
+  }
+  function beamPoints(ox,oy,angle){
+    const c=Math.cos(angle), s=Math.sin(angle);
+    const lenA=randomBeamLength(), lenB=randomBeamLength();
+    const pos=traceLaser(ox,oy,c,s,lenA);
+    const neg=traceLaser(ox,oy,-c,-s,lenB);
+    return neg.slice(1).reverse().concat(pos);
+  }
+  function ptsAttr(pts){
+    return pts.map(p=>p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ');
+  }
+
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('class','laser-layer');
+  svg.setAttribute('width','100%');
+  svg.setAttribute('height','100%');
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  svg.setAttribute('preserveAspectRatio','none');
+
+  const baseAng=(Math.random()*Math.PI)-Math.PI/2;
+  const beams=[
+    {ang:baseAng, glow:'laser-beam-glow', core:'laser-beam-a', delay:0},
+    {ang:baseAng+Math.PI*(0.38+Math.random()*0.18), glow:'laser-beam-b-glow', core:'laser-beam-b', delay:40+Math.random()*80}
+  ];
+  beams.forEach(spec=>{
+    const pts=beamPoints(x,y,spec.ang);
+    const points=ptsAttr(pts);
+    ['glow','core'].forEach(kind=>{
+      const pl=document.createElementNS('http://www.w3.org/2000/svg','polyline');
+      pl.setAttribute('class','laser-beam '+spec[kind]);
+      pl.setAttribute('points',points);
+      pl.style.animationDelay=spec.delay.toFixed(0)+'ms';
+      svg.appendChild(pl);
+      /* path length for draw-in; approximate via polyline length */
+      let plen=0;
+      for(let i=1;i<pts.length;i++){
+        const dx=pts[i].x-pts[i-1].x, dy=pts[i].y-pts[i-1].y;
+        plen+=Math.hypot(dx,dy);
+      }
+      plen=Math.max(1,plen);
+      pl.style.setProperty('--plen',plen.toFixed(1));
+      pl.style.strokeDasharray=String(plen);
+      pl.style.strokeDashoffset=String(plen);
+    });
+  });
+  wrap.appendChild(svg);
+
+  const core=document.createElement('span');
+  core.className='laser-core';
+  core.style.left=x+'px';
+  core.style.top=y+'px';
+  wrap.appendChild(core);
+
+  for(let i=0;i<10;i++){
     const sp=document.createElement('span');
     sp.className='laser-spark';
-    const ang=(Math.PI*2*i)/8+(Math.random()*.35);
-    const dist=28+Math.random()*48;
+    sp.style.left=x+'px';
+    sp.style.top=y+'px';
+    const ang=(Math.PI*2*i)/10+(Math.random()*.4);
+    const dist=36+Math.random()*72;
     sp.style.setProperty('--sx',(Math.cos(ang)*dist).toFixed(1)+'px');
     sp.style.setProperty('--sy',(Math.sin(ang)*dist).toFixed(1)+'px');
-    sp.style.setProperty('--spark-dur',(520+Math.random()*280)+'ms');
+    sp.style.setProperty('--spark-dur',(900+Math.random()*700)+'ms');
     wrap.appendChild(sp);
   }
   document.body.appendChild(wrap);
-  setTimeout(()=>wrap.remove(),820);
+  setTimeout(()=>wrap.remove(),life+120);
 }
 
 function isLockedMatchWire(q, ans, wire){
