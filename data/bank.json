@@ -41,7 +41,7 @@
         "id": "PHY00003",
         "type": "mcq",
         "cat": "Chapter 1: Matter and Mechanical Properties",
-        "q": "Which of the following is a DERIVED quantity, not a base quantity?",
+        "q": "Which of the following is a derived quantity, not a base quantity?",
         "options": [
           "Length",
           "Area",
@@ -63,7 +63,7 @@
           "foot, pound, second"
         ],
         "correct": 2,
-        "explain": "CGS = centimetre - gram - second. FPS = foot - pound - second. MKS = metre - kilogram - second Memory trick: the letters name the units. CGS: Centimetre, Gram, Second. FPS: Foot, Pound, Second. MKS: Metre, Kilogram, Second. SI is the modern international standard and uses the MKS structure (metre, kilogram, second) plus the other four base units. Medical physics uses SI almost exclusively."
+        "explain": "CGS = centimetre - gram - second. FPS = foot - pound - second. MKS = metre - kilogram - second. The letters in each name are the units themselves: CGS is centimetre, gram, second; FPS is foot, pound, second; MKS is metre, kilogram, second. SI is the modern international standard and uses the MKS structure (metre, kilogram, second) plus the other four base units. Medical physics uses SI almost exclusively."
       },
       {
         "id": "PHY00005",
@@ -97,7 +97,7 @@
         "id": "PHY00007",
         "type": "mcq",
         "cat": "Chapter 1: Matter and Mechanical Properties",
-        "q": "Which ordering of DIFFUSION rate is correct?",
+        "q": "Which ordering of diffusion rate is correct?",
         "options": [
           "Liquid > Gas > Solid",
           "Diffusion is equal in all three",
@@ -223,7 +223,7 @@
         "id": "PHY00016",
         "type": "mcq",
         "cat": "Chapter 1: Matter and Mechanical Properties",
-        "q": "Which of the following is an ADDITIONAL state of matter beyond solid, liquid, and gas?",
+        "q": "Which of the following is an additional state of matter beyond solid, liquid, and gas?",
         "options": [
           "Ordinary water vapour phase",
           "Frozen crystalline ice phase",
@@ -399,7 +399,7 @@
           "SI"
         ],
         "correct": 0,
-        "explain": "names CGS, FPS, MKS, and SI. GPS is a positioning system, not a unit system CGS: centimetre-gram-second. FPS: foot-pound-second. MKS: metre-kilogram-second. SI: International System of Units, the modern standard with 7 base units. GPS (Global Positioning System) is a navigation technology, a common trap word because it sounds scientific. Also note: SI is the modern descendant of MKS; they share metre, kilogram, and second as base units."
+        "explain": "The four unit systems are CGS, FPS, MKS, and SI. GPS is a positioning system, not a unit system. CGS: centimetre-gram-second. FPS: foot-pound-second. MKS: metre-kilogram-second. SI: International System of Units, the modern standard with 7 base units. GPS (Global Positioning System) is a navigation technology. SI is the modern descendant of MKS; they share metre, kilogram, and second as base units."
       },
       {
         "id": "PHY00029",
@@ -861,7 +861,7 @@
           "375 g"
         ],
         "correct": 2,
-        "explain": "Volume = 8 × 5 × 3 = 120 cm³. Mass = density × volume = 2.5 × 120 = 300 g Always identify which two quantities you know and which you need. Here you know density and dimensions (which give volume), and you need mass. Rearranging ρ = m/V gives m = ρV. This is the same relationship used in the metal-block example, just in the other direction."
+        "explain": "Volume = 8 × 5 × 3 = 120 cm³. Mass = density × volume = 2.5 × 120 = 300 g. Density and the block dimensions (which give volume) are known, so mass follows from rearranging ρ = m/V to m = ρV."
       },
       {
         "id": "PHY00062",
@@ -1043,7 +1043,7 @@
           "P_abs = P_atm − P_gauge"
         ],
         "correct": 0,
-        "explain": "P_abs = P_atm + P_gauge. Absolute pressure is the sum of atmospheric and gauge pressure This is one of the most important relationships in the chapter. If a tyre gauge reads 30 psi (gauge), the absolute pressure inside the tyre is about 44.7 psi (14.7 psi atmospheric + 30 psi gauge). Gauge pressure answers 'how much above atmosphere?', absolute pressure answers 'how much above vacuum?'."
+        "explain": "P_abs = P_atm + P_gauge. Absolute pressure is the sum of atmospheric and gauge pressure. If a tyre gauge reads 30 psi (gauge), the absolute pressure inside the tyre is about 44.7 psi (14.7 psi atmospheric + 30 psi gauge). Gauge pressure answers 'how much above atmosphere?', absolute pressure answers 'how much above vacuum?'."
       },
       {
         "id": "PHY00075",
@@ -1287,7 +1287,7 @@
         "id": "PHY00092",
         "type": "mcq",
         "cat": "Chapter 2: Barometer",
-        "q": "Which of the following is the MOST convenient reason mercury is used in barometers instead of water?",
+        "q": "Which of the following is the most convenient reason mercury is used in barometers instead of water?",
         "options": [
           "Mercury has essentially no vapour pressure",
           "Mercury costs less than water to obtain",
@@ -1539,7 +1539,7 @@
         "id": "PHY00110",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "For steady, incompressible, frictionless streamline flow, Bernoulli's principle keeps which three energy terms constant per unit volume? (Bernoulli's Principle)",
+        "q": "For steady, incompressible, frictionless streamline flow, Bernoulli's principle keeps which three energy terms constant per unit volume?",
         "options": [
           "Pressure, potential energy, and kinetic energy",
           "Density, flow speed, and cross-sectional area",
@@ -1553,7 +1553,7 @@
         "id": "PHY00111",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Which of the following is the correct form of Bernoulli's equation? (Bernoulli's Principle)",
+        "q": "Which of the following is the correct form of Bernoulli's equation?",
         "options": [
           "A₁ v₁ = A₂ v₂",
           "P₁ / ρ₁ = P₂ / ρ₂",
@@ -1561,13 +1561,13 @@
           "P₁ × ½ ρ v₁² × ρ g y₁ = P₂ × ½ ρ v₂² × ρ g y₂"
         ],
         "correct": 2,
-        "explain": "Bernoulli's equation: P₁ + ½ ρ v₁² + ρ g y₁ = P₂ + ½ ρ v₂² + ρ g y₂, or compactly P + ½ ρ v² + ρ g h = Constant Note this is a sum, not a product. Each term contributes energy per unit volume: P (pressure energy), ½ρv² (kinetic energy per unit volume), ρgh (potential energy per unit volume). Along a streamline, these three trade off but the sum is preserved."
+        "explain": "Bernoulli's equation: P₁ + ½ ρ v₁² + ρ g y₁ = P₂ + ½ ρ v₂² + ρ g y₂, or compactly P + ½ ρ v² + ρ g h = Constant. It is a sum, not a product. Each term contributes energy per unit volume: P (pressure energy), ½ρv² (kinetic energy per unit volume), ρgh (potential energy per unit volume). Along a streamline, these three trade off but the sum is preserved."
       },
       {
         "id": "PHY00112",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "According to Bernoulli's principle, as velocity increases: (Bernoulli's Principle)",
+        "q": "According to Bernoulli's principle, as velocity increases:",
         "options": [
           "Temperature increases",
           "Pressure increases",
@@ -1581,7 +1581,7 @@
         "id": "PHY00113",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "In a narrowed artery, Bernoulli's principle predicts: (Bernoulli's Principle)",
+        "q": "In a narrowed artery, Bernoulli's principle predicts:",
         "options": [
           "Velocity decreases and pressure increases",
           "Velocity increases and pressure decreases",
@@ -2239,7 +2239,7 @@
         "id": "PHY00205",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Bernoulli's equation, for an ideal fluid, keeps which sum constant along a streamline? (Bernoulli's Principle)",
+        "q": "Bernoulli's equation, for an ideal fluid, keeps which sum constant along a streamline?",
         "options": [
           "Pressure plus density times area plus flow speed",
           "Pressure plus half density speed squared plus density g height",
@@ -2253,7 +2253,7 @@
         "id": "PHY00206",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Which set of conditions is assumed when Bernoulli's equation is applied? (Bernoulli's Principle)",
+        "q": "Which set of conditions is assumed when Bernoulli's equation is applied?",
         "options": [
           "Unsteady flow, compressible fluid, high friction, swirling path",
           "Steady flow, incompressible fluid, frictionless, streamline path",
@@ -2267,7 +2267,7 @@
         "id": "PHY00207",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "In a narrowed artery, continuity and Bernoulli assign which pair of changes? (Bernoulli's Principle)",
+        "q": "In a narrowed artery, continuity and Bernoulli assign which pair of changes?",
         "options": [
           "Speed falls by continuity, and pressure rises by Bernoulli",
           "Speed rises by continuity, and pressure falls by Bernoulli",
@@ -2281,7 +2281,7 @@
         "id": "PHY00208",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "A Venturi mask controls the oxygen fraction by using which relation? (Bernoulli's Principle)",
+        "q": "A Venturi mask controls the oxygen fraction by using which relation?",
         "options": [
           "Archimedes' relation on the displaced air",
           "Pascal's relation in a closed liquid",
@@ -2295,7 +2295,7 @@
         "id": "PHY00209",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "A murmur heard over a narrowed valve is produced by which change? (Bernoulli's Principle)",
+        "q": "A murmur heard over a narrowed valve is produced by which change?",
         "options": [
           "High speed through the narrow valve, with turbulent flow",
           "Low speed through a wide valve, with laminar flow",
@@ -2309,7 +2309,7 @@
         "id": "PHY00210",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Doppler ultrasound is used to measure which feature of blood flow? (Bernoulli's Principle)",
+        "q": "Doppler ultrasound is used to measure which feature of blood flow?",
         "options": [
           "The mass and the thickness of the vessel wall",
           "The color and the brightness of the flowing blood",
@@ -2676,7 +2676,7 @@
         "id": "PHY00218",
         "type": "matching",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Match each relation to the job it does in a narrowed vessel. (Bernoulli's Principle)",
+        "q": "Match each relation to the job it does in a narrowed vessel.",
         "leftItems": [
           {
             "id": "1",
@@ -3014,7 +3014,7 @@
         "id": "PHY00223",
         "type": "matching",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Match each flow formula to the statement it makes. (Bernoulli's Principle)",
+        "q": "Match each flow formula to the statement it makes.",
         "leftItems": [
           {
             "id": "1",
@@ -3400,7 +3400,7 @@
         "id": "PHY00238",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "In the Bernoulli sum, which term is kinetic energy per unit volume, and which is potential energy per unit volume? (Bernoulli's Principle)",
+        "q": "In the Bernoulli sum, which term is kinetic energy per unit volume, and which is potential energy per unit volume?",
         "options": [
           "½ρv² is kinetic; ρgh is potential",
           "ρgh is kinetic; ½ρv² is potential",
@@ -3556,7 +3556,7 @@
           "5": "E",
           "6": "F"
         },
-        "explain": "Melting is solid→liquid; freezing is liquid→solid; vaporization is liquid→gas; condensation is gas→liquid; sublimation is solid→gas directly; deposition is gas→solid directly (e.g. CO₂ forming dry ice). These six names are the phase-change set from Lecture 1."
+        "explain": "Melting is solid→liquid; freezing is liquid→solid; vaporization is liquid→gas; condensation is gas→liquid; sublimation is solid→gas directly; deposition is gas→solid directly (e.g. CO₂ forming dry ice). These six names are the standard phase-change set."
       },
       {
         "id": "PHY00241",

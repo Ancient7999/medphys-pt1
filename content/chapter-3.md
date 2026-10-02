@@ -20,8 +20,8 @@
 
 A fluid can **flow** and **continuously change shape** under an external force. Fluids cannot resist static shear the way solids do.
 
-| Liquids (examples) | Gases (examples) |
-|--------------------|------------------|
+| Liquids | Gases |
+|---------|-------|
 | Blood, lymph, plasma | O₂, CO₂, air in the respiratory system |
 
 ---
