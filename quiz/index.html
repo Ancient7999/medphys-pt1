@@ -1417,21 +1417,81 @@ html.link-drawing .match-item:hover:not(.drawing):not(.is-solved-link){
   border-color:rgba(251,113,133,.8);
   box-shadow:0 0 14px rgba(244,63,94,.35),inset 0 1px 0 rgba(255,255,255,.05);
 }
-/* Skipped: unanswered with progress past it — soft amber/accent glow (not the end-run red marker) */
-.q-nav-btn.skipped:not(.done):not(.unanswered){
-  border-color:rgba(var(--accent-0-rgb),.55);
-  background:rgba(var(--accent-0-rgb),.12);
-  color:var(--accent-1);
-  box-shadow:0 0 14px rgba(var(--accent-0-rgb),.32), inset 0 0 0 1px rgba(var(--accent-0-rgb),.18);
+/* Skipped: unanswered already passed — intermittent sparkles (not .done glow, not end-run red) */
+@keyframes skipSparkA{
+  0%,68%,100%{opacity:0;transform:scale(.35)}
+  74%,82%{opacity:1;transform:scale(1)}
 }
-.q-nav-btn.skipped.current:not(.done):not(.unanswered){
-  box-shadow:0 0 18px rgba(var(--accent-0-rgb),.45), inset 0 0 0 1px rgba(var(--accent-0-rgb),.25);
+@keyframes skipSparkB{
+  0%,22%,52%,100%{opacity:0;transform:scale(.35)}
+  28%,36%{opacity:1;transform:scale(1)}
+}
+.q-nav-btn.skipped:not(.done):not(.unanswered),
+#backBtn.has-skips-behind{
+  position:relative;
+  overflow:visible;
+  border-color:rgba(var(--accent-0-rgb),.4);
+  background:rgba(var(--accent-0-rgb),.06);
+  color:var(--accent-1);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
 }
 #backBtn.has-skips-behind{
-  border-color:rgba(var(--accent-0-rgb),.55)!important;
+  border-color:rgba(var(--accent-0-rgb),.42)!important;
   color:var(--accent-1)!important;
-  background:rgba(var(--accent-0-rgb),.12)!important;
-  box-shadow:0 0 16px rgba(var(--accent-0-rgb),.35)!important;
+  background:rgba(var(--accent-0-rgb),.07)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;
+}
+/* Twinkle dots — appear now and then, not a constant filled glow */
+.q-nav-btn.skipped:not(.done):not(.unanswered)::before,
+#backBtn.has-skips-behind::before{
+  content:'';
+  position:absolute;
+  width:3px;height:3px;
+  border-radius:50%;
+  top:1px;right:2px;
+  background:#fff;
+  box-shadow:
+    0 0 5px 1px rgba(var(--accent-0-rgb),.9),
+    -9px 11px 0 -.5px rgba(255,255,255,.92),
+    -9px 11px 4px rgba(var(--accent-0-rgb),.55);
+  pointer-events:none;
+  opacity:0;
+  z-index:2;
+  animation:skipSparkA 2.9s ease-in-out infinite;
+}
+.q-nav-btn.skipped:not(.done):not(.unanswered)::after,
+#backBtn.has-skips-behind::after{
+  content:'';
+  position:absolute;
+  width:2px;height:2px;
+  border-radius:50%;
+  bottom:2px;left:3px;
+  background:rgba(255,255,255,.95);
+  box-shadow:
+    0 0 4px 1px rgba(var(--accent-0-rgb),.75),
+    11px -8px 0 0 rgba(255,255,255,.88),
+    11px -8px 4px rgba(var(--accent-0-rgb),.5),
+    6px 9px 0 -.5px rgba(255,255,255,.75),
+    6px 9px 3px rgba(var(--accent-0-rgb),.4);
+  pointer-events:none;
+  opacity:0;
+  z-index:2;
+  animation:skipSparkB 3.5s ease-in-out infinite .55s;
+}
+/* Slightly wider sparkle spread on Back (larger hit target) */
+#backBtn.has-skips-behind::before{
+  top:4px;right:8px;
+  box-shadow:
+    0 0 5px 1px rgba(var(--accent-0-rgb),.9),
+    -14px 14px 0 -.5px rgba(255,255,255,.92),
+    -14px 14px 4px rgba(var(--accent-0-rgb),.55),
+    10px 12px 0 -.5px rgba(255,255,255,.8),
+    10px 12px 4px rgba(var(--accent-0-rgb),.45);
+  animation:skipSparkA 2.9s ease-in-out infinite .2s;
+}
+#backBtn.has-skips-behind::after{
+  bottom:5px;left:10px;
+  animation:skipSparkB 3.5s ease-in-out infinite 1.1s;
 }
 html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-btn{cursor:none!important}
 
@@ -2284,12 +2344,8 @@ function updateNextActionButton(){
 function isSkippedIndex(i){
   if(i<0 || i>=questions.length) return false;
   if(isAnswered(answers[i], questions[i])) return false;
-  // Skipped if any later question is answered, or user has moved past this index
-  if(current>i) return true;
-  for(let j=i+1;j<questions.length;j++){
-    if(isAnswered(answers[j], questions[j])) return true;
-  }
-  return false;
+  // Skip = unanswered already passed past the cursor; going back clears marks ahead
+  return current>i;
 }
 function hasSkipsBehind(){
   for(let i=0;i<current;i++){
