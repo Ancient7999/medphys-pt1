@@ -721,7 +721,8 @@ settingsBtn.addEventListener('mouseenter', function() {
   settingsBtn.style.setProperty('--gear-dur', dur.toFixed(2) + 's');
 });
 // Long-hover fade: after random 5–7s continuous hover, fade opacity to 0.05 over 3s.
-// On mouseleave, restore with accelerating ease over ~2.5–4s. Cancel pending fade if leave early.
+// On mouseleave, restore with accelerating ease to a settled 0.7 over ~4.5–6s.
+// Cancel pending fade if leave early; the next hover can fade again from 0.7.
 (function wireSettingsBtnHoverFade(btn) {
   var hoverTimer = null;
   var fadeRaf = null;
@@ -773,14 +774,8 @@ settingsBtn.addEventListener('mouseenter', function() {
   btn.addEventListener('mouseleave', function() {
     cancelHoverTimer(); // cancel pending fade if leave early
     var from = currentOpacity();
-    if (from >= 0.999) {
-      cancelRaf();
-      fadeToken++;
-      setOpacity(1);
-      return;
-    }
-    var dur = 2500 + Math.random() * 1500; // 2.5–4s
-    animateOpacity(from, 1, dur, easeInAccel);
+    var dur = 4500 + Math.random() * 1500; // 4.5–6s
+    animateOpacity(from, 0.7, dur, easeInAccel);
   });
 })(settingsBtn);
 }
