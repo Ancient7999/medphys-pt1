@@ -16,7 +16,7 @@ medphys-pt1/
     colorizer.css            # vendor (unused on main menu)
     app.css                  # main menu + study chrome
   js/
-    particles.js             # vendor (quiz mood FX path)
+    particles.js             # theme grid + legacy BgParticles compatibility
     colorizer-theme.js       # vendor theme engine (quiz; default amber)
     study-app.js             # markdown + accordion
     cursor-idle.js           # ATC brushCursor idle auto-hide (Main Menu only)

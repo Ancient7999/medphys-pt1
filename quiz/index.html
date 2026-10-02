@@ -1788,6 +1788,21 @@ a, .portal-card .go{color:var(--accent-1)}
   color:var(--accent-1)!important;
 }
 
+/* Let the theme grid/glow show through the quiz shell while preserving contrast. */
+#mainPanel,
+.panel{background:rgba(10,14,22,.22)}
+#mainPanel .panel-body,
+.panel-body{background:rgba(10,14,22,.30)}
+#mainPanel .status-bar{background:rgba(0,0,0,.16)}
+#mainPanel .quiz-meta{background:rgba(10,14,22,.10);border-radius:10px;padding:12px 14px}
+#mainPanel .question{background:rgba(10,14,22,.18);border:1px solid rgba(var(--accent-0-rgb),.14);border-radius:12px;padding:14px 16px}
+#mainPanel .opt{background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.07) 0%,rgba(10,14,22,.34) 48%,rgba(8,10,16,.48) 100%)}
+#mainPanel .nav{background:rgba(10,14,22,.12);border-radius:12px;padding:14px 10px 0}
+#mainPanel .track,
+#mainPanel .formula-advance-track{background:rgba(var(--accent-0-rgb),.08)}
+#mainPanel .feedback.good{background:rgba(52,211,153,.08)}
+#mainPanel .feedback.soft{background:rgba(var(--accent-0-rgb),.06)}
+#mainPanel .feedback.bad{background:rgba(251,113,133,.08)}
 </style>
 <body>
 <canvas id="fxCanvas"></canvas>
@@ -3937,11 +3952,11 @@ document.addEventListener('keydown', e=>{
 renderHub();
 </script>
 
-<!-- Colorizer: settings modal owns controls · particles → colorizer-theme -->
-<script src="../js/particles.js?v=20261003g"></script>
+<!-- Colorizer: settings modal owns controls · theme grid → colorizer-theme -->
+<script src="../js/particles.js?v=20261003h"></script>
 <script src="../js/colorizer-theme.js?v=20261003g"></script>
 <script>
-// Keep FX + WebGL particles in sync when accent changes (refreshThemeSVGs also calls refreshFxAccentColors)
+// Keep quiz FX colors in sync when accent changes.
 (function(){
   try{ if(typeof refreshFxAccentColors === 'function') refreshFxAccentColors(); }catch(e){}
   try{ if(typeof refreshThemeSVGs === 'function') refreshThemeSVGs(); }catch(e){}
