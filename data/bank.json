@@ -3254,7 +3254,7 @@
           "Both solid types flow like a liquid while keeping a sharp melting point"
         ],
         "correct": 0,
-        "explain": "Crystalline solids have long-range order and typically melt sharply; amorphous solids lack long-range order and soften gradually (glass-like). Option B reverses the definitions. Option C is false: many crystalline metals are ductile/malleable, while many amorphous solids (e.g. glass) are brittle. Option D confuses solids with liquids. This is standard Phys101 enrichment linking structure to thermal/mechanical behaviour; the course slides do not name crystalline vs amorphous by term."
+        "explain": "Crystalline solids have a repeating pattern through the whole material, so they usually melt at a clear temperature. Amorphous solids (like glass) are more jumbled, so they soften gradually as they warm up. Being crystalline does not make something brittle — many metals are crystalline and still bend — and neither type of solid flows like a liquid."
       },
       {
         "id": "PHY00228",
