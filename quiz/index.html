@@ -584,14 +584,14 @@ body.formula-mode.formula-waiting .formula-advance-wrap{display:block}
 .formula-advance-fill{
   position:absolute;inset:0;border-radius:inherit;
   background:linear-gradient(90deg,var(--accent-0),var(--accent-1));
-  transform-origin:right center;
+  transform-origin:left center;
   transform:scaleX(1);
   will-change:transform;
   box-shadow:0 0 12px rgba(var(--accent-0-rgb),.35);
 }
 .formula-advance-label{
   margin-top:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;
-  color:var(--text-dim);text-align:right;opacity:.85;
+  color:var(--text-dim);text-align:left;opacity:.85;
 }
 
 .card-stats{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 14px;margin-top:auto;padding-top:12px;border-top:1px solid rgba(var(--accent-0-rgb),.14)}
@@ -2109,7 +2109,7 @@ function clearFormulaAdvance(){
   const fill=document.getElementById('formulaAdvanceFill');
   if(fill){ fill.style.transition='none'; fill.style.transform='scaleX(1)'; }
 }
-/** Post-correct wait: emptying bar (right→left). On empty → least-solved next. */
+/** Post-correct wait: emptying bar (left→right). On empty → least-solved next. */
 function startFormulaAdvanceCountdown(){
   clearFormulaAdvance();
   if(!formulaMode||!quizActive) return;
@@ -2135,7 +2135,7 @@ function startFormulaAdvanceCountdown(){
   function tick(now){
     if(!formulaMode||!quizActive){ clearFormulaAdvance(); return; }
     const t=Math.min(1, (now-started)/duration);
-    const remain=1-t; // 1→0 empties visually from right (transform-origin:right)
+    const remain=1-t; // 1→0 empties visually from left (transform-origin:left)
     if(fill) fill.style.transform='scaleX('+remain+')';
     if(t>=1){
       finishAdvance();
