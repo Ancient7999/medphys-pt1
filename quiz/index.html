@@ -2433,8 +2433,12 @@ function renderHub(){
     if(!pool.length) return;
     appendPoolCard(grid, formDef.title, pool);
   });
-  appendFormulaCard(grid);
   host.appendChild(grid);
+
+  const fh=document.createElement('div'); fh.className='section-h'; fh.textContent='Formulas'; host.appendChild(fh);
+  const fgrid=document.createElement('div'); fgrid.className='grid';
+  appendFormulaCard(fgrid);
+  host.appendChild(fgrid);
 }
 
 function appendFormulaCard(grid){
