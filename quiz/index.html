@@ -19,7 +19,7 @@
   --bg-glow: rgba(var(--accent-0-rgb), 0.08);
   --label-y: #FFD700;
 }
-.btn-gold, .fs-btn:hover, .mode-tab.active, .cat-btn:hover {
+.btn-gold, .fs-btn:hover {
   border-color: var(--accent-0) !important;
 }
 .hub-wrap h1, #hubTitle, #quizTitle {
@@ -198,12 +198,12 @@ body,button,.opt,.nav-btn,.fs-btn,.card,.mood-live,.mood-pick,.mood-tray,.timer-
 }
 #cursor.hidden,#cursor.core.hidden{opacity:0!important;visibility:hidden!important}
 body.cursor-idle .opt,body.cursor-idle .card,body.cursor-idle .nav-btn,body.cursor-idle .fs-btn,
-body.cursor-idle .mode-tab,body.cursor-idle .settings-btn,body.cursor-idle .settings-nav-btn,
+body.cursor-idle .settings-btn,body.cursor-idle .settings-nav-btn,
 body.cursor-idle .portal-card,body.cursor-idle .q-nav-btn,body.cursor-idle .match-item{
   pointer-events:none;
 }
 body.cursor-idle .opt:hover,body.cursor-idle .card:hover,body.cursor-idle .nav-btn:hover,
-body.cursor-idle .fs-btn:hover,body.cursor-idle .mode-tab:hover,body.cursor-idle .portal-card:hover{
+body.cursor-idle .fs-btn:hover,body.cursor-idle .portal-card:hover{
   transform:none!important;box-shadow:none!important;filter:none!important;
 }
 #cursor.core{
@@ -1352,9 +1352,6 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
 
 
 .hub-view{max-width:1100px;margin:0 auto}
-.mode-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 16px}
-.mode-tab{font-family:var(--mono);font-size:.85rem;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--text-dim)}
-.mode-tab.active{background:var(--mood-glow);border-color:var(--cyan);color:var(--cyan-bright)}
 .pref-row{display:flex;flex-direction:column;gap:10px;margin:0;color:var(--text-dim);font-family:var(--mono);font-size:.82rem}
 .pref-row label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
 .quiz-settings-wrap{position:relative;display:inline-flex;align-items:center;margin:0 0 18px}
@@ -1383,7 +1380,6 @@ body.settings-open #cursor,
 body.settings-open #cursor.core{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
 
 /* Wire colorizer accents across quiz chrome that previously ignored them */
-.mode-tab.active,
 .q-nav-btn.current,
 .fs-btn:hover,
 .hub-back button:hover,
@@ -1393,7 +1389,6 @@ body.settings-open #cursor.core{opacity:0!important;visibility:hidden!important;
   background:rgba(var(--accent-0-rgb),.14)!important;
   box-shadow:0 0 18px rgba(var(--accent-0-rgb),.35)!important;
 }
-.mode-tab:hover{border-color:var(--accent-1);color:var(--accent-1)}
 .card:hover,.card:focus-visible{border-color:var(--accent-1)!important;box-shadow:0 0 28px rgba(var(--accent-0-rgb),.4),0 18px 40px -12px rgba(0,0,0,.55)!important}
 .card-pct,.card-meta,.form-letter{color:var(--accent-0)!important}
 .track-fill{background:linear-gradient(90deg,var(--accent-0),var(--accent-1),var(--accent-2))!important}
@@ -1528,11 +1523,6 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
       <button class="fs-btn" type="button" id="resetSolvedBtn">Reset solved</button>
     </div>
     <p class="foot" id="bankMeta" style="margin-top:8px;text-align:left;opacity:.7">Loading bank…</p>
-
-    <div class="mode-tabs" role="tablist">
-      <button type="button" class="mode-tab active" data-mode="forms">Forms</button>
-      <button type="button" class="mode-tab" data-mode="categories">Categories</button>
-    </div>
 
     <div id="hubSections"></div>
     <div class="foot">Solved items hide until progress is reset · progress is local to this browser</div>
@@ -1678,10 +1668,6 @@ refreshFxAccentColors();
 
 /* —— bank + hub —— */
 let BANK=null;
-let _savedMode=lsGet('skel_mode');
-let MODE=(_savedMode==='mix'||!_savedMode)?'forms':_savedMode;
-if(MODE!=='forms'&&MODE!=='categories') MODE='forms';
-lsSet('skel_mode', MODE);
 let questions=[], answers=[], current=0, locked=false, quizActive=false, startTime=0, elapsedTimer=null, drawState=null, runLabel='';
 
 function bankId(){ return (BANK && (BANK.id||BANK.title)) || 'anon'; }
@@ -1868,25 +1854,14 @@ function renderHub(){
   }
   const all=allQuestions();
 
-  if(MODE==='forms'){
-    const h=document.createElement('div'); h.className='section-h'; h.textContent='Forms'; host.appendChild(h);
-    const grid=document.createElement('div'); grid.className='grid';
-    QUIZ_FORMS.forEach(formDef=>{
-      const pool=poolForForm(formDef, all);
-      if(!pool.length) return;
-      appendPoolCard(grid, formDef.title, pool);
-    });
-    host.appendChild(grid);
-  } else {
-    const h=document.createElement('div'); h.className='section-h'; h.textContent='Categories'; host.appendChild(h);
-    const by={};
-    all.forEach(q=>{ const c=(q.cat||'general').replace(/_/g,' '); (by[c]=by[c]||[]).push(q); });
-    const grid=document.createElement('div'); grid.className='grid';
-    Object.keys(by).sort().forEach(cat=>{
-      appendPoolCard(grid, cat, by[cat]);
-    });
-    host.appendChild(grid);
-  }
+  const h=document.createElement('div'); h.className='section-h'; h.textContent='Forms'; host.appendChild(h);
+  const grid=document.createElement('div'); grid.className='grid';
+  QUIZ_FORMS.forEach(formDef=>{
+    const pool=poolForForm(formDef, all);
+    if(!pool.length) return;
+    appendPoolCard(grid, formDef.title, pool);
+  });
+  host.appendChild(grid);
 }
 
 function ingestBank(data){
@@ -1935,15 +1910,6 @@ loadEmbeddedBank();
     el.addEventListener('change',()=> lsSet(key, el.checked?'1':'0'));
   });
 })();
-
-document.querySelectorAll('.mode-tab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    MODE=tab.dataset.mode; lsSet('skel_mode', MODE);
-    document.querySelectorAll('.mode-tab').forEach(t=>t.classList.toggle('active', t===tab));
-    renderHub();
-  });
-});
-document.querySelectorAll('.mode-tab').forEach(t=>t.classList.toggle('active', t.dataset.mode===MODE));
 
 document.getElementById('resetSolvedBtn').addEventListener('click',()=>{
   saveSolved(new Set());
