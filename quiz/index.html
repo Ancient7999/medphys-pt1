@@ -9,15 +9,14 @@
 <style id="accent-bridge">
 :root {
   --accent: var(--accent-0);
-  --accent-2: var(--accent-1);
   --cyan: var(--accent-0);
   --cyan-bright: var(--accent-1);
   --teal: var(--accent-2);
-  --gold: var(--col-gold);
+  --gold: var(--accent-1);
   --border: rgba(var(--accent-0-rgb), 0.4);
   --mood-glow: rgba(var(--accent-0-rgb), 0.28);
   --bg-glow: rgba(var(--accent-0-rgb), 0.08);
-  --label-y: #FFD700;
+  --label-y: var(--accent-1);
 }
 .btn-gold, .fs-btn:hover {
   border-color: var(--accent-0) !important;
@@ -77,7 +76,7 @@
   --cyan:var(--accent-0);
   --cyan-bright:var(--accent-1);
   --teal:var(--accent-2);
-  --gold:var(--col-gold, #fbbf24);
+  --gold:var(--accent-1);
   --amber:#f59e0b;
   --lavender:var(--accent-1);
   --violet:var(--accent-3);
@@ -86,7 +85,6 @@
   --success:#34d399;
   --error:#fb7185;
   --accent:var(--accent-0);
-  --accent-2:var(--accent-1);
   --mood-glow:rgba(var(--accent-0-rgb), .28);
   --anim-speed:1;
   --pulse-ms:1600ms;
@@ -98,99 +96,67 @@
 }
 /* Mood themes — accents + full page background atmosphere (no pink) */
 html.mood-happy {
-  --bg:#0c0904; --bg2:#140e06; --bg-glow:rgba(251,191,36,.08); --grid-tint:transparent;
-  --accent:#fbbf24; --accent-2:#f59e0b; --cyan:#fbbf24; --cyan-bright:#fde68a; --teal:#f59e0b;
-  --border:rgba(251,191,36,.4); --mood-glow:rgba(251,191,36,.28); --gold:#fcd34d;
+  --bg:#0c0904; --bg2:#140e06; --grid-tint:transparent;
   --anim-speed:.72; --pulse-ms:2200ms; --transition-ms:380ms; --particle-speed:.65;
 }
 html.mood-calm {
-  --bg:#040c0b; --bg2:#071412; --bg-glow:rgba(45,212,191,.07); --grid-tint:transparent;
-  --accent:#34d399; --accent-2:#6ee7b7; --cyan:#34d399; --cyan-bright:#6ee7b7; --teal:#2dd4bf;
-  --border:rgba(52,211,153,.4); --mood-glow:rgba(52,211,153,.25); --gold:#a7f3d0;
+  --bg:#040c0b; --bg2:#071412; --grid-tint:transparent;
   --anim-speed:.75; --pulse-ms:2400ms; --transition-ms:400ms; --particle-speed:.6;
 }
 html.mood-neutral {
-  --bg:#06080e; --bg2:#0a0e16; --bg-glow:rgba(96,165,250,.06); --grid-tint:transparent;
-  --accent:#60a5fa; --accent-2:#93c5fd; --cyan:#60a5fa; --cyan-bright:#93c5fd; --teal:#38bdf8;
-  --border:rgba(96,165,250,.4); --mood-glow:rgba(96,165,250,.25); --gold:#93c5fd;
+  --bg:#06080e; --bg2:#0a0e16; --grid-tint:transparent;
   --anim-speed:1; --pulse-ms:1600ms; --transition-ms:280ms; --particle-speed:1;
 }
 html.mood-sleepy {
-  --bg:#020208; --bg2:#05040c; --bg-glow:rgba(99,102,241,.035); --grid-tint:transparent;
-  --accent:#6d5bbd; --accent-2:#5b4a9e; --cyan:#7c6bb8; --cyan-bright:#9b8fd4; --teal:#5b5f9a;
-  --border:rgba(99,102,241,.28); --mood-glow:rgba(99,102,241,.14); --gold:#8b83b8;
+  --bg:#020208; --bg2:#05040c; --grid-tint:transparent;
   --anim-speed:1.05; --pulse-ms:1800ms; --transition-ms:300ms; --particle-speed:.9;
 }
 html.mood-fierce {
-  --bg:#070301; --bg2:#0e0603; --bg-glow:rgba(194,65,12,.05); --grid-tint:transparent;
-  --accent:#fb923c; --accent-2:#f97316; --cyan:#fb923c; --cyan-bright:#fdba74; --teal:#ea580c;
-  --border:rgba(251,146,60,.42); --mood-glow:rgba(251,146,60,.28); --gold:#fdba74;
+  --bg:#070301; --bg2:#0e0603; --grid-tint:transparent;
   --anim-speed:1.55; --pulse-ms:900ms; --transition-ms:160ms; --particle-speed:1.7;
 }
 html.mood-mad {
-  --bg:#050101; --bg2:#0a0303; --bg-glow:rgba(185,28,28,.045); --grid-tint:transparent;
-  --accent:#f87171; --accent-2:#ef4444; --cyan:#f87171; --cyan-bright:#fca5a5; --teal:#dc2626;
-  --border:rgba(248,113,113,.45); --mood-glow:rgba(239,68,68,.3); --gold:#fca5a5;
+  --bg:#050101; --bg2:#0a0303; --grid-tint:transparent;
   --anim-speed:1.75; --pulse-ms:750ms; --transition-ms:140ms; --particle-speed:1.9;
 }
 html.mood-sad {
-  --bg:#020406; --bg2:#05080c; --bg-glow:rgba(71,85,105,.03); --grid-tint:transparent;
-  --accent:#7dd3fc; --accent-2:#64748b; --cyan:#7dd3fc; --cyan-bright:#bae6fd; --teal:#64748b;
-  --border:rgba(125,211,252,.32); --mood-glow:rgba(100,116,139,.22); --gold:#94a3b8;
+  --bg:#020406; --bg2:#05080c; --grid-tint:transparent;
   --anim-speed:.55; --pulse-ms:2800ms; --transition-ms:450ms; --particle-speed:.45;
 }
 html.mood-crying {
-  --bg:#01020a; --bg2:#040612; --bg-glow:rgba(67,56,202,.03); --grid-tint:transparent;
-  --accent:#818cf8; --accent-2:#6366f1; --cyan:#818cf8; --cyan-bright:#a5b4fc; --teal:#6366f1;
-  --border:rgba(129,140,248,.35); --mood-glow:rgba(99,102,241,.2); --gold:#a5b4fc;
+  --bg:#01020a; --bg2:#040612; --grid-tint:transparent;
   --anim-speed:.48; --pulse-ms:3200ms; --transition-ms:500ms; --particle-speed:.38;
 }
 html.mood-starstruck {
-  --bg:#0c040a; --bg2:#140610; --bg-glow:rgba(236,72,153,.08); --grid-tint:transparent;
-  --accent:#ec4899; --accent-2:#f472b6; --cyan:#ec4899; --cyan-bright:#fbcfe8; --teal:#db2777;
-  --border:rgba(236,72,153,.4); --mood-glow:rgba(236,72,153,.28); --gold:#f9a8d4;
+  --bg:#0c040a; --bg2:#140610; --grid-tint:transparent;
   --anim-speed:.65; --pulse-ms:1800ms; --transition-ms:320ms; --particle-speed:.8;
 }
 html.mood-cool {
-  --bg:#020609; --bg2:#040c14; --bg-glow:rgba(14,165,233,.07); --grid-tint:transparent;
-  --accent:#0ea5e9; --accent-2:#38bdf8; --cyan:#0ea5e9; --cyan-bright:#bae6fd; --teal:#0284c7;
-  --border:rgba(14,165,233,.4); --mood-glow:rgba(14,165,233,.25); --gold:#7dd3fc;
+  --bg:#020609; --bg2:#040c14; --grid-tint:transparent;
   --anim-speed:.9; --pulse-ms:1700ms; --transition-ms:260ms; --particle-speed:.95;
 }
 html.mood-smile {
-  --bg:#0c0804; --bg2:#140f06; --bg-glow:rgba(251,146,60,.07); --grid-tint:transparent;
-  --accent:#fb923c; --accent-2:#fdba74; --cyan:#fb923c; --cyan-bright:#fed7aa; --teal:#f97316;
-  --border:rgba(251,146,60,.4); --mood-glow:rgba(251,146,60,.25); --gold:#fbd5a5;
+  --bg:#0c0804; --bg2:#140f06; --grid-tint:transparent;
   --anim-speed:.8; --pulse-ms:1900ms; --transition-ms:340ms; --particle-speed:.75;
 }
 html.mood-thinking {
-  --bg:#04040c; --bg2:#080818; --bg-glow:rgba(99,102,241,.06); --grid-tint:transparent;
-  --accent:#6366f1; --accent-2:#818cf8; --cyan:#6366f1; --cyan-bright:#c7d2fe; --teal:#4f46e5;
-  --border:rgba(99,102,241,.4); --mood-glow:rgba(99,102,241,.25); --gold:#a5b4fc;
+  --bg:#04040c; --bg2:#080818; --grid-tint:transparent;
   --anim-speed:.85; --pulse-ms:2100ms; --transition-ms:360ms; --particle-speed:.7;
 }
 html.mood-zen {
-  --bg:#06040c; --bg2:#0c0818; --bg-glow:rgba(168,85,247,.06); --grid-tint:transparent;
-  --accent:#a855f7; --accent-2:#c084fc; --cyan:#a855f7; --cyan-bright:#e9d5ff; --teal:#9333ea;
-  --border:rgba(168,85,247,.4); --mood-glow:rgba(168,85,247,.25); --gold:#d8b4fe;
+  --bg:#06040c; --bg2:#0c0818; --grid-tint:transparent;
   --anim-speed:.7; --pulse-ms:2600ms; --transition-ms:420ms; --particle-speed:.55;
 }
 html.mood-firedup {
-  --bg:#0c0202; --bg2:#180404; --bg-glow:rgba(239,68,68,.08); --grid-tint:transparent;
-  --accent:#ef4444; --accent-2:#f87171; --cyan:#ef4444; --cyan-bright:#fecaca; --teal:#dc2626;
-  --border:rgba(239,68,68,.45); --mood-glow:rgba(239,68,68,.3); --gold:#fca5a5;
+  --bg:#0c0202; --bg2:#180404; --grid-tint:transparent;
   --anim-speed:1.65; --pulse-ms:800ms; --transition-ms:150ms; --particle-speed:1.8;
 }
 html.mood-strong {
-  --bg:#020c06; --bg2:#04180c; --bg-glow:rgba(16,185,129,.07); --grid-tint:transparent;
-  --accent:#10b981; --accent-2:#34d399; --cyan:#10b981; --cyan-bright:#a7f3d0; --teal:#059669;
-  --border:rgba(16,185,129,.4); --mood-glow:rgba(16,185,129,.28); --gold:#6ee7b7;
+  --bg:#020c06; --bg2:#04180c; --grid-tint:transparent;
   --anim-speed:1.1; --pulse-ms:1400ms; --transition-ms:220ms; --particle-speed:1.2;
 }
 html.mood-sleep {
-  --bg:#010205; --bg2:#02040a; --bg-glow:rgba(30,58,138,.04); --grid-tint:transparent;
-  --accent:#1e3a8a; --accent-2:#1e40af; --cyan:#1e40af; --cyan-bright:#93c5fd; --teal:#172554;
-  --border:rgba(30,64,175,.35); --mood-glow:rgba(30,58,138,.18); --gold:#60a5fa;
+  --bg:#010205; --bg2:#02040a; --grid-tint:transparent;
   --anim-speed:.4; --pulse-ms:3600ms; --transition-ms:550ms; --particle-speed:.3;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -238,7 +204,7 @@ html[data-cursor="comma"]{--cur-w:18px;--cur-h:18px;--cur-border:2px solid var(-
 html.link-drawing #cursor,
 html.link-drawing #cursor.active{
   width:12px!important;height:38px!important;border:none!important;border-radius:0!important;
-  background:linear-gradient(180deg,var(--gold) 0 9%,var(--cyan-bright) 9% 13%,var(--cyan) 13% 20%,var(--accent) 20% 66%,var(--teal) 66% 72%,var(--gold) 72% 86%,var(--text) 86% 100%)!important;
+  background:linear-gradient(180deg,var(--accent-1) 0 9%,var(--accent-0) 9% 20%,var(--accent-2) 20% 66%,var(--accent-3) 66% 72%,var(--accent-1) 72% 86%,var(--text) 86% 100%)!important;
   clip-path:polygon(30% 0,70% 0,70% 10%,78% 10%,78% 19%,70% 19%,70% 66%,50% 100%,30% 66%,30% 19%,22% 19%,22% 10%,30% 10%);
   transform:translate(-50%,calc(-100% + 5px)) rotate(28deg) scaleX(-1)!important;
   mix-blend-mode:normal!important;box-shadow:0 0 12px var(--mood-glow);transition:none!important;
@@ -334,8 +300,8 @@ body{
     radial-gradient(ellipse var(--skin-glow-a, 90% 60%) at var(--skin-pos-a, 50% -20%), var(--bg-glow), transparent 60%),
     radial-gradient(ellipse var(--skin-glow-b, 50% 40%) at var(--skin-pos-b, 85% 95%), var(--mood-glow), transparent 55%),
     radial-gradient(ellipse var(--skin-glow-c, 40% 35%) at var(--skin-pos-c, 50% 50%), var(--skin-mid, transparent), transparent 65%),
-    linear-gradient(165deg,var(--bg) 0%,var(--bg2) 48%,var(--bg) 100%);
-  background-color:var(--bg);
+    linear-gradient(165deg,var(--bg) 0%,var(--bg2) 48%,var(--bg) 100%) !important;
+  background-color:var(--bg) !important;
   color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden;position:relative;
   transition:background var(--transition-ms),background-color .5s,color .3s;
 }
@@ -372,7 +338,7 @@ html[data-skin="amber-tide"]{
   --skin-pos-a:15% -5%; --skin-glow-a:72% 52%;
   --skin-pos-b:88% 105%; --skin-glow-b:52% 48%;
   --skin-pos-c:50% 50%; --skin-glow-c:45% 40%;
-  --skin-mid:rgba(14,42,61,.35);
+  --skin-mid:rgba(var(--accent-0-rgb),.12);
   --skin-pattern-opacity:.5;
   --skin-pattern:
     repeating-linear-gradient(0deg, color-mix(in srgb, var(--gold) 10%, transparent) 0 1px, transparent 1px 60px),
@@ -380,34 +346,32 @@ html[data-skin="amber-tide"]{
   --skin-pattern-size:auto;
 }
 html[data-skin="summit-amber"]{
-  /* from Summit Lattice sample — warm gold→orange happy family */
+  /* atmosphere depth only — glow/pattern track colorizer accent */
   --bg:#0a0703; --bg2:#140a04;
-  --bg-glow:rgba(251,191,36,.14);
-  --mood-glow:rgba(249,115,22,.22);
   --skin-pos-a:22% -12%; --skin-glow-a:75% 58%;
   --skin-pos-b:78% 100%; --skin-glow-b:60% 50%;
   --skin-pos-c:45% 55%; --skin-glow-c:40% 36%;
-  --skin-mid:rgba(251,146,60,.08);
+  --skin-mid:rgba(var(--accent-0-rgb),.08);
   --skin-pattern-opacity:.35;
   --skin-pattern:
-    repeating-linear-gradient(125deg, rgba(251,191,36,.04) 0 1px, transparent 1px 48px);
+    repeating-linear-gradient(125deg, rgba(var(--accent-0-rgb),.04) 0 1px, transparent 1px 48px);
   --skin-pattern-size:auto;
 }
 html[data-skin="violet-mist"]{
   --skin-pos-a:20% -10%; --skin-glow-a:68% 54%;
   --skin-pos-b:85% 108%; --skin-glow-b:55% 46%;
   --skin-pos-c:50% 50%; --skin-glow-c:42% 38%;
-  --skin-mid:color-mix(in srgb, var(--violet, #a78bfa) 18%, transparent);
+  --skin-mid:color-mix(in srgb, var(--accent-2) 18%, transparent);
   --skin-pattern-opacity:.4;
   --skin-pattern:
-    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--lavender, #82b1ff) 14%, transparent) 0 1.2px, transparent 1.8px);
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--accent-1) 14%, transparent) 0 1.2px, transparent 1.8px);
   --skin-pattern-size:32px 32px;
 }
 html[data-skin="copper-ember"]{
   --skin-pos-a:12% -8%; --skin-glow-a:66% 50%;
   --skin-pos-b:92% 108%; --skin-glow-b:52% 46%;
   --skin-pos-c:50% 50%; --skin-glow-c:40% 35%;
-  --skin-mid:rgba(232,160,76,.07);
+  --skin-mid:rgba(var(--accent-0-rgb),.07);
   --skin-pattern-opacity:.45;
   --skin-pattern:
     linear-gradient(color-mix(in srgb, var(--gold) 9%, transparent) 1px, transparent 1px),
@@ -448,6 +412,25 @@ html[data-skin="rib-haze"]{
 /* gloomy moods stay darker regardless of skin */
 html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-skin]{
   --skin-pattern-opacity:calc(var(--skin-pattern-opacity, .3) * .65);
+}
+
+/* Colorizer owns quiz chrome + background glows (moods keep depth/speed only) */
+html,
+html[class*="mood-"],
+html[data-skin]{
+  --accent: var(--accent-0);
+  --cyan: var(--accent-0);
+  --cyan-bright: var(--accent-1);
+  --teal: var(--accent-2);
+  --gold: var(--accent-1);
+  --border: rgba(var(--accent-0-rgb), 0.4);
+  --mood-glow: rgba(var(--accent-0-rgb), 0.28);
+  --bg-glow: rgba(var(--accent-0-rgb), 0.08);
+}
+html[data-quality="basic"]{
+  --cyan:#94a3b8; --cyan-bright:#cbd5e1; --teal:#94a3b8;
+  --gold:#cbd5e1; --accent:#94a3b8; --mood-glow:transparent; --bg-glow:transparent;
+  --border:rgba(148,163,184,.35);
 }
 #fxCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 .app{position:relative;z-index:5;max-width:1800px;margin:0 auto;padding:36px 32px 96px}
@@ -1392,6 +1375,22 @@ html.link-drawing .match-item:hover:not(.drawing):not(.is-solved-link){
   border-color:rgba(251,113,133,.8);
   box-shadow:0 0 14px rgba(244,63,94,.35),inset 0 1px 0 rgba(255,255,255,.05);
 }
+/* Skipped: unanswered with progress past it — soft amber/accent glow (not the end-run red marker) */
+.q-nav-btn.skipped:not(.done):not(.unanswered){
+  border-color:rgba(var(--accent-0-rgb),.55);
+  background:rgba(var(--accent-0-rgb),.12);
+  color:var(--accent-1);
+  box-shadow:0 0 14px rgba(var(--accent-0-rgb),.32), inset 0 0 0 1px rgba(var(--accent-0-rgb),.18);
+}
+.q-nav-btn.skipped.current:not(.done):not(.unanswered){
+  box-shadow:0 0 18px rgba(var(--accent-0-rgb),.45), inset 0 0 0 1px rgba(var(--accent-0-rgb),.25);
+}
+#backBtn.has-skips-behind{
+  border-color:rgba(var(--accent-0-rgb),.55)!important;
+  color:var(--accent-1)!important;
+  background:rgba(var(--accent-0-rgb),.12)!important;
+  box-shadow:0 0 16px rgba(var(--accent-0-rgb),.35)!important;
+}
 html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-btn{cursor:none!important}
 
 
@@ -2085,22 +2084,47 @@ function updateNextActionButton(){
     btn.disabled=true;
   }
 }
+function isSkippedIndex(i){
+  if(i<0 || i>=questions.length) return false;
+  if(isAnswered(answers[i], questions[i])) return false;
+  // Skipped if any later question is answered, or user has moved past this index
+  if(current>i) return true;
+  for(let j=i+1;j<questions.length;j++){
+    if(isAnswered(answers[j], questions[j])) return true;
+  }
+  return false;
+}
+function hasSkipsBehind(){
+  for(let i=0;i<current;i++){
+    if(isSkippedIndex(i)) return true;
+  }
+  return false;
+}
+function updateBackSkipGlow(){
+  const back=document.getElementById('backBtn');
+  if(!back) return;
+  back.classList.toggle('has-skips-behind', hasSkipsBehind());
+}
 function renderNav(){
   const nav=document.getElementById('qNav'); nav.innerHTML='';
   const atLast=current===questions.length-1;
   const markUnanswered=atLast && !allQuestionsAnswered();
   questions.forEach((q,i)=>{
     const done=isAnswered(answers[i],q);
+    const skipped=!done && isSkippedIndex(i);
     const b=document.createElement('button');
     b.type='button';
     b.className='q-nav-btn'
       +(i===current?' current':'')
       +(done?' done':'')
-      +((markUnanswered && !done)?' unanswered':'');
+      +((markUnanswered && !done)?' unanswered':'')
+      +((skipped && !(markUnanswered && !done))?' skipped':'');
     b.textContent=String(i+1);
+    b.title=skipped?'Skipped — unanswered':(done?'Answered':'');
     b.addEventListener('click',()=>{ current=i; locked=isAnswered(answers[i],q); renderQuestion(); });
     nav.appendChild(b);
   });
+  updateBackSkipGlow();
 }
 
 function shuffleMatchingSides(q){
@@ -2136,6 +2160,7 @@ function renderQuestion(){
   if(answered){ fb.className='feedback good'; fb.textContent='✓ '+(q.explain||''); }
   else { fb.className='feedback idle'; fb.textContent=''; }
   document.getElementById('backBtn').disabled=current===0;
+  updateBackSkipGlow();
   updateNextActionButton();
 }
 
@@ -2253,7 +2278,15 @@ function paintWires(_ignored,wires,live){
   wctx.clearRect(0,0,boxW,boxH);
   wctx.translate(r.left,r.top);
   const cs=getComputedStyle(document.documentElement);
-  const ink=cs.getPropertyValue('--cyan-bright').trim()||'#67e8f9';
+  let ink=(cs.getPropertyValue('--accent-1')||'').trim();
+  if(!/^#[0-9A-Fa-f]{6}$/.test(ink)){
+    const rgb=(cs.getPropertyValue('--accent-1-rgb')||cs.getPropertyValue('--accent-0-rgb')||'').trim();
+    if(rgb){
+      const p=rgb.split(',').map(function(n){return Math.max(0,Math.min(255,parseInt(n.trim(),10)||0));});
+      if(p.length>=3) ink='#'+p.slice(0,3).map(function(n){return n.toString(16).padStart(2,'0');}).join('');
+    }
+  }
+  if(!/^#[0-9A-Fa-f]{6}$/.test(ink)) ink=(cs.getPropertyValue('--cyan-bright')||'').trim()||'#ffb968';
   wctx.globalCompositeOperation='source-over';
   wctx.globalAlpha=1;
   wctx.strokeStyle=ink;
@@ -2581,6 +2614,8 @@ renderHub();
 (function(){
   try{ if(typeof refreshFxAccentColors === 'function') refreshFxAccentColors(); }catch(e){}
   try{ if(typeof refreshThemeSVGs === 'function') refreshThemeSVGs(); }catch(e){}
+  // particles.js sets a solid inline body background — clear so accent radial CSS shows
+  try{ document.body.style.background = ''; document.body.style.backgroundColor = ''; }catch(e){}
 })();
 </script>
 </body>

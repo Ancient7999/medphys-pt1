@@ -20,7 +20,10 @@
     global.globalBlobs = null; // optional; referenced by theme/cosmic roam but unused for calc overlays
   }
 
-document.body.style.background = "#0d0d0d";
+(function(){
+  var isQuiz = /\/quiz(\/|$)/.test(location.pathname) || !!document.getElementById('fxCanvas');
+  if(!isQuiz) document.body.style.background = "#0d0d0d";
+})();
 function buildGridSVG(isLight){const c=isLight?'rgba(0,0,0,0.04)':'rgba(255,255,255,0.04)';return `<svg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'><path d='M0 0 L60 0 M0 0 L0 60' stroke='${c}' stroke-width='0.5' fill='none'/></svg>`;}
 let encodedGrid = '';
 function readAccentRgb(){const rs=getComputedStyle(document.documentElement);let raw=(rs.getPropertyValue('--accent-0-rgb')||'').trim();if(!raw){const hex=(rs.getPropertyValue('--accent-0')||'').trim();if(/^#[0-9A-Fa-f]{6}$/.test(hex)){raw=parseInt(hex.slice(1,3),16)+', '+parseInt(hex.slice(3,5),16)+', '+parseInt(hex.slice(5,7),16);}}return raw||'255, 136, 0';}
