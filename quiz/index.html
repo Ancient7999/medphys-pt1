@@ -48,13 +48,20 @@
   try{
     var q=localStorage.getItem('pt1_quality_mode');
     var c=localStorage.getItem('pt1_custom_cursor');
+    var skin=localStorage.getItem('pt1_cursor_skin')||'ring-screen';
     var basic=(q==='basic'||q==='1'||q==='true');
-    var curOn=!(c==='0'||c==='false'||c==='off');
+    var curOn=!(c==='0'||c==='false'||c==='off'||skin==='system'||skin==='off');
     document.documentElement.setAttribute('data-quality', basic?'basic':'full');
     document.documentElement.setAttribute('data-custom-cursor', curOn?'on':'off');
+    if(curOn && skin && skin!=='system' && skin!=='off'){
+      document.documentElement.setAttribute('data-cursor', skin);
+    } else if(curOn){
+      document.documentElement.setAttribute('data-cursor', 'ring-screen');
+    }
   }catch(e){
     document.documentElement.setAttribute('data-quality','full');
     document.documentElement.setAttribute('data-custom-cursor','on');
+    document.documentElement.setAttribute('data-cursor','ring-screen');
   }
 })();
 </script>
@@ -190,11 +197,11 @@ html.mood-sleep {
 body,button,.opt,.nav-btn,.fs-btn,.card,.mood-live,.mood-pick,.mood-tray,.timer-dock-main,.mood-reset-item,.mood-cursor-btn,.mood-tray-tools,.timer-dock,.chat-dock,.chat-toggle,.chat-minimize,.chat-send,.chat-channel-btn,.chat-channel-opt,.chat-channel-label,.chat-vis-btn,.chat-tool-btn,.chat-ac-item,.chat-icon-btn,.chat-friends-btn,.chat-friends-main,.chat-friends-x,.chat-friends-add,.chat-ac-add,.party-mini-chip,.party-timer-chip,.party-sync-timers-btn,.lobby-panel,.lobby-row,.lobby-seat-occ,.lobby-bench-chip,.kb-mode-btn,.pane-opt-btn,.mastery-dnsa-btn{cursor:none!important}
 #cursor{
   position:fixed;width:var(--cur-w,28px);height:var(--cur-h,28px);
-  border:var(--cur-border,2px solid var(--cyan));border-radius:var(--cur-radius,50%);
+  border:var(--cur-border,2px solid var(--accent-0));border-radius:var(--cur-radius,50%);
   background:var(--cur-bg,transparent);pointer-events:none;z-index:100001;
   transform:translate(-50%,-50%) var(--cur-rot,);
   transition:width .12s,height .12s,border-color var(--transition-ms),background var(--transition-ms),border-radius .2s,box-shadow .2s,opacity .2s ease;
-  mix-blend-mode:var(--cur-blend,screen);box-shadow:var(--cur-shadow,0 0 18px var(--mood-glow));
+  mix-blend-mode:var(--cur-blend,screen);box-shadow:var(--cur-shadow,0 0 18px rgba(var(--accent-0-rgb),.35));
 }
 #cursor.hidden,#cursor.core.hidden{opacity:0!important;visibility:hidden!important}
 body.cursor-idle .opt,body.cursor-idle .card,body.cursor-idle .nav-btn,body.cursor-idle .fs-btn,
@@ -207,27 +214,27 @@ body.cursor-idle .fs-btn:hover,body.cursor-idle .portal-card:hover{
   transform:none!important;box-shadow:none!important;filter:none!important;
 }
 #cursor.core{
-  width:var(--cur-core-w,7px);height:var(--cur-core-h,7px);background:var(--cur-core-bg,var(--gold));
+  width:var(--cur-core-w,7px);height:var(--cur-core-h,7px);background:var(--cur-core-bg,var(--accent-1));
   border:none;border-radius:var(--cur-core-radius,50%);z-index:100002;
-  box-shadow:var(--cur-core-shadow,0 0 12px var(--gold));
+  box-shadow:var(--cur-core-shadow,0 0 12px rgba(var(--accent-0-rgb),.55));
   transform:translate(-50%,-50%) var(--cur-core-rot,);
   mix-blend-mode:normal;
 }
 #cursor.active{
   width:var(--cur-active-w,50px);height:var(--cur-active-h,50px);
-  border-color:var(--cur-active-border,var(--gold));
-  background:var(--cur-active-bg,rgba(251,191,36,.22));
+  border-color:var(--cur-active-border,var(--accent-1));
+  background:var(--cur-active-bg,rgba(var(--accent-0-rgb),.22));
   border-radius:var(--cur-active-radius,var(--cur-radius,50%));
 }
-/* cursor skins inspired by SS_Lecture samples */
-html[data-cursor="ring-screen"]{--cur-w:28px;--cur-h:28px;--cur-border:2px solid var(--cyan);--cur-radius:50%;--cur-blend:screen;--cur-shadow:0 0 18px var(--mood-glow);--cur-core-w:7px;--cur-core-h:7px;--cur-core-bg:var(--gold);--cur-core-radius:50%;--cur-active-w:50px;--cur-active-h:50px}
-html[data-cursor="ring-tight"]{--cur-w:16px;--cur-h:16px;--cur-border:2px solid var(--cyan);--cur-radius:50%;--cur-blend:normal;--cur-shadow:0 0 14px var(--mood-glow);--cur-core-w:7px;--cur-core-h:7px;--cur-core-bg:var(--gold);--cur-active-w:34px;--cur-active-h:34px}
-html[data-cursor="ring-gold"]{--cur-w:18px;--cur-h:18px;--cur-border:2px solid var(--gold);--cur-radius:50%;--cur-blend:normal;--cur-shadow:0 0 16px color-mix(in srgb,var(--gold) 55%,transparent);--cur-core-w:7px;--cur-core-h:7px;--cur-core-bg:var(--cyan);--cur-core-shadow:0 0 12px var(--cyan);--cur-active-w:36px;--cur-active-h:36px;--cur-active-border:var(--cyan);--cur-active-bg:color-mix(in srgb,var(--cyan) 18%,transparent)}
-html[data-cursor="pill"]{--cur-w:26px;--cur-h:10px;--cur-border:1.5px solid var(--cyan);--cur-radius:8px;--cur-blend:normal;--cur-shadow:0 0 12px var(--mood-glow);--cur-core-w:7px;--cur-core-h:7px;--cur-core-bg:var(--gold);--cur-core-radius:50%;--cur-active-w:40px;--cur-active-h:16px;--cur-active-radius:10px}
-html[data-cursor="beam-v"]{--cur-w:3px;--cur-h:22px;--cur-border:none;--cur-radius:1px;--cur-bg:var(--accent-2);--cur-blend:normal;--cur-shadow:0 0 10px var(--mood-glow);--cur-core-w:8px;--cur-core-h:8px;--cur-core-bg:var(--gold);--cur-core-radius:1px;--cur-active-w:6px;--cur-active-h:36px;--cur-active-bg:var(--gold);--cur-active-border:transparent}
-html[data-cursor="beam-h"]{--cur-w:26px;--cur-h:3px;--cur-border:none;--cur-radius:1px;--cur-bg:var(--cyan-bright);--cur-blend:normal;--cur-shadow:0 0 12px var(--mood-glow);--cur-core-w:6px;--cur-core-h:6px;--cur-core-bg:var(--accent-2);--cur-core-radius:1px;--cur-active-w:40px;--cur-active-h:5px;--cur-active-bg:var(--gold)}
-html[data-cursor="diamond"]{--cur-w:22px;--cur-h:22px;--cur-border:2px solid var(--cyan);--cur-radius:2px;--cur-rot:rotate(45deg);--cur-blend:normal;--cur-shadow:0 0 14px var(--mood-glow);--cur-core-w:6px;--cur-core-h:6px;--cur-core-bg:var(--accent-2);--cur-core-radius:1px;--cur-core-rot:rotate(45deg);--cur-active-w:34px;--cur-active-h:34px;--cur-active-radius:2px}
-html[data-cursor="comma"]{--cur-w:18px;--cur-h:18px;--cur-border:2px solid var(--cyan);--cur-radius:50% 50% 50% 2px;--cur-rot:rotate(-20deg);--cur-blend:normal;--cur-shadow:0 0 12px var(--mood-glow);--cur-core-w:5px;--cur-core-h:5px;--cur-core-bg:var(--gold);--cur-core-radius:50%;--cur-active-w:32px;--cur-active-h:32px;--cur-active-radius:50% 50% 50% 4px}
+/* cursor skins — track colorizer accent (not mood --cyan/--gold) */
+html[data-cursor="ring-screen"]{--cur-w:28px;--cur-h:28px;--cur-border:2px solid var(--accent-0);--cur-radius:50%;--cur-blend:screen;--cur-shadow:0 0 18px rgba(var(--accent-0-rgb),.35);--cur-core-w:7px;--cur-core-h:7px;--cur-core-bg:var(--accent-1);--cur-core-radius:50%;--cur-active-w:50px;--cur-active-h:50px}
+html[data-cursor="ring-tight"]{--cur-w:16px;--cur-h:16px;--cur-border:2px solid var(--accent-0);--cur-radius:50%;--cur-blend:normal;--cur-shadow:0 0 14px rgba(var(--accent-0-rgb),.4);--cur-core-w:7px;--cur-core-h:7px;--cur-core-bg:var(--accent-1);--cur-active-w:34px;--cur-active-h:34px}
+html[data-cursor="ring-gold"]{--cur-w:18px;--cur-h:18px;--cur-border:2px solid var(--accent-1);--cur-radius:50%;--cur-blend:normal;--cur-shadow:0 0 16px rgba(var(--accent-1-rgb),.55);--cur-core-w:7px;--cur-core-h:7px;--cur-core-bg:var(--accent-0);--cur-core-shadow:0 0 12px rgba(var(--accent-0-rgb),.55);--cur-active-w:36px;--cur-active-h:36px;--cur-active-border:var(--accent-0);--cur-active-bg:rgba(var(--accent-0-rgb),.18)}
+html[data-cursor="pill"]{--cur-w:26px;--cur-h:10px;--cur-border:1.5px solid var(--accent-0);--cur-radius:8px;--cur-blend:normal;--cur-shadow:0 0 12px rgba(var(--accent-0-rgb),.35);--cur-core-w:7px;--cur-core-h:7px;--cur-core-bg:var(--accent-1);--cur-core-radius:50%;--cur-active-w:40px;--cur-active-h:16px;--cur-active-radius:10px}
+html[data-cursor="beam-v"]{--cur-w:3px;--cur-h:22px;--cur-border:none;--cur-radius:1px;--cur-bg:var(--accent-0);--cur-blend:normal;--cur-shadow:0 0 10px rgba(var(--accent-0-rgb),.4);--cur-core-w:8px;--cur-core-h:8px;--cur-core-bg:var(--accent-1);--cur-core-radius:1px;--cur-active-w:6px;--cur-active-h:36px;--cur-active-bg:var(--accent-1);--cur-active-border:transparent}
+html[data-cursor="beam-h"]{--cur-w:26px;--cur-h:3px;--cur-border:none;--cur-radius:1px;--cur-bg:var(--accent-1);--cur-blend:normal;--cur-shadow:0 0 12px rgba(var(--accent-0-rgb),.4);--cur-core-w:6px;--cur-core-h:6px;--cur-core-bg:var(--accent-0);--cur-core-radius:1px;--cur-active-w:40px;--cur-active-h:5px;--cur-active-bg:var(--accent-0)}
+html[data-cursor="diamond"]{--cur-w:22px;--cur-h:22px;--cur-border:2px solid var(--accent-0);--cur-radius:2px;--cur-rot:rotate(45deg);--cur-blend:normal;--cur-shadow:0 0 14px rgba(var(--accent-0-rgb),.4);--cur-core-w:6px;--cur-core-h:6px;--cur-core-bg:var(--accent-1);--cur-core-radius:1px;--cur-core-rot:rotate(45deg);--cur-active-w:34px;--cur-active-h:34px;--cur-active-radius:2px}
+html[data-cursor="comma"]{--cur-w:18px;--cur-h:18px;--cur-border:2px solid var(--accent-0);--cur-radius:50% 50% 50% 2px;--cur-rot:rotate(-20deg);--cur-blend:normal;--cur-shadow:0 0 12px rgba(var(--accent-0-rgb),.35);--cur-core-w:5px;--cur-core-h:5px;--cur-core-bg:var(--accent-1);--cur-core-radius:50%;--cur-active-w:32px;--cur-active-h:32px;--cur-active-radius:50% 50% 50% 4px}
 html.link-drawing #cursor,
 html.link-drawing #cursor.active{
   width:12px!important;height:38px!important;border:none!important;border-radius:0!important;
@@ -1326,14 +1333,18 @@ body.split-quiz-active #chatDock{z-index:60}
 .match-col h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
 .match-list{display:flex;flex-direction:column;gap:10px}
 .match-item{appearance:none;width:100%;text-align:left;font:inherit;padding:14px 16px;border-radius:14px;border:1.5px solid var(--border);background:rgba(0,0,0,.42);color:var(--text);cursor:pointer;user-select:none;touch-action:none;transition:transform var(--transition-ms),border-color var(--transition-ms),background var(--transition-ms),box-shadow var(--transition-ms)}
-.match-item:hover:not(:disabled){border-color:var(--cyan);background:var(--mood-glow);box-shadow:0 0 20px var(--mood-glow)}
-.match-item.drawing{border-color:var(--cyan);background:var(--mood-glow)}
-.match-item.paired{border-color:color-mix(in srgb, var(--cyan) 55%, var(--border))}
+.match-item:hover:not(:disabled):not(.is-solved-link){border-color:rgba(var(--accent-0-rgb),.45);background:rgba(var(--accent-0-rgb),.06);box-shadow:0 0 12px rgba(var(--accent-0-rgb),.18)}
+.match-item.drawing{border-color:var(--accent-0);background:rgba(var(--accent-0-rgb),.1);box-shadow:none}
+/* While drawing a thread, do not glow every choice under the pointer */
+html.link-drawing .match-item:hover:not(.drawing):not(.is-solved-link){
+  border-color:var(--border);background:rgba(0,0,0,.42);box-shadow:none;transform:none;
+}
+.match-item.paired:not(.is-solved-link){border-color:color-mix(in srgb, var(--accent-0) 40%, var(--border))}
 .match-item.is-solved-link{
-  border-color:var(--cyan-bright);
-  background:color-mix(in srgb, var(--cyan) 18%, rgba(0,0,0,.42));
-  color:var(--cyan-bright);
-  box-shadow:0 0 22px var(--mood-glow),0 0 10px rgba(var(--accent-0-rgb),.4);
+  border-color:var(--accent-0);
+  background:rgba(var(--accent-0-rgb),.18);
+  color:var(--accent-1);
+  box-shadow:0 0 22px rgba(var(--accent-0-rgb),.45),0 0 10px rgba(var(--accent-0-rgb),.35);
 }
 .match-item[hidden]{display:none!important}
 .match-item:disabled{cursor:default}
@@ -1362,6 +1373,25 @@ body.split-quiz-active #chatDock{z-index:60}
   box-shadow:0 0 14px rgba(var(--accent-0-rgb),.4),inset 0 1px 0 rgba(255,255,255,.06);
 }
 .q-nav-btn.done.current{box-shadow:0 0 18px rgba(var(--accent-0-rgb),.55),inset 0 1px 0 rgba(255,255,255,.08)}
+.q-nav-btn.unanswered{
+  position:relative;
+  border-color:rgba(251,113,133,.55);
+  color:#fda4af;
+}
+.q-nav-btn.unanswered::after{
+  content:'';
+  position:absolute;
+  top:3px;right:3px;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:#f43f5e;
+  box-shadow:0 0 8px rgba(244,63,94,.75);
+  pointer-events:none;
+}
+.q-nav-btn.unanswered.current{
+  border-color:rgba(251,113,133,.8);
+  box-shadow:0 0 14px rgba(244,63,94,.35),inset 0 1px 0 rgba(255,255,255,.05);
+}
 html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-btn{cursor:none!important}
 
 
@@ -1381,17 +1411,8 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
 .empty-note{color:var(--text-dim);font-family:var(--mono);font-size:.9rem;padding:18px;border:1px dashed var(--border);border-radius:16px}
 
 
-/* Settings open: system pointer so modal is usable (custom ring/brush can't sit between backdrop & content).
-   Closing settings removes body.settings-open and restores quiz custom cursor when data-custom-cursor=on. */
-body.settings-open,
-body.settings-open .settings-modal,
-body.settings-open .settings-modal *{
-  cursor:auto!important;
-}
-body.settings-open .brushCursor,
-body.settings-open .brushCursor .aura,
-body.settings-open #cursor,
-body.settings-open #cursor.core{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+/* Custom cursor stays visible while settings are open */
+
 
 /* Wire colorizer accents across quiz chrome that previously ignored them */
 .q-nav-btn.current,
@@ -1482,6 +1503,21 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <span class="setting-item-label">Reset Theme</span>
 <button class="btn btn-secondary" style="border-color:var(--col-error); color:var(--col-error);" onclick="resetThemeToDefaults()">Reset Theme to Defaults</button>
 <p class="setting-item-desc">Resets accent color, hue shift, and dark mode.</p>
+</div>
+<div class="setting-item" id="theme-cursor-picker" style="border-top:1px solid var(--col-border-light); padding-top:20px;">
+<span class="setting-item-label">Custom Cursor</span>
+<p class="setting-item-desc" style="margin:0 0 12px;">Pick a cursor style. Theme accent recolors the live cursor.</p>
+<div class="cursor-skin-grid" id="cursor-skin-grid" role="listbox" aria-label="Cursor style">
+<button type="button" class="cursor-skin-opt" data-cursor-skin="ring-screen" title="Ring Screen"><span class="cursor-skin-preview preview-ring-screen"></span><span class="cursor-skin-name">Ring</span></button>
+<button type="button" class="cursor-skin-opt" data-cursor-skin="ring-tight" title="Ring Tight"><span class="cursor-skin-preview preview-ring-tight"></span><span class="cursor-skin-name">Tight</span></button>
+<button type="button" class="cursor-skin-opt" data-cursor-skin="ring-gold" title="Ring Accent"><span class="cursor-skin-preview preview-ring-gold"></span><span class="cursor-skin-name">Accent</span></button>
+<button type="button" class="cursor-skin-opt" data-cursor-skin="pill" title="Pill"><span class="cursor-skin-preview preview-pill"></span><span class="cursor-skin-name">Pill</span></button>
+<button type="button" class="cursor-skin-opt" data-cursor-skin="beam-v" title="Beam Vertical"><span class="cursor-skin-preview preview-beam-v"></span><span class="cursor-skin-name">Beam V</span></button>
+<button type="button" class="cursor-skin-opt" data-cursor-skin="beam-h" title="Beam Horizontal"><span class="cursor-skin-preview preview-beam-h"></span><span class="cursor-skin-name">Beam H</span></button>
+<button type="button" class="cursor-skin-opt" data-cursor-skin="diamond" title="Diamond"><span class="cursor-skin-preview preview-diamond"></span><span class="cursor-skin-name">Diamond</span></button>
+<button type="button" class="cursor-skin-opt" data-cursor-skin="comma" title="Comma"><span class="cursor-skin-preview preview-comma"></span><span class="cursor-skin-name">Comma</span></button>
+<button type="button" class="cursor-skin-opt" data-cursor-skin="system" title="System cursor"><span class="cursor-skin-preview preview-system">↖</span><span class="cursor-skin-name">System</span></button>
+</div>
 </div>
 <div class="setting-item" style="display: none;">
 <span class="setting-item-label">Appearance</span>
@@ -1693,7 +1729,14 @@ document.addEventListener('mousemove', e=>{ if(!customCursorOn()) return; docume
 document.addEventListener('mousedown',()=>{ if(customCursorOn()&&cursor) cursor.classList.add('active'); });
 document.addEventListener('mouseup',()=>{ if(cursor) cursor.classList.remove('active'); });
 // Keep cursor skin stable (no mood-driven cycling)
-if(!document.documentElement.getAttribute('data-cursor')) document.documentElement.setAttribute('data-cursor','ring-screen');
+(function(){
+  if(document.documentElement.getAttribute('data-custom-cursor')==='off') return;
+  if(!document.documentElement.getAttribute('data-cursor')){
+    var sk='ring-screen';
+    try{ var s=localStorage.getItem('pt1_cursor_skin'); if(s&&s!=='system'&&s!=='off') sk=s; }catch(e){}
+    document.documentElement.setAttribute('data-cursor', sk);
+  }
+})();
 /* Legacy ring/#cursor idle auto-hide — quiz only; 4.5s (= 1.5s × 3). Not ATC brush. */
 (function quizRingCursorIdle(){
   if(!customCursorOn()) return;
@@ -2002,12 +2045,58 @@ function startRun(pool, label){
   renderQuestion();
 }
 
+function firstUnansweredIndex(){
+  for(let i=0;i<questions.length;i++){
+    if(!isAnswered(answers[i], questions[i])) return i;
+  }
+  return -1;
+}
+function allQuestionsAnswered(){
+  return questions.length>0 && firstUnansweredIndex()===-1;
+}
+function updateNextActionButton(){
+  const btn=document.getElementById('nextBtn');
+  if(!btn) return;
+  const atLast=current===questions.length-1;
+  const answeredHere=isAnswered(answers[current], questions[current]);
+  const firstOpen=firstUnansweredIndex();
+  btn.dataset.action='next';
+  if(!atLast){
+    btn.textContent='Next →';
+    btn.disabled=!answeredHere;
+    return;
+  }
+  // On final question: Finish only if everything is answered
+  if(allQuestionsAnswered()){
+    btn.textContent='Finish ✓';
+    btn.dataset.action='finish';
+    btn.disabled=!answeredHere;
+    return;
+  }
+  // Still missing answers — mark nav and offer jump to first open
+  if(firstOpen>=0){
+    btn.textContent='Return to question '+(firstOpen+1);
+    btn.dataset.action='return-unanswered';
+    btn.dataset.target=String(firstOpen);
+    btn.disabled=false;
+  } else {
+    btn.textContent='Finish ✓';
+    btn.dataset.action='finish';
+    btn.disabled=true;
+  }
+}
 function renderNav(){
   const nav=document.getElementById('qNav'); nav.innerHTML='';
+  const atLast=current===questions.length-1;
+  const markUnanswered=atLast && !allQuestionsAnswered();
   questions.forEach((q,i)=>{
+    const done=isAnswered(answers[i],q);
     const b=document.createElement('button');
     b.type='button';
-    b.className='q-nav-btn'+(i===current?' current':'')+(isAnswered(answers[i],q)?' done':'');
+    b.className='q-nav-btn'
+      +(i===current?' current':'')
+      +(done?' done':'')
+      +((markUnanswered && !done)?' unanswered':'');
     b.textContent=String(i+1);
     b.addEventListener('click',()=>{ current=i; locked=isAnswered(answers[i],q); renderQuestion(); });
     nav.appendChild(b);
@@ -2044,10 +2133,10 @@ function renderQuestion(){
   if(isMatching(q)) renderMatching(q, answers[current]||{pairs:{},wires:[],checked:false,correct:false});
   else renderMcq(q, answered);
   const fb=document.getElementById('feedback');
-  if(answered){ fb.className='feedback good'; fb.textContent='✓ '+(q.explain||''); document.getElementById('nextBtn').disabled=false; }
-  else { fb.className='feedback idle'; fb.textContent=''; document.getElementById('nextBtn').disabled=true; }
+  if(answered){ fb.className='feedback good'; fb.textContent='✓ '+(q.explain||''); }
+  else { fb.className='feedback idle'; fb.textContent=''; }
   document.getElementById('backBtn').disabled=current===0;
-  document.getElementById('nextBtn').textContent=current===questions.length-1?'Finish ✓':'Next →';
+  updateNextActionButton();
 }
 
 function renderMcq(q, answered){
@@ -2220,12 +2309,11 @@ function renderMatching(q, ans){
   function makeItem(item,side){
     const btn=document.createElement('button'); btn.type='button'; btn.className='match-item';
     btn.dataset.side=side; btn.dataset.id=item.id; btn.textContent=item.text;
-    const paired=ans.pairs && ((side==='L'&&ans.pairs[item.id])||(side==='R'&&Object.values(ans.pairs).includes(item.id)));
-    if(paired) btn.classList.add('paired');
     const leftLocked=side==='L' && ans.pairs && ans.pairs[item.id] && q.correct_pairs && q.correct_pairs[item.id]===ans.pairs[item.id];
     const rightLocked=side==='R' && ans.pairs && Object.keys(ans.pairs).some(lid=>ans.pairs[lid]===item.id && q.correct_pairs && q.correct_pairs[lid]===item.id);
-    if(leftLocked){ btn.classList.add('is-solved-link'); btn.disabled=true; }
-    else if(rightLocked || ans.correct){ btn.disabled=true; }
+    if(leftLocked){ btn.classList.add('paired','is-solved-link'); btn.disabled=true; }
+    else if(rightLocked){ btn.classList.add('paired'); btn.disabled=true; }
+    else if(ans.correct){ btn.disabled=true; }
     if(!btn.disabled) btn.addEventListener('pointerdown', ev=>beginDraw(ev,q,btn));
     return btn;
   }
@@ -2329,13 +2417,12 @@ function onDrawUp(ev){
     const leftEl=drawState.side==='L'?src:hit;
     const rightEl=drawState.side==='R'?src:hit;
     const isCorrect=!!(q.correct_pairs && q.correct_pairs[leftId]===rightId);
-    // Drop prior wire for this left (and any wire ending on this right if reclaiming)
-    cur.wires=cur.wires.filter(w=>w.leftId!==leftId && w.rightId!==rightId);
-    // If this right was claimed by another left, clear that pair
-    Object.keys(cur.pairs).forEach(lid=>{ if(cur.pairs[lid]===rightId) delete cur.pairs[lid]; });
-    cur.pairs[leftId]=rightId;
-    cur.wires.push({leftId,rightId,points:pts});
     if(isCorrect){
+      // Persist only correct pairs; drop any prior wire for this left/right
+      cur.wires=cur.wires.filter(w=>w.leftId!==leftId && w.rightId!==rightId);
+      Object.keys(cur.pairs).forEach(lid=>{ if(cur.pairs[lid]===rightId) delete cur.pairs[lid]; });
+      cur.pairs[leftId]=rightId;
+      cur.wires.push({leftId,rightId,points:pts});
       cur.checked=false;
       celebrateLink(ev.clientX, ev.clientY);
       // Glow + lock left in place (no full redraw)
@@ -2349,12 +2436,12 @@ function onDrawUp(ev){
         cur.correct=true; cur.checked=true; answers[current]=cur; locked=true; markSolved(q);
         const fb=document.getElementById('feedback');
         fb.className='feedback good'; fb.textContent='✓ '+(q.explain||'');
-        document.getElementById('nextBtn').disabled=false;
         document.getElementById('mainPanel').classList.add('correct-pulse');
         setTimeout(()=>document.getElementById('mainPanel').classList.remove('correct-pulse'),650);
-        spawnConfetti(); renderNav(); updateCounters();
+        spawnConfetti(); renderNav(); updateNextActionButton(); updateCounters();
       }
     } else {
+      // Wrong link: do not store pair/wire or glow any choice
       cur.checked=false; cur.correct=false;
       const fb=document.getElementById('feedback');
       fb.className='feedback soft'; fb.textContent='not that one · try again';
@@ -2370,12 +2457,23 @@ function onDrawUp(ev){
   drawState=null;
   if(svg) paintWires(svg, (answers[current]&&answers[current].wires)||[]);
   if(!locked){
+    const ans=ensureMatchAns();
+    // Drop any leftover incorrect pairs/wires from older sessions
+    if(ans.pairs && q.correct_pairs){
+      Object.keys(ans.pairs).forEach(lid=>{
+        if(ans.pairs[lid]!==q.correct_pairs[lid]){
+          const rid=ans.pairs[lid];
+          delete ans.pairs[lid];
+          ans.wires=(ans.wires||[]).filter(w=>w.leftId!==lid && w.rightId!==rid);
+        }
+      });
+    }
     document.querySelectorAll('.match-item').forEach(n=>{
-      const ans=ensureMatchAns();
       const isLeftSolved=n.dataset.side==='L' && ans.pairs[n.dataset.id] && q.correct_pairs && q.correct_pairs[n.dataset.id]===ans.pairs[n.dataset.id];
       const isRightSolved=n.dataset.side==='R' && Object.keys(ans.pairs).some(lid=>ans.pairs[lid]===n.dataset.id && q.correct_pairs && q.correct_pairs[lid]===n.dataset.id);
-      n.classList.toggle('paired', (n.dataset.side==='L'&&ans.pairs[n.dataset.id])||(n.dataset.side==='R'&&Object.values(ans.pairs).includes(n.dataset.id)));
+      n.classList.toggle('paired', isLeftSolved || isRightSolved);
       n.classList.toggle('is-solved-link', isLeftSolved);
+      n.classList.remove('drawing');
       if(isLeftSolved || isRightSolved) n.disabled=true;
     });
   }
@@ -2395,13 +2493,30 @@ function selectAnswer(idx){
   fb.className='feedback good'; fb.textContent='✓ '+(q.explain||'');
   document.getElementById('mainPanel').classList.add('correct-pulse');
   setTimeout(()=>document.getElementById('mainPanel').classList.remove('correct-pulse'),650);
-  spawnConfetti(); document.getElementById('nextBtn').disabled=false; renderNav(); updateCounters();
+  spawnConfetti(); renderNav(); updateNextActionButton(); updateCounters();
 }
 
 function goNext(){
+  const btn=document.getElementById('nextBtn');
+  const action=btn && btn.dataset.action;
+  if(action==='return-unanswered'){
+    const target=parseInt(btn.dataset.target,10);
+    if(!Number.isFinite(target) || target<0 || target>=questions.length) return;
+    current=target;
+    locked=isAnswered(answers[current], questions[current]);
+    renderQuestion();
+    return;
+  }
   if(!locked||!isAnswered(answers[current], questions[current])) return;
   if(current<questions.length-1){ current++; locked=isAnswered(answers[current], questions[current]); renderQuestion(); }
-  else finishQuiz();
+  else {
+    if(!allQuestionsAnswered()){
+      updateNextActionButton();
+      renderNav();
+      return;
+    }
+    finishQuiz();
+  }
 }
 function goBack(){ if(current>0){ current--; locked=isAnswered(answers[current], questions[current]); renderQuestion(); } }
 function score(){ let c=0; answers.forEach((a,i)=>{ const q=questions[i]; if(isMatching(q)){ if(a&&a.correct)c++; } else if(a===q.correct)c++; }); return c; }

@@ -237,6 +237,86 @@ syncAllPresetHighlights();renderCustomPresets();
 global.resetThemeToDefaults = resetThemeToDefaults;
 
 
+
+  var CURSOR_SKIN_KEY = 'pt1_cursor_skin';
+  var CURSOR_ON_KEY = 'pt1_custom_cursor';
+  var CURSOR_SKINS = ['ring-screen','ring-tight','ring-gold','pill','beam-v','beam-h','diamond','comma'];
+
+  function currentCursorChoice() {
+    try {
+      var skin = localStorage.getItem(CURSOR_SKIN_KEY);
+      var on = localStorage.getItem(CURSOR_ON_KEY);
+      if (skin === 'system' || skin === 'off' || on === 'off' || on === '0' || on === 'false') return 'system';
+      if (skin && CURSOR_SKINS.indexOf(skin) !== -1) return skin;
+    } catch (e) {}
+    var attr = document.documentElement.getAttribute('data-custom-cursor');
+    if (attr === 'off') return 'system';
+    var cur = document.documentElement.getAttribute('data-cursor');
+    if (cur && CURSOR_SKINS.indexOf(cur) !== -1) return cur;
+    return 'ring-screen';
+  }
+
+  function syncCursorPickerUI() {
+    var choice = currentCursorChoice();
+    document.querySelectorAll('.cursor-skin-opt').forEach(function (btn) {
+      var v = btn.getAttribute('data-cursor-skin');
+      btn.classList.toggle('active', v === choice);
+      btn.setAttribute('aria-selected', v === choice ? 'true' : 'false');
+    });
+  }
+
+  function applyCursorChoice(value) {
+    var root = document.documentElement;
+    var skin = value || 'ring-screen';
+    if (skin === 'system' || skin === 'off') {
+      root.setAttribute('data-custom-cursor', 'off');
+      try {
+        localStorage.setItem(CURSOR_ON_KEY, 'off');
+        localStorage.setItem(CURSOR_SKIN_KEY, 'system');
+      } catch (e) {}
+      document.querySelectorAll('.brushCursor').forEach(function (el) {
+        el.classList.add('hidden');
+      });
+      document.querySelectorAll('#cursor').forEach(function (el) {
+        el.classList.add('hidden');
+      });
+    } else {
+      if (CURSOR_SKINS.indexOf(skin) === -1) skin = 'ring-screen';
+      root.setAttribute('data-custom-cursor', 'on');
+      root.setAttribute('data-cursor', skin);
+      try {
+        localStorage.setItem(CURSOR_ON_KEY, 'on');
+        localStorage.setItem(CURSOR_SKIN_KEY, skin);
+      } catch (e) {}
+      document.querySelectorAll('#cursor').forEach(function (el) {
+        el.classList.remove('hidden');
+      });
+      document.querySelectorAll('.brushCursor').forEach(function (el) {
+        el.classList.remove('hidden');
+      });
+    }
+    syncCursorPickerUI();
+  }
+
+  function wireCursorPicker() {
+    var grid = document.getElementById('cursor-skin-grid');
+    if (!grid || grid.dataset.wired === '1') {
+      syncCursorPickerUI();
+      return;
+    }
+    grid.dataset.wired = '1';
+    grid.addEventListener('click', function (e) {
+      var btn = e.target.closest('.cursor-skin-opt');
+      if (!btn || !grid.contains(btn)) return;
+      applyCursorChoice(btn.getAttribute('data-cursor-skin'));
+    });
+    // Restore saved choice onto the live page (boot may have set attrs already)
+    applyCursorChoice(currentCursorChoice());
+  }
+
+  global.applyCursorChoice = applyCursorChoice;
+  global.syncCursorPickerUI = syncCursorPickerUI;
+
 (function initThemeSystem() {
 const picker = document.getElementById('accent-color-picker');
 const hexInput = document.getElementById('accent-hex-input');
@@ -331,6 +411,7 @@ localStorage.setItem('atc_accent_strength', strengthSlider.value);
 loadAppSettings();
 applyThemeLocks();
 applyExtraGlow();
+wireCursorPicker();
 document.body.style.opacity = "1";
 })();
 

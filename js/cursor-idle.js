@@ -24,7 +24,6 @@
       'background:radial-gradient(circle,var(--accent-0) 0,var(--accent-0) 8px,rgba(var(--accent-0-rgb),0.8) 8px,rgba(var(--accent-0-rgb),0.8) 10px);' +
       'transform:translate(-50%,-50%);left:-100px;top:-100px;transition:opacity 0.2s ease;}' +
       '.brushCursor.hidden{opacity:0;}' +
-      'body.settings-open .brushCursor,body.settings-open .brushCursor .aura{opacity:0!important;visibility:hidden!important;}' +
       '.aura{position:absolute;width:100px;height:100px;left:calc(50% - 50px);top:calc(50% - 50px);' +
       'background:radial-gradient(circle,rgba(var(--accent-0-rgb),0.5) 0%,rgba(var(--accent-0-rgb),0) 70%);' +
       'opacity:0.5;pointer-events:none;animation:atc-brush-breathe 2s infinite;}' +
