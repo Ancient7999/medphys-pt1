@@ -565,9 +565,14 @@ html[data-quality="basic"]{
 body.formula-mode #backBtn,body.formula-mode #nextBtn{display:none!important}
 body.formula-mode #qNav{display:none!important}
 body.formula-mode .track{display:none!important}
-body.formula-mode .q-count{font-family:var(--mono);max-width:min(52vw,420px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-body.formula-mode .q-count #qNum{color:var(--accent-1)}
-body.formula-mode .q-count #qTotal{color:var(--success)}
+body.formula-mode .q-count{display:none!important}
+body.formula-mode #catTag{display:none!important}
+.formula-family-strip{display:none;flex:1;align-items:center;flex-wrap:wrap;gap:6px 10px;min-width:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.02em}
+body.formula-mode .formula-family-strip{display:flex}
+.ff-title{opacity:.32;color:var(--text-dim);white-space:nowrap;transition:opacity .2s ease,color .2s ease}
+.ff-title.active{opacity:1;color:var(--accent-1);font-weight:600}
+.formula-answered-tag{display:none;font-family:var(--mono);font-size:.68rem;padding:4px 10px;border-radius:999px;border:1px solid rgba(var(--accent-0-rgb),.28);color:var(--success);background:rgba(var(--accent-0-rgb),.1);letter-spacing:.03em;margin-left:auto;white-space:nowrap}
+body.formula-mode .formula-answered-tag{display:inline-flex}
 #formulaShowBtn{display:none}
 body.formula-mode #formulaShowBtn{display:inline-flex}
 #formulaRollBtn{display:none}
@@ -1897,6 +1902,8 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
           <div class="track"><div class="track-fill" id="progressBar"></div></div>
           <div class="q-count"><span id="qNum">1</span> / <span id="qTotal">0</span></div>
           <span class="cat-tag" id="catTag">—</span>
+          <div class="formula-family-strip" id="formulaFamilyStrip" aria-label="Formula families"></div>
+          <span class="formula-answered-tag" id="formulaAnsweredTag" title="Answered this family · overall"></span>
         </div>
         <div class="question" id="qText"></div>
         <div class="options" id="options"></div>
@@ -2080,7 +2087,7 @@ refreshFxAccentColors();
 let BANK=null;
 let questions=[], answers=[], current=0, locked=false, quizActive=false, startTime=0, elapsedTimer=null, drawState=null, runLabel='';
 let formulaMode=false, formulaKeys=[], formulaCurrentKey='', formulaAdvanceTimer=null, formulaAdvanceRaf=null, formulaHintShown=false;
-const FORMULA_ADVANCE_MS=3800;
+const FORMULA_ADVANCE_MS=2500;
 const FORMULA_COUNT_KEY='pt1_formula_count';
 const FORMULA_MASTERY_KEY='pt1_formula_mastery_v1';
 function loadFormulaCount(){ const n=parseInt(lsGet(FORMULA_COUNT_KEY)||'0',10); return Number.isFinite(n)&&n>0?n:0; }
@@ -2189,12 +2196,24 @@ function updateFormulaRunChrome(q){
   const title=formulaFamilyTitle(key);
   const famCount=formulaFamilyCount(key);
   const overall=loadFormulaCount();
-  const qNum=document.getElementById('qNum');
-  const qTotal=document.getElementById('qTotal');
-  if(qNum) qNum.textContent=title;
-  if(qTotal) qTotal.textContent=String(famCount);
-  const qCount=document.querySelector('.q-count');
-  if(qCount) qCount.title=title+' · '+famCount+' answered in this family · '+overall+' total';
+  const pool=(formulaKeys&&formulaKeys.length)?formulaKeys.slice():((window.Pt1FormulaGen&&Pt1FormulaGen.allKeys())||[]);
+  const strip=document.getElementById('formulaFamilyStrip');
+  if(strip){
+    strip.innerHTML='';
+    pool.forEach(k=>{
+      const span=document.createElement('span');
+      span.className='ff-title'+(k===key?' active':'');
+      span.textContent=formulaFamilyTitle(k);
+      const n=formulaFamilyCount(k);
+      span.title=formulaFamilyTitle(k)+(k===key?' (active)':'')+' · '+n+' answered';
+      strip.appendChild(span);
+    });
+  }
+  const ansTag=document.getElementById('formulaAnsweredTag');
+  if(ansTag){
+    ansTag.textContent=famCount+' · '+overall;
+    ansTag.title=title+' · '+famCount+' answered in this family · '+overall+' overall';
+  }
   document.getElementById('quizSub').textContent='Formulas · '+title+' · family '+famCount+' · total '+overall;
   const nav=document.getElementById('qNav');
   if(nav){
