@@ -204,10 +204,10 @@ Dimensionless — NO units
 
 Same force F through a smaller cross-section A → larger stress F/A. When stress exceeds strength → fracture. Osteoporosis reduces effective load-bearing area/density → higher stress for the same fall.
 
-### Exam tip
+### Units check
 
-- If your answer for **strain** has units → wrong.  
-- If your answer for **stress** has no units → wrong.
+- Strain is a ratio of lengths — if your value has units, it is wrong.  
+- Stress is force per area — if your value has no units, it is wrong.
 
 ---
 

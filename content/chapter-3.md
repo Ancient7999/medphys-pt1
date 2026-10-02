@@ -68,6 +68,13 @@ Since m = ρ V and V = A × ℓ:
 Mass flow rate = ρ A (ℓ / t) = ρ A v
 ```
 
+**How mass flow rate is assembled:**
+- Start from definition: mass passing a cross-section per time → m/t.
+- Mass of a fluid slug is density × volume: m = ρV.
+- That volume is the tube’s cross-section times how far the fluid moves: V = A × ℓ.
+- Distance per time is speed: ℓ/t = v.
+- Combine: mass flow rate = ρ A v. Symbols: ρ = density, A = cross-sectional area, v = speed.
+
 Unit check: (kg/m³)·(m²)·(m/s) = **kg/s**.
 
 ### Volume flow rate
@@ -76,7 +83,7 @@ Unit check: (kg/m³)·(m²)·(m/s) = **kg/s**.
 Q = A v
 ```
 
-Unit: **m³/s**.
+**How volume flow rate is assembled (separate from mass flow):** Q is volume per time. A fluid slug of cross-section A advancing at speed v sweeps volume A×v each second — so Q = A v. No density here: this tracks space occupied, not mass. Unit: **m³/s**.
 
 Often both are written with symbol Q in slides — check whether mass or volume is meant from context (ρAv vs Av).
 
@@ -93,6 +100,10 @@ General:     ρ₁ A₁ v₁ = ρ₂ A₂ v₂
 Incompressible (liquids / blood ≈ constant ρ):
              A₁ v₁ = A₂ v₂
 ```
+
+**How the general continuity equation is made:** mass is conserved — whatever mass enters section 1 per second must leave section 2 per second (no leaks, no sources). Mass flow at a section is ρAv, so set ρ₁A₁v₁ = ρ₂A₂v₂. This form keeps density free to differ between sections (e.g. a compressible gas).
+
+**How the incompressible form is made (separate variant):** when density is the same at both sections (liquids; blood ≈ constant ρ), ρ cancels and you are left with A₁v₁ = A₂v₂ — volume flow rate is conserved. Narrower A means larger v so the product stays equal.
 
 | Geometry | Velocity |
 |----------|----------|
@@ -116,10 +127,11 @@ v₂ = (0.1 × 0.5) / 0.01 = 5 m/s
 
 Velocity rises **10×** in the narrowed section.
 
-**Clinical framing:** vascular narrowing (stenosis) → higher blood speed in the throat of the stenosis (continuity), before pressure effects (Bernoulli).
+**Clinical framing:** vascular narrowing (stenosis) raises blood speed in the throat of the stenosis (continuity), before pressure effects (Bernoulli).
 
+### Why speed rises at a stenosis
 
-*Why does velocity increase at a carotid stenosis?* Primary continuity answer: **A decreases → v increases** (Bernoulli explains the accompanying **pressure drop**, not the velocity rise itself).
+Velocity increases at a carotid stenosis because **area decreases**, so **speed increases** to keep A v constant (continuity). Bernoulli then explains the accompanying **pressure drop** — it does not cause the velocity rise itself.
 
 ---
 
@@ -127,7 +139,7 @@ Velocity rises **10×** in the narrowed section.
 
 ### Assumptions (ideal fluid)
 
-Steady flow · incompressible · non-viscous · streamline (laminar).
+Steady flow · incompressible · no drag between fluid layers · streamline (laminar).
 
 ### Statement
 
@@ -140,23 +152,27 @@ Along two points:
 P₁ + ½ ρ v₁² + ρ g h₁ = P₂ + ½ ρ v₂² + ρ g h₂
 ```
 
+**How the full Bernoulli equation is assembled:** along a streamline for an ideal fluid, mechanical energy **per unit volume** is conserved. Three contributions add to a constant:
+- **P** — pressure energy per unit volume (the “push” stored in the fluid).
+- **½ ρ v²** — kinetic energy per unit volume (from KE = ½mv², divide by volume V, and m/V = ρ).
+- **ρ g h** — gravitational potential energy per unit volume (from mgh / V, again with m/V = ρ).
+
+Writing the sum at point 1 equal to the sum at point 2 gives the two-point form. Symbols: P = pressure, ρ = density, v = speed, g = gravity, h = height above a reference.
+
 | Term | Meaning | Unit |
 |------|---------|------|
 | P | Pressure energy per unit volume | Pa |
 | ½ ρ v² | Kinetic energy per unit volume | Pa |
 | ρ g h | Potential energy per unit volume | Pa |
 
-### Trade-off (same height)
+### Trade-off at the same height
 
-```
-v ↑  ⇒  P ↓
-v ↓  ⇒  P ↑
-```
+**How the same-height form is made (separate from the full equation):** if two points lie at the same height, h₁ = h₂ so the ρgh terms match and cancel when you rearrange. What remains is a trade-off between pressure and speed alone: P + ½ρv² stays constant. Therefore, when fluid speeds up, pressure must fall; when fluid slows down, pressure must rise. In words: faster flow at constant height means lower pressure; slower flow at constant height means higher pressure.
 
 ### Connecting continuity and Bernoulli at a stenosis
 
-1. Continuity: A↓ → v↑  
-2. Bernoulli: v↑ → P↓  
+1. Continuity: smaller area raises speed.  
+2. Bernoulli (same height): higher speed lowers pressure.  
 3. Result: fast, low-pressure blood in the narrow region; tissue beyond may be under-perfused; low pressure can promote further vessel issues downstream.
 
 ---
@@ -165,7 +181,7 @@ v ↓  ⇒  P ↑
 
 ### Blood flow through narrowed arteries (stenosis / atherosclerosis)
 
-- Area ↓ → velocity ↑ → pressure ↓ inside the narrowed segment.  
+- Smaller area raises velocity; higher velocity lowers pressure inside the narrowed segment.  
 - Linked clinically to reduced supply (e.g. framing of **TIA** when brain-supplying arteries are constricted: higher speed past constriction, lower pressure).
 
 ### Venturi mask
@@ -194,12 +210,12 @@ Bernoulli relates pressure, velocity, and height in moving fluids; explains pres
 ## 8. Formula sheet — Chapter 3
 
 ```
-Mass flow rate = ρ A v
-Volume flow rate Q = A v
-Continuity (general): ρ₁ A₁ v₁ = ρ₂ A₂ v₂
-Continuity (blood ≈ incompressible): A₁ v₁ = A₂ v₂
-Bernoulli: P + ½ ρ v² + ρ g h = constant
-At same height: higher v ↔ lower P
+Mass flow rate = ρ A v                 ← density × area × speed (mass/time)
+Volume flow rate Q = A v               ← area × speed (volume/time)
+Continuity (general): ρ₁ A₁ v₁ = ρ₂ A₂ v₂   ← mass flow conserved
+Continuity (blood ≈ incompressible): A₁ v₁ = A₂ v₂   ← volume flow conserved (ρ cancels)
+Bernoulli: P + ½ ρ v² + ρ g h = constant   ← energy per volume conserved
+At same height: higher speed means lower pressure (ρgh drops out)
 ```
 
 ---
@@ -208,9 +224,9 @@ At same height: higher v ↔ lower P
 
 | Finding | Physics to cite |
 |---------|-----------------|
-| Faster blood in a narrow segment | Continuity (A↓ → v↑) |
-| Lower pressure in that segment | Bernoulli (v↑ → P↓) |
-| Murmur over stenotic valve | High v → turbulence |
+| Faster blood in a narrow segment | Continuity: smaller area raises speed |
+| Lower pressure in that segment | Bernoulli at same height: higher speed lowers pressure |
+| Murmur over stenotic valve | High speed can produce turbulence |
 | Controlled O₂ mask | Venturi / Bernoulli |
 | Velocity imaging of vessels | Doppler ultrasound |
 

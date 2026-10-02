@@ -48,13 +48,15 @@ Conversion: (g/cm³) × 1000 = kg/m³
 Example: 1 g/cm³ = 1000 kg/m³  (water)
 ```
 
+**How density is made:** m is mass (how much matter); V is volume (how much space). Density is mass divided by volume — how tightly matter is packed. Same mass in a smaller volume means higher density.
+
 ### Specific gravity
 
 ```
 Specific gravity = ρ_substance / ρ_water
 ```
 
-Dimensionless (pure number). Water: ρ = 1000 kg/m³ = 1 g/cm³ → SG = 1 by definition.
+**How specific gravity is made:** divide the substance’s density by water’s density. Both have the same units, so they cancel — SG is a pure number. Water: ρ = 1000 kg/m³ = 1 g/cm³ → SG = 1 by definition. SG = 2 means “twice as dense as water.”
 
 ### Worked examples
 
@@ -80,6 +82,8 @@ P = Force / Area
 SI unit: pascal (Pa) = N/m²
 ```
 
+**How pressure is made:** Force is the push (newtons); Area is the surface that push spreads over (m²). Pressure = force ÷ area — same force on a smaller patch means higher pressure.
+
 ### Direction & depth behaviour
 
 - At a given depth in a **static** fluid, pressure acts **equally in all directions**. If it did not, the fluid would flow.
@@ -95,6 +99,15 @@ P = F/A = (mg)/A = (ρ V g)/A = ρ g h
 ΔP = ρ g Δh
 ```
 
+**How P = ρgh is assembled (step by step):**
+1. Pressure is force over area: P = F/A.
+2. The force at depth is the weight of the liquid column above: F = mg.
+3. Mass of that column is density × volume: m = ρV, so F = ρVg.
+4. For a vertical column, V = A × h, so F/A = ρ(Ah)g / A = ρgh.
+5. Symbols: ρ = fluid density, g = gravity, h = depth below the free surface.
+
+**How ΔP = ρgΔh is made (separate variant):** when depth changes by Δh (not necessarily from the free surface), the *pressure difference* between two levels is ρg times that height difference. Same building blocks, but Δh replaces h when you compare two depths.
+
 (Here P often means the **gauge** contribution from the liquid column — see absolute vs gauge below.)
 
 ### Gauge pressure at depth
@@ -102,6 +115,8 @@ P = F/A = (mg)/A = (ρ V g)/A = ρ g h
 ```
 P_G = ρ g h
 ```
+
+**How gauge pressure at depth is made:** this is the same ρgh product, but named P_G to stress that it is the *extra* pressure from the liquid column alone — relative to the atmosphere at the free surface, not including atmospheric pressure. ρ, g, and h mean the same as above.
 
 ### Worked examples
 
@@ -156,7 +171,7 @@ Any liquid can work, but denser liquids need shorter columns.
 For water: h = P_atm / (ρ g) = (1.013×10⁵) / (1000 × 9.8) ≈ 10.33 m
 ```
 
-A water barometer would be > 10 m tall. Mercury (ρ ≈ 13.6 × water) needs only ~0.76 m.
+**How this height is made:** rearrange P = ρgh to h = P/(ρg). Plug in atmospheric pressure, water’s density, and g — that is how tall a water column must be to match 1 atm. A water barometer would be > 10 m tall. Mercury (ρ ≈ 13.6 × water) needs only ~0.76 m.
 
 ---
 
@@ -178,6 +193,11 @@ P_abs = P_atm + ρ g Δh
 P_gauge = ρ g Δh
 P_abs = P_atm + P_gauge
 ```
+
+**How each variant is made (keep them separate):**
+- **P_gauge = ρ g Δh:** the manometer’s height difference Δh tells you how much the gas pressure exceeds (or falls short of) the open-limb atmosphere. Multiply density × g × that height difference.
+- **P_abs = P_atm + ρ g Δh:** absolute pressure of the gas is atmosphere plus that gauge contribution — you add the two because the open limb already sits at P_atm, and the liquid column accounts for the rest.
+- **P_abs = P_atm + P_gauge:** same idea without writing ρgΔh — absolute always means “atmosphere plus whatever the gauge reads.”
 
 | Term | Meaning |
 |------|---------|
@@ -207,7 +227,9 @@ P_in = P_out
 F_in / A_in = F_out / A_out
 ```
 
-Small force on a small piston → same pressure → large force on a large piston.
+**How each Pascal form is made:**
+- **P_in = P_out:** a confined fluid transmits an applied pressure change equally, so pressure at the input piston equals pressure at the output piston.
+- **F_in / A_in = F_out / A_out:** write each pressure as force ÷ area. Same P on both sides means the forces scale with their areas. Small force on a small piston → same pressure → large force on a large piston.
 
 ### Applications
 
@@ -247,11 +269,19 @@ F_B = weight of the fluid displaced by the object
 F_B = m_fluid g = ρ_fluid × V_displaced × g
 ```
 
+**How buoyancy is assembled:**
+- Words first: buoyant force equals the **weight of the fluid displaced** (not the weight of the object).
+- Weight is mass × g, so F_B = m_fluid g.
+- Mass of displaced fluid is density × displaced volume: m_fluid = ρ_fluid × V_displaced.
+- Combine: F_B = ρ_fluid × V_displaced × g.
+
 ### Apparent weight
 
 ```
 Apparent weight = Actual weight − F_B
 ```
+
+**How apparent weight is made:** actual weight pulls down; buoyant force pushes up. What a scale (or your hand) feels underwater is the difference: W − F_B. Subtracting F_B from weight is why submerged objects feel lighter.
 
 - If F_B > weight → object rises / floats (displaces until equilibrium).  
 - If F_B < weight → object sinks (still feels lighter by F_B).  
@@ -285,18 +315,18 @@ P_abs = P_atm + P_G ≈ 1.80×10⁵ Pa.
 ## 11. Formula sheet — Chapter 2
 
 ```
-ρ = m / V
-SG = ρ / ρ_water
-P = F / A
-P_G (depth) = ρ g h
-ΔP = ρ g Δh
+ρ = m / V                              ← mass ÷ volume
+SG = ρ / ρ_water                       ← density ÷ water’s density (pure number)
+P = F / A                              ← force ÷ area
+P_G (depth) = ρ g h                    ← liquid-column gauge only
+ΔP = ρ g Δh                            ← pressure difference for height change Δh
 1 atm = 1.013 × 10⁵ Pa = 760 mmHg ≈ 760 torr
 ≈ 1 mmHg ≈ 133.3 Pa
-P_abs = P_atm + P_gauge
-Manometer: P_abs = P_atm + ρ g Δh
-Pascal: F_in/A_in = F_out/A_out
-F_B = ρ_fluid V_displaced g
-Apparent weight = W − F_B
+P_abs = P_atm + P_gauge                ← absolute = atmosphere + gauge
+Manometer: P_abs = P_atm + ρ g Δh      ← open U-tube form of the same idea
+Pascal: F_in/A_in = F_out/A_out        ← equal pressures → forces scale with area
+F_B = ρ_fluid V_displaced g            ← weight of displaced fluid
+Apparent weight = W − F_B              ← true weight minus buoyancy
 Water barometer height ≈ 10.33 m; Hg ≈ 0.76 m
 ```
 
