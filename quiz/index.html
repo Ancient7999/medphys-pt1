@@ -275,6 +275,82 @@ html.link-drawing #cursor.core.active{
   transform:translate(-50%,-50%) rotate(28deg) scaleX(-1)!important;mix-blend-mode:normal!important;transition:none!important;
 }
 
+/* Contextual custom cursors: slider / eyedropper / I-beam (accent-colored) */
+html.cursor-slider #cursor,
+html.cursor-slider #cursor.active{
+  width:28px!important;height:10px!important;border:none!important;border-radius:0!important;
+  background:transparent!important;clip-path:none!important;
+  box-shadow:none!important;filter:none!important;mix-blend-mode:normal!important;
+  transform:translate(-50%,-50%)!important;
+}
+html.cursor-slider #cursor::before,
+html.cursor-slider #cursor.active::before{
+  content:'';position:absolute;left:50%;top:50%;width:18px;height:2.5px;
+  background:var(--accent-0);border-radius:1px;transform:translate(-50%,-50%);
+  box-shadow:0 0 8px rgba(var(--accent-0-rgb),.55);
+}
+html.cursor-slider #cursor::after,
+html.cursor-slider #cursor.active::after{
+  content:'';position:absolute;left:50%;top:50%;width:0;height:0;transform:translate(-50%,-50%);
+  border-top:5px solid transparent;border-bottom:5px solid transparent;
+  border-left:7px solid var(--accent-0);border-right:7px solid var(--accent-0);
+  box-sizing:border-box;width:28px;height:10px;
+  background:
+    linear-gradient(135deg, transparent 42%, var(--accent-0) 42%, var(--accent-0) 58%, transparent 58%) left center/8px 10px no-repeat,
+    linear-gradient(225deg, transparent 42%, var(--accent-0) 42%, var(--accent-0) 58%, transparent 58%) right center/8px 10px no-repeat,
+    linear-gradient(var(--accent-0), var(--accent-0)) center/16px 2.5px no-repeat;
+  border:none;
+  filter:drop-shadow(0 0 4px rgba(var(--accent-0-rgb),.5));
+}
+html.cursor-slider #cursor.core,
+html.cursor-slider #cursor.core.active{display:none!important;opacity:0!important;width:0!important;height:0!important}
+
+html.cursor-eyedrop #cursor,
+html.cursor-eyedrop #cursor.active{
+  width:14px!important;height:28px!important;border:none!important;border-radius:0!important;
+  background:linear-gradient(180deg,var(--accent-1) 0 22%,var(--accent-0) 22% 48%,transparent 48%)!important;
+  clip-path:polygon(35% 0,65% 0,65% 18%,78% 28%,78% 42%,55% 55%,55% 100%,45% 100%,45% 55%,22% 42%,22% 28%,35% 18%);
+  box-shadow:none!important;mix-blend-mode:normal!important;
+  transform:translate(-30%,-85%) rotate(-28deg)!important;
+  filter:drop-shadow(0 0 4px rgba(var(--accent-0-rgb),.45))!important;
+}
+html.cursor-eyedrop #cursor.core,
+html.cursor-eyedrop #cursor.core.active{
+  width:5px!important;height:5px!important;border:none!important;border-radius:50%!important;
+  background:var(--accent-1)!important;clip-path:none;display:block!important;opacity:1!important;
+  transform:translate(-50%,-50%)!important;box-shadow:0 0 8px rgba(var(--accent-0-rgb),.55)!important;
+}
+
+html.cursor-ibeam #cursor,
+html.cursor-ibeam #cursor.active{
+  width:3px!important;height:22px!important;border:none!important;border-radius:1px!important;
+  background:var(--accent-0)!important;clip-path:none!important;
+  box-shadow:0 0 8px rgba(var(--accent-0-rgb),.45)!important;mix-blend-mode:normal!important;
+  transform:translate(-50%,-50%)!important;filter:none!important;
+}
+html.cursor-ibeam #cursor::before,
+html.cursor-ibeam #cursor.active::before,
+html.cursor-ibeam #cursor::after,
+html.cursor-ibeam #cursor.active::after{
+  content:'';position:absolute;left:50%;width:9px;height:2.5px;background:var(--accent-0);
+  transform:translateX(-50%);border-radius:1px;box-shadow:0 0 6px rgba(var(--accent-0-rgb),.4);
+}
+html.cursor-ibeam #cursor::before,html.cursor-ibeam #cursor.active::before{top:0}
+html.cursor-ibeam #cursor::after,html.cursor-ibeam #cursor.active::after{bottom:0}
+html.cursor-ibeam #cursor.core,
+html.cursor-ibeam #cursor.core.active{display:none!important;opacity:0!important;width:0!important;height:0!important}
+
+/* Native fallback when custom cursor off; hide OS cursor on these while custom is on */
+html[data-custom-cursor="on"] #accent-strength-slider,
+html[data-custom-cursor="on"] .settings-modal input[type="range"],
+html[data-custom-cursor="on"] #accent-color-picker,
+html[data-custom-cursor="on"] #accent-hex-input{cursor:none!important}
+html[data-custom-cursor="off"] #accent-strength-slider,
+html[data-custom-cursor="off"] .settings-modal input[type="range"]{cursor:ew-resize}
+html[data-custom-cursor="off"] #accent-color-picker{cursor:pointer}
+html[data-custom-cursor="off"] #accent-hex-input{cursor:text}
+
+
 /* Display quality + system cursor overrides */
 html[data-quality="basic"]{
   --bg:#0b0f14; --bg2:#0b0f14; --bg-glow:transparent; --grid-tint:transparent;
@@ -584,12 +660,27 @@ body.formula-mode #qNav{display:none!important}
 body.formula-mode .track{display:none!important}
 body.formula-mode .q-count{display:none!important}
 body.formula-mode #catTag{display:none!important}
-.formula-family-strip{display:none;flex:1;align-items:center;flex-wrap:wrap;gap:6px 10px;min-width:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.02em}
+.formula-family-strip{display:none;flex:1;align-items:center;flex-wrap:wrap;gap:8px 10px;min-width:0;font-family:var(--mono);font-size:.78rem;letter-spacing:.02em}
 body.formula-mode .formula-family-strip{display:flex}
-.ff-title{opacity:.32;color:var(--text-dim);white-space:nowrap;transition:opacity .2s ease,color .2s ease}
-.ff-title.active{opacity:1;color:var(--accent-1);font-weight:600}
+.ff-title{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 12px;border-radius:10px;
+  border:1px solid rgba(var(--accent-0-rgb),.18);
+  background:rgba(14,18,28,.55);
+  color:var(--text-dim);opacity:.55;white-space:nowrap;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+  transition:opacity .2s ease,color .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease,transform .15s ease;
+  font-size:.78rem;line-height:1.2;
+}
+.ff-title.active{
+  opacity:1;color:var(--accent-1);font-weight:600;
+  border-color:rgba(var(--accent-0-rgb),.55);
+  background:rgba(var(--accent-0-rgb),.14);
+  box-shadow:0 0 16px rgba(var(--accent-0-rgb),.22), inset 0 1px 0 rgba(255,255,255,.06);
+}
 #formulaShowBtn{display:none}
 body.formula-mode #formulaShowBtn{display:inline-flex}
+#formulaShowBtn.used,#formulaShowBtn:disabled{opacity:.32;filter:grayscale(.35);cursor:default}
 #formulaRollBtn{display:none}
 body.formula-mode.formula-waiting #formulaRollBtn{display:inline-flex}
 .nav.formula-nav{gap:10px;flex-wrap:wrap}
@@ -1488,18 +1579,9 @@ html.link-drawing .match-item:hover:not(.drawing):not(.is-solved-link){
 }
 .q-nav-btn.skipped:not(.done):not(.unanswered),
 #backBtn.has-skips-behind{
+  /* sparkles only — no glow / border / fill tint */
   position:relative;
   overflow:visible;
-  border-color:rgba(var(--accent-0-rgb),.4);
-  background:rgba(var(--accent-0-rgb),.06);
-  color:var(--accent-1);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
-}
-#backBtn.has-skips-behind{
-  border-color:rgba(var(--accent-0-rgb),.42)!important;
-  color:var(--accent-1)!important;
-  background:rgba(var(--accent-0-rgb),.07)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;
 }
 /* Twinkle dots — appear now and then, not a constant filled glow */
 .q-nav-btn.skipped:not(.done):not(.unanswered)::before,
@@ -1610,7 +1692,7 @@ a, .portal-card .go{color:var(--accent-1)}
 
 
 <div class="settings-wrapper" id="settings-wrapper">
-  <button class="settings-btn" id="settings-btn" title="Theme / Colorizer" aria-label="Open theme settings">
+  <button class="settings-btn" id="settings-btn" aria-label="Open theme settings">
 <svg class="settings-icon" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 <circle cx="12" cy="12" r="3"/>
@@ -2077,6 +2159,49 @@ const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove', e=>{ if(!customCursorOn()) return; document.querySelectorAll('#cursor').forEach(el=>{ el.style.left=e.clientX+'px'; el.style.top=e.clientY+'px'; }); });
 document.addEventListener('mousedown',()=>{ if(customCursorOn()&&cursor) cursor.classList.add('active'); });
 document.addEventListener('mouseup',()=>{ if(cursor) cursor.classList.remove('active'); });
+
+/* Colorizer control cursors: slider / eyedropper / I-beam when custom cursor on */
+(function wireColorizerCursors(){
+  function clearModes(){
+    document.documentElement.classList.remove('cursor-slider','cursor-eyedrop','cursor-ibeam');
+  }
+  function setMode(mode){
+    clearModes();
+    if(!customCursorOn() || !mode) return;
+    document.documentElement.classList.add(mode);
+  }
+  function bind(el, mode){
+    if(!el) return;
+    el.addEventListener('mouseenter', function(){ setMode(mode); });
+    el.addEventListener('mouseleave', function(){
+      // keep slider mode while dragging
+      if(mode==='cursor-slider' && el===document.activeElement) return;
+      if(document.documentElement.classList.contains(mode)) clearModes();
+    });
+    el.addEventListener('pointerdown', function(){ setMode(mode); });
+    el.addEventListener('pointerup', function(){ if(!el.matches(':hover')) clearModes(); });
+    el.addEventListener('blur', function(){ clearModes(); });
+  }
+  function wire(){
+    bind(document.getElementById('accent-strength-slider'), 'cursor-slider');
+    document.querySelectorAll('.settings-modal input[type="range"]').forEach(function(r){ bind(r, 'cursor-slider'); });
+    bind(document.getElementById('accent-color-picker'), 'cursor-eyedrop');
+    bind(document.getElementById('accent-hex-input'), 'cursor-ibeam');
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', wire);
+  else wire();
+  document.addEventListener('mouseup', function(){
+    // release drag-hold on range
+    var a=document.activeElement;
+    if(a && a.matches && a.matches('input[type="range"]') && a.matches(':hover')) return;
+    if(document.documentElement.classList.contains('cursor-slider') && !(a&&a.matches&&a.matches(':hover'))){
+      // leave mode if not hovering a range
+      var over=document.querySelector('.settings-modal input[type="range"]:hover, #accent-strength-slider:hover');
+      if(!over) document.documentElement.classList.remove('cursor-slider');
+    }
+  });
+})();
+
 // Keep cursor skin stable (no mood-driven cycling)
 (function(){
   if(document.documentElement.getAttribute('data-custom-cursor')==='off') return;
@@ -2124,7 +2249,7 @@ refreshFxAccentColors();
 /* —— bank + hub —— */
 let BANK=null;
 let questions=[], answers=[], current=0, locked=false, quizActive=false, startTime=0, elapsedTimer=null, drawState=null, runLabel='';
-let formulaMode=false, formulaKeys=[], formulaCurrentKey='', formulaAdvanceTimer=null, formulaAdvanceRaf=null, formulaHintShown=false;
+let formulaMode=false, formulaKeys=[], formulaCurrentKey='', formulaAdvanceTimer=null, formulaAdvanceRaf=null, formulaHintShown=false, formulaWrongCount=0, formulaHintLevel=0;
 const FORMULA_ADVANCE_MS=3200;
 const FORMULA_COUNT_KEY='pt1_formula_count';
 const FORMULA_MASTERY_KEY='pt1_formula_mastery_v1';
@@ -2216,8 +2341,9 @@ function pickLeastSolvedFormulaKey(keys){
   const candidates=pool.filter(k=>((mastery[k]&&mastery[k].total)||0)===min);
   return candidates[Math.floor(Math.random()*candidates.length)]||pool[0];
 }
-function formatFormulaHint(q){
+function formatFormulaHint(q, level){
   if(!q) return 'Use the family formula for this item.';
+  const lvl=Math.max(1, level==null?1:level|0);
   const lines=[];
   const hint=q.formulaHint||q.formulaEq||q.formulaName||'';
   if(hint) lines.push(hint);
@@ -2226,7 +2352,44 @@ function formatFormulaHint(q){
     if(lines.length) lines.push('');
     map.forEach(line=>{ if(line) lines.push(line); });
   }
+  const plug=q.formulaPlugIn||'';
+  if(plug){
+    if(lines.length) lines.push('');
+    lines.push(plug);
+  }
+  // Progressive: after first reveal, each further wrong shows more calc steps
+  const steps=Array.isArray(q.formulaSteps)?q.formulaSteps:[];
+  if(lvl>=2 && steps.length){
+    const show=steps.slice(0, Math.min(steps.length, lvl-1));
+    if(show.length){
+      lines.push('');
+      show.forEach(s=>{ if(s) lines.push(s); });
+    }
+  }
   return lines.length?lines.join('\n'):'Use the family formula for this item.';
+}
+function setFormulaShowBtnUsed(used){
+  const btn=document.getElementById('formulaShowBtn');
+  if(!btn) return;
+  if(used){
+    btn.disabled=true;
+    btn.classList.add('used');
+  } else {
+    btn.disabled=false;
+    btn.classList.remove('used');
+  }
+}
+function revealFormulaHint(level){
+  if(!formulaMode||!questions[current]) return;
+  const q=questions[current];
+  const lvl=Math.max(formulaHintLevel||0, level|0);
+  formulaHintLevel=lvl;
+  formulaHintShown=true;
+  const hb=document.getElementById('formulaHintBox');
+  const ht=document.getElementById('formulaHintText');
+  if(ht) ht.textContent=formatFormulaHint(q, lvl);
+  if(hb) hb.classList.add('show');
+  setFormulaShowBtnUsed(true);
 }
 function updateFormulaRunChrome(q){
   const key=(q&&q.formulaKey)||formulaCurrentKey||'';
@@ -2507,7 +2670,7 @@ function ingestBank(data){
 
 function goMainMenu(){ window.location.href='../index.html'; }
 function returnToQuiz(){
-  quizActive=false; formulaMode=false; formulaKeys=[]; formulaCurrentKey=''; formulaHintShown=false;
+  quizActive=false; formulaMode=false; formulaKeys=[]; formulaCurrentKey=''; formulaHintShown=false; formulaWrongCount=0; formulaHintLevel=0;
   clearFormulaAdvance(); clearWireLayer();
   document.body.classList.remove('formula-mode','formula-waiting');
   const hb=document.getElementById('formulaHintBox'); if(hb) hb.classList.remove('show');
@@ -2560,7 +2723,7 @@ function startFormulaRun(keys, label){
   clearFormulaAdvance();
   formulaMode=true;
   formulaKeys=(keys&&keys.length)?keys.slice():Pt1FormulaGen.allKeys();
-  formulaHintShown=false;
+  formulaHintShown=false; formulaWrongCount=0; formulaHintLevel=0; setFormulaShowBtnUsed(false);
   document.body.classList.add('formula-mode');
   const least=pickLeastSolvedFormulaKey(formulaKeys);
   formulaCurrentKey=least;
@@ -2582,7 +2745,7 @@ function startFormulaRun(keys, label){
 function pushNextFormulaQuestion(){
   if(!formulaMode||!window.Pt1FormulaGen) return;
   clearFormulaAdvance();
-  formulaHintShown=false;
+  formulaHintShown=false; formulaWrongCount=0; formulaHintLevel=0; setFormulaShowBtnUsed(false);
   const hb=document.getElementById('formulaHintBox'); if(hb) hb.classList.remove('show');
   const least=pickLeastSolvedFormulaKey(formulaKeys);
   formulaCurrentKey=least;
@@ -2595,7 +2758,7 @@ function pushNextFormulaQuestion(){
 function pushRandomFormulaQuestion(){
   if(!formulaMode||!window.Pt1FormulaGen) return;
   clearFormulaAdvance();
-  formulaHintShown=false;
+  formulaHintShown=false; formulaWrongCount=0; formulaHintLevel=0; setFormulaShowBtnUsed(false);
   const hb=document.getElementById('formulaHintBox'); if(hb) hb.classList.remove('show');
   const pool=(formulaKeys&&formulaKeys.length)?formulaKeys.slice():Pt1FormulaGen.allKeys();
   const q=Pt1FormulaGen.generateQuestion(pool); // random among pool
@@ -2604,9 +2767,10 @@ function pushRandomFormulaQuestion(){
   renderQuestion();
 }
 function startRun(pool, label){
-  formulaMode=false; formulaKeys=[]; formulaCurrentKey=''; formulaHintShown=false; clearFormulaAdvance();
+  formulaMode=false; formulaKeys=[]; formulaCurrentKey=''; formulaHintShown=false; formulaWrongCount=0; formulaHintLevel=0; clearFormulaAdvance();
   document.body.classList.remove('formula-mode','formula-waiting');
   const hb=document.getElementById('formulaHintBox'); if(hb) hb.classList.remove('show');
+  setFormulaShowBtnUsed(false);
   const deck=prepareDeck(pool);
   if(!deck.length){ showToast('Nothing left in this set · reset solved to replay'); return; }
   questions=deck; answers=new Array(questions.length).fill(null); current=0; locked=false; quizActive=true; runLabel=label;
@@ -2751,10 +2915,12 @@ function renderQuestion(){
   const ht=document.getElementById('formulaHintText');
   if(hb&&ht){
     if(formulaMode && formulaHintShown){
-      ht.textContent=formatFormulaHint(q);
+      ht.textContent=formatFormulaHint(q, formulaHintLevel||1);
       hb.classList.add('show');
+      setFormulaShowBtnUsed(true);
     } else {
       hb.classList.remove('show');
+      if(formulaMode) setFormulaShowBtnUsed(false);
     }
   }
 }
@@ -3112,8 +3278,22 @@ function selectAnswer(idx){
   const q=questions[current]; if(isMatching(q)) return;
   const fb=document.getElementById('feedback');
   if(idx!==q.correct){
+    const btn=document.querySelectorAll('#options .opt')[idx];
+    if(btn){
+      btn.classList.remove('soft-wrong'); void btn.offsetWidth;
+      btn.classList.add('soft-wrong');
+      setTimeout(()=>btn.classList.remove('soft-wrong'), 480);
+      if(formulaMode){ btn.disabled=true; btn.classList.add('wrong'); }
+    }
+    const panel=document.getElementById('mainPanel');
+    if(panel){ panel.classList.remove('wrong-pulse'); void panel.offsetWidth; panel.classList.add('wrong-pulse'); setTimeout(()=>panel.classList.remove('wrong-pulse'),500); }
     fb.className='feedback soft'; fb.textContent='not that one · try again';
     clearTimeout(selectAnswer._t); selectAnswer._t=setTimeout(()=>{ if(!locked){ fb.className='feedback idle'; fb.textContent=''; } },900);
+    if(formulaMode){
+      formulaWrongCount=(formulaWrongCount||0)+1;
+      // 1st wrong → auto Show formula (eq + map + plug-in); 2nd+ → progressive calc steps
+      revealFormulaHint(formulaWrongCount);
+    }
     return;
   }
   locked=true; answers[current]=idx; markSolved(q);
@@ -3191,12 +3371,8 @@ document.getElementById('hubBtn').addEventListener('click', returnToQuiz);
   const rollBtn=document.getElementById('formulaRollBtn');
   if(showBtn) showBtn.addEventListener('click',()=>{
     if(!formulaMode||!questions[current]) return;
-    const q=questions[current];
-    formulaHintShown=true;
-    const hb=document.getElementById('formulaHintBox');
-    const ht=document.getElementById('formulaHintText');
-    if(ht) ht.textContent=formatFormulaHint(q);
-    if(hb) hb.classList.add('show');
+    if(showBtn.disabled) return;
+    revealFormulaHint(Math.max(1, formulaHintLevel||1));
   });
   if(rollBtn) rollBtn.addEventListener('click',()=>{
     // Only meaningful during post-answer wait (button is CSS-hidden otherwise).

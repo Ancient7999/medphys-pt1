@@ -662,6 +662,12 @@ settingsBtn.addEventListener('click', function(e) {
 e.stopPropagation();
 openSettingsModal();
 });
+// Sometimes run the gear cycle in slow motion (incl. recoils), not always full speed.
+settingsBtn.addEventListener('mouseenter', function() {
+  var slow = Math.random() < 0.4;
+  var dur = slow ? (9 + Math.random() * 5) : (5.0 + Math.random() * 0.8);
+  settingsBtn.style.setProperty('--gear-dur', dur.toFixed(2) + 's');
+});
 }
 if (settingsCloseBtn) {
 settingsCloseBtn.addEventListener('click', function(e) {

@@ -229,7 +229,3 @@ At same height: higher speed means lower pressure (ρgh drops out)
 | Murmur over stenotic valve | High speed can produce turbulence |
 | Controlled O₂ mask | Venturi / Bernoulli |
 | Velocity imaging of vessels | Doppler ultrasound |
-
----
-
-*End of Chapter 3 study content (through Bernoulli only).*

@@ -335,8 +335,4 @@ Water barometer height ≈ 10.33 m; Hg ≈ 0.76 m
 - Deeper → higher P  
 - Gauge ignores atmosphere; absolute includes it  
 - Confined fluid → Pascal multiplies force via area ratio  
-- Buoyancy = weight of **displaced** fluid, not of the object  
-
----
-
-*End of Chapter 2 study content.*
+- Buoyancy = weight of **displaced** fluid, not of the object

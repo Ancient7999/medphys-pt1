@@ -141,6 +141,8 @@
       _formulaVariant: meta.variant,
       formulaHint: meta.formulaHint,
       formulaMap: meta.formulaMap || [],
+      formulaPlugIn: meta.formulaPlugIn || '',
+      formulaSteps: Array.isArray(meta.formulaSteps) ? meta.formulaSteps : [],
       formulaName: FORMULA_METADATA[meta.key] && FORMULA_METADATA[meta.key].name,
       formulaEq: FORMULA_METADATA[meta.key] && FORMULA_METADATA[meta.key].description,
       __formulaMode: true
@@ -166,7 +168,7 @@
       Y = stress / strain;
       dL = strain * L;
     }
-    let q, ans, unit, digits, explain, formulaHint, formulaMap;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps;
     if (variant === 0) {
       q = 'A specimen is ' + fmtSci(L, 2) + ' m long with cross-section ' + fmtSci(A, 2) + ' m². Under a load of ' + fmtSci(F, 2) + ' N it stretches by ' + fmtSci(dL, 3) + ' m. What is Young\'s modulus?';
       ans = Y; unit = 'Pa'; digits = 3;
@@ -176,6 +178,12 @@
         mapLine(fmtWithUnit(A, 'm²', 2), 'A'),
         mapLine(fmtWithUnit(F, 'N', 2), 'F'),
         mapLine(fmtWithUnit(dL, 'm', 3), 'ΔL')
+      ];
+      formulaPlugIn = fmtSci(F, 2) + '·' + fmtSci(L, 2) + ' / (' + fmtSci(A, 2) + '·' + fmtSci(dL, 3) + ')';
+      formulaSteps = [
+        'Stress = F/A = ' + fmtSci(stress, 3) + ' Pa',
+        'Strain = ΔL/L = ' + fmtSci(strain, 3),
+        'Y = stress/strain = ' + fmtSci(Y, 3) + ' Pa'
       ];
       explain = 'Stress = F/A = ' + fmtSci(stress, 3) + ' Pa. Strain = ΔL/L = ' + fmtSci(strain, 3) + '. Y = stress/strain = ' + fmtSci(Y, 3) + ' Pa.';
     } else if (variant === 1) {
@@ -188,6 +196,12 @@
         mapLine(fmtWithUnit(Y, 'Pa', 3), 'Y'),
         mapLine(fmtWithUnit(F, 'N', 2), 'F')
       ];
+      formulaPlugIn = fmtSci(F, 2) + '·' + fmtSci(L, 2) + ' / (' + fmtSci(A, 2) + '·' + fmtSci(Y, 3) + ')';
+      formulaSteps = [
+        'ΔL = F L / (A Y)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(dL, 3) + ' m'
+      ];
       explain = 'ΔL = F L / (A Y) = ' + fmtSci(dL, 3) + ' m.';
     } else if (variant === 2) {
       q = 'A sample is ' + fmtSci(L, 2) + ' m long with cross-section ' + fmtSci(A, 2) + ' m² and Young\'s modulus ' + fmtSci(Y, 3) + ' Pa. It stretches by ' + fmtSci(dL, 3) + ' m. What axial force was applied?';
@@ -199,6 +213,12 @@
         mapLine(fmtWithUnit(Y, 'Pa', 3), 'Y'),
         mapLine(fmtWithUnit(dL, 'm', 3), 'ΔL')
       ];
+      formulaPlugIn = fmtSci(Y, 3) + '·' + fmtSci(A, 2) + '·' + fmtSci(dL, 3) + ' / ' + fmtSci(L, 2);
+      formulaSteps = [
+        'F = Y A ΔL / L',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(F, 3) + ' N'
+      ];
       explain = 'F = Y A ΔL / L = ' + fmtSci(F, 3) + ' N.';
     } else if (variant === 3) {
       q = 'A force of ' + fmtSci(F, 2) + ' N acts on a cross-section of ' + fmtSci(A, 2) + ' m². What is the stress?';
@@ -207,6 +227,12 @@
       formulaMap = [
         mapLine(fmtWithUnit(F, 'N', 2), 'F'),
         mapLine(fmtWithUnit(A, 'm²', 2), 'A')
+      ];
+      formulaPlugIn = fmtSci(F, 2) + ' / ' + fmtSci(A, 2);
+      formulaSteps = [
+        'Stress = F/A',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(stress, 3) + ' Pa'
       ];
       explain = 'Stress = F/A = ' + fmtSci(stress, 3) + ' Pa.';
     } else {
@@ -217,6 +243,12 @@
         mapLine(fmtWithUnit(L, 'm', 2), 'L'),
         mapLine(fmtWithUnit(dL, 'm', 3), 'ΔL')
       ];
+      formulaPlugIn = fmtSci(dL, 3) + ' / ' + fmtSci(L, 2);
+      formulaSteps = [
+        'Strain = ΔL/L',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(strain, 3) + ' (no unit)'
+      ];
       explain = 'Strain = ΔL/L = ' + fmtSci(strain, 3) + ' (no unit).';
     }
     const built = variant === 4
@@ -225,7 +257,8 @@
     return pack({
       key: 'youngs', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 
@@ -237,7 +270,7 @@
     const V = dims[0] * dims[1] * dims[2]; // cm³
     const rho = pick([0.25, 0.35, 0.5, 0.75, 0.8, 1.2, 2.5, 2.7, 4.0, 7.8, 8.0]); // g/cm³
     const m = rho * V; // g
-    let q, ans, unit, digits, explain, formulaHint, formulaMap, built;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps, built;
     if (variant === 0) {
       q = 'A block measures ' + dims[0] + ' cm × ' + dims[1] + ' cm × ' + dims[2] + ' cm and has mass ' + fmtSci(m, 3) + ' g. What is its density?';
       ans = rho; unit = 'g/cm³'; digits = 3;
@@ -245,6 +278,12 @@
       formulaMap = [
         mapLine(fmtSci(m, 3) + ' g', 'm'),
         mapLine(V + ' cm³', 'V')
+      ];
+      formulaPlugIn = fmtSci(m, 3) + ' / ' + V;
+      formulaSteps = [
+        'V = ' + dims[0] + '×' + dims[1] + '×' + dims[2] + ' = ' + V + ' cm³',
+        'ρ = m/V = ' + formulaPlugIn,
+        '= ' + fmtSci(rho, 3) + ' g/cm³'
       ];
       explain = 'V = ' + V + ' cm³. ρ = m/V = ' + fmtSci(rho, 3) + ' g/cm³.';
       built = buildOpts(ans, unit, digits);
@@ -256,6 +295,12 @@
         mapLine(fmtSci(rho, 3) + ' g/cm³', 'ρ'),
         mapLine(V + ' cm³', 'V')
       ];
+      formulaPlugIn = fmtSci(rho, 3) + ' · ' + V;
+      formulaSteps = [
+        'm = ρ V',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(m, 3) + ' g'
+      ];
       explain = 'V = ' + V + ' cm³. m = ρV = ' + fmtSci(m, 3) + ' g.';
       built = buildOpts(ans, unit, digits);
     } else if (variant === 2) {
@@ -265,6 +310,12 @@
       formulaMap = [
         mapLine(fmtSci(m, 3) + ' g', 'm'),
         mapLine(fmtSci(rho, 3) + ' g/cm³', 'ρ')
+      ];
+      formulaPlugIn = fmtSci(m, 3) + ' / ' + fmtSci(rho, 3);
+      formulaSteps = [
+        'V = m/ρ',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(V, 3) + ' cm³'
       ];
       explain = 'V = m/ρ = ' + fmtSci(V, 3) + ' cm³.';
       built = buildOpts(ans, unit, digits);
@@ -276,13 +327,20 @@
         mapLine(fmtSci(rho, 3) + ' g/cm³', 'ρ_substance'),
         mapLine('1.00 g/cm³', 'ρ_water')
       ];
+      formulaPlugIn = fmtSci(rho, 3) + ' / 1.00';
+      formulaSteps = [
+        'SG = ρ_substance / ρ_water',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(rho, 3)
+      ];
       explain = 'SG = ' + fmtSci(rho, 3) + ' / 1.00 = ' + fmtSci(rho, 3) + '.';
       built = buildOpts(ans, '', digits);
     }
     return pack({
       key: 'density', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 
@@ -293,7 +351,7 @@
     const W = pick([1, 1.5, 2, 2.5, 3, 4, 5]);
     const A = L * W;
     const F = P * A;
-    let q, ans, unit, digits, explain, formulaHint, formulaMap;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps;
     if (variant === 0) {
       q = 'Air pressure in a room is ' + fmtSci(P, 3) + ' Pa. What force acts on a surface measuring ' + L + ' m × ' + W + ' m?';
       ans = F; unit = 'N'; digits = 3;
@@ -301,6 +359,12 @@
       formulaMap = [
         mapLine(fmtWithUnit(P, 'Pa', 3), 'P'),
         mapLine(L + ' m × ' + W + ' m (= ' + A + ' m²)', 'A')
+      ];
+      formulaPlugIn = fmtSci(P, 3) + ' · ' + A;
+      formulaSteps = [
+        'A = ' + L + '×' + W + ' = ' + A + ' m²',
+        'F = P A = ' + formulaPlugIn,
+        '= ' + fmtSci(F, 3) + ' N'
       ];
       explain = 'A = ' + A + ' m². F = PA = ' + fmtSci(F, 3) + ' N.';
     } else if (variant === 1) {
@@ -311,6 +375,12 @@
         mapLine(fmtWithUnit(P, 'Pa', 3), 'P'),
         mapLine(fmtWithUnit(F, 'N', 3), 'F')
       ];
+      formulaPlugIn = fmtSci(F, 3) + ' / ' + fmtSci(P, 3);
+      formulaSteps = [
+        'A = F/P',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(A, 3) + ' m²'
+      ];
       explain = 'A = F/P = ' + fmtSci(A, 3) + ' m².';
     } else {
       q = 'A force of ' + fmtSci(F, 3) + ' N is distributed uniformly over ' + fmtSci(A, 3) + ' m². What is the pressure?';
@@ -320,13 +390,20 @@
         mapLine(fmtWithUnit(F, 'N', 3), 'F'),
         mapLine(fmtWithUnit(A, 'm²', 3), 'A')
       ];
+      formulaPlugIn = fmtSci(F, 3) + ' / ' + fmtSci(A, 3);
+      formulaSteps = [
+        'P = F/A',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(P, 3) + ' Pa'
+      ];
       explain = 'P = F/A = ' + fmtSci(P, 3) + ' Pa.';
     }
     const built = buildOpts(ans, unit, digits);
     return pack({
       key: 'pressureForce', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 
@@ -335,7 +412,7 @@
     const rho = pick([1000, 1025, 800, 850, 13600]);
     const h = pick([5, 8, 10, 15, 20, 25, 30, 45]);
     const PG = rho * G * h;
-    let q, ans, unit, digits, explain, formulaHint, formulaMap;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps;
     const fluidName = rho === 1000 ? 'fresh water' : (rho === 1025 ? 'seawater' : (rho === 13600 ? 'mercury' : 'a fluid'));
     if (variant === 0) {
       q = 'What gauge pressure does ' + fluidName + ' of density ' + fmtSci(rho, 3) + ' kg/m³ produce at a depth of ' + h + ' m?';
@@ -345,6 +422,12 @@
         mapLine(fmtSci(rho, 3) + ' kg/m³', 'ρ'),
         mapLine(h + ' m', 'h'),
         mapLine('9.8 m/s²', 'g')
+      ];
+      formulaPlugIn = fmtSci(rho, 3) + ' · 9.8 · ' + h;
+      formulaSteps = [
+        'P_G = ρ g h',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(PG, 3) + ' Pa'
       ];
       explain = 'P_G = ρgh = ' + fmtSci(rho, 3) + ' × 9.8 × ' + h + ' = ' + fmtSci(PG, 3) + ' Pa.';
     } else if (variant === 1) {
@@ -356,6 +439,12 @@
         mapLine(fmtSci(rho, 3) + ' kg/m³', 'ρ'),
         mapLine('9.8 m/s²', 'g')
       ];
+      formulaPlugIn = fmtSci(PG, 3) + ' / (' + fmtSci(rho, 3) + ' · 9.8)';
+      formulaSteps = [
+        'h = P_G / (ρ g)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(h, 3) + ' m'
+      ];
       explain = 'h = P_G/(ρg) = ' + fmtSci(h, 3) + ' m.';
     } else {
       q = 'At a depth of ' + h + ' m the gauge pressure is ' + fmtSci(PG, 3) + ' Pa. What is the fluid density?';
@@ -366,13 +455,20 @@
         mapLine(h + ' m', 'h'),
         mapLine('9.8 m/s²', 'g')
       ];
+      formulaPlugIn = fmtSci(PG, 3) + ' / (9.8 · ' + h + ')';
+      formulaSteps = [
+        'ρ = P_G / (g h)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(rho, 3) + ' kg/m³'
+      ];
       explain = 'ρ = P_G/(gh) = ' + fmtSci(rho, 3) + ' kg/m³.';
     }
     const built = buildOpts(ans, unit, digits);
     return pack({
       key: 'hydrostatic', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 
@@ -382,7 +478,7 @@
     const h = pick([5, 10, 15, 20, 25, 30]);
     const PG = rho * G * h;
     const Pabs = P_ATM + PG;
-    let q, ans, unit, digits, explain, formulaHint, formulaMap;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps;
     if (variant === 0) {
       q = 'What absolute pressure acts on a swimmer ' + h + ' m below the surface of fresh water of density 1000 kg/m³?';
       ans = Pabs; unit = 'Pa'; digits = 3;
@@ -392,6 +488,12 @@
         mapLine('1000 kg/m³', 'ρ'),
         mapLine('9.8 m/s²', 'g'),
         mapLine('1.013 × 10⁵ Pa', 'P_atm')
+      ];
+      formulaPlugIn = '1.013×10⁵ + 1000·9.8·' + h;
+      formulaSteps = [
+        'P_G = ρ g h = 1000·9.8·' + h + ' = ' + fmtSci(PG, 3) + ' Pa',
+        'P_abs = P_atm + P_G',
+        '= ' + formulaPlugIn + ' = ' + fmtSci(Pabs, 3) + ' Pa'
       ];
       explain = 'P_G = ρgh = ' + fmtSci(PG, 3) + ' Pa. P_abs = P_atm + P_G = ' + fmtSci(Pabs, 3) + ' Pa.';
     } else if (variant === 1) {
@@ -404,6 +506,12 @@
         mapLine('9.8 m/s²', 'g'),
         mapLine('1.013 × 10⁵ Pa', 'P_atm')
       ];
+      formulaPlugIn = '(' + fmtSci(Pabs, 3) + ' − 1.013×10⁵) / (1000·9.8)';
+      formulaSteps = [
+        'h = (P_abs − P_atm) / (ρ g)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(h, 3) + ' m'
+      ];
       explain = 'h = (P_abs − P_atm)/(ρg) = ' + fmtSci(h, 3) + ' m.';
     } else {
       q = 'At a depth of ' + h + ' m in fresh water of density 1000 kg/m³, what is the gauge pressure?';
@@ -414,13 +522,20 @@
         mapLine('1000 kg/m³', 'ρ'),
         mapLine('9.8 m/s²', 'g')
       ];
+      formulaPlugIn = '1000 · 9.8 · ' + h;
+      formulaSteps = [
+        'P_G = ρ g h',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(PG, 3) + ' Pa'
+      ];
       explain = 'P_G = ρgh = ' + fmtSci(PG, 3) + ' Pa.';
     }
     const built = buildOpts(ans, unit, digits);
     return pack({
       key: 'absolutePressure', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 
@@ -430,7 +545,7 @@
     const A2 = pick([0.2, 0.4, 0.8, 1.0, 1.2]);
     const F1 = pick([50, 100, 150, 200, 250]);
     const F2 = F1 * (A2 / A1);
-    let q, ans, unit, digits, explain, formulaHint, formulaMap;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps;
     if (variant === 0) {
       q = 'A hydraulic press has a small piston of area ' + fmtSci(A1, 3) + ' m² and a large piston of area ' + fmtSci(A2, 3) + ' m². If a force of ' + fmtSci(F1, 2) + ' N is applied on the small piston, what output force appears on the large piston?';
       ans = F2; unit = 'N'; digits = 3;
@@ -439,6 +554,12 @@
         mapLine(fmtWithUnit(A1, 'm²', 3), 'A₁'),
         mapLine(fmtWithUnit(A2, 'm²', 3), 'A₂'),
         mapLine(fmtWithUnit(F1, 'N', 2), 'F₁')
+      ];
+      formulaPlugIn = fmtSci(F1, 2) + ' · (' + fmtSci(A2, 3) + '/' + fmtSci(A1, 3) + ')';
+      formulaSteps = [
+        'F₂ = F₁ (A₂/A₁)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(F2, 3) + ' N'
       ];
       explain = 'F₂ = F₁ × (A₂/A₁) = ' + fmtSci(F2, 3) + ' N.';
     } else if (variant === 1) {
@@ -450,6 +571,12 @@
         mapLine(fmtWithUnit(A2, 'm²', 3), 'A₂'),
         mapLine(fmtWithUnit(F2, 'N', 3), 'F₂')
       ];
+      formulaPlugIn = fmtSci(F2, 3) + ' · (' + fmtSci(A1, 3) + '/' + fmtSci(A2, 3) + ')';
+      formulaSteps = [
+        'F₁ = F₂ (A₁/A₂)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(F1, 3) + ' N'
+      ];
       explain = 'F₁ = F₂ × (A₁/A₂) = ' + fmtSci(F1, 3) + ' N.';
     } else {
       q = 'In a hydraulic system, a force of ' + fmtSci(F1, 2) + ' N on a piston of area ' + fmtSci(A1, 3) + ' m² produces an output force of ' + fmtSci(F2, 3) + ' N. What is the area of the output piston?';
@@ -460,13 +587,20 @@
         mapLine(fmtWithUnit(A1, 'm²', 3), 'A₁'),
         mapLine(fmtWithUnit(F2, 'N', 3), 'F₂')
       ];
+      formulaPlugIn = fmtSci(A1, 3) + ' · (' + fmtSci(F2, 3) + '/' + fmtSci(F1, 2) + ')';
+      formulaSteps = [
+        'A₂ = A₁ (F₂/F₁)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(A2, 3) + ' m²'
+      ];
       explain = 'A₂ = A₁ × (F₂/F₁) = ' + fmtSci(A2, 3) + ' m².';
     }
     const built = buildOpts(ans, unit, digits);
     return pack({
       key: 'pascal', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 
@@ -475,7 +609,7 @@
     const rho = pick([1000, 1025, 850]);
     const V = pick([0.2, 0.24, 0.4, 0.5, 0.6, 0.9]);
     const FB = rho * V * G;
-    let q, ans, unit, digits, explain, formulaHint, formulaMap;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps;
     if (variant === 0) {
       q = 'What is the buoyant force on a box of volume ' + fmtSci(V, 3) + ' m³ fully submerged in a fluid of density ' + fmtSci(rho, 3) + ' kg/m³?';
       ans = FB; unit = 'N'; digits = 3;
@@ -484,6 +618,12 @@
         mapLine(fmtWithUnit(V, 'm³', 3), 'V_disp'),
         mapLine(fmtSci(rho, 3) + ' kg/m³', 'ρ_fluid'),
         mapLine('9.8 m/s²', 'g')
+      ];
+      formulaPlugIn = fmtSci(rho, 3) + ' · ' + fmtSci(V, 3) + ' · 9.8';
+      formulaSteps = [
+        'F_B = ρ V g',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(FB, 3) + ' N'
       ];
       explain = 'F_B = ρVg = ' + fmtSci(FB, 3) + ' N.';
     } else if (variant === 1) {
@@ -494,6 +634,12 @@
         mapLine(fmtWithUnit(FB, 'N', 3), 'F_B'),
         mapLine(fmtSci(rho, 3) + ' kg/m³', 'ρ'),
         mapLine('9.8 m/s²', 'g')
+      ];
+      formulaPlugIn = fmtSci(FB, 3) + ' / (' + fmtSci(rho, 3) + ' · 9.8)';
+      formulaSteps = [
+        'V = F_B / (ρ g)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(V, 3) + ' m³'
       ];
       explain = 'V = F_B/(ρg) = ' + fmtSci(V, 3) + ' m³.';
     } else {
@@ -510,6 +656,12 @@
         mapLine('1000 kg/m³', 'ρ_water'),
         mapLine('9.8 m/s²', 'g')
       ];
+      formulaPlugIn = '1000 · ' + fmtSci(Vdisp, 4) + ' · 9.8';
+      formulaSteps = [
+        'V_disp = ' + Math.round(frac * 100) + '% × ' + fmtSci(Vtot, 3) + ' = ' + fmtSci(Vdisp, 4) + ' m³',
+        'F_B = ρ V g = ' + formulaPlugIn,
+        '= ' + fmtSci(FBf, 3) + ' N'
+      ];
       explain = 'V_disp = ' + Math.round(frac * 100) + '% × ' + fmtSci(Vtot, 3) + ' = ' + fmtSci(Vdisp, 4) + ' m³. F_B = ρVg = ' + fmtSci(FBf, 3) + ' N.';
       const built = buildOpts(ans, unit, digits);
       return pack({
@@ -522,7 +674,8 @@
     return pack({
       key: 'buoyancy', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 
@@ -533,7 +686,7 @@
     const A2 = A1 / factor;
     const v1 = pick([0.25, 0.4, 0.5, 0.8, 1.0]);
     const v2 = v1 * (A1 / A2);
-    let q, ans, unit, digits, explain, formulaHint, formulaMap;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps;
     if (variant === 0) {
       q = 'Blood flows through a vessel of area ' + fmtSci(A1, 3) + ' m² at ' + fmtSci(v1, 3) + ' m/s. The vessel narrows to ' + fmtSci(A2, 3) + ' m². What is the speed after the narrowing?';
       ans = v2; unit = 'm/s'; digits = 3;
@@ -542,6 +695,12 @@
         mapLine(fmtWithUnit(A1, 'm²', 3), 'A₁'),
         mapLine(fmtWithUnit(v1, 'm/s', 3), 'v₁'),
         mapLine(fmtWithUnit(A2, 'm²', 3), 'A₂')
+      ];
+      formulaPlugIn = fmtSci(v1, 3) + ' · (' + fmtSci(A1, 3) + '/' + fmtSci(A2, 3) + ')';
+      formulaSteps = [
+        'v₂ = v₁ (A₁/A₂)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(v2, 3) + ' m/s'
       ];
       explain = 'v₂ = v₁ × (A₁/A₂) = ' + fmtSci(v2, 3) + ' m/s.';
     } else if (variant === 1) {
@@ -553,6 +712,12 @@
         mapLine(fmtWithUnit(A1, 'm²', 3), 'A₁'),
         mapLine(fmtWithUnit(v2, 'm/s', 3), 'v₂')
       ];
+      formulaPlugIn = fmtSci(A1, 3) + ' · (' + fmtSci(v1, 3) + '/' + fmtSci(v2, 3) + ')';
+      formulaSteps = [
+        'A₂ = A₁ (v₁/v₂)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(A2, 3) + ' m²'
+      ];
       explain = 'A₂ = A₁ × (v₁/v₂) = ' + fmtSci(A2, 3) + ' m².';
     } else {
       q = 'A vessel narrows from ' + fmtSci(A1, 3) + ' m² to ' + fmtSci(A2, 3) + ' m². If the downstream speed is ' + fmtSci(v2, 3) + ' m/s, what was the velocity before the narrowing?';
@@ -563,13 +728,20 @@
         mapLine(fmtWithUnit(A2, 'm²', 3), 'A₂'),
         mapLine(fmtWithUnit(v2, 'm/s', 3), 'v₂')
       ];
+      formulaPlugIn = fmtSci(v2, 3) + ' · (' + fmtSci(A2, 3) + '/' + fmtSci(A1, 3) + ')';
+      formulaSteps = [
+        'v₁ = v₂ (A₂/A₁)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(v1, 3) + ' m/s'
+      ];
       explain = 'v₁ = v₂ × (A₂/A₁) = ' + fmtSci(v1, 3) + ' m/s.';
     }
     const built = buildOpts(ans, unit, digits);
     return pack({
       key: 'continuity', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 
@@ -580,7 +752,7 @@
     const v = pick([0.2, 0.25, 0.4, 0.5, 0.8]);
     const Q = A * v;
     const mdot = rho * Q;
-    let q, ans, unit, digits, explain, formulaHint, formulaMap;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps;
     if (variant === 0) {
       q = 'Blood of density ' + fmtSci(rho, 3) + ' kg/m³ flows at ' + fmtSci(v, 3) + ' m/s through a vessel of area ' + fmtSci(A, 3) + ' m². What is the mass flow rate?';
       ans = mdot; unit = 'kg/s'; digits = 3;
@@ -589,6 +761,12 @@
         mapLine(fmtSci(rho, 3) + ' kg/m³', 'ρ'),
         mapLine(fmtWithUnit(v, 'm/s', 3), 'v'),
         mapLine(fmtWithUnit(A, 'm²', 3), 'A')
+      ];
+      formulaPlugIn = fmtSci(rho, 3) + ' · ' + fmtSci(A, 3) + ' · ' + fmtSci(v, 3);
+      formulaSteps = [
+        'ṁ = ρ A v',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(mdot, 3) + ' kg/s'
       ];
       explain = 'ṁ = ρAv = ' + fmtSci(mdot, 3) + ' kg/s.';
     } else if (variant === 1) {
@@ -599,6 +777,12 @@
         mapLine(fmtWithUnit(v, 'm/s', 3), 'v'),
         mapLine(fmtWithUnit(A, 'm²', 3), 'A')
       ];
+      formulaPlugIn = fmtSci(A, 3) + ' · ' + fmtSci(v, 3);
+      formulaSteps = [
+        'Q = A v',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(Q, 3) + ' m³/s'
+      ];
       explain = 'Q = Av = ' + fmtSci(Q, 3) + ' m³/s.';
     } else {
       q = 'The volume flow rate through a vessel is ' + fmtSci(Q, 3) + ' m³/s and the cross-sectional area is ' + fmtSci(A, 3) + ' m². What is the flow speed?';
@@ -608,20 +792,27 @@
         mapLine(fmtWithUnit(Q, 'm³/s', 3), 'Q'),
         mapLine(fmtWithUnit(A, 'm²', 3), 'A')
       ];
+      formulaPlugIn = fmtSci(Q, 3) + ' / ' + fmtSci(A, 3);
+      formulaSteps = [
+        'v = Q/A',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(v, 3) + ' m/s'
+      ];
       explain = 'v = Q/A = ' + fmtSci(v, 3) + ' m/s.';
     }
     const built = buildOpts(ans, unit, digits);
     return pack({
       key: 'massFlow', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 
   function generateBernoulliQuestion() {
     const variant = randInt(0, 2);
     const rho = 1000;
-    let q, ans, unit, digits, explain, formulaHint, formulaMap, built;
+    let q, ans, unit, digits, explain, formulaHint, formulaMap, formulaPlugIn, formulaSteps, built;
     if (variant === 0) {
       const v1 = pick([0.5, 1.0, 1.5, 2.0]);
       const v2 = pick([2.0, 3.0, 4.0, 5.0]);
@@ -634,6 +825,12 @@
         mapLine(fmtWithUnit(v1, 'm/s', 2), 'v₁'),
         mapLine(fmtWithUnit(v2u, 'm/s', 2), 'v₂'),
         mapLine('1000 kg/m³', 'ρ')
+      ];
+      formulaPlugIn = '½·1000(' + fmtSci(v2u, 2) + '² − ' + fmtSci(v1, 2) + '²)';
+      formulaSteps = [
+        'P₁ − P₂ = ½ρ(v₂² − v₁²)',
+        '= ' + formulaPlugIn,
+        '= 500·(' + fmtSci(v2u * v2u, 3) + ' − ' + fmtSci(v1 * v1, 3) + ') = ' + fmtSci(dP, 3) + ' Pa'
       ];
       explain = 'P₁ − P₂ = ½ρ(v₂² − v₁²) = ' + fmtSci(dP, 3) + ' Pa.';
       built = buildOpts(ans, unit, digits);
@@ -650,6 +847,12 @@
         mapLine(fmtWithUnit(v1, 'm/s', 2), 'v₁'),
         mapLine('1000 kg/m³', 'ρ')
       ];
+      formulaPlugIn = '√(' + fmtSci(v1, 2) + '² + 2·' + fmtSci(dP, 3) + '/1000)';
+      formulaSteps = [
+        'v₂ = √(v₁² + 2ΔP/ρ)',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(v2, 3) + ' m/s'
+      ];
       explain = 'v₂ = √(v₁² + 2ΔP/ρ) = ' + fmtSci(v2, 3) + ' m/s.';
       built = buildOpts(ans, unit, digits, [0.5, 2, 0.25, 4, 1.5, 0.75]);
     } else {
@@ -663,13 +866,20 @@
         mapLine('1000 kg/m³', 'ρ'),
         mapLine('9.8 m/s²', 'g')
       ];
+      formulaPlugIn = '1000 · 9.8 · ' + fmtSci(dh, 2);
+      formulaSteps = [
+        'ΔP ≈ ρ g Δh',
+        '= ' + formulaPlugIn,
+        '= ' + fmtSci(dP, 3) + ' Pa'
+      ];
       explain = 'ΔP ≈ ρgΔh = ' + fmtSci(dP, 3) + ' Pa.';
       built = buildOpts(ans, unit, digits);
     }
     return pack({
       key: 'bernoulli', variant: variant, q: q,
       options: built.options, correct: built.correct,
-      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap
+      explain: explain, formulaHint: formulaHint, formulaMap: formulaMap,
+      formulaPlugIn: formulaPlugIn, formulaSteps: formulaSteps
     });
   }
 

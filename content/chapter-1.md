@@ -421,8 +421,4 @@ B = (F/A) / (ΔV/V)                     ← uniform pressure ÷ volume strain
 - Bone → solid, elastic then plastic then fracture  
 - Blood → liquid · Air in lungs → gas  
 - BP on vessels / knee load / chewing → stress examples  
-- High Y bone → healthy stiffness; low Y → osteoporosis / OI risk  
-
----
-
-*End of Chapter 1 study content.*
+- High Y bone → healthy stiffness; low Y → osteoporosis / OI risk
