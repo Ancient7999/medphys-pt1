@@ -837,9 +837,10 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
 .timer-dock.is-pomo-off .mood-tray-sep{display:none!important}
 .timer-dock.is-pomo-off{min-width:auto;width:auto;max-width:none;height:auto;min-height:0;padding:.55rem .7rem}
 
-.hub-back{margin:0 0 14px}
+.hub-back{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
 .hub-back button{font-family:var(--mono);font-size:.85rem;color:var(--cyan-bright);background:transparent;border:1px solid var(--border);border-radius:999px;padding:8px 14px;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}
 .hub-back button:hover{background:var(--mood-glow);border-color:var(--cyan);transform:translateY(-1px);box-shadow:0 0 18px var(--mood-glow)}
+.hub-back #resetSolvedBtn[hidden]{display:none!important}
 @media (max-width:720px){
   .portal-wrap h1{font-size:1.85rem}
 }
@@ -1328,7 +1329,13 @@ body.split-quiz-active #chatDock{z-index:60}
 .match-item:hover:not(:disabled){border-color:var(--cyan);background:var(--mood-glow);box-shadow:0 0 20px var(--mood-glow)}
 .match-item.drawing{border-color:var(--cyan);background:var(--mood-glow)}
 .match-item.paired{border-color:color-mix(in srgb, var(--cyan) 55%, var(--border))}
-.match-item.is-solved-link,.match-item[hidden]{display:none!important}
+.match-item.is-solved-link{
+  border-color:var(--cyan-bright);
+  background:color-mix(in srgb, var(--cyan) 18%, rgba(0,0,0,.42));
+  color:var(--cyan-bright);
+  box-shadow:0 0 22px var(--mood-glow),0 0 10px rgba(var(--accent-0-rgb),.4);
+}
+.match-item[hidden]{display:none!important}
 .match-item:disabled{cursor:default}
 .match-wires{position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;overflow:visible;z-index:70;display:block;opacity:1}
 .match-stage,.match-board,#options,.panel-body,.panel,.question{overflow:visible!important}
@@ -1348,7 +1355,13 @@ body.split-quiz-active #chatDock{z-index:60}
 .q-nav-btn{appearance:none;min-width:2rem;height:1.85rem;padding:0 .45rem;border-radius:9px;border:1px solid rgba(var(--accent-0-rgb),.22);background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.08) 0%,rgba(10,14,22,.55) 100%);color:var(--text-dim);font-family:var(--mono);font-size:.72rem;font-weight:700;line-height:1;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .18s,background .18s,color .18s,box-shadow .18s}
 .q-nav-btn:hover{border-color:rgba(var(--accent-0-rgb),.5);color:var(--accent-0);background:rgba(var(--accent-0-rgb),.12)}
 .q-nav-btn.current{background:rgba(var(--accent-0-rgb),.16);border-color:var(--accent-0);color:var(--accent-1);box-shadow:0 0 12px rgba(var(--accent-0-rgb),.3),inset 0 1px 0 rgba(255,255,255,.05)}
-.q-nav-btn.done{color:var(--accent-0);border-color:rgba(var(--accent-0-rgb),.4)}
+.q-nav-btn.done{
+  color:var(--accent-1);
+  border-color:rgba(var(--accent-0-rgb),.6);
+  background:rgba(var(--accent-0-rgb),.16);
+  box-shadow:0 0 14px rgba(var(--accent-0-rgb),.4),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.q-nav-btn.done.current{box-shadow:0 0 18px rgba(var(--accent-0-rgb),.55),inset 0 1px 0 rgba(255,255,255,.08)}
 html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-btn{cursor:none!important}
 
 
@@ -1491,7 +1504,6 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
               <label><input type="checkbox" id="prefShuffleC" checked> Shuffle choices</label>
               <label><input type="checkbox" id="prefLinkFirst" checked> Insert linking questions randomly</label>
             </div>
-            <p class="setting-item-desc">Prefs apply to the next run you start from the forms hub.</p>
           </div>
         </div>
       </div>
@@ -1517,11 +1529,9 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
     <p class="hub-kicker" id="hubKicker">198 questions</p>
     <div class="sub" id="hubSub"></div>
 
-    <div class="hub-back" style="display:flex;flex-wrap:wrap;gap:10px;">
+    <div class="hub-back">
       <button type="button" id="returnHubBtn">← Main Menu</button>
-    </div>
-    <div class="load-row">
-      <button class="fs-btn" type="button" id="resetSolvedBtn">Reset solved</button>
+      <button class="fs-btn" type="button" id="resetSolvedBtn" hidden>Reset solved</button>
     </div>
     <p class="foot" id="bankMeta" style="margin-top:8px;text-align:left;opacity:.7">Loading bank…</p>
 
@@ -1723,8 +1733,14 @@ function bankId(){ return (BANK && (BANK.id||BANK.title)) || 'anon'; }
 function solvedKey(){ return 'skel_solved:'+bankId(); }
 function loadSolved(){ try{ return new Set(JSON.parse(lsGet(solvedKey())||'[]')); }catch(e){ return new Set(); } }
 function saveSolved(set){ lsSet(solvedKey(), JSON.stringify([...set])); }
+function syncResetSolvedBtn(){
+  const btn=document.getElementById('resetSolvedBtn');
+  if(!btn) return;
+  btn.hidden = loadSolved().size < 1;
+}
 function updateCounters(){
   if(BANK) document.getElementById('bankMeta').textContent='Loaded · '+(allQuestions().length)+' questions · solved '+loadSolved().size;
+  syncResetSolvedBtn();
   if(quizActive){
     const answeredCount=answers.filter((a,i)=>isAnswered(a,questions[i])).length;
     document.getElementById('quizSub').textContent=(BANK.title||'')+' · '+(questions.length-answeredCount)+' remaining this run';
@@ -2204,8 +2220,13 @@ function renderMatching(q, ans){
   function makeItem(item,side){
     const btn=document.createElement('button'); btn.type='button'; btn.className='match-item';
     btn.dataset.side=side; btn.dataset.id=item.id; btn.textContent=item.text;
-    if(ans.pairs && ((side==='L'&&ans.pairs[item.id])||(side==='R'&&Object.values(ans.pairs).includes(item.id)))) btn.classList.add('paired');
-    if(ans.correct) btn.disabled=true; else btn.addEventListener('pointerdown', ev=>beginDraw(ev,q,btn));
+    const paired=ans.pairs && ((side==='L'&&ans.pairs[item.id])||(side==='R'&&Object.values(ans.pairs).includes(item.id)));
+    if(paired) btn.classList.add('paired');
+    const leftLocked=side==='L' && ans.pairs && ans.pairs[item.id] && q.correct_pairs && q.correct_pairs[item.id]===ans.pairs[item.id];
+    const rightLocked=side==='R' && ans.pairs && Object.keys(ans.pairs).some(lid=>ans.pairs[lid]===item.id && q.correct_pairs && q.correct_pairs[lid]===item.id);
+    if(leftLocked){ btn.classList.add('is-solved-link'); btn.disabled=true; }
+    else if(rightLocked || ans.correct){ btn.disabled=true; }
+    if(!btn.disabled) btn.addEventListener('pointerdown', ev=>beginDraw(ev,q,btn));
     return btn;
   }
   (q.leftItems||[]).forEach(it=>leftList.appendChild(makeItem(it,'L')));
@@ -2214,14 +2235,6 @@ function renderMatching(q, ans){
   board.appendChild(leftCol); board.appendChild(rightCol);
   stage.appendChild(board); stage.appendChild(svg); opts.appendChild(stage);
   requestAnimationFrame(()=>paintWires(svg, ans.wires||[]));
-  if(!ans.correct){
-    const actions=document.createElement('div'); actions.className='match-actions';
-    const check=document.createElement('button'); check.type='button'; check.className='nav-btn primary'; check.textContent='Check links';
-    check.addEventListener('click',()=>checkMatching(q));
-    const clear=document.createElement('button'); clear.type='button'; clear.className='nav-btn'; clear.textContent='Clear threads';
-    clear.addEventListener('click',()=>{ answers[current]={pairs:{},wires:[],checked:false,correct:false}; renderQuestion(); });
-    actions.appendChild(check); actions.appendChild(clear); opts.appendChild(actions);
-  }
 }
 let dragScrollRAF=null;
 let dragScrollEl=null;
@@ -2271,7 +2284,7 @@ function startDragAutoScroll(svg){
   dragScrollRAF=requestAnimationFrame(dragAutoScrollStep);
 }
 function beginDraw(ev,q,btn){
-  if(locked||ev.button) return; ev.preventDefault();
+  if(locked||btn.disabled||ev.button) return; ev.preventDefault();
   const layer=document.querySelector('.match-wires'); if(!layer) return;
   const start=boardPoint(layer,ev);
   drawState={q,side:btn.dataset.side,id:btn.dataset.id,points:[{x:start.x,y:start.y}],btn};
@@ -2310,14 +2323,43 @@ function onDrawUp(ev){
   const svg=document.querySelector('.match-wires');
   const cur=ensureMatchAns();
   const pts=drawState.points.slice();
-  if(hit && hit.dataset.side && hit.dataset.side!==drawState.side){
+  if(hit && hit.dataset.side && hit.dataset.side!==drawState.side && !hit.disabled){
     const leftId=drawState.side==='L'?drawState.id:hit.dataset.id;
     const rightId=drawState.side==='R'?drawState.id:hit.dataset.id;
+    const leftEl=drawState.side==='L'?src:hit;
+    const rightEl=drawState.side==='R'?src:hit;
+    const isCorrect=!!(q.correct_pairs && q.correct_pairs[leftId]===rightId);
+    // Drop prior wire for this left (and any wire ending on this right if reclaiming)
+    cur.wires=cur.wires.filter(w=>w.leftId!==leftId && w.rightId!==rightId);
+    // If this right was claimed by another left, clear that pair
+    Object.keys(cur.pairs).forEach(lid=>{ if(cur.pairs[lid]===rightId) delete cur.pairs[lid]; });
     cur.pairs[leftId]=rightId;
-    cur.wires=cur.wires.filter(w=>w.leftId!==leftId);
     cur.wires.push({leftId,rightId,points:pts});
-    cur.checked=false; cur.correct=false;
-    if(q.correct_pairs && q.correct_pairs[leftId]===rightId) celebrateLink(ev.clientX, ev.clientY);
+    if(isCorrect){
+      cur.checked=false;
+      celebrateLink(ev.clientX, ev.clientY);
+      // Glow + lock left in place (no full redraw)
+      leftEl.classList.add('paired','is-solved-link');
+      leftEl.disabled=true;
+      rightEl.classList.add('paired');
+      rightEl.disabled=true;
+      const leftIds=(q.leftItems||[]).map(x=>x.id);
+      const allGood=leftIds.every(id=>cur.pairs[id]===q.correct_pairs[id]);
+      if(allGood){
+        cur.correct=true; cur.checked=true; answers[current]=cur; locked=true; markSolved(q);
+        const fb=document.getElementById('feedback');
+        fb.className='feedback good'; fb.textContent='✓ '+(q.explain||'');
+        document.getElementById('nextBtn').disabled=false;
+        document.getElementById('mainPanel').classList.add('correct-pulse');
+        setTimeout(()=>document.getElementById('mainPanel').classList.remove('correct-pulse'),650);
+        spawnConfetti(); renderNav(); updateCounters();
+      }
+    } else {
+      cur.checked=false; cur.correct=false;
+      const fb=document.getElementById('feedback');
+      fb.className='feedback soft'; fb.textContent='not that one · try again';
+      clearTimeout(onDrawUp._t); onDrawUp._t=setTimeout(()=>{ if(!locked){ fb.className='feedback idle'; fb.textContent=''; } },900);
+    }
   } else if(pts.length){
     const loose={points:pts,loose:true};
     if(drawState.side==='L') loose.leftId=drawState.id;
@@ -2327,23 +2369,15 @@ function onDrawUp(ev){
   }
   drawState=null;
   if(svg) paintWires(svg, (answers[current]&&answers[current].wires)||[]);
-  document.querySelectorAll('.match-item').forEach(n=>{
-    const ans=ensureMatchAns();
-    n.classList.toggle('paired', (n.dataset.side==='L'&&ans.pairs[n.dataset.id])||(n.dataset.side==='R'&&Object.values(ans.pairs).includes(n.dataset.id)));
-  });
-}
-function checkMatching(q){
-  const cur=ensureMatchAns();
-  const leftIds=(q.leftItems||[]).map(x=>x.id);
-  const missing=leftIds.filter(id=>!cur.pairs[id]);
-  const fb=document.getElementById('feedback');
-  if(missing.length){ fb.className='feedback soft'; fb.textContent='not that one · try again'; return; }
-  const allGood=leftIds.every(id=>cur.pairs[id]===q.correct_pairs[id]);
-  if(allGood){
-    cur.correct=true; answers[current]=cur; locked=true; markSolved(q);
-    spawnConfetti(); renderQuestion();
-  } else {
-    fb.className='feedback soft'; fb.textContent='not that one · try again';
+  if(!locked){
+    document.querySelectorAll('.match-item').forEach(n=>{
+      const ans=ensureMatchAns();
+      const isLeftSolved=n.dataset.side==='L' && ans.pairs[n.dataset.id] && q.correct_pairs && q.correct_pairs[n.dataset.id]===ans.pairs[n.dataset.id];
+      const isRightSolved=n.dataset.side==='R' && Object.keys(ans.pairs).some(lid=>ans.pairs[lid]===n.dataset.id && q.correct_pairs && q.correct_pairs[lid]===n.dataset.id);
+      n.classList.toggle('paired', (n.dataset.side==='L'&&ans.pairs[n.dataset.id])||(n.dataset.side==='R'&&Object.values(ans.pairs).includes(n.dataset.id)));
+      n.classList.toggle('is-solved-link', isLeftSolved);
+      if(isLeftSolved || isRightSolved) n.disabled=true;
+    });
   }
 }
 
@@ -2399,10 +2433,23 @@ document.getElementById('backBtn').addEventListener('click', goBack);
 document.getElementById('hubBtn').addEventListener('click', returnToQuiz);
 document.getElementById('againHubBtn').addEventListener('click', ()=>{ clearWireLayer(); returnToQuiz(); });
 document.getElementById('fsBtn').addEventListener('click', ()=>{ if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{}); else document.exitFullscreen(); });
+function jumpToQuestion(i){
+  if(!quizActive || i<0 || i>=questions.length) return;
+  current=i;
+  locked=isAnswered(answers[current], questions[current]);
+  renderQuestion();
+}
 document.addEventListener('keydown', e=>{
-  if(e.key==='f'||e.key==='F'){ e.preventDefault(); document.getElementById('fsBtn').click(); }
-  if(e.key==='Enter') goNext();
-  if(quizActive && !locked && questions[current] && !isMatching(questions[current])){
+  const tag=(e.target&&e.target.tagName||'').toLowerCase();
+  const typing=tag==='input'||tag==='textarea'||tag==='select'||(e.target&&e.target.isContentEditable);
+  if(e.key==='f'||e.key==='F'){ if(!typing){ e.preventDefault(); document.getElementById('fsBtn').click(); } }
+  if(e.key==='Enter' && !typing) goNext();
+  if(quizActive && !typing && (e.key==='ArrowLeft'||e.key==='ArrowRight')){
+    e.preventDefault();
+    jumpToQuestion(current+(e.key==='ArrowRight'?1:-1));
+    return;
+  }
+  if(quizActive && !locked && !typing && questions[current] && !isMatching(questions[current])){
     const map={a:0,b:1,c:2,d:3,'1':0,'2':1,'3':2,'4':3};
     if(map[e.key.toLowerCase()]!=null) selectAnswer(map[e.key.toLowerCase()]);
   }
