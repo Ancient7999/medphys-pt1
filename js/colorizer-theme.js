@@ -568,7 +568,7 @@ global.resetThemeToDefaults = resetThemeToDefaults;
     } catch (e) {}
     var cur = document.documentElement.getAttribute('data-cursor');
     if (cur && CURSOR_SKINS.indexOf(cur) !== -1) return cur;
-    return 'ring-screen';
+    return 'system';
   }
 
   /** @deprecated use currentCursorSkin — kept for any external callers */
@@ -597,7 +597,7 @@ global.resetThemeToDefaults = resetThemeToDefaults;
       : isCustomCursorEnabled();
     var skin = (opts && opts.skin) || currentCursorSkin();
     if (skin === 'off') skin = 'system';
-    if (CURSOR_SKINS.indexOf(skin) === -1) skin = 'ring-screen';
+    if (CURSOR_SKINS.indexOf(skin) === -1) skin = 'system';
     try {
       localStorage.setItem(CURSOR_ON_KEY, enabled ? 'on' : 'off');
       localStorage.setItem(CURSOR_SKIN_KEY, skin);
@@ -616,7 +616,7 @@ global.resetThemeToDefaults = resetThemeToDefaults;
 
   function applyCursorChoice(value) {
     // Selecting a skin (including System) turns custom cursors ON and applies that skin.
-    applyCursorState({ enabled: true, skin: value || 'ring-screen' });
+    applyCursorState({ enabled: true, skin: value || 'system' });
   }
 
   function setCustomCursorEnabled(on) {

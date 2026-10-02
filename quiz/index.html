@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-quality="full" data-custom-cursor="on" data-skin="aurora">
+<html lang="en" data-quality="full" data-custom-cursor="on" data-cursor="system" data-skin="aurora">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,14 +47,14 @@
   try{
     var q=localStorage.getItem('pt1_quality_mode');
     var c=localStorage.getItem('pt1_custom_cursor');
-    var skin=localStorage.getItem('pt1_cursor_skin')||'ring-screen';
+    var skin=localStorage.getItem('pt1_cursor_skin')||'system';
     if(skin==='off') skin='system';
     var basic=(q==='basic'||q==='1'||q==='true');
     var curOn=!(c==='0'||c==='false'||c==='off');
     document.documentElement.setAttribute('data-quality', basic?'basic':'full');
     document.documentElement.setAttribute('data-custom-cursor', curOn?'on':'off');
     var known=['ring-screen','ring-tight','ring-gold','pill','beam-v','beam-h','diamond','comma','system'];
-    if(known.indexOf(skin)===-1) skin='ring-screen';
+    if(known.indexOf(skin)===-1) skin='system';
     document.documentElement.setAttribute('data-cursor', skin);
     var stacks={
       'Instrument Serif':"'Instrument Serif',Georgia,serif",
@@ -95,7 +95,7 @@
   }catch(e){
     document.documentElement.setAttribute('data-quality','full');
     document.documentElement.setAttribute('data-custom-cursor','on');
-    document.documentElement.setAttribute('data-cursor','ring-screen');
+    document.documentElement.setAttribute('data-cursor','system');
   }
 })();
 </script>
@@ -2199,7 +2199,7 @@ document.addEventListener('mouseup',()=>{ if(cursor) cursor.classList.remove('ac
 (function(){
   if(document.documentElement.getAttribute('data-custom-cursor')==='off') return;
   if(!document.documentElement.getAttribute('data-cursor')){
-    var sk='ring-screen';
+    var sk='system';
     try{
       var s=localStorage.getItem('pt1_cursor_skin');
       if(s==='off') s='system';
