@@ -1580,11 +1580,54 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
 .status-bar{flex-wrap:wrap;row-gap:10px;flex-direction:column;align-items:stretch}
 .status-lead{display:flex;align-items:center;gap:12px}
 .q-nav{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;margin-left:0;width:100%;justify-content:flex-start;direction:ltr}
-.float-bit{position:fixed;z-index:240;pointer-events:none;font-size:1.45rem;line-height:1;filter:drop-shadow(0 6px 10px var(--mood-glow));animation:floatBloom var(--dur,1200ms) ease-out forwards}
-@keyframes floatBloom{
-  0%{transform:translate(0,0) scale(var(--scale,.9)) rotate(0deg);opacity:1}
-  70%{opacity:1}
-  100%{transform:translate(var(--dx,0px),-160px) scale(calc(var(--scale,.9)*1.25)) rotate(var(--spin,18deg));opacity:0}
+.link-spark-laser{position:fixed;z-index:240;pointer-events:none;width:0;height:0;left:0;top:0}
+.link-spark-laser .laser-beam{
+  position:absolute;left:0;top:0;width:150px;height:3px;margin-left:-75px;margin-top:-1.5px;border-radius:999px;
+  background:linear-gradient(90deg,transparent 0%,rgba(var(--accent-0-rgb),.12) 12%,var(--accent-0) 50%,rgba(var(--accent-0-rgb),.12) 88%,transparent 100%);
+  box-shadow:0 0 6px rgba(var(--accent-0-rgb),.95),0 0 16px rgba(var(--accent-0-rgb),.7),0 0 32px rgba(var(--accent-1-rgb),.4);
+  transform-origin:center center;will-change:transform,opacity;
+}
+.link-spark-laser .laser-beam-a{animation:linkLaserSpinA 780ms cubic-bezier(.2,.7,.2,1) forwards}
+.link-spark-laser .laser-beam-b{
+  width:110px;height:2px;margin-left:-55px;margin-top:-1px;opacity:.85;
+  background:linear-gradient(90deg,transparent 0%,rgba(var(--accent-1-rgb),.2) 18%,var(--accent-1) 50%,rgba(var(--accent-1-rgb),.2) 82%,transparent 100%);
+  box-shadow:0 0 8px rgba(var(--accent-1-rgb),.8),0 0 20px rgba(var(--accent-0-rgb),.45);
+  animation:linkLaserSpinB 780ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+.link-spark-laser .laser-core{
+  position:absolute;left:0;top:0;width:14px;height:14px;margin-left:-7px;margin-top:-7px;border-radius:50%;
+  background:radial-gradient(circle,var(--accent-0) 0%,rgba(var(--accent-0-rgb),.55) 40%,transparent 70%);
+  box-shadow:0 0 12px rgba(var(--accent-0-rgb),.95),0 0 28px rgba(var(--accent-0-rgb),.55);
+  animation:linkLaserCore 780ms ease-out forwards;
+}
+.link-spark-laser .laser-spark{
+  position:absolute;left:0;top:0;width:6px;height:6px;margin-left:-3px;margin-top:-3px;border-radius:50%;
+  background:var(--accent-0);box-shadow:0 0 8px rgba(var(--accent-0-rgb),1),0 0 16px rgba(var(--accent-1-rgb),.7);
+  animation:linkLaserSpark var(--spark-dur,700ms) ease-out forwards;
+  --sx:0px;--sy:0px;
+}
+@keyframes linkLaserSpinA{
+  0%{transform:rotate(-18deg) scaleX(.15);opacity:0}
+  12%{opacity:1;transform:rotate(28deg) scaleX(1)}
+  72%{opacity:1;transform:rotate(248deg) scaleX(1)}
+  100%{opacity:0;transform:rotate(360deg) scaleX(.35)}
+}
+@keyframes linkLaserSpinB{
+  0%{transform:rotate(72deg) scaleX(.1);opacity:0}
+  12%{opacity:.9;transform:rotate(118deg) scaleX(1)}
+  72%{opacity:.85;transform:rotate(338deg) scaleX(1)}
+  100%{opacity:0;transform:rotate(450deg) scaleX(.3)}
+}
+@keyframes linkLaserCore{
+  0%{transform:scale(.2);opacity:0}
+  18%{transform:scale(1.35);opacity:1}
+  55%{transform:scale(1);opacity:1}
+  100%{transform:scale(.4);opacity:0}
+}
+@keyframes linkLaserSpark{
+  0%{transform:translate(0,0) scale(.4);opacity:0}
+  20%{opacity:1}
+  100%{transform:translate(var(--sx),var(--sy)) scale(0);opacity:0}
 }
 .q-nav-btn{appearance:none;min-width:2rem;height:1.85rem;padding:0 .45rem;border-radius:9px;border:1px solid rgba(var(--accent-0-rgb),.22);background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.08) 0%,rgba(10,14,22,.55) 100%);color:var(--text-dim);font-family:var(--mono);font-size:.72rem;font-weight:700;line-height:1;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .18s,background .18s,color .18s,box-shadow .18s}
 .q-nav-btn.linking{min-width:3.15rem}
@@ -3159,17 +3202,29 @@ function relayoutWires(){
 addEventListener('scroll',relayoutWires,true);
 addEventListener('resize',relayoutWires);
 function celebrateLink(x,y){
-  const bits=['😊','😄','🤩','🥳','🌸','🌺','🌼','🌷','💮','✨','🌻','💐'];
-  for(let i=0;i<16;i++){
-    const el=document.createElement('span'); el.className='float-bit'; el.textContent=bits[i%bits.length];
-    el.style.left=(x+(Math.random()*24-12))+'px'; el.style.top=y+'px';
-    el.style.setProperty('--dx',(Math.random()*120-60)+'px');
-    el.style.setProperty('--dur',(900+Math.random()*800)+'ms');
-    el.style.setProperty('--scale',(0.75+Math.random()*0.9).toFixed(2));
-    el.style.setProperty('--spin',((Math.random()*50)-20)+'deg');
-    document.body.appendChild(el); setTimeout(()=>el.remove(),1900);
+  /* Accent-tinted sparkle laser: spawns at the match, rotates briefly, fades out.
+     Colors come from live --accent-* CSS vars so colorizer changes apply to new lasers. */
+  const wrap=document.createElement('div');
+  wrap.className='link-spark-laser';
+  wrap.style.left=x+'px';
+  wrap.style.top=y+'px';
+  wrap.setAttribute('aria-hidden','true');
+  wrap.innerHTML=
+    '<span class="laser-beam laser-beam-a"></span>'+
+    '<span class="laser-beam laser-beam-b"></span>'+
+    '<span class="laser-core"></span>';
+  for(let i=0;i<8;i++){
+    const sp=document.createElement('span');
+    sp.className='laser-spark';
+    const ang=(Math.PI*2*i)/8+(Math.random()*.35);
+    const dist=28+Math.random()*48;
+    sp.style.setProperty('--sx',(Math.cos(ang)*dist).toFixed(1)+'px');
+    sp.style.setProperty('--sy',(Math.sin(ang)*dist).toFixed(1)+'px');
+    sp.style.setProperty('--spark-dur',(520+Math.random()*280)+'ms');
+    wrap.appendChild(sp);
   }
-  spawnFireworkBurst(x, Math.max(40,y-40), 18);
+  document.body.appendChild(wrap);
+  setTimeout(()=>wrap.remove(),820);
 }
 
 function isLockedMatchWire(q, ans, wire){
