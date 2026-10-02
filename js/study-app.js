@@ -2,6 +2,20 @@
 (function () {
   'use strict';
 
+  /** SVG presentation attrs reject height="auto"; allow CSS instead. */
+  function sanitizeSvgAttrs(html) {
+    return String(html).replace(
+      /<svg\b([^>]*)>/gi,
+      function (_, attrs) {
+        attrs = attrs.replace(/\sheight\s*=\s*(["'])auto\1/i, '');
+        if (!/\sstyle\s*=/i.test(attrs)) {
+          attrs += ' style="height:auto;display:block"';
+        }
+        return '<svg' + attrs + '>';
+      }
+    );
+  }
+
   function escapeHtml(s) {
     return String(s)
       .replace(/&/g, '&amp;')
@@ -45,7 +59,7 @@
         inHtmlBlock = true;
         htmlBuf = [line];
         if (/<\/div>\s*$/.test(line)) {
-          out.push(htmlBuf.join('\n'));
+          out.push(sanitizeSvgAttrs(htmlBuf.join('\n')));
           htmlBuf = [];
           inHtmlBlock = false;
         }
@@ -60,7 +74,7 @@
           const opens = (joined.match(/<div\b/gi) || []).length;
           const closes = (joined.match(/<\/div>/gi) || []).length;
           if (closes >= opens) {
-            out.push(joined);
+            out.push(sanitizeSvgAttrs(joined));
             htmlBuf = [];
             inHtmlBlock = false;
           }
@@ -186,7 +200,7 @@
     }
     closeList();
     if (inCode) out.push('<pre><code>' + escapeHtml(codeBuf.join('\n')) + '</code></pre>');
-    if (inHtmlBlock && htmlBuf.length) out.push(htmlBuf.join('\n'));
+    if (inHtmlBlock && htmlBuf.length) out.push(sanitizeSvgAttrs(htmlBuf.join('\n')));
     return out.join('\n');
   }
 
@@ -255,7 +269,7 @@
         body.querySelector('.md').innerHTML = '<p style="color:var(--col-text-muted)">Loading…</p>';
         try {
           const md = await loadMd(ch.src);
-          body.querySelector('.md').innerHTML = renderMarkdown(md);
+          body.querySelector('.md').innerHTML = sanitizeSvgAttrs(renderMarkdown(md));
           body.dataset.loaded = '1';
         } catch (err) {
           body.querySelector('.md').innerHTML =

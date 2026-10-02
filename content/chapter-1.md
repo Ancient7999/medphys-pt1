@@ -104,7 +104,7 @@ Additional states: **plasma** (ionised gas) and **Bose–Einstein condensate (BE
 ### Phase changes
 
 <div class="phase-diagram" role="img" aria-label="Phase-change diagram linking solid, liquid, and gas">
-<svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+<svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" width="100%" style="height:auto;display:block">
   <defs>
     <linearGradient id="pgSolid" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="rgba(var(--accent-0-rgb),0.35)"/><stop offset="100%" stop-color="rgba(var(--accent-4-rgb),0.15)"/></linearGradient>
     <linearGradient id="pgLiquid" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="rgba(var(--accent-1-rgb),0.35)"/><stop offset="100%" stop-color="rgba(var(--accent-6-rgb),0.15)"/></linearGradient>
