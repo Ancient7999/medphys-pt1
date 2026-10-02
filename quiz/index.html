@@ -2883,6 +2883,7 @@ function afterAnswerProgress(){
     unansweredMarkersVisible=false;
     const btn=document.getElementById('nextBtn');
     if(btn){
+      btn.hidden=false;
       btn.textContent='Finish ✓';
       btn.dataset.action='finish';
       btn.disabled=false;
@@ -2900,6 +2901,7 @@ function updateNextActionButton(){
   const atLast=questions.length>0 && current===questions.length-1;
   const answeredHere=isAnswered(answers[current], questions[current]);
   const firstOpen=firstUnansweredIndex();
+  btn.hidden=false;
   btn.dataset.action='next';
   delete btn.dataset.target;
   if(!atLast){
@@ -2907,9 +2909,9 @@ function updateNextActionButton(){
     btn.disabled=!answeredHere;
     return;
   }
-  // Last question: stay on greyed Next until this item is answered
+  // No Next action while the final question is still unanswered.
   if(!answeredHere){
-    btn.textContent='Next →';
+    btn.hidden=true;
     btn.disabled=true;
     return;
   }
