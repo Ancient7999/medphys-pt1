@@ -25,7 +25,7 @@ medphys-pt1/
     particles.js             # theme grid + legacy BgParticles compatibility
     colorizer-theme.js       # vendor theme engine (quiz; default amber)
     study-app.js             # markdown + accordion
-    cursor-idle.js           # ATC brushCursor idle auto-hide (Main Menu only)
+    cursor-idle.js           # BrushCursor idle auto-hide (Main Menu only)
   assets/
     colorizer-panel.fragment.html  # vendor fragment (unused)
   data/bank.json
@@ -66,6 +66,6 @@ python3 -m http.server 8080
 
 ## GitHub Pages
 
-- Main: `https://ancient7999.github.io/medphys-pt1/`
-- Study: `https://ancient7999.github.io/medphys-pt1/study.html`
-- Quiz: `https://ancient7999.github.io/medphys-pt1/quiz/`
+- Main: `https://sonicunligmated.github.io/medphys-pt1/`
+- Study: `https://sonicunligmated.github.io/medphys-pt1/study.html`
+- Quiz: `https://sonicunligmated.github.io/medphys-pt1/quiz/`
