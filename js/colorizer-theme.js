@@ -617,15 +617,31 @@ global.resetThemeToDefaults = resetThemeToDefaults;
     } catch (e) {}
   }
 
+  var lastTouchAt = 0;
+  // Ghost mouse/pointer events follow a tap on mobile. If they flip the
+  // page back to a fine pointer, the idle cursor overlay arms and then
+  // swallows later taps. Hold touch mode briefly after any real touch.
+  var TOUCH_HOLD_MS = 1200;
+
+  function eventFromTouch(ev) {
+    if (!ev) return false;
+    if (ev.type === 'touchstart' || ev.pointerType === 'touch') return true;
+    var caps = ev.sourceCapabilities;
+    return !!(caps && caps.firesTouchEvents);
+  }
+
   function notePointerTypeEvent(ev) {
     if (!ev) return;
-    if (ev.type === 'touchstart') {
+    if (eventFromTouch(ev)) {
+      lastTouchAt = Date.now();
       setPointerInputKind('touch');
       return;
     }
     var t = ev.pointerType;
-    if (t === 'touch') setPointerInputKind('touch');
-    else if (t === 'mouse' || t === 'pen') setPointerInputKind('fine');
+    if (t === 'mouse' || t === 'pen') {
+      if (Date.now() - lastTouchAt < TOUCH_HOLD_MS) return;
+      setPointerInputKind('fine');
+    }
   }
 
   function wirePointerInputDetection() {

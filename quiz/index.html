@@ -211,9 +211,16 @@ body,button,.opt,.nav-btn,.fs-btn,.card,.mood-live,.mood-pick,.mood-tray,.timer-
   mix-blend-mode:var(--cur-blend,screen);box-shadow:var(--cur-shadow,0 0 18px rgba(var(--accent-0-rgb),.35));
 }
 #cursor.hidden,#cursor.core.hidden{opacity:0!important;visibility:hidden!important}
-body.cursor-idle .opt,body.cursor-idle .card,body.cursor-idle .nav-btn,body.cursor-idle .fs-btn,
-body.cursor-idle .settings-btn,body.cursor-idle .settings-nav-btn,
-body.cursor-idle .portal-card,body.cursor-idle .q-nav-btn,body.cursor-idle .match-item{
+/* Idle hide is a desktop hover-ghost kill. Never apply it on touch or taps die. */
+html:not([data-pointer-input="touch"]) body.cursor-idle .opt,
+html:not([data-pointer-input="touch"]) body.cursor-idle .card,
+html:not([data-pointer-input="touch"]) body.cursor-idle .nav-btn,
+html:not([data-pointer-input="touch"]) body.cursor-idle .fs-btn,
+html:not([data-pointer-input="touch"]) body.cursor-idle .settings-btn,
+html:not([data-pointer-input="touch"]) body.cursor-idle .settings-nav-btn,
+html:not([data-pointer-input="touch"]) body.cursor-idle .portal-card,
+html:not([data-pointer-input="touch"]) body.cursor-idle .q-nav-btn,
+html:not([data-pointer-input="touch"]) body.cursor-idle .match-item{
   pointer-events:none;
 }
 body.cursor-idle .opt:hover,body.cursor-idle .card:hover,body.cursor-idle .nav-btn:hover,
@@ -1618,9 +1625,9 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   pointer-events:none;
 }
 /* Unanswered pills + Back: Cube-Fold cube-face gloss, always on.
-   A static diagonal glass highlight stays on the face, and the same
-   skewed color-dodge band drifts slowly across it without leaving.
-   Not a strobe, and not a sweep that parks off-screen. */
+   A static diagonal glass highlight stays on the face, and a skewed
+   color-dodge band sweeps across it (about 3.2s pills, 4.4s Back).
+   The band stays partly on the face at both ends. Not a strobe. */
 .q-nav-btn.unanswered,
 .q-nav-btn.skipped:not(.done),
 #backBtn.has-skips-behind{
@@ -1638,34 +1645,37 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   pointer-events:none;
   background:
     linear-gradient(105deg,
-      transparent 36%,
-      rgba(255,255,255,0.42) 46%,
-      rgba(var(--accent-6-rgb), 0.22) 50%,
-      rgba(255,255,255,0.42) 54%,
-      transparent 64%),
+      transparent 0%,
+      transparent 30%,
+      rgba(255,255,255,0.48) 44%,
+      rgba(var(--accent-6-rgb), 0.26) 50%,
+      rgba(255,255,255,0.48) 56%,
+      transparent 70%,
+      transparent 100%),
     linear-gradient(125deg,
-      rgba(255,255,255,.18) 0%,
-      rgba(255,255,255,.06) 24%,
+      rgba(255,255,255,.20) 0%,
+      rgba(255,255,255,.07) 24%,
       transparent 48%,
-      rgba(255,255,255,.08) 100%);
+      rgba(255,255,255,.10) 100%);
   background-repeat:no-repeat;
-  background-size:160% 100%, 100% 100%;
-  background-position:42% 0, 0 0;
+  /* Wide moving band so a 0%→100% shift crosses the face; static glass stays. */
+  background-size:200% 100%, 100% 100%;
+  background-position:0% 0, 0 0;
   transform:skewX(-25deg);
   mix-blend-mode:color-dodge;
   opacity:1;
-  animation:navSoftSheen 10s ease-in-out infinite;
+  animation:navSoftSheen 3.2s ease-in-out infinite;
   will-change:background-position;
 }
 .q-nav-btn:nth-child(3n+1).unanswered::before,
-.q-nav-btn:nth-child(3n+1).skipped:not(.done)::before{animation-delay:-3.2s}
+.q-nav-btn:nth-child(3n+1).skipped:not(.done)::before{animation-delay:-1.1s}
 .q-nav-btn:nth-child(3n+2).unanswered::before,
-.q-nav-btn:nth-child(3n+2).skipped:not(.done)::before{animation-delay:-6.4s}
-#backBtn.has-skips-behind::before{animation-duration:12s;animation-delay:-2s}
+.q-nav-btn:nth-child(3n+2).skipped:not(.done)::before{animation-delay:-2.1s}
+#backBtn.has-skips-behind::before{animation-duration:4.4s;animation-delay:-1.2s}
 .q-nav-btn.unanswered::after{z-index:2}
 @keyframes navSoftSheen{
-  0%,100%{background-position:28% 0, 0 0}
-  50%{background-position:58% 0, 0 0}
+  0%,100%{background-position:0% 0, 0 0}
+  50%{background-position:100% 0, 0 0}
 }
 @media (prefers-reduced-motion:reduce){
   .q-nav-btn.unanswered::before,
@@ -2308,28 +2318,48 @@ document.addEventListener('mouseup',()=>{ if(cursor) cursor.classList.remove('ac
     document.documentElement.setAttribute('data-cursor', sk);
   }
 })();
-/* Legacy ring/#cursor idle auto-hide — quiz only; 4.5s (= 1.5s × 3). Not ATC brush. */
+/* Legacy ring/#cursor idle auto-hide — quiz only; 4.5s (= 1.5s × 3). Not ATC brush.
+   Touch must never enter cursor-idle: that class drops pointer-events on
+   answers, question nav, and back, and a phone has no mousemove to clear it. */
 (function quizRingCursorIdle(){
-  if(!customCursorOn()) return;
   var IDLE_MS=4500;
   var idleTimer;
   function cursors(){ return document.querySelectorAll('#cursor'); }
+  function touchMode(){
+    return document.documentElement.getAttribute('data-pointer-input')==='touch';
+  }
+  function compatMouse(e){
+    return !!(e && e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents);
+  }
+  function releaseIdle(){
+    clearTimeout(idleTimer);
+    idleTimer=null;
+    document.body.classList.remove('cursor-idle');
+  }
   function hideCursor(){
+    if(touchMode()){ releaseIdle(); return; }
     clearTimeout(idleTimer);
     cursors().forEach(function(el){ el.classList.add('hidden'); });
     document.body.classList.add('cursor-idle');
   }
   function showCursor(){
-    if(!customCursorOn()) return;
+    if(!customCursorOn() || touchMode()) return;
     cursors().forEach(function(el){ el.classList.remove('hidden'); });
     document.body.classList.remove('cursor-idle');
     clearTimeout(idleTimer);
     idleTimer=setTimeout(hideCursor, IDLE_MS);
   }
-  document.addEventListener('mousemove', showCursor);
-  document.addEventListener('mousedown', showCursor, true);
-  document.addEventListener('keydown', function(){ hideCursor(); });
-  idleTimer=setTimeout(hideCursor, IDLE_MS);
+  document.addEventListener('mousemove', function(e){ if(!compatMouse(e)) showCursor(); });
+  document.addEventListener('mousedown', function(e){ if(!compatMouse(e)) showCursor(); }, true);
+  document.addEventListener('keydown', function(){
+    if(touchMode()) return;
+    if(document.documentElement.getAttribute('data-custom-cursor')==='off') return;
+    hideCursor();
+  });
+  document.addEventListener('touchstart', releaseIdle, {capture:true, passive:true});
+  document.documentElement.addEventListener('pt1-pointer-input', function(){
+    if(touchMode()) releaseIdle();
+  });
 })();
 function refreshFxAccentColors(){
   const cols=fxColors();
@@ -3699,7 +3729,7 @@ renderHub();
 
 <!-- Colorizer: settings modal owns controls · theme grid → colorizer-theme -->
 <script src="../js/particles.js?v=20261003h"></script>
-<script src="../js/colorizer-theme.js?v=20261003g"></script>
+<script src="../js/colorizer-theme.js?v=20261003i"></script>
 <script>
 // Keep quiz FX colors in sync when accent changes.
 (function(){

@@ -35,10 +35,17 @@
       'body.cursor-idle .ps2-menu-item:focus-visible:not(.focused){' +
       'transform:none!important;background:linear-gradient(90deg,rgba(var(--accent-0-rgb),0.09) 0%,rgba(var(--accent-0-rgb),0.02) 100%)!important;box-shadow:none!important;}' +
       'body.cursor-idle .ps2-back-btn:hover{border-color:var(--col-border)!important;color:var(--col-text-muted)!important;box-shadow:none!important;}' +
-      'body.cursor-idle .ps2-menu-item,body.cursor-idle .ps2-back-btn,' +
-      'body.cursor-idle .btn,body.cursor-idle .chapter-toggle,' +
-      'body.cursor-idle .opt,body.cursor-idle .card,body.cursor-idle .nav-btn,body.cursor-idle .fs-btn,' +
-      'body.cursor-idle .portal-card,body.cursor-idle .settings-nav-btn,body.cursor-idle .settings-btn{' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .ps2-menu-item,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .ps2-back-btn,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .btn,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .chapter-toggle,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .opt,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .card,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .nav-btn,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .fs-btn,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .portal-card,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .settings-nav-btn,' +
+      'html:not([data-pointer-input="touch"]) body.cursor-idle .settings-btn{' +
       'pointer-events:none;}' +
       'body.cursor-idle .btn:hover,body.cursor-idle .btn.primary:hover,' +
       'body.cursor-idle .chapter-toggle:hover{transform:none!important;filter:none!important;box-shadow:none!important;}' +
@@ -85,6 +92,10 @@
     }
 
     function hideCursor() {
+      if (document.documentElement.getAttribute('data-pointer-input') === 'touch') {
+        releaseForTouch();
+        return;
+      }
       clearTimeout(idleTimer);
       brush.classList.add('hidden');
       hoverBlocker.style.pointerEvents = 'auto';
@@ -123,18 +134,34 @@
       new MutationObserver(updateBackBtn).observe(document.body, { childList: true, subtree: true });
     } catch (e) { /* ignore */ }
 
+    function compatMouse(e) {
+      return !!(e && e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents);
+    }
+    function releaseForTouch() {
+      clearTimeout(idleTimer);
+      idleTimer = null;
+      brush.classList.add('hidden');
+      hoverBlocker.style.pointerEvents = 'none';
+      document.body.classList.remove('cursor-idle');
+    }
+
     document.addEventListener('mousemove', function (e) {
-      if (!customCursorOn()) return;
+      if (compatMouse(e) || !customCursorOn()) return;
       brush.style.left = e.clientX + 'px';
       brush.style.top = e.clientY + 'px';
       showCursor();
     });
     document.addEventListener('keydown', function () {
+      if (document.documentElement.getAttribute('data-pointer-input') === 'touch') return;
       hideCursor();
       keyActive = true;
       updateBackBtn();
     });
-    document.addEventListener('mousedown', showCursor, true);
+    document.addEventListener('mousedown', function (e) {
+      if (compatMouse(e)) return;
+      showCursor();
+    }, true);
+    document.addEventListener('touchstart', releaseForTouch, { capture: true, passive: true });
 
     document.addEventListener('mouseover', function (e) {
       var item = e.target.closest(HOVER_SEL);
@@ -147,20 +174,13 @@
 
     function syncTouchPointerMode() {
       if (document.documentElement.getAttribute('data-pointer-input') === 'touch') {
-        clearTimeout(idleTimer);
-        brush.classList.add('hidden');
-        hoverBlocker.style.pointerEvents = 'none';
-        document.body.classList.remove('cursor-idle');
-      } else if (customCursorOn()) {
-        showCursor();
-      } else {
-        brush.classList.add('hidden');
+        releaseForTouch();
       }
     }
     document.documentElement.addEventListener('pt1-pointer-input', syncTouchPointerMode);
     syncTouchPointerMode();
-
-    idleTimer = setTimeout(hideCursor, IDLE_MS);
+    // Do not arm the full-screen hover blocker on load. Phones never send a
+    // real mousemove, so a load timer would cover the UI and eat taps.
   }
 
   if (document.body) boot();
