@@ -152,7 +152,7 @@
       {
         "id": "PHY00011",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Stress is defined as:",
         "options": [
           "Area / Force",
@@ -166,7 +166,7 @@
       {
         "id": "PHY00012",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Strain is best described as:",
         "options": [
           "Same quantity as stress, units of pascal",
@@ -180,7 +180,7 @@
       {
         "id": "PHY00013",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Hooke's Law states that stress and strain are proportional up to which point?",
         "options": [
           "The breaking point of the loaded specimen",
@@ -194,7 +194,7 @@
       {
         "id": "PHY00014",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Which of the following is a medical example of stress in the human body?",
         "options": [
           "Blood pressure acting on vessel walls",
@@ -278,7 +278,7 @@
       {
         "id": "PHY00020",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "What happens when a material is loaded beyond its elastic limit?",
         "options": [
           "It gains mass",
@@ -306,7 +306,7 @@
       {
         "id": "PHY00022",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Pressure on teeth during chewing is an example of:",
         "options": [
           "Stress on the tooth surface",
@@ -362,7 +362,7 @@
       {
         "id": "PHY00026",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "A bone under 5 × 10⁶ Pa of stress shows a strain of 0.0025. What is the Young's modulus of this sample?",
         "options": [
           "2 × 10⁶ Pa",
@@ -404,7 +404,7 @@
       {
         "id": "PHY00029",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "What is the constant of proportionality between stress and strain called?",
         "options": [
           "Strain coefficient",
@@ -418,7 +418,7 @@
       {
         "id": "PHY00030",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Which formula correctly represents the modulus of elasticity?",
         "options": [
           "Stress × Strain",
@@ -432,7 +432,7 @@
       {
         "id": "PHY00031",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "How many types of modulus of elasticity exist, and what are they?",
         "options": [
           "Four: tensile, compressive, shear, and torsional",
@@ -446,7 +446,7 @@
       {
         "id": "PHY00032",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Longitudinal stress is applied:",
         "options": [
           "At the two end faces alone",
@@ -460,7 +460,7 @@
       {
         "id": "PHY00033",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Longitudinal strain is calculated as:",
         "options": [
           "ΔL × L",
@@ -474,7 +474,7 @@
       {
         "id": "PHY00034",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Young's modulus is calculated as:",
         "options": [
           "(ΔL/L) / (F/A)",
@@ -488,7 +488,7 @@
       {
         "id": "PHY00035",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Shear strain is calculated as:",
         "options": [
           "Δx / L",
@@ -502,7 +502,7 @@
       {
         "id": "PHY00036",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Shear modulus is calculated as:",
         "options": [
           "(Δx/L) / (F/A)",
@@ -516,7 +516,7 @@
       {
         "id": "PHY00037",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Bulk modulus is calculated as:",
         "options": [
           "(F/A) / (ΔL/L)",
@@ -530,7 +530,7 @@
       {
         "id": "PHY00038",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Hydraulic (volume) stress is:",
         "options": [
           "Uniform pressure inward from all sides",
@@ -544,7 +544,7 @@
       {
         "id": "PHY00039",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Larger the Young's modulus of a material means:",
         "options": [
           "The material is softer",
@@ -558,7 +558,7 @@
       {
         "id": "PHY00040",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Cortical bone specimen: L = 0.20 m, A = 1.0×10⁻⁴ m², F = 1000 N, ΔL = 0.12 mm. Calculate the Young's modulus.",
         "options": [
           "1.67 × 10⁹ Pa",
@@ -572,7 +572,7 @@
       {
         "id": "PHY00041",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Femur: L = 0.4 m, Young's modulus = 16×10⁹ Pa, max stress = 150×10⁶ Pa. Find maximum compression ΔL before breaking.",
         "options": [
           "3.75 mm",
@@ -586,7 +586,7 @@
       {
         "id": "PHY00042",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "What are the units of strain?",
         "options": [
           "Pascal (Pa), or N/m²",
@@ -600,7 +600,7 @@
       {
         "id": "PHY00043",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "What happens to a material loaded beyond its elastic limit?",
         "options": [
           "It becomes more elastic than before",
@@ -614,7 +614,7 @@
       {
         "id": "PHY00044",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "A cylinder is stretched lengthwise by a change in length ΔL. This loading represents:",
         "options": [
           "Compressive stress along the length",
@@ -628,7 +628,7 @@
       {
         "id": "PHY00045",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "A cylinder has its top face displaced sideways by Δx while the base stays fixed. This loading represents:",
         "options": [
           "Tensile stress",
@@ -642,7 +642,7 @@
       {
         "id": "PHY00046",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "A sphere shrinks in volume under pressure applied by a surrounding fluid. This loading represents:",
         "options": [
           "Shear stress",
@@ -656,7 +656,7 @@
       {
         "id": "PHY00047",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "When a bone bends, the side being compressed is under ______ stress, while the side being stretched is under ______ stress.",
         "options": [
           "shear; bulk",
@@ -670,7 +670,7 @@
       {
         "id": "PHY00048",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "How does osteoporosis affect the Young's modulus of bone?",
         "options": [
           "It increases bone mass, not the modulus",
@@ -684,7 +684,7 @@
       {
         "id": "PHY00049",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Osteogenesis imperfecta is a condition in which:",
         "options": [
           "Bones have an unusually high Young's modulus",
@@ -712,7 +712,7 @@
       {
         "id": "PHY00051",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Which pairing of stress and unit is correct?",
         "options": [
           "Stress, joule",
@@ -726,7 +726,7 @@
       {
         "id": "PHY00052",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "The modulus of elasticity reflects which property of a material?",
         "options": [
           "Its electrical conductivity",
@@ -740,7 +740,7 @@
       {
         "id": "PHY00053",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Tensile stress applied to a material causes it to:",
         "options": [
           "Shorten in length",
@@ -754,7 +754,7 @@
       {
         "id": "PHY00054",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Compressive stress applied to a material causes it to:",
         "options": [
           "Shorten in length",
@@ -768,7 +768,7 @@
       {
         "id": "PHY00055",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Shear deformation is described as being somewhat like:",
         "options": [
           "A balloon expanding under pressure",
@@ -782,7 +782,7 @@
       {
         "id": "PHY00056",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Hydraulic stress produces which kind of deformation?",
         "options": [
           "Both length and shape change together",
@@ -796,7 +796,7 @@
       {
         "id": "PHY00057",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Why is the Young's modulus clinically useful for assessing bone health?",
         "options": [
           "It records the surface color of bone",
@@ -810,7 +810,7 @@
       {
         "id": "PHY00058",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "Which statement best explains why liquids and gases are both classified as fluids?",
         "options": [
           "They flow and deform continuously under shear",
@@ -824,7 +824,7 @@
       {
         "id": "PHY00059",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "The density (ρ) of an object is defined as:",
         "options": [
           "volume / mass",
@@ -838,7 +838,7 @@
       {
         "id": "PHY00060",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "A block measures 5.0 cm × 6.0 cm × 8.0 cm and has a mass of 960 g. What is its density?",
         "options": [
           "4.8 g/cm³",
@@ -852,7 +852,7 @@
       {
         "id": "PHY00061",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "A glass block measures 8 cm × 5 cm × 3 cm and has a density of 2.5 g/cm³. What is its mass?",
         "options": [
           "150 g",
@@ -866,7 +866,7 @@
       {
         "id": "PHY00062",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "What is the specific gravity of a substance?",
         "options": [
           "Mass of the sample divided by volume",
@@ -880,7 +880,7 @@
       {
         "id": "PHY00063",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "How do you convert a density given in g/cm³ to kg/m³?",
         "options": [
           "Multiply by 100",
@@ -894,7 +894,7 @@
       {
         "id": "PHY00064",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "Pressure is defined as:",
         "options": [
           "Mass / volume",
@@ -908,7 +908,7 @@
       {
         "id": "PHY00065",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "In a static fluid, how does pressure behave at a given depth?",
         "options": [
           "It acts downward at that depth",
@@ -922,7 +922,7 @@
       {
         "id": "PHY00066",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "The force exerted by a fluid on a submerged object is always:",
         "options": [
           "Perpendicular to the surface, rising with depth",
@@ -936,7 +936,7 @@
       {
         "id": "PHY00067",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "Which expression gives the pressure at a depth h below the surface of a liquid of density ρ?",
         "options": [
           "P = gh / ρ",
@@ -950,7 +950,7 @@
       {
         "id": "PHY00068",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "The pressure on an object at depth h in a liquid, measured from atmospheric level, is called:",
         "options": [
           "Dynamic pressure",
@@ -964,7 +964,7 @@
       {
         "id": "PHY00069",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Atmospheric Pressure",
         "q": "At sea level, what is the value of standard atmospheric pressure in pascals?",
         "options": [
           "1.013 × 10³ Pa",
@@ -978,7 +978,7 @@
       {
         "id": "PHY00070",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Atmospheric Pressure",
         "q": "Which of the following is a correct equivalent for 1 atm?",
         "options": [
           "1 atm = 100 torr = 1.0 lb/in²",
@@ -992,7 +992,7 @@
       {
         "id": "PHY00071",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Barometer",
         "q": "What is the purpose of the mercury barometer developed by Torricelli?",
         "options": [
           "To measure the density of a fluid",
@@ -1006,7 +1006,7 @@
       {
         "id": "PHY00072",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Barometer",
         "q": "A mercury barometer shows a column of 76 cm. If water were used instead, approximately how tall would the column need to be?",
         "options": [
           "About 76.0 m",
@@ -1020,7 +1020,7 @@
       {
         "id": "PHY00073",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Open Tube Manometer",
         "q": "An open-tube manometer is used primarily to measure:",
         "options": [
           "Fluid density",
@@ -1034,7 +1034,7 @@
       {
         "id": "PHY00074",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "Which equation correctly relates absolute pressure, atmospheric pressure, and gauge pressure?",
         "options": [
           "P_abs = P_atm + P_gauge",
@@ -1048,7 +1048,7 @@
       {
         "id": "PHY00075",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Open Tube Manometer",
         "q": "In a manometer, the gauge pressure of a gas in a container is given by:",
         "options": [
           "P_atm − ρgh",
@@ -1062,7 +1062,7 @@
       {
         "id": "PHY00076",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "A diver is at a depth where the gauge pressure reads 4.41 × 10⁵ Pa in fresh water (ρ = 1000 kg/m³, g = 9.8 m/s²). How deep is the diver?",
         "options": [
           "49.0 m",
@@ -1076,7 +1076,7 @@
       {
         "id": "PHY00077",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "What is the absolute pressure at a depth of 20 m in fresh water, given ρ = 1000 kg/m³, g = 9.8 m/s², and P_atm = 1.013 × 10⁵ Pa?",
         "options": [
           "1.013 × 10⁵ Pa",
@@ -1090,7 +1090,7 @@
       {
         "id": "PHY00078",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pascal's Principle",
         "q": "Pascal's principle states that:",
         "options": [
           "A pressure change is transmitted equally throughout",
@@ -1104,7 +1104,7 @@
       {
         "id": "PHY00079",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pascal's Principle",
         "q": "A hydraulic system has a small piston of area 0.02 m² and a large piston of area 0.8 m². If 150 N is applied on the small piston, what is the output force on the large piston?",
         "options": [
           "6000 N",
@@ -1118,7 +1118,7 @@
       {
         "id": "PHY00080",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "The buoyant force on a submerged object arises because:",
         "options": [
           "Gravity acts on the object alone",
@@ -1132,7 +1132,7 @@
       {
         "id": "PHY00081",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "Archimedes' Principle states that the magnitude of the buoyant force is equal to:",
         "options": [
           "The weight of the submerged object itself",
@@ -1146,7 +1146,7 @@
       {
         "id": "PHY00082",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "Which statement correctly describes a fluid?",
         "options": [
           "It continuously deforms under shear stress",
@@ -1160,7 +1160,7 @@
       {
         "id": "PHY00083",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "Which of the following is the SI unit of pressure?",
         "options": [
           "Joule (J)",
@@ -1174,7 +1174,7 @@
       {
         "id": "PHY00084",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "How much mass of fluid does a box of volume 0.4 m³ displace when fully submerged in fresh water (ρ = 1000 kg/m³)?",
         "options": [
           "4000 kg",
@@ -1188,7 +1188,7 @@
       {
         "id": "PHY00085",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "What is the buoyant force on a sphere of volume 0.6 m³ fully submerged in a fluid of density 850 kg/m³? (g = 9.8 m/s²)",
         "options": [
           "4998 N",
@@ -1202,7 +1202,7 @@
       {
         "id": "PHY00086",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pascal's Principle",
         "q": "A hydraulic press has a small piston of area 0.015 m² and a large piston of area 1.2 m². What output force results from an input force of 200 N?",
         "options": [
           "8000 N",
@@ -1216,7 +1216,7 @@
       {
         "id": "PHY00087",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "What is the gauge pressure at a depth of 25 m in a lake (ρ = 1000 kg/m³, g = 9.8 m/s²)?",
         "options": [
           "1.013 × 10⁵ Pa",
@@ -1230,7 +1230,7 @@
       {
         "id": "PHY00088",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Atmospheric Pressure",
         "q": "Convert a systolic pressure of 150 mmHg to pascals. (1 mmHg ≈ 133.3 Pa)",
         "options": [
           "200,000 Pa",
@@ -1244,7 +1244,7 @@
       {
         "id": "PHY00089",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "A wooden block floats in water with 40% of its volume submerged. If its total volume is 0.02 m³ and water density is 1000 kg/m³, what is the buoyant force on the block? (g = 9.8 m/s²)",
         "options": [
           "78.4 N",
@@ -1258,7 +1258,7 @@
       {
         "id": "PHY00090",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "What is the net upward force on a submerged object if its weight is 250 N and the buoyant force is 320 N?",
         "options": [
           "250 N upward",
@@ -1272,7 +1272,7 @@
       {
         "id": "PHY00091",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Open Tube Manometer",
         "q": "In a manometer connected to a gas container, the liquid on the container side is 20 cm lower than the liquid on the atmosphere side. If the liquid is mercury (ρ = 13,600 kg/m³) and g = 9.8 m/s², what is the gauge pressure of the gas?",
         "options": [
           "1.33 × 10⁴ Pa",
@@ -1286,7 +1286,7 @@
       {
         "id": "PHY00092",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Barometer",
         "q": "Which of the following is the MOST convenient reason mercury is used in barometers instead of water?",
         "options": [
           "Mercury has essentially no vapour pressure",
@@ -1300,7 +1300,7 @@
       {
         "id": "PHY00093",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "How much does the gauge pressure increase for every 10 m of depth in fresh water? (ρ = 1000 kg/m³, g = 9.8 m/s²)",
         "options": [
           "About 980 Pa, near 0.01 atm",
@@ -1314,7 +1314,7 @@
       {
         "id": "PHY00094",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pascal's Principle",
         "q": "In Pascal's principle, if the area of the small piston is halved while the applied force stays the same, what happens to the pressure in the hydraulic fluid?",
         "options": [
           "It doubles",
@@ -1328,7 +1328,7 @@
       {
         "id": "PHY00095",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Atmospheric Pressure",
         "q": "Which of the following best explains why our cells are not crushed by atmospheric pressure?",
         "options": [
           "Outside pressure is too small to crush cells",
@@ -1342,7 +1342,7 @@
       {
         "id": "PHY00096",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "A 0.9 m³ block floats in seawater (ρ = 1025 kg/m³) with 60% of its volume submerged. What is the buoyant force on the block? (g = 9.8 m/s²)",
         "options": [
           "10250 N",
@@ -1356,7 +1356,7 @@
       {
         "id": "PHY00097",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Barometer",
         "q": "The water barometer column is 10.33 m tall at 1 atm. If the local atmospheric pressure drops to 0.98 atm, what is the new column height?",
         "options": [
           "About 9.9 m",
@@ -1370,7 +1370,7 @@
       {
         "id": "PHY00098",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "A swimmer at 5 m depth in fresh water (ρ = 1000 kg/m³) feels a certain absolute pressure. At what depth would the swimmer feel twice that absolute pressure? (Take P_atm = 1.013 × 10⁵ Pa)",
         "options": [
           "About 10.33 m",
@@ -1384,7 +1384,7 @@
       {
         "id": "PHY00099",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "What are the two types of fluid flow?",
         "options": [
           "Rotational and irrotational",
@@ -1398,7 +1398,7 @@
       {
         "id": "PHY00100",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Which statement best describes laminar blood flow?",
         "options": [
           "Flow that always produces an audible murmur",
@@ -1412,7 +1412,7 @@
       {
         "id": "PHY00101",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Which statement best describes turbulent blood flow?",
         "options": [
           "Smooth, orderly flow in parallel layers",
@@ -1426,7 +1426,7 @@
       {
         "id": "PHY00102",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Normal blood flow in a healthy artery is:",
         "options": [
           "Laminar",
@@ -1440,7 +1440,7 @@
       {
         "id": "PHY00103",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Blood flow through a narrowed artery is expected to be:",
         "options": [
           "Stationary",
@@ -1454,7 +1454,7 @@
       {
         "id": "PHY00104",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Mass flow rate is defined as:",
         "options": [
           "The pressure divided by the area",
@@ -1468,7 +1468,7 @@
       {
         "id": "PHY00105",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Which of the following is the correct final formula for mass flow rate?",
         "options": [
           "ρ A / v",
@@ -1482,7 +1482,7 @@
       {
         "id": "PHY00106",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Volume flow rate is calculated as:",
         "options": [
           "A v",
@@ -1496,7 +1496,7 @@
       {
         "id": "PHY00107",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "The equation of continuity in its general form is:",
         "options": [
           "P₁ + ½ ρ v₁² = P₂ + ½ ρ v₂²",
@@ -1510,7 +1510,7 @@
       {
         "id": "PHY00108",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "For an incompressible fluid, the equation of continuity simplifies to:",
         "options": [
           "v₁ / A₁ = v₂ / A₂",
@@ -1524,7 +1524,7 @@
       {
         "id": "PHY00109",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "A blood vessel narrows from A₁ = 0.1 m² (V₁ = 0.5 m/s) to A₂ = 0.01 m². What is V₂?",
         "options": [
           "0.05 m/s",
@@ -1538,7 +1538,7 @@
       {
         "id": "PHY00110",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "For steady, incompressible, frictionless streamline flow, Bernoulli's principle keeps which three energy terms constant per unit volume? (Bernoulli's Principle)",
         "options": [
           "Pressure, potential energy, and kinetic energy",
@@ -1552,7 +1552,7 @@
       {
         "id": "PHY00111",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "Which of the following is the correct form of Bernoulli's equation? (Bernoulli's Principle)",
         "options": [
           "A₁ v₁ = A₂ v₂",
@@ -1566,7 +1566,7 @@
       {
         "id": "PHY00112",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "According to Bernoulli's principle, as velocity increases: (Bernoulli's Principle)",
         "options": [
           "Temperature increases",
@@ -1580,7 +1580,7 @@
       {
         "id": "PHY00113",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "In a narrowed artery, Bernoulli's principle predicts: (Bernoulli's Principle)",
         "options": [
           "Velocity decreases and pressure increases",
@@ -1594,7 +1594,7 @@
       {
         "id": "PHY00117",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "In laminar flow, where is the velocity of the blood highest?",
         "options": [
           "At the vessel wall",
@@ -1608,7 +1608,7 @@
       {
         "id": "PHY00118",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "What is the velocity profile of laminar blood flow described as?",
         "options": [
           "Parabolic",
@@ -1622,7 +1622,7 @@
       {
         "id": "PHY00119",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "In turbulent blood flow, how do the layers move?",
         "options": [
           "Both radially and axially, so the layers mix",
@@ -1636,7 +1636,7 @@
       {
         "id": "PHY00120",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Which of the following is not a cause of turbulent blood flow?",
         "options": [
           "Increased temperature of the blood",
@@ -1650,7 +1650,7 @@
       {
         "id": "PHY00121",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Which of the following is a consequence of turbulent blood flow?",
         "options": [
           "Reduced energy loss in the vessel",
@@ -1664,7 +1664,7 @@
       {
         "id": "PHY00130",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "What is the difference between mass flow rate and volume flow rate?",
         "options": [
           "Mass flow tracks volume per time; volume flow tracks mass per time",
@@ -1678,7 +1678,7 @@
       {
         "id": "PHY00165",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "Three cubes have the same dimensions. Which has the highest density?",
         "options": [
           "Wood",
@@ -1692,7 +1692,7 @@
       {
         "id": "PHY00166",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "A wooden block measuring 6 cm × 7 cm × 8 cm has a mass of 120 g. What is its density?",
         "options": [
           "0.75 g/cm³",
@@ -1706,7 +1706,7 @@
       {
         "id": "PHY00167",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "A wooden block has a mass of 20.0 g and dimensions 3.00 cm × 4.00 cm × 5.00 cm. What is its density?",
         "options": [
           "0.030 g/cm³",
@@ -1720,7 +1720,7 @@
       {
         "id": "PHY00168",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "A plastic block measures 6 cm × 5 cm × 7 cm and has a density of 0.25 g/cm³. What is its mass?",
         "options": [
           "52.5 g",
@@ -1734,7 +1734,7 @@
       {
         "id": "PHY00169",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "The pressure in a room is 1.368 × 10⁵ Pa. What force acts on a floor measuring 5 m × 5 m?",
         "options": [
           "1.68 × 10⁵ N",
@@ -1748,7 +1748,7 @@
       {
         "id": "PHY00170",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Atmospheric Pressure",
         "q": "A patient has a diastolic arterial pressure of 80 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
         "options": [
           "15.21 kPa",
@@ -1762,7 +1762,7 @@
       {
         "id": "PHY00171",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Atmospheric Pressure",
         "q": "A patient has a systolic arterial pressure of 145 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
         "options": [
           "19.32 kPa",
@@ -1776,7 +1776,7 @@
       {
         "id": "PHY00172",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Atmospheric Pressure",
         "q": "A patient's systolic arterial pressure is 135 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
         "options": [
           "1.013 × 10³ Pa",
@@ -1790,7 +1790,7 @@
       {
         "id": "PHY00173",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "What is the buoyant force on a box of volume 0.24 m³ fully submerged in fresh water of density 1000 kg/m³? Take g = 9.8 m/s².",
         "options": [
           "1000 N",
@@ -1804,7 +1804,7 @@
       {
         "id": "PHY00174",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "A metal ball has a mass of 18 g and a density of 8 g/cm³. What is its volume?",
         "options": [
           "2.25 cm³",
@@ -1818,7 +1818,7 @@
       {
         "id": "PHY00175",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "How massive is a wooden block measuring 6 cm × 8 cm × 4 cm with a density of 0.35 g/cm³?",
         "options": [
           "41.45 g",
@@ -1832,7 +1832,7 @@
       {
         "id": "PHY00176",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "Air pressure in a room is 1.368 × 10⁵ Pa and the air exerts a force of 3.42 × 10⁵ N on a table. What is the area of the table?",
         "options": [
           "2.5 m²",
@@ -1846,7 +1846,7 @@
       {
         "id": "PHY00177",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "A pressure gauge on a diver reads 1.39 × 10⁵ Pa in fresh water of density 1000 kg/m³. How deep is the diver? Take g = 9.8 m/s².",
         "options": [
           "5.18 m",
@@ -1860,7 +1860,7 @@
       {
         "id": "PHY00178",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "A buoyant force of 2352 N acts on a box fully submerged in fresh water of density 1000 kg/m³. What is the volume of the box? Take g = 9.8 m/s².",
         "options": [
           "1.94 m³",
@@ -1874,7 +1874,7 @@
       {
         "id": "PHY00179",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "What absolute pressure acts on a swimmer 30 m below the surface of fresh water of density 1000 kg/m³? Take atmospheric pressure as 1.0123 × 10⁵ Pa and g = 9.8 m/s².",
         "options": [
           "3.95 × 10⁵ Pa",
@@ -1888,7 +1888,7 @@
       {
         "id": "PHY00180",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pascal's Principle",
         "q": "A hydraulic press has a large piston of area 0.20 m² and a small piston of area 0.02 m². What force on the small piston lifts a 3000 N object?",
         "options": [
           "450 N",
@@ -1902,7 +1902,7 @@
       {
         "id": "PHY00181",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "What gauge pressure does fresh water produce at a depth of 8.0 m? Take ρ = 1000 kg/m³ and g = 9.8 m/s².",
         "options": [
           "9800 Pa",
@@ -1916,7 +1916,7 @@
       {
         "id": "PHY00182",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "A room is at 1.123 × 10⁵ Pa. What force does this pressure exert on a table measuring 2 m × 3 m?",
         "options": [
           "1.123 × 10⁵ N",
@@ -1930,7 +1930,7 @@
       {
         "id": "PHY00183",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "A diver's gauge pressure is 2.67 × 10⁵ Pa in fresh water of density 1000 kg/m³. How deep is the diver? Take g = 9.8 m/s².",
         "options": [
           "2.72 m",
@@ -1944,7 +1944,7 @@
       {
         "id": "PHY00184",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "At a depth of 1000 m in water of density 1000 kg/m³, with atmospheric pressure 1.10 × 10⁵ Pa and g = 9.8 m/s², which pair of pressures is correct?",
         "options": [
           "Gauge pressure 1.10 × 10⁵ Pa and absolute pressure 9.91 × 10⁶ Pa",
@@ -1958,7 +1958,7 @@
       {
         "id": "PHY00185",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pascal's Principle",
         "q": "A hydraulic lift has a large piston of area 0.10 m² and a small piston of area 0.010 m². What force on the small piston lifts a 1500 N object?",
         "options": [
           "15 N",
@@ -1972,7 +1972,7 @@
       {
         "id": "PHY00186",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
         "q": "What is the buoyant force on a fully submerged box of volume 0.5 m³ in fresh water of density 1000 kg/m³? Take g = 9.8 m/s².",
         "options": [
           "4900 N upward",
@@ -2014,7 +2014,7 @@
       {
         "id": "PHY00189",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "When does shear stress occur in a material?",
         "options": [
           "When force acts perpendicular to the surface",
@@ -2028,7 +2028,7 @@
       {
         "id": "PHY00190",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "A force of 100 N acts over an area of 0.01 m². What stress is produced?",
         "options": [
           "100 Pa",
@@ -2042,7 +2042,7 @@
       {
         "id": "PHY00191",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "A cortical bone has Young's modulus 16 × 10⁹ Pa and is subjected to a stress of 80 × 10⁶ Pa. What strain is produced?",
         "options": [
           "0.005",
@@ -2056,7 +2056,7 @@
       {
         "id": "PHY00192",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Blood flows through a vessel of cross-sectional area 0.08 m² at 0.5 m/s. The vessel narrows to 0.02 m². What is the new speed, if the fluid is incompressible?",
         "options": [
           "8 m/s",
@@ -2070,7 +2070,7 @@
       {
         "id": "PHY00193",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Which pair of conditions can raise blood speed or otherwise favour turbulent flow?",
         "options": [
           "A narrowed vessel, and a damaged or irregular valve",
@@ -2126,7 +2126,7 @@
       {
         "id": "PHY00197",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Which feature most clearly marks turbulent flow rather than laminar flow?",
         "options": [
           "It appears when the speed is very low",
@@ -2140,7 +2140,7 @@
       {
         "id": "PHY00198",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Under ordinary resting conditions in a healthy person, blood flow is usually:",
         "options": [
           "Vapor flow, with no liquid motion",
@@ -2154,7 +2154,7 @@
       {
         "id": "PHY00199",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "In steady flow, with no fluid added or removed, what stays the same between two points?",
         "options": [
           "The fluid temperature at both points",
@@ -2168,7 +2168,7 @@
       {
         "id": "PHY00200",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "The cross-section of an incompressible vessel falls by a factor of 4. By what factor does the speed rise, in steady flow?",
         "options": [
           "By a factor of 2",
@@ -2196,7 +2196,7 @@
       {
         "id": "PHY00202",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Which body fluids are liquids, and which are gases, in the circulation and the airway?",
         "options": [
           "Blood, lymph, and plasma as liquids; oxygen, carbon dioxide, and air as gases",
@@ -2210,7 +2210,7 @@
       {
         "id": "PHY00203",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Blood is treated as which kind of fluid in the continuity relation used for vessels?",
         "options": [
           "A gas whose density falls as it speeds up",
@@ -2224,7 +2224,7 @@
       {
         "id": "PHY00204",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "In carotid stenosis, why does blood speed rise in the narrowed segment?",
         "options": [
           "Bernoulli's relation lowers pressure, and speed follows pressure",
@@ -2238,7 +2238,7 @@
       {
         "id": "PHY00205",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "Bernoulli's equation, for an ideal fluid, keeps which sum constant along a streamline? (Bernoulli's Principle)",
         "options": [
           "Pressure plus density times area plus flow speed",
@@ -2252,7 +2252,7 @@
       {
         "id": "PHY00206",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "Which set of conditions is assumed when Bernoulli's equation is applied? (Bernoulli's Principle)",
         "options": [
           "Unsteady flow, compressible fluid, high friction, swirling path",
@@ -2266,7 +2266,7 @@
       {
         "id": "PHY00207",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "In a narrowed artery, continuity and Bernoulli assign which pair of changes? (Bernoulli's Principle)",
         "options": [
           "Speed falls by continuity, and pressure rises by Bernoulli",
@@ -2280,7 +2280,7 @@
       {
         "id": "PHY00208",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "A Venturi mask controls the oxygen fraction by using which relation? (Bernoulli's Principle)",
         "options": [
           "Archimedes' relation on the displaced air",
@@ -2294,7 +2294,7 @@
       {
         "id": "PHY00209",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "A murmur heard over a narrowed valve is produced by which change? (Bernoulli's Principle)",
         "options": [
           "High speed through the narrow valve, with turbulent flow",
@@ -2308,7 +2308,7 @@
       {
         "id": "PHY00210",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "Doppler ultrasound is used to measure which feature of blood flow? (Bernoulli's Principle)",
         "options": [
           "The mass and the thickness of the vessel wall",
@@ -2322,7 +2322,7 @@
       {
         "id": "PHY00211",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Blood flows at 0.25 m/s through a vessel of area 0.04 m². The vessel narrows to 0.01 m². What is the new speed, if the blood is incompressible?",
         "options": [
           "0.50 m/s",
@@ -2336,7 +2336,7 @@
       {
         "id": "PHY00212",
         "type": "matching",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Match each modulus to the strain in its formula.",
         "left": [
           "Young's modulus",
@@ -2359,7 +2359,7 @@
       {
         "id": "PHY00213",
         "type": "matching",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Match each stress to the way the force is applied.",
         "left": [
           "Longitudinal stress",
@@ -2475,7 +2475,7 @@
       {
         "id": "PHY00217",
         "type": "matching",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Gauge Pressure",
         "q": "Match each pressure term to the relation that defines it.",
         "left": [
           "Absolute pressure",
@@ -2501,7 +2501,7 @@
       {
         "id": "PHY00218",
         "type": "matching",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "Match each relation to the job it does in a narrowed vessel. (Bernoulli's Principle)",
         "left": [
           "Continuity",
@@ -2590,7 +2590,7 @@
       {
         "id": "PHY00221",
         "type": "matching",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Match each solid-mechanics formula to the quantity it defines.",
         "options": [
           "Stress",
@@ -2622,7 +2622,7 @@
       {
         "id": "PHY00222",
         "type": "matching",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "Match each fluid formula to the quantity it defines.",
         "options": [
           "Pressure",
@@ -2656,7 +2656,7 @@
       {
         "id": "PHY00223",
         "type": "matching",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "Match each flow formula to the statement it makes. (Bernoulli's Principle)",
         "options": [
           "Continuity for a fluid whose density may change",
@@ -2685,7 +2685,7 @@
       {
         "id": "PHY00224",
         "type": "matching",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Pressure in Fluids",
         "q": "Match each required quantity to the rearrangement that gives it.",
         "options": [
           "P × A",
@@ -2715,7 +2715,7 @@
       {
         "id": "PHY00225",
         "type": "matching",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "Match each point on a tensile test to what the specimen is doing there.",
         "options": [
           "Stress still proportional to strain",
@@ -2866,7 +2866,7 @@
       {
         "id": "PHY00234",
         "type": "mcq",
-        "cat": "Chapter 1: Matter and Mechanical Properties",
+        "cat": "Chapter 1: Stress, Strain & Young's Modulus",
         "q": "A force along the length of a rod, and a force parallel to a face, are which pair of stresses?",
         "options": [
           "Longitudinal stress, then shear stress",
@@ -2880,7 +2880,7 @@
       {
         "id": "PHY00235",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "A density of 1 g/cm³ is equal to which value in kg/m³?",
         "options": [
           "1 kg/m³",
@@ -2894,7 +2894,7 @@
       {
         "id": "PHY00236",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Atmospheric Pressure",
         "q": "Standard atmospheric pressure is 101325 Pa. Which reading is the same pressure?",
         "options": [
           "760 mmHg",
@@ -2908,7 +2908,7 @@
       {
         "id": "PHY00237",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
         "q": "Mass flow rate is written Q = m/Δt, with m the mass. Which unit does that expression give?",
         "options": [
           "kg/s",
@@ -2922,7 +2922,7 @@
       {
         "id": "PHY00238",
         "type": "mcq",
-        "cat": "Chapter 3: Fluid Flow through Bernoulli",
+        "cat": "Chapter 3: Bernoulli's Equation",
         "q": "In the Bernoulli sum, which term is kinetic energy per unit volume, and which is potential energy per unit volume? (Bernoulli's Principle)",
         "options": [
           "½ρv² is kinetic; ρgh is potential",
@@ -3017,7 +3017,7 @@
       {
         "id": "PHY00242",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Density",
         "q": "A metal block measures 4.0 cm × 5.0 cm × 6.0 cm and has a mass of 480 g. Taking the density of water as 1.0 g/cm³, what is the specific gravity of the metal?",
         "options": [
           "0.25",
@@ -3031,7 +3031,7 @@
       {
         "id": "PHY00243",
         "type": "mcq",
-        "cat": "Chapter 2: Fluid Dynamics",
+        "cat": "Chapter 2: Open Tube Manometer",
         "q": "An open-tube water manometer connected to a gas container shows a height difference Δh = 25 cm, with the container-side level lower. If ρ_water = 1000 kg/m³, g = 9.8 m/s², and P_atm = 1.013 × 10⁵ Pa, what is the absolute pressure of the gas?",
         "options": [
           "2.45 × 10³ Pa",
