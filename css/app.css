@@ -1,6 +1,6 @@
 /* Shared Hooke + accent bridge for hub / study / quiz sync */
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@500;650;750&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
   --head: 'Instrument Serif', Georgia, serif;
@@ -580,44 +580,50 @@ a { color: var(--accent-0); }
 }
 
 
-/* —— Study: Vesper Pear palette (study-only; no ATC colorizer; keep system cursor) —— */
+/* —— Study: Quantum Vault palette (study-only; no ATC colorizer; keep system cursor) —— */
 html.study-page {
-  --head: 'Outfit', system-ui, sans-serif;
-  --body: 'Fraunces', Georgia, serif;
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
-  --accent-0: #e8a0b4;
-  --accent-0-rgb: 232, 160, 180;
-  --accent-1: #f8ecee;
-  --accent-1-rgb: 248, 236, 238;
-  --accent-2: #c07098;
-  --accent-2-rgb: 192, 112, 152;
-  --accent-4: #8a3048;
-  --accent-4-rgb: 138, 48, 72;
-  --col-bg-main: #10080e;
-  --col-bg-card: #201018;
-  --col-bg-card-rgb: 32, 16, 24;
-  --col-text-main: #f8ecee;
-  --col-text-muted: #c4a0b0;
-  --col-border: rgba(232, 160, 180, 0.36);
-  --col-gold: #e8c888;
-  --cream: #f8ecee;
-  --accent: #e8a0b4;
-  --cyan: #e8a0b4;
-  --cyan-bright: #f8ecee;
-  --teal: #c07098;
-  --gold: #e8c888;
-  --magenta: #c07098;
-  --magenta-bright: #e8a0b4;
-  --violet: #2a121c;
-  --amber: #e8c888;
-  --bone: #f4e8ee;
-  --border: rgba(232, 160, 180, 0.36);
-  --border-strong: rgba(232, 160, 180, 0.55);
-  --mood-glow: rgba(232, 160, 180, 0.28);
-  --bg-glow: rgba(232, 160, 180, 0.10);
-  --bg-tint-color: rgba(138, 48, 72, 0.18);
-  --bg-tint-color-high: rgba(232, 160, 180, 0.14);
-  --surface: rgba(32, 16, 24, 0.96);
+  --head: 'Space Grotesk', system-ui, sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --accent-0: #3fe0d0;
+  --accent-0-rgb: 63, 224, 208;
+  --accent-1: #8b6bff;
+  --accent-1-rgb: 139, 107, 255;
+  --accent-2: #ff4d9d;
+  --accent-2-rgb: 255, 77, 157;
+  --accent-4: #1f9a90;
+  --accent-4-rgb: 31, 154, 144;
+  --col-bg-main: #05080f;
+  --col-bg-card: #0d1628;
+  --col-bg-card-rgb: 13, 22, 40;
+  --col-text-main: #e8f4ff;
+  --col-text-muted: #7d95b8;
+  --col-border: rgba(63, 224, 208, 0.22);
+  --col-gold: #ffb547;
+  --cream: #e8f4ff;
+  --accent: #3fe0d0;
+  --cyan: #3fe0d0;
+  --cyan-bright: #6ef0e4;
+  --cyan-dim: #1f9a90;
+  --teal: #1f9a90;
+  --gold: #ffb547;
+  --magenta: #ff4d9d;
+  --magenta-bright: #ff7eb5;
+  --violet: #8b6bff;
+  --amber: #ffb547;
+  --bone: #e8f4ff;
+  --border: rgba(63, 224, 208, 0.22);
+  --border-strong: rgba(63, 224, 208, 0.5);
+  --mood-glow: rgba(63, 224, 208, 0.28);
+  --bg-glow: rgba(63, 224, 208, 0.08);
+  --bg-tint-color: rgba(255, 77, 157, 0.12);
+  --bg-tint-color-high: rgba(139, 107, 255, 0.18);
+  --surface: rgba(13, 22, 40, 0.92);
+  --text: #e8f4ff;
+  --text-dim: #7d95b8;
+  --text-dim2: #546a8a;
+  --bg: #05080f;
+  --bg2: #0a1020;
 }
 /* Keep system cursor on Study (do not port custom ring cursor from ref) */
 html.study-page,
@@ -633,21 +639,21 @@ html.study-page .chapter-toggle {
 html.study-page body {
   font-family: var(--body);
   background:
-    radial-gradient(ellipse at 12% 0%, rgba(232, 160, 180, 0.18), transparent 40%),
-    radial-gradient(ellipse at 88% 8%, rgba(232, 200, 136, 0.10), transparent 38%),
-    radial-gradient(ellipse at 70% 100%, rgba(138, 48, 72, 0.22), transparent 50%),
-    #10080e;
+    radial-gradient(ellipse at 15% -5%, rgba(139, 107, 255, 0.18), transparent 45%),
+    radial-gradient(ellipse at 90% 105%, rgba(255, 77, 157, 0.12), transparent 48%),
+    radial-gradient(ellipse at 50% 50%, rgba(63, 224, 208, 0.06), transparent 60%),
+    #05080f;
   color: var(--col-text-main);
 }
 html.study-page body::before {
   content: '';
   position: fixed; inset: 0; z-index: 1; pointer-events: none;
   background-image:
-    radial-gradient(circle at 50% 30%, rgba(248, 236, 238, 0.07) 0 1.1px, transparent 2px),
-    radial-gradient(circle at 20% 70%, rgba(232, 200, 136, 0.08) 0 1px, transparent 2px);
-  background-size: 28px 28px, 46px 46px;
-  mask-image: radial-gradient(ellipse at center, black 42%, transparent 86%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 42%, transparent 86%);
+    linear-gradient(rgba(63, 224, 208, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(63, 224, 208, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 40%, black 30%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 30%, transparent 85%);
 }
 @keyframes study-sheen {
   0%, 100% { background-position: 0% 50%; }
@@ -656,10 +662,10 @@ html.study-page body::before {
 html.study-page .study-header h1 {
   font-family: var(--head);
   font-style: normal;
-  font-weight: 750;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  letter-spacing: -0.035em;
   color: transparent;
-  background: linear-gradient(120deg, #f8ecee 0%, #e8c888 28%, #e8a0b4 58%, #c07098 82%, #e8c888 100%);
+  background: linear-gradient(120deg, #e8f4ff 0%, #3fe0d0 35%, #8b6bff 65%, #ff4d9d 100%);
   background-size: 220% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -668,118 +674,124 @@ html.study-page .study-header h1 {
   animation: study-sheen 8s ease-in-out infinite;
 }
 html.study-page .study-header .sub {
-  color: #c4a0b0;
+  color: var(--text-dim);
   font-family: var(--mono);
 }
-/* Study actions, including Main Menu, stay on the Vesper palette—not Quiz chrome. */
+/* Theme ALL study-header .btn including ← Main Menu (Quantum Vault, not Quiz chrome) */
 html.study-page .study-header .btn {
   font-family: var(--mono);
-  color: #f8ecee;
-  border: 1px solid rgba(232, 200, 136, 0.4);
+  font-size: 0.82rem;
+  color: var(--cyan);
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
-  background: rgba(232, 200, 136, 0.08);
+  background: rgba(63, 224, 208, 0.08);
   box-shadow: none;
   animation: none;
+  letter-spacing: 0.03em;
 }
 html.study-page .study-header .btn:hover {
-  background: rgba(232, 160, 180, 0.14);
-  border-color: #e8a0b4;
-  color: #e8a0b4;
-  box-shadow: 0 0 18px rgba(232, 160, 180, 0.22);
+  background: rgba(63, 224, 208, 0.18);
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 0 20px rgba(63, 224, 208, 0.3);
   filter: none;
   transform: none;
 }
 html.study-page .study-header .btn.primary {
-  color: #10080e;
+  color: #05080f;
   font-family: var(--head);
   font-weight: 700;
-  background: linear-gradient(135deg, #f8ecee, #e8c888 40%, #e8a0b4 72%, #c07098);
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, #e8f4ff, #3fe0d0 40%, #8b6bff 75%, #ff4d9d);
   border: none;
-  box-shadow: 0 12px 36px rgba(232, 160, 180, 0.32);
+  box-shadow: 0 16px 44px rgba(63, 224, 208, 0.28), 0 0 0 1px rgba(63, 224, 208, 0.4);
   animation: none;
   background-size: auto;
 }
 html.study-page .study-header .btn.primary:hover {
-  filter: brightness(1.04);
+  filter: none;
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 14px 40px rgba(232, 160, 180, 0.38), 0 0 24px rgba(232, 200, 136, 0.22);
+  box-shadow: 0 22px 54px rgba(63, 224, 208, 0.4), 0 0 0 1px rgba(63, 224, 208, 0.6);
 }
 html.study-page .study-header .btn.primary::after { display: none; }
 html.study-page .chapter-card {
-  border: 1.5px solid rgba(232, 160, 180, 0.36);
-  border-left: 1.5px solid rgba(232, 160, 180, 0.36);
-  background: rgba(32, 16, 24, 0.96);
-  border-radius: 12px 40px 12px 40px;
+  border: 1.5px solid var(--border);
+  border-left: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: 14px 40px 14px 40px;
   box-shadow:
-    0 0 0 1px rgba(232, 200, 136, 0.08),
-    0 28px 64px -18px rgba(0, 0, 0, 0.88),
-    inset 0 1px 0 rgba(248, 236, 238, 0.08);
-  backdrop-filter: blur(18px);
+    0 0 0 1px rgba(63, 224, 208, 0.08),
+    0 32px 80px -20px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(232, 244, 255, 0.05);
+  backdrop-filter: blur(20px);
   position: relative;
 }
 html.study-page .chapter-card::before {
   content: '';
-  position: absolute; top: 10px; left: 14px; width: 10px; height: 10px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #f8ecee, #e8c888 55%, #8a3048);
-  box-shadow: 18px 0 0 0 rgba(232, 160, 180, 0.9), 36px 0 0 0 rgba(192, 112, 152, 0.7);
+  position: absolute; top: 14px; left: 18px; width: 10px; height: 10px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #e8f4ff, #3fe0d0 60%, #05080f);
+  box-shadow: 18px 0 0 0 rgba(255, 77, 157, 0.85), 36px 0 0 0 rgba(255, 181, 71, 0.7);
   pointer-events: none;
   z-index: 1;
 }
 html.study-page .chapter-card.open {
-  border-color: rgba(232, 160, 180, 0.5);
+  border-color: rgba(63, 224, 208, 0.5);
   box-shadow:
-    0 0 0 1px rgba(232, 200, 136, 0.18),
-    0 0 36px rgba(232, 160, 180, 0.22),
-    inset 0 1px 0 rgba(248, 236, 238, 0.1);
+    0 0 0 1px rgba(63, 224, 208, 0.18),
+    0 0 36px rgba(63, 224, 208, 0.18),
+    inset 0 1px 0 rgba(232, 244, 255, 0.08);
 }
 html.study-page .chapter-toggle {
   font-family: var(--head);
-  font-weight: 650;
-  color: #f8ecee;
-  padding-left: 64px; /* clear traffic-light dots */
+  font-weight: 600;
+  color: #e8f4ff;
+  padding-left: 72px; /* clear traffic-light dots */
 }
-html.study-page .chapter-toggle .chev { color: #e8c888; }
-html.study-page .chapter-toggle .meta { color: #c4a0b0; font-family: var(--mono); }
+html.study-page .chapter-toggle .chev { color: var(--amber); }
+html.study-page .chapter-toggle .meta { color: var(--text-dim); font-family: var(--mono); }
 html.study-page .chapter-toggle:hover {
-  background: rgba(232, 160, 180, 0.10);
+  background: rgba(63, 224, 208, 0.10);
 }
 html.study-page .chapter-body {
-  border-top-color: rgba(232, 160, 180, 0.22);
+  border-top-color: rgba(63, 224, 208, 0.15);
 }
-html.study-page .md { font-family: var(--body); color: #f8ecee; }
+html.study-page .md { font-family: var(--body); color: #e8f4ff; }
 html.study-page .md h1,
 html.study-page .md h2 {
   font-family: var(--head);
   font-weight: 700;
-  color: #f8ecee;
+  color: #e8f4ff;
 }
 html.study-page .md h3 {
-  color: #f8ecee;
+  color: var(--cyan);
   font-family: var(--head);
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 html.study-page .md h3::before {
   content: '';
   display: inline-block;
-  width: 10px; height: 10px; border-radius: 50%;
-  background: #e8c888; box-shadow: 0 0 8px #e8c888;
-  margin-right: 8px;
+  width: 10px; height: 10px; border-radius: 2px;
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  box-shadow: 0 0 10px var(--cyan);
+  margin-right: 10px;
   vertical-align: middle;
+  transform: rotate(45deg);
 }
-html.study-page .md h4 { color: #e8c888; }
-html.study-page .md a { color: #e8a0b4; }
-html.study-page .md strong { color: #e8c888; }
-html.study-page .md em { color: #c07098; }
+html.study-page .md h4 { color: var(--amber); font-family: var(--head); font-weight: 600; }
+html.study-page .md a { color: var(--cyan); }
+html.study-page .md strong { color: var(--amber); }
+html.study-page .md em { color: var(--cyan); font-style: normal; font-weight: 500; }
 html.study-page .md code {
-  color: #f8ecee;
-  background: rgba(12, 6, 10, 0.62);
-  border-color: rgba(232, 160, 180, 0.36);
+  color: var(--cyan);
+  background: rgba(5, 8, 15, 0.7);
+  border-color: var(--border);
   font-family: var(--mono);
 }
 html.study-page .md pre {
-  border-left: 4px solid #e8c888;
-  color: #f8ecee;
-  background: rgba(12, 6, 10, 0.62);
+  border-left: 3px solid var(--cyan);
+  color: var(--cyan);
+  background: rgba(5, 8, 15, 0.7);
   font-family: var(--mono);
   border-radius: 0 12px 12px 0;
 }

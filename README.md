@@ -9,7 +9,7 @@ GitHub Pages app for **Phys101 Medical Physics** Periodic Test 1.
 ```
 medphys-pt1/
   index.html                 # Main menu (Quiz / Study / About)
-  study.html                 # folded chapter study (Hooke demure; system cursor)
+  study.html                 # folded chapter study (Quantum Vault; system cursor)
   quiz/index.html            # quiz portal (bank via fetch)
   css/
     theme-vars.css           # theme tokens (default accent #FF8800)
