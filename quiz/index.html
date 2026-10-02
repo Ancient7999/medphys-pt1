@@ -1510,9 +1510,33 @@ body.split-quiz-active #chatDock{z-index:60}
 .match-item{appearance:none;width:100%;text-align:left;font:inherit;padding:14px 16px;border-radius:14px;border:1.5px solid var(--border);background:rgba(0,0,0,.42);color:var(--text);cursor:pointer;user-select:none;touch-action:none;transition:transform var(--transition-ms),border-color var(--transition-ms),background var(--transition-ms),box-shadow var(--transition-ms)}
 .match-item:hover:not(:disabled):not(.is-solved-link){border-color:rgba(var(--accent-0-rgb),.45);background:rgba(var(--accent-0-rgb),.06);box-shadow:0 0 12px rgba(var(--accent-0-rgb),.18)}
 .match-item.drawing{border-color:var(--accent-0);background:rgba(var(--accent-0-rgb),.1);box-shadow:none}
-/* While drawing a thread, do not glow every choice under the pointer */
-html.link-drawing .match-item:hover:not(.drawing):not(.is-solved-link){
-  border-color:var(--border);background:rgba(0,0,0,.42);box-shadow:none;transform:none;
+/* While drawing: kill transitions + suppress hover/active/focus glow on every
+   non-target choice (prevents the brief all-choices flash on pointerdown).
+   Solved lefts keep .is-solved-link glow; the source keeps .drawing. */
+html.link-drawing .match-item{
+  transition:none!important;
+}
+html.link-drawing .match-item:not(.drawing):not(.is-solved-link),
+html.link-drawing .match-item:not(.drawing):not(.is-solved-link):hover,
+html.link-drawing .match-item:not(.drawing):not(.is-solved-link):active,
+html.link-drawing .match-item:not(.drawing):not(.is-solved-link):focus,
+html.link-drawing .match-item:not(.drawing):not(.is-solved-link):focus-visible{
+  border-color:var(--border)!important;
+  background:rgba(0,0,0,.42)!important;
+  box-shadow:none!important;
+  transform:none!important;
+  outline:none!important;
+  filter:none!important;
+}
+html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link),
+html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):hover,
+html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):active,
+html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus,
+html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-visible{
+  border-color:color-mix(in srgb, var(--accent-0) 40%, var(--border))!important;
+  background:rgba(0,0,0,.42)!important;
+  box-shadow:none!important;
+  transform:none!important;
 }
 .match-item.paired:not(.is-solved-link){border-color:color-mix(in srgb, var(--accent-0) 40%, var(--border))}
 .match-item.is-solved-link{
@@ -3135,12 +3159,13 @@ function startDragAutoScroll(svg){
 }
 function beginDraw(ev,q,btn){
   if(locked||btn.disabled||ev.button) return; ev.preventDefault();
-  const layer=document.querySelector('.match-wires'); if(!layer) return;
+  // Arm suppress CSS before capture/hover recalc so other choices never flash glow
+  setLinkDrawing(true);
+  const layer=document.querySelector('.match-wires'); if(!layer){ setLinkDrawing(false); return; }
   const start=boardPoint(layer,ev);
   drawState={q,side:btn.dataset.side,id:btn.dataset.id,points:[{x:start.x,y:start.y}],btn};
   dragPointer.x=ev.clientX; dragPointer.y=ev.clientY;
   btn.classList.add('drawing'); try{btn.setPointerCapture(ev.pointerId);}catch(e){}
-  setLinkDrawing(true);
   pinCustomCursor(ev);
   paintWires(layer, ensureMatchAns().wires||[], drawState);
   btn.addEventListener('pointermove', onDrawMove);
