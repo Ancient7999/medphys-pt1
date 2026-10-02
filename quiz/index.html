@@ -916,7 +916,8 @@ body.formula-mode.formula-waiting .formula-advance-wrap{display:block}
 .hub-back{margin:0 0 14px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
 .hub-back button{font-family:var(--font-nav,var(--mono));font-size:.85rem;color:var(--cyan-bright);background:transparent;border:1px solid var(--border);border-radius:999px;padding:8px 14px;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}
 .hub-back button:hover{background:var(--mood-glow);border-color:var(--cyan);transform:translateY(-1px);box-shadow:0 0 18px var(--mood-glow)}
-.hub-back #resetSolvedBtn[hidden]{display:none!important}
+.hub-back #resetSolvedBtn{display:none!important}
+.hub-wrap .bank-meta,#bankMeta.bank-meta{margin-top:10px;text-align:left;opacity:.92;font-size:1.05rem;letter-spacing:.02em;color:var(--text-dim);font-family:var(--mono)}
 @media (max-width:720px){
   .portal-wrap h1{font-size:1.85rem}
 }
@@ -1869,7 +1870,7 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
       <button type="button" id="returnHubBtn">← Main Menu</button>
       <button class="fs-btn" type="button" id="resetSolvedBtn" hidden>Reset solved</button>
     </div>
-    <p class="foot" id="bankMeta" style="margin-top:8px;text-align:left;opacity:.7">Loading bank…</p>
+    <p class="foot bank-meta" id="bankMeta">Loading bank…</p>
 
     <div id="hubSections"></div>
     <div class="foot">Solved items hide until progress is reset · progress is local to this browser</div>
@@ -2234,10 +2235,10 @@ function saveSolved(set){ lsSet(solvedKey(), JSON.stringify([...set])); }
 function syncResetSolvedBtn(){
   const btn=document.getElementById('resetSolvedBtn');
   if(!btn) return;
-  btn.hidden = loadSolved().size < 1;
+  btn.hidden = true; /* permanently hidden — use per-card reset */
 }
 function updateCounters(){
-  if(BANK) document.getElementById('bankMeta').textContent='Loaded · '+(allQuestions().length)+' questions · solved '+loadSolved().size;
+  if(BANK) document.getElementById('bankMeta').textContent=(allQuestions().length)+' questions · solved '+loadSolved().size;
   syncResetSolvedBtn();
   if(quizActive){
     if(formulaMode){
@@ -2466,7 +2467,7 @@ function ingestBank(data){
   document.getElementById('hubTitle').textContent='Medical Physics · Periodic Test 1';
   document.getElementById('hubKicker').textContent=allQuestions().length+' questions';
   document.getElementById('hubSub').textContent='';
-  document.getElementById('bankMeta').textContent='Loaded · '+(allQuestions().length)+' questions · solved '+loadSolved().size;
+  document.getElementById('bankMeta').textContent=(allQuestions().length)+' questions · solved '+loadSolved().size;
   document.title='Medical Physics · Periodic Test 1';
   renderHub();
 }
