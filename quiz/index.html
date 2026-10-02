@@ -1612,10 +1612,20 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   box-shadow:0 0 8px rgba(244,63,94,.75);
   pointer-events:none;
 }
-/* Skipped: unanswered already passed — one intermittent sparkle per pill. */
+/* Skipped: unanswered already passed — one intermittent sparkle per pill (faster / more frequent). */
 @keyframes skipSpark{
-  0%,68%,100%{opacity:0;transform:scale(.35)}
-  74%,82%{opacity:1;transform:scale(1)}
+  0%,38%,100%{opacity:0;transform:scale(.3)}
+  44%,52%{opacity:1;transform:scale(1.2)}
+  70%,78%{opacity:1;transform:scale(1.1)}
+}
+/* Back button: especially frequent / punchier sparkles when skips are behind */
+@keyframes skipSparkBack{
+  0%,18%,36%,54%,72%,100%{opacity:0;transform:scale(.25)}
+  6%,12%{opacity:1;transform:scale(1.35)}
+  24%,30%{opacity:1;transform:scale(1.25)}
+  42%,48%{opacity:1;transform:scale(1.3)}
+  60%,66%{opacity:1;transform:scale(1.2)}
+  78%,86%{opacity:1;transform:scale(1.35)}
 }
 .q-nav-btn.skipped:not(.done):not(.unanswered),
 #backBtn.has-skips-behind{
@@ -1623,8 +1633,7 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   position:relative;
   overflow:visible;
 }
-.q-nav-btn.skipped:not(.done):not(.unanswered)::before,
-#backBtn.has-skips-behind::before{
+.q-nav-btn.skipped:not(.done):not(.unanswered)::before{
   content:'';
   position:absolute;
   left:var(--skip-x,50%);
@@ -1632,11 +1641,25 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   width:3px;height:3px;
   border-radius:50%;
   background:#fff;
-  box-shadow:0 0 5px 1px rgba(var(--accent-0-rgb),.9);
+  box-shadow:0 0 6px 1.5px rgba(var(--accent-0-rgb),1);
   pointer-events:none;
   opacity:0;
   z-index:2;
-  animation:skipSpark var(--skip-duration,2.9s) ease-in-out infinite var(--skip-delay,0s);
+  animation:skipSpark var(--skip-duration,1.35s) ease-in-out infinite var(--skip-delay,0s);
+}
+#backBtn.has-skips-behind::before{
+  content:'';
+  position:absolute;
+  left:var(--skip-x,50%);
+  top:var(--skip-y,50%);
+  width:4px;height:4px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 8px 2px rgba(var(--accent-0-rgb),1),0 0 14px 3px rgba(255,255,255,.45);
+  pointer-events:none;
+  opacity:0;
+  z-index:2;
+  animation:skipSparkBack var(--skip-duration,.95s) ease-in-out infinite var(--skip-delay,0s);
 }
 html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-btn{cursor:none!important}
 
@@ -1725,23 +1748,23 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
 <div class="preset-swatches" style="margin:0; flex-shrink:0;">
 <button class="preset-swatch" data-hex="#00bbcc" style="background:#00bbcc;" title="Cyan" onclick="applyPreset('#00bbcc', false)"></button>
-<button class="preset-swatch" data-hex="#8833ff" style="background:#8833ff;" title="Violet" onclick="applyPreset('#8833ff', false, 32)"></button>
+<button class="preset-swatch active-preset" data-hex="#8833ff" style="background:#8833ff;" title="Violet" onclick="applyPreset('#8833ff', false, 32)"></button>
 <button class="preset-swatch" data-hex="#000000" style="background:#000000;" title="Obsidian" onclick="applyPreset('#000000', false, 90)"></button>
 <button class="preset-swatch" data-hex="#ff8800" style="background:#ff8800;" title="Amber" onclick="applyPreset('#ff8800', false)"></button>
 <button class="preset-swatch" data-hex="#ff0000" style="background:#ff0000;" title="Red" onclick="applyPreset('#ff0000', false, 32)"></button>
 </div>
 <div id="custom-presets-area" style="display:flex;gap:6px;align-items:center;"></div>
 <div id="theme-lock-colorPicker" style="display:flex; gap:8px; align-items:center; margin-left:auto;">
-<input type="color" id="accent-color-picker" value="#FF8800" style="width:40px;height:40px;border:none;border-radius:8px;flex-shrink:0;">
-<input type="text" id="accent-hex-input" value="#FF8800" maxlength="7" class="number-input" style="width:100px; font-family:monospace; font-size:0.85em;">
+<input type="color" id="accent-color-picker" value="#8833ff" style="width:40px;height:40px;border:none;border-radius:8px;flex-shrink:0;">
+<input type="text" id="accent-hex-input" value="#8833FF" maxlength="7" class="number-input" style="width:100px; font-family:monospace; font-size:0.85em;">
 </div>
 </div>
 </div>
 <div class="setting-item" id="theme-lock-colorStrength" style="border-top:1px solid var(--col-border-light); padding-top:20px;">
-<span class="setting-item-label">Color Strength: <span id="strength-value-display" style="color:var(--accent-0);">64</span></span>
+<span class="setting-item-label">Color Strength: <span id="strength-value-display" style="color:var(--accent-0);">32</span></span>
 <div style="display:flex; gap:10px; align-items:center;">
 <span style="font-size:0.82em; color:var(--col-text-muted);">Subtle</span>
-<input type="range" id="accent-strength-slider" min="0" max="100" value="64" style="flex:1; ">
+<input type="range" id="accent-strength-slider" min="0" max="100" value="32" style="flex:1; ">
 <span style="font-size:0.82em; color:var(--col-text-muted);">Vibrant</span>
 </div>
 </div>
@@ -2846,8 +2869,14 @@ function hasSkipsBehind(){
 function setSkipSparkleStyle(el){
   el.style.setProperty('--skip-x',(10+Math.random()*80).toFixed(1)+'%');
   el.style.setProperty('--skip-y',(18+Math.random()*64).toFixed(1)+'%');
-  el.style.setProperty('--skip-delay',(-Math.random()*3.2).toFixed(2)+'s');
-  el.style.setProperty('--skip-duration',(2.4+Math.random()*2.2).toFixed(2)+'s');
+  var isBack = el && el.id === 'backBtn';
+  if(isBack){
+    el.style.setProperty('--skip-delay',(-Math.random()*0.9).toFixed(2)+'s');
+    el.style.setProperty('--skip-duration',(0.7+Math.random()*0.45).toFixed(2)+'s');
+  } else {
+    el.style.setProperty('--skip-delay',(-Math.random()*1.6).toFixed(2)+'s');
+    el.style.setProperty('--skip-duration',(1.05+Math.random()*0.7).toFixed(2)+'s');
+  }
 }
 function updateBackSkipGlow(){
   const back=document.getElementById('backBtn');

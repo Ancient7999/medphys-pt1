@@ -231,11 +231,12 @@ const picker = document.getElementById('accent-color-picker');
 const hexInput = document.getElementById('accent-hex-input');
 const strengthSlider = document.getElementById('accent-strength-slider');
 const strengthDisplay = document.getElementById('strength-value-display');
-if (picker) picker.value = '#000000';
-if (hexInput) hexInput.value = '#000000';
-if (strengthSlider) strengthSlider.value = 90;
-if (strengthDisplay) strengthDisplay.textContent = 90;
-changeAccentColor('#000000', 90);
+if (picker) picker.value = '#8833ff';
+if (hexInput) hexInput.value = '#8833FF';
+if (strengthSlider) strengthSlider.value = 32;
+if (strengthDisplay) strengthDisplay.textContent = 32;
+_activePresetType='standard';_activeCustomIdx=-1;
+changeAccentColor('#8833ff', 32);
 refreshParticleEffects();
 syncAllPresetHighlights();renderCustomPresets();
 }
@@ -724,12 +725,28 @@ const str = strengthSlider ? parseInt(strengthSlider.value) : 90;
 changeAccentColor(hex, str);
 });
 }
-let initialColor = '#000000';
-let initialStrength = 90;
+// Main Menu (index): keep hardcoded theme-vars accents — never apply Quiz colorizer / Violet.
+var isMainMenu = !!document.getElementById('ps2-home');
+if (isMainMenu) {
+loadAppSettings();
+applyExtraGlow();
+wireFontPickers();
+wireCursorPicker();
+document.body.style.opacity = "1";
+return;
+}
+
+// Quiz default when no saved theme: Violet (matches applyPreset('#8833ff', false, 32))
+var DEFAULT_ACCENT_HEX = '#8833ff';
+var DEFAULT_ACCENT_STRENGTH = 32;
+let initialColor = DEFAULT_ACCENT_HEX;
+let initialStrength = DEFAULT_ACCENT_STRENGTH;
+var hadSavedColor = false;
 try {
 const savedColor = localStorage.getItem(THEME_STORAGE_KEY);
 if (savedColor && savedColor[0] === '#' && savedColor.length === 7) {
 initialColor = savedColor;
+hadSavedColor = true;
 }
 const savedMode = localStorage.getItem('atc_light_mode');
 if (savedMode === '1') {
@@ -746,6 +763,17 @@ const displayEl = document.getElementById('strength-value-display');
 if (displayEl) displayEl.textContent = initialStrength;
 loadCustomPresets();
 if(_activePresetType==='custom'&&_customPresets[_activeCustomIdx]){var cp=_customPresets[_activeCustomIdx];initialColor=cp.hex;initialStrength=cp.strength;if(picker)picker.value=initialColor;if(hexInput)hexInput.value=initialColor.toUpperCase();if(strengthSlider)strengthSlider.value=initialStrength;var de=document.getElementById('strength-value-display');if(de)de.textContent=initialStrength;}
+else if(!hadSavedColor && !_activePresetType){
+  // No saved theme: show Violet as the active standard preset
+  initialColor = DEFAULT_ACCENT_HEX;
+  initialStrength = DEFAULT_ACCENT_STRENGTH;
+  if (picker) picker.value = initialColor;
+  if (hexInput) hexInput.value = initialColor.toUpperCase();
+  if (strengthSlider) strengthSlider.value = initialStrength;
+  if (displayEl) displayEl.textContent = initialStrength;
+  _activePresetType = 'standard';
+  _activeCustomIdx = -1;
+}
 changeAccentColor(initialColor, initialStrength);
 syncAllPresetHighlights();
 renderCustomPresets();
