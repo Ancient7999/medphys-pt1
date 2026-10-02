@@ -1,9 +1,5 @@
 # Chapter 3 — Fluid Flow (through Bernoulli)
 
-> **Out of scope for PT1 (later lectures):** viscosity, Poiseuille's law, Laplace's law, Reynolds number, surface tension, pulmonary surfactant, alveoli/bronchial/diaphragm deep content.
-
----
-
 ## 1. Overview & learning map
 
 | Topic | Core idea |
@@ -46,7 +42,7 @@ A fluid can **flow** and **continuously change shape** under an external force. 
 - Layers mix radially and axially  
 - Increases **energy loss** and **resistance**  
 - Can reduce tissue perfusion; may produce **murmurs**  
-- Triggers: high velocity, vessel irregularity, viscosity changes (viscosity itself is out of scope here — know it as a listed cause)
+- Triggers: high velocity, vessel irregularity, or a sudden narrowing
 
 ### Medical examples
 
@@ -206,10 +202,6 @@ Continuity (blood ≈ incompressible): A₁ v₁ = A₂ v₂
 Bernoulli: P + ½ ρ v² + ρ g h = constant
 At same height: higher v ↔ lower P
 ```
-
-### Do-not-study-yet (out of PT1 Ch3 scope)
-
-~~Viscosity η~~ · ~~Poiseuille Q ∝ R⁴~~ · ~~Laplace~~ · ~~Reynolds number~~ · ~~Surface tension / surfactant~~
 
 ---
 
