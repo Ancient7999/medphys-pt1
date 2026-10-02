@@ -656,6 +656,7 @@ html[data-quality="basic"]{
 .formula-hint-box.show{display:block}
 .formula-hint-box .fh-label{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px}
 body.formula-mode #backBtn,body.formula-mode #nextBtn{display:none!important}
+#nextBtn[hidden]{display:none!important}
 body.formula-mode #qNav{display:none!important}
 body.formula-mode .track{display:none!important}
 body.formula-mode .q-count{display:none!important}
@@ -2906,19 +2907,22 @@ function nextUnansweredIndex(after){
 function allQuestionsAnswered(){
   return questions.length>0 && firstUnansweredIndex()===-1;
 }
+function hideNextBtn(){
+  const btn=document.getElementById('nextBtn');
+  if(!btn) return;
+  // Never show Finish — reset label so a stale caption cannot flash.
+  btn.hidden=true;
+  btn.disabled=true;
+  btn.textContent='Next →';
+  btn.dataset.action='next';
+  delete btn.dataset.target;
+}
 function afterAnswerProgress(){
   renderNav();
   updateCounters();
   if(allQuestionsAnswered()){
     unansweredMarkersVisible=false;
-    const btn=document.getElementById('nextBtn');
-    if(btn){
-      // Hide next control; Run complete opens automatically.
-      btn.hidden=true;
-      btn.disabled=true;
-      btn.dataset.action='next';
-      delete btn.dataset.target;
-    }
+    hideNextBtn();
     clearTimeout(afterAnswerProgress._finishT);
     afterAnswerProgress._finishT=setTimeout(function(){ if(quizActive && allQuestionsAnswered()) finishQuiz(); }, 700);
     return;
@@ -2931,27 +2935,26 @@ function updateNextActionButton(){
   const atLast=questions.length>0 && current===questions.length-1;
   const answeredHere=isAnswered(answers[current], questions[current]);
   const firstOpen=firstUnansweredIndex();
-  btn.hidden=false;
+  // Full solve → keep nextBtn hidden; Run complete opens via afterAnswerProgress.
+  if(allQuestionsAnswered() || (atLast && answeredHere && firstOpen<0)){
+    hideNextBtn();
+    return;
+  }
   btn.dataset.action='next';
   delete btn.dataset.target;
   if(!atLast){
+    btn.hidden=false;
     btn.textContent='Next →';
     btn.disabled=!answeredHere;
     return;
   }
   // No Next action while the final question is still unanswered.
   if(!answeredHere){
-    btn.hidden=true;
-    btn.disabled=true;
-    return;
-  }
-  // Fully answered: hide next control (Run complete opens automatically).
-  if(allQuestionsAnswered() || firstOpen<0){
-    btn.hidden=true;
-    btn.disabled=true;
+    hideNextBtn();
     return;
   }
   // Last Q solved with earlier gaps: jump back to the first unanswered item.
+  btn.hidden=false;
   btn.textContent='Return to first unanswered';
   btn.dataset.action='return-unanswered';
   btn.dataset.target=String(firstOpen);
