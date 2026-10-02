@@ -1,5 +1,5 @@
 /* Particle field + calculator theme-overlay canvases (canvas transparency / mix-blend-mode:screen)
-   Simple drifting particles only — no formula-text formations, no orbit/swirl ATC Math effects. */
+   Fade-in/out drifting particles only — no orbit, swirl, circular, or formula-formation motion. */
 (function (global) {
   'use strict';
   if (typeof global.globalBlobs === 'undefined') {
@@ -63,7 +63,42 @@ colorBuffer = gl.createBuffer();
 sparkleBuffer = gl.createBuffer();
 }
 
-function initParticles(){particles=[];const count=1500;for(let i=0;i<count;i++){const sz=Math.random()*3.0+2.0;particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,size:sz,baseSize:sz,alpha:0,colorIndex:0,sparkleSpeed:2.0+Math.random()*6.0});}}initParticles();
+function resetDriftParticle(p, randomizeLife){
+const sz=Math.random()*2.2+1.2;
+p.x=Math.random()*canvas.width;
+p.y=Math.random()*canvas.height;
+p.vx=(Math.random()-0.5)*0.28;
+p.vy=(Math.random()-0.5)*0.28;
+p.size=sz;
+p.baseSize=sz;
+p.colorIndex=0;
+p.sparkleSpeed=1.5+Math.random()*4.0;
+p.fadeIn=0.0035+Math.random()*0.0045;
+p.fadeOut=0.0025+Math.random()*0.004;
+p.hold=0.35+Math.random()*0.45;
+if (randomizeLife) {
+if (Math.random() < 0.5) {
+p.phase='in';
+p.alpha=Math.random()*p.hold;
+} else {
+p.phase='out';
+p.alpha=Math.random()*p.hold;
+}
+} else {
+p.phase='in';
+p.alpha=0;
+}
+}
+function initParticles(){
+particles=[];
+const count=420;
+for(let i=0;i<count;i++){
+const p={};
+resetDriftParticle(p,true);
+particles.push(p);
+}
+}
+initParticles();
 function renderParticles() {
 const now = performance.now();
 const deltaTime = now - lastFrameTime;
@@ -75,13 +110,24 @@ const positions = new Float32Array(particles.length * 2);
 const sizes = new Float32Array(particles.length);
 const alphas = new Float32Array(particles.length);
 particles.forEach((p, i) => {
+// Linear drift only — never orbit/swirl/circular (no angle/radius updates).
 p.x += p.vx * timeScale;
 p.y += p.vy * timeScale;
 if (p.x < -10) p.x = canvas.width + 10;
 if (p.x > canvas.width + 10) p.x = -10;
 if (p.y < -10) p.y = canvas.height + 10;
 if (p.y > canvas.height + 10) p.y = -10;
-const currentAlpha = 0.4 + Math.sin(now*0.002 + p.x*0.01)*0.15;
+let currentAlpha = p.alpha || 0;
+if (p.phase === 'in') {
+currentAlpha += p.fadeIn * timeScale;
+if (currentAlpha >= p.hold) { currentAlpha = p.hold; p.phase = 'out'; }
+} else {
+currentAlpha -= p.fadeOut * timeScale;
+if (currentAlpha <= 0) {
+resetDriftParticle(p, false);
+currentAlpha = 0;
+}
+}
 positions[i * 2] = p.x;
 positions[i * 2 + 1] = p.y;
 sizes[i] = p.size;
