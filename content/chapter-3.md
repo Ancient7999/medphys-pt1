@@ -192,7 +192,7 @@ Bernoulli relates pressure, velocity, and height in moving fluids; explains pres
 
 ---
 
-## 8. Formula sheet — Chapter 3 (exam scope)
+## 8. Formula sheet — Chapter 3
 
 ```
 Mass flow rate = ρ A v
