@@ -1617,29 +1617,56 @@ html.link-drawing .match-item.paired:not(.drawing):not(.is-solved-link):focus-vi
   box-shadow:0 0 8px rgba(244,63,94,.75);
   pointer-events:none;
 }
-/* Skipped pills + Back: independent accent sparkles. Each pulse is its own
-   node (new place, own clock) so they overlap instead of strobing together. */
-.q-nav-btn.skipped:not(.done):not(.unanswered),
+/* Unanswered pills + Back: one slow glass reflection. A soft band drifts
+   across and back. No sparkles, no shared strobe. */
+.q-nav-btn.unanswered,
+.q-nav-btn.skipped:not(.done),
 #backBtn.has-skips-behind{
   position:relative;
-  overflow:visible;
+  overflow:hidden;
+  isolation:isolate;
 }
-.skip-spark{
+.q-nav-btn.unanswered::before,
+.q-nav-btn.skipped:not(.done)::before,
+#backBtn.has-skips-behind::before{
+  content:'';
   position:absolute;
-  z-index:3;
+  z-index:-1;
+  top:-45%;
+  bottom:-45%;
+  left:0;
+  width:42%;
   pointer-events:none;
-  display:block;
-  opacity:0;
-  transform:translate(-50%,-50%) scale(.28) rotate(var(--rot,0deg));
-  animation:skipSparkLife var(--life,2000ms) cubic-bezier(.22,.65,.2,1) forwards;
-  filter:drop-shadow(0 0 2.5px var(--spark-glow, var(--accent-1)));
+  background:linear-gradient(100deg,
+    transparent 0%,
+    rgba(255,255,255,.03) 28%,
+    rgba(255,255,255,.28) 46%,
+    rgba(var(--accent-1-rgb),.22) 52%,
+    rgba(255,255,255,.08) 64%,
+    transparent 100%);
+  transform:translateX(-190%) skewX(-16deg);
+  animation:navSoftSheen 18s ease-in-out infinite alternate;
+  will-change:transform,opacity;
 }
-.skip-spark svg{display:block;width:100%;height:100%;overflow:visible}
-@keyframes skipSparkLife{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.22) rotate(var(--rot,0deg))}
-  30%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(calc(var(--rot,0deg) + 18deg))}
-  62%{opacity:.9;transform:translate(-50%,-50%) scale(1.08) rotate(calc(var(--rot,0deg) + 6deg))}
-  100%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(calc(var(--rot,0deg) - 16deg))}
+.q-nav-btn:nth-child(3n+1).unanswered::before,
+.q-nav-btn:nth-child(3n+1).skipped:not(.done)::before{animation-delay:-6s}
+.q-nav-btn:nth-child(3n+2).unanswered::before,
+.q-nav-btn:nth-child(3n+2).skipped:not(.done)::before{animation-delay:-12s}
+#backBtn.has-skips-behind::before{animation-duration:22s;animation-delay:-3s}
+.q-nav-btn.unanswered::after{z-index:2}
+@keyframes navSoftSheen{
+  0%{transform:translateX(-190%) skewX(-16deg);opacity:.12}
+  38%{opacity:.62}
+  100%{transform:translateX(250%) skewX(-16deg);opacity:.22}
+}
+@media (prefers-reduced-motion:reduce){
+  .q-nav-btn.unanswered::before,
+  .q-nav-btn.skipped:not(.done)::before,
+  #backBtn.has-skips-behind::before{
+    animation:none;
+    transform:translateX(30%) skewX(-16deg);
+    opacity:.28;
+  }
 }
 html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) .match-item,html[data-custom-cursor="on"]:not([data-pointer-input="touch"]) .q-nav-btn{cursor:none!important}
 
@@ -2927,127 +2954,12 @@ function hasSkipsBehind(){
   }
   return false;
 }
-const skipSparkCtrls=new Set();
-function skipSparkLater(ctrl, fn, ms){
-  let id;
-  id=setTimeout(()=>{
-    ctrl.timers.delete(id);
-    if(ctrl.dead) return;
-    fn();
-  }, ms);
-  ctrl.timers.add(id);
-}
-function stopSkipSparkCtrl(ctrl){
-  if(!ctrl || ctrl.dead) return;
-  ctrl.dead=true;
-  ctrl.timers.forEach(id=>clearTimeout(id));
-  ctrl.timers.clear();
-  if(ctrl.el){
-    ctrl.el.querySelectorAll(':scope > .skip-spark').forEach(n=>n.remove());
-    if(ctrl.el._skipSparkCtrl===ctrl) delete ctrl.el._skipSparkCtrl;
-  }
-  skipSparkCtrls.delete(ctrl);
-}
-function killNavSkipSparks(){
-  [...skipSparkCtrls].forEach(ctrl=>{
-    if(!ctrl.el || ctrl.el.id!=='backBtn') stopSkipSparkCtrl(ctrl);
-  });
-}
-function pickSparkPoint(ctrl){
-  const recent=ctrl.recent;
-  let best=null, bestScore=-1;
-  for(let n=0;n<14;n++){
-    const x=6+Math.random()*88;
-    const y=10+Math.random()*80;
-    let minD=999;
-    for(const p of recent) minD=Math.min(minD, Math.hypot(x-p.x, y-p.y));
-    const score=recent.length?minD:999;
-    if(score>bestScore) bestScore=score, best={x:+x.toFixed(1), y:+y.toFixed(1)};
-    if(!recent.length || minD>=24) break;
-  }
-  const last=recent[recent.length-1];
-  if(last && best && best.x===last.x && best.y===last.y){
-    best={x:+((best.x+41)%88+6).toFixed(1), y:+((best.y+33)%80+10).toFixed(1)};
-  }
-  recent.push(best);
-  if(recent.length>5) recent.shift();
-  return best;
-}
-function sparkPalette(){
-  const cols=['var(--accent-0)','var(--accent-1)','var(--accent-2)','var(--accent-4)'];
-  for(let i=cols.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    const t=cols[i]; cols[i]=cols[j]; cols[j]=t;
-  }
-  return cols;
-}
-function spawnSkipSpark(ctrl){
-  if(ctrl.dead || !ctrl.el || !ctrl.el.isConnected){ stopSkipSparkCtrl(ctrl); return null; }
-  const isBack=ctrl.el.id==='backBtn';
-  const pt=pickSparkPoint(ctrl);
-  const life=(isBack?1900:1500)+Math.random()*(isBack?1100:900);
-  const size=(isBack?12:10)+Math.random()*(isBack?7:6);
-  const rot=Math.random()*70-35;
-  const cols=sparkPalette();
-  const tilt=(18+Math.random()*55).toFixed(0);
-  const node=document.createElement('span');
-  node.className='skip-spark';
-  node.style.left=pt.x.toFixed(1)+'%';
-  node.style.top=pt.y.toFixed(1)+'%';
-  node.style.width=size.toFixed(1)+'px';
-  node.style.height=size.toFixed(1)+'px';
-  node.style.setProperty('--life', life.toFixed(0)+'ms');
-  node.style.setProperty('--rot', rot.toFixed(1)+'deg');
-  node.style.setProperty('--spark-glow', cols[0]);
-  node.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'
-    +'<path fill="'+cols[0]+'" d="M12 .6 13.8 10.1 23.4 12 13.8 13.9 12 23.4 10.2 13.9.6 12 10.2 10.1Z"/>'
-    +'<path fill="'+cols[1]+'" transform="rotate('+tilt+' 12 12)" d="M12 4.6 13.15 10.85 19.4 12 13.15 13.15 12 19.4 10.85 13.15 4.6 12 10.85 10.85Z"/>'
-    +'<circle cx="12" cy="12" r="1.25" fill="'+cols[2]+'"/>'
-    +'</svg>';
-  ctrl.el.appendChild(node);
-  skipSparkLater(ctrl, ()=>{ if(node.parentNode) node.remove(); }, life+60);
-  return life;
-}
-function armSkipSparks(el){
-  if(!el || (el._skipSparkCtrl && !el._skipSparkCtrl.dead)) return;
-  const isBack=el.id==='backBtn';
-  const ctrl={
-    el,
-    dead:false,
-    recent:[],
-    timers:new Set(),
-    tempo:0.78+Math.random()*0.6
-  };
-  el._skipSparkCtrl=ctrl;
-  skipSparkCtrls.add(ctrl);
-  const active=()=>isBack?el.classList.contains('has-skips-behind'):el.classList.contains('skipped');
-  const loop=()=>{
-    if(ctrl.dead || !el.isConnected || !active()){ stopSkipSparkCtrl(ctrl); return; }
-    const life=spawnSkipSpark(ctrl);
-    if(life==null) return;
-    /* A second spark often starts while the first is still blooming. */
-    if(Math.random()<0.78){
-      const mid=life*(0.32+Math.random()*0.38);
-      skipSparkLater(ctrl, ()=>{
-        if(ctrl.dead || !el.isConnected || !active()) return;
-        spawnSkipSpark(ctrl);
-      }, mid);
-    }
-    const gap=(isBack?4800:3600)+Math.random()*(isBack?4200:3400);
-    skipSparkLater(ctrl, loop, gap*ctrl.tempo);
-  };
-  skipSparkLater(ctrl, loop, Math.random()*((isBack?5200:4000)*ctrl.tempo));
-}
 function updateBackSkipGlow(){
   const back=document.getElementById('backBtn');
   if(!back) return;
-  const hasSkips=hasSkipsBehind();
-  back.classList.toggle('has-skips-behind', hasSkips);
-  if(hasSkips) armSkipSparks(back);
-  else if(back._skipSparkCtrl) stopSkipSparkCtrl(back._skipSparkCtrl);
+  back.classList.toggle('has-skips-behind', hasSkipsBehind());
 }
 function renderNav(){
-  killNavSkipSparks();
   const nav=document.getElementById('qNav'); nav.innerHTML='';
   const markUnanswered=unansweredMarkersVisible && !allQuestionsAnswered();
   questions.forEach((q,i)=>{
@@ -3062,7 +2974,6 @@ function renderNav(){
       +(markedUnanswered?' unanswered':'')
       +((skipped && !markedUnanswered)?' skipped':'');
     b.classList.toggle('linking', isMatching(q));
-    if(skipped && !markedUnanswered) armSkipSparks(b);
     b.innerHTML=isMatching(q)
       ? '<span class=\"q-nav-icon\" aria-hidden=\"true\">🔗</span><span class=\"q-nav-number\">'+(i+1)+'</span>'
       : '<span class=\"q-nav-number\">'+(i+1)+'</span>';
