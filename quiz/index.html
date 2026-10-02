@@ -80,12 +80,12 @@
       'Impact':"Impact,Haettenschweiler,sans-serif"
     };
     var roles=[
-      ['ui','Outfit',['--font-ui','--body']],
-      ['head','Instrument Serif',['--font-head','--head']],
-      ['question','Instrument Serif',['--font-question']],
-      ['choice','Outfit',['--font-choice']],
-      ['nav','Space Mono',['--font-nav']],
-      ['mono','Space Mono',['--font-mono','--mono']]
+      ['ui','Comic Neue',['--font-ui','--body']],
+      ['head','Permanent Marker',['--font-head','--head']],
+      ['question','Space Mono',['--font-question']],
+      ['choice','Courier New',['--font-choice']],
+      ['nav','Montserrat',['--font-nav']],
+      ['mono','Oswald',['--font-mono','--mono']]
     ];
     for(var ri=0;ri<roles.length;ri++){
       var r=roles[ri], name=localStorage.getItem('pt1_font_'+r[0])||r[1];
@@ -100,7 +100,7 @@
 })();
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Permanent+Marker&family=Comic+Neue:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
 :root {
   --bg:#05070c;
   --bg2:#080c14;
@@ -125,14 +125,14 @@
   --pulse-ms:1600ms;
   --transition-ms:280ms;
   --particle-speed:1;
-  --mono:'Space Mono',ui-monospace,monospace;
-  --head:'Instrument Serif',Georgia,serif;
-  --body:'Outfit',system-ui,sans-serif;
+  --mono:'Oswald',system-ui,sans-serif;
+  --head:'Permanent Marker',cursive;
+  --body:'Comic Neue','Comic Sans MS',cursive;
   --font-ui:var(--body);
   --font-head:var(--head);
-  --font-question:var(--head);
-  --font-choice:var(--body);
-  --font-nav:var(--mono);
+  --font-question:var(--mono);
+  --font-choice:'Courier New',Courier,monospace;
+  --font-nav:'Montserrat',system-ui,sans-serif;
   --font-mono:var(--mono);
 }
 /* Mood themes — accents + full page background atmosphere (no pink) */
@@ -664,13 +664,13 @@ body.formula-mode #catTag{display:none!important}
 body.formula-mode .formula-family-strip{display:flex}
 .ff-title{
   display:inline-flex;align-items:center;gap:6px;
-  padding:7px 12px;border-radius:10px;
+  padding:8px 13px;border-radius:10px;
   border:1px solid rgba(var(--accent-0-rgb),.18);
   background:rgba(14,18,28,.55);
   color:var(--text-dim);opacity:.55;white-space:nowrap;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
   transition:opacity .2s ease,color .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease,transform .15s ease;
-  font-size:.78rem;line-height:1.2;
+  font-size:.82rem;line-height:1.2;
 }
 .ff-title.active{
   opacity:1;color:var(--accent-1);font-weight:600;
@@ -721,7 +721,6 @@ body.formula-mode.formula-waiting .formula-advance-wrap{display:block}
 .fs-btn:focus-visible{outline:2px solid var(--accent-1);outline-offset:3px}
 .panel{background:linear-gradient(165deg,rgba(var(--accent-0-rgb),.10) 0%,rgba(10,14,22,.72) 42%,rgba(8,10,16,.88) 100%);backdrop-filter:blur(14px) saturate(1.05);border:1px solid rgba(var(--accent-0-rgb),.22);border-left:3px solid var(--accent-0);border-radius:16px;box-shadow:0 10px 28px -18px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.04);transition:box-shadow .2s ease,border-color .2s ease}
 .panel.correct-pulse{box-shadow:0 0 0 1px rgba(52,211,153,.55),0 0 48px rgba(52,211,153,.28),inset 0 1px 0 rgba(255,255,255,.04)}
-.panel.wrong-pulse{box-shadow:0 0 0 1px rgba(251,113,133,.5),0 0 36px rgba(251,113,133,.2),inset 0 1px 0 rgba(255,255,255,.04);animation:softReject calc(420ms / var(--anim-speed)) ease}
 @keyframes softReject{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .status-bar{display:flex;align-items:center;gap:12px;padding:14px 22px;border-bottom:1px solid rgba(var(--accent-0-rgb),.14);background:rgba(0,0,0,.28);font-family:var(--mono);font-size:.82rem;color:var(--text-dim)}
 .status-dot{width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--accent-1),var(--accent-0) 50%,var(--accent-4));box-shadow:0 0 14px rgba(var(--accent-0-rgb),.45);animation:pulse var(--pulse-ms) ease-in-out infinite}
@@ -1752,7 +1751,7 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <option value="Space Mono" style="font-family:'Space Mono', ui-monospace, monospace;">Space Mono</option>
 <option value="IBM Plex Mono" style="font-family:'IBM Plex Mono', ui-monospace, monospace;">IBM Plex Mono</option>
 <option value="Nunito" style="font-family:'Nunito', system-ui, sans-serif;">Nunito</option>
-<option value="Outfit" selected style="font-family:'Outfit', system-ui, sans-serif;">Outfit</option>
+<option value="Outfit" style="font-family:'Outfit', system-ui, sans-serif;">Outfit</option>
 <option value="Montserrat" style="font-family:'Montserrat', system-ui, sans-serif;">Montserrat</option>
 <option value="Roboto" style="font-family:'Roboto', system-ui, sans-serif;">Roboto</option>
 <option value="Oswald" style="font-family:'Oswald', system-ui, sans-serif;">Oswald</option>
@@ -1761,7 +1760,7 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <option value="Permanent Marker" style="font-family:'Permanent Marker', cursive;">Marker</option>
 <option value="Pacifico" style="font-family:'Pacifico', cursive;">Pacifico</option>
 <option value="Indie Flower" style="font-family:'Indie Flower', cursive;">Indie Flower</option>
-<option value="Comic Neue" style="font-family:'Comic Neue', Comic Sans MS, cursive;">Comic Neue</option>
+<option value="Comic Neue" selected style="font-family:'Comic Neue', Comic Sans MS, cursive;">Comic Neue</option>
 <option value="Press Start 2P" style="font-family:'Press Start 2P', monospace;">Pixel</option>
 <option value="Georgia" style="font-family:Georgia, 'Times New Roman', serif;">Georgia</option>
 <option value="Times New Roman" style="font-family:'Times New Roman', Times, serif;">Times</option>
@@ -1774,7 +1773,7 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 </div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
 <label for="font-family-head" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Headings</label>
 <select id="font-family-head" class="font-family-select number-input" data-font-role="head" title="Titles and card headings" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
-<option value="Instrument Serif" selected style="font-family:'Instrument Serif', Georgia, serif;">Instrument</option>
+<option value="Instrument Serif" style="font-family:'Instrument Serif', Georgia, serif;">Instrument</option>
 <option value="Fraunces" style="font-family:'Fraunces', Georgia, serif;">Fraunces</option>
 <option value="Space Mono" style="font-family:'Space Mono', ui-monospace, monospace;">Space Mono</option>
 <option value="IBM Plex Mono" style="font-family:'IBM Plex Mono', ui-monospace, monospace;">IBM Plex Mono</option>
@@ -1785,7 +1784,7 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <option value="Oswald" style="font-family:'Oswald', system-ui, sans-serif;">Oswald</option>
 <option value="Playfair Display" style="font-family:'Playfair Display', Georgia, serif;">Playfair</option>
 <option value="Bebas Neue" style="font-family:'Bebas Neue', Impact, sans-serif;">Bebas</option>
-<option value="Permanent Marker" style="font-family:'Permanent Marker', cursive;">Marker</option>
+<option value="Permanent Marker" selected style="font-family:'Permanent Marker', cursive;">Marker</option>
 <option value="Pacifico" style="font-family:'Pacifico', cursive;">Pacifico</option>
 <option value="Indie Flower" style="font-family:'Indie Flower', cursive;">Indie Flower</option>
 <option value="Comic Neue" style="font-family:'Comic Neue', Comic Sans MS, cursive;">Comic Neue</option>
@@ -1801,9 +1800,9 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 </div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
 <label for="font-family-question" class="setting-item-desc" style="margin:0; min-width:7.5rem; flex-shrink:0;">Question stem</label>
 <select id="font-family-question" class="font-family-select number-input" data-font-role="question" title="Quiz question text" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
-<option value="Instrument Serif" selected style="font-family:'Instrument Serif', Georgia, serif;">Instrument</option>
+<option value="Instrument Serif" style="font-family:'Instrument Serif', Georgia, serif;">Instrument</option>
 <option value="Fraunces" style="font-family:'Fraunces', Georgia, serif;">Fraunces</option>
-<option value="Space Mono" style="font-family:'Space Mono', ui-monospace, monospace;">Space Mono</option>
+<option value="Space Mono" selected style="font-family:'Space Mono', ui-monospace, monospace;">Space Mono</option>
 <option value="IBM Plex Mono" style="font-family:'IBM Plex Mono', ui-monospace, monospace;">IBM Plex Mono</option>
 <option value="Nunito" style="font-family:'Nunito', system-ui, sans-serif;">Nunito</option>
 <option value="Outfit" style="font-family:'Outfit', system-ui, sans-serif;">Outfit</option>
@@ -1833,7 +1832,7 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <option value="Space Mono" style="font-family:'Space Mono', ui-monospace, monospace;">Space Mono</option>
 <option value="IBM Plex Mono" style="font-family:'IBM Plex Mono', ui-monospace, monospace;">IBM Plex Mono</option>
 <option value="Nunito" style="font-family:'Nunito', system-ui, sans-serif;">Nunito</option>
-<option value="Outfit" selected style="font-family:'Outfit', system-ui, sans-serif;">Outfit</option>
+<option value="Outfit" style="font-family:'Outfit', system-ui, sans-serif;">Outfit</option>
 <option value="Montserrat" style="font-family:'Montserrat', system-ui, sans-serif;">Montserrat</option>
 <option value="Roboto" style="font-family:'Roboto', system-ui, sans-serif;">Roboto</option>
 <option value="Oswald" style="font-family:'Oswald', system-ui, sans-serif;">Oswald</option>
@@ -1849,7 +1848,7 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <option value="Arial" style="font-family:Arial, Helvetica, sans-serif;">Arial</option>
 <option value="Verdana" style="font-family:Verdana, Geneva, sans-serif;">Verdana</option>
 <option value="Trebuchet MS" style="font-family:'Trebuchet MS', Helvetica, sans-serif;">Trebuchet</option>
-<option value="Courier New" style="font-family:'Courier New', Courier, monospace;">Courier</option>
+<option value="Courier New" selected style="font-family:'Courier New', Courier, monospace;">Courier</option>
 <option value="Impact" style="font-family:Impact, Haettenschweiler, sans-serif;">Impact</option>
 </select>
 </div><div class="font-role-row" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
@@ -1857,11 +1856,11 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <select id="font-family-nav" class="font-family-select number-input" data-font-role="nav" title="Navigator and action buttons" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
 <option value="Instrument Serif" style="font-family:'Instrument Serif', Georgia, serif;">Instrument</option>
 <option value="Fraunces" style="font-family:'Fraunces', Georgia, serif;">Fraunces</option>
-<option value="Space Mono" selected style="font-family:'Space Mono', ui-monospace, monospace;">Space Mono</option>
+<option value="Space Mono" style="font-family:'Space Mono', ui-monospace, monospace;">Space Mono</option>
 <option value="IBM Plex Mono" style="font-family:'IBM Plex Mono', ui-monospace, monospace;">IBM Plex Mono</option>
 <option value="Nunito" style="font-family:'Nunito', system-ui, sans-serif;">Nunito</option>
 <option value="Outfit" style="font-family:'Outfit', system-ui, sans-serif;">Outfit</option>
-<option value="Montserrat" style="font-family:'Montserrat', system-ui, sans-serif;">Montserrat</option>
+<option value="Montserrat" selected style="font-family:'Montserrat', system-ui, sans-serif;">Montserrat</option>
 <option value="Roboto" style="font-family:'Roboto', system-ui, sans-serif;">Roboto</option>
 <option value="Oswald" style="font-family:'Oswald', system-ui, sans-serif;">Oswald</option>
 <option value="Playfair Display" style="font-family:'Playfair Display', Georgia, serif;">Playfair</option>
@@ -1884,13 +1883,13 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <select id="font-family-mono" class="font-family-select number-input" data-font-role="mono" title="Status, timers, chrome labels" style="flex:1; min-width:140px; max-width:220px; text-align:left; font-size:0.9em; padding:8px 10px;">
 <option value="Instrument Serif" style="font-family:'Instrument Serif', Georgia, serif;">Instrument</option>
 <option value="Fraunces" style="font-family:'Fraunces', Georgia, serif;">Fraunces</option>
-<option value="Space Mono" selected style="font-family:'Space Mono', ui-monospace, monospace;">Space Mono</option>
+<option value="Space Mono" style="font-family:'Space Mono', ui-monospace, monospace;">Space Mono</option>
 <option value="IBM Plex Mono" style="font-family:'IBM Plex Mono', ui-monospace, monospace;">IBM Plex Mono</option>
 <option value="Nunito" style="font-family:'Nunito', system-ui, sans-serif;">Nunito</option>
 <option value="Outfit" style="font-family:'Outfit', system-ui, sans-serif;">Outfit</option>
 <option value="Montserrat" style="font-family:'Montserrat', system-ui, sans-serif;">Montserrat</option>
 <option value="Roboto" style="font-family:'Roboto', system-ui, sans-serif;">Roboto</option>
-<option value="Oswald" style="font-family:'Oswald', system-ui, sans-serif;">Oswald</option>
+<option value="Oswald" selected style="font-family:'Oswald', system-ui, sans-serif;">Oswald</option>
 <option value="Playfair Display" style="font-family:'Playfair Display', Georgia, serif;">Playfair</option>
 <option value="Bebas Neue" style="font-family:'Bebas Neue', Impact, sans-serif;">Bebas</option>
 <option value="Permanent Marker" style="font-family:'Permanent Marker', cursive;">Marker</option>
@@ -3279,8 +3278,6 @@ function selectAnswer(idx){
       setTimeout(()=>btn.classList.remove('soft-wrong'), 480);
       if(formulaMode){ btn.disabled=true; btn.classList.add('wrong'); }
     }
-    const panel=document.getElementById('mainPanel');
-    if(panel){ panel.classList.remove('wrong-pulse'); void panel.offsetWidth; panel.classList.add('wrong-pulse'); setTimeout(()=>panel.classList.remove('wrong-pulse'),500); }
     fb.className='feedback soft'; fb.textContent='not that one · try again';
     clearTimeout(selectAnswer._t); selectAnswer._t=setTimeout(()=>{ if(!locked){ fb.className='feedback idle'; fb.textContent=''; } },900);
     if(formulaMode){

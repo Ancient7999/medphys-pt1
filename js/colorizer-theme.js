@@ -248,12 +248,12 @@ global.resetThemeToDefaults = resetThemeToDefaults;
   // —— Per-role font pickers (Quiz Theme settings) ——
   var FONT_STORAGE_PREFIX = 'pt1_font_';
   var FONT_ROLES = [
-    { id: 'ui', defaultName: 'Outfit', vars: ['--font-ui', '--body'] },
-    { id: 'head', defaultName: 'Instrument Serif', vars: ['--font-head', '--head'] },
-    { id: 'question', defaultName: 'Instrument Serif', vars: ['--font-question'] },
-    { id: 'choice', defaultName: 'Outfit', vars: ['--font-choice'] },
-    { id: 'nav', defaultName: 'Space Mono', vars: ['--font-nav'] },
-    { id: 'mono', defaultName: 'Space Mono', vars: ['--font-mono', '--mono'] }
+    { id: 'ui', defaultName: 'Comic Neue', vars: ['--font-ui', '--body'] },
+    { id: 'head', defaultName: 'Permanent Marker', vars: ['--font-head', '--head'] },
+    { id: 'question', defaultName: 'Space Mono', vars: ['--font-question'] },
+    { id: 'choice', defaultName: 'Courier New', vars: ['--font-choice'] },
+    { id: 'nav', defaultName: 'Montserrat', vars: ['--font-nav'] },
+    { id: 'mono', defaultName: 'Oswald', vars: ['--font-mono', '--mono'] }
   ];
   var FONT_ORDER = [
     'Instrument Serif', 'Fraunces', 'Playfair Display', 'Georgia', 'Times New Roman',
