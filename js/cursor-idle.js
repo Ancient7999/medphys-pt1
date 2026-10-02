@@ -1,5 +1,5 @@
 /*! ATC Math brushCursor — idle auto-hide after inactivity, show on move.
- * Shared by Main Menu, Study, and Quiz. Requires brushCursor CSS (app.css or injected).
+ * Main Menu only. Quiz keeps legacy #cursor ring; Study uses the system cursor.
  */
 (function () {
   'use strict';
@@ -14,8 +14,7 @@
   var IDLE_MS = 1500;
   var HOVER_SEL = '.ps2-menu-item,.ps2-back-btn,.option-card,.variant-pill,.mode-btn,.btn,.opt,.card,.chapter-toggle,.nav-btn,.fs-btn,.portal-card,.settings-nav-btn,.settings-btn';
 
-  /* Inject brush + idle helpers when page CSS does not already define .brushCursor
-     (Quiz does not load app.css). Also hide legacy quiz #cursor while brush is active. */
+  /* Inject brush + idle helpers (Main Menu). Study/Quiz do not load this script. */
   if (!document.querySelector('style[data-atc-cursor-idle]')) {
     var style = document.createElement('style');
     style.setAttribute('data-atc-cursor-idle', '1');
@@ -30,8 +29,6 @@
       'background:radial-gradient(circle,rgba(var(--accent-0-rgb),0.5) 0%,rgba(var(--accent-0-rgb),0) 70%);' +
       'opacity:0.5;pointer-events:none;animation:atc-brush-breathe 2s infinite;}' +
       '@keyframes atc-brush-breathe{0%{transform:scale(1);opacity:0.5;}50%{transform:scale(1.2);opacity:0.8;}100%{transform:scale(1);opacity:0.5;}}' +
-      /* Hide quiz ring cursor while ATC brush is the active custom cursor */
-      'html[data-custom-cursor="on"] #cursor{display:none!important;}' +
       /* Idle: kill CSS :hover ghosts under the hover-blocker */
       'body.cursor-idle .ps2-menu-item:hover:not(.focused),' +
       'body.cursor-idle .ps2-menu-item:focus-visible:not(.focused){' +

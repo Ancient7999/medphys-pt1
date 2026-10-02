@@ -501,35 +501,105 @@ a { color: var(--accent-0); }
 }
 
 
-/* —— ATC Math custom mouse cursor (exact brushCursor CSS) —— */
-*{cursor:none !important;}
-.brushCursor{position:fixed;pointer-events:none;z-index:2147483647;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle,var(--accent-0) 0,var(--accent-0) 8px,rgba(var(--accent-0-rgb),0.8) 8px,rgba(var(--accent-0-rgb),0.8) 10px);transform:translate(-50%,-50%);left:-100px;top:-100px;transition:opacity 0.2s ease;}
-.brushCursor.hidden{opacity:0;}
-.aura{position:absolute;width:100px;height:100px;left:calc(50% - 50px);top:calc(50% - 50px);background:radial-gradient(circle,rgba(var(--accent-0-rgb),0.5) 0%,rgba(var(--accent-0-rgb),0) 70%);opacity:0.5;pointer-events:none;animation:breathe 2s infinite;}
-@keyframes breathe{0%{transform:scale(1);opacity:0.5;}50%{transform:scale(1.2);opacity:0.8;}100%{transform:scale(1);opacity:0.5;}}
+/* —— Study: Hooke demure (fixed brass; no ATC colorizer / no custom cursor) —— */
+html.study-page {
+  --accent-0: #d4a24c;
+  --accent-0-rgb: 212, 162, 76;
+  --accent-1: #f0c878;
+  --accent-1-rgb: 240, 200, 120;
+  --accent-2: #f59e0b;
+  --accent-2-rgb: 245, 158, 11;
+  --accent-4: #8a6820;
+  --accent-4-rgb: 138, 104, 32;
+  --col-bg-main: #0c0908;
+  --col-bg-card: #1a1410;
+  --col-bg-card-rgb: 26, 20, 16;
+  --col-text-main: #efe3ca;
+  --col-text-muted: #a89273;
+  --col-border: rgba(212, 162, 76, 0.28);
+  --col-gold: #fcd34d;
+  --cream: #f5ead6;
+  --brass: #d4a24c;
+  --brass-bright: #f0c878;
+  --brass-dim: #8a6820;
+  --accent: #d4a24c;
+  --cyan: #d4a24c;
+  --cyan-bright: #f0c878;
+  --teal: #f59e0b;
+  --gold: #fcd34d;
+  --border: rgba(212, 162, 76, 0.28);
+  --border-strong: rgba(212, 162, 76, 0.55);
+  --mood-glow: rgba(212, 162, 76, 0.28);
+  --bg-glow: rgba(212, 162, 76, 0.08);
+  --bg-tint-color: rgba(212, 162, 76, 0.04);
+  --bg-tint-color-high: rgba(212, 162, 76, 0.07);
+}
+html.study-page,
+html.study-page * {
+  cursor: auto !important;
+}
+html.study-page a,
+html.study-page button,
+html.study-page .btn,
+html.study-page .chapter-toggle {
+  cursor: pointer !important;
+}
+html.study-page body {
+  background:
+    radial-gradient(ellipse at 12% -8%, rgba(212, 162, 76, 0.07), transparent 42%),
+    radial-gradient(ellipse at 92% 108%, rgba(138, 104, 32, 0.08), transparent 48%),
+    #0c0908;
+}
+html.study-page .study-header h1 {
+  color: var(--brass-bright);
+  text-shadow: 0 0 18px rgba(212, 162, 76, 0.28);
+}
+html.study-page .btn {
+  color: var(--brass-bright);
+  border-color: rgba(212, 162, 76, 0.45);
+  background: rgba(212, 162, 76, 0.06);
+  box-shadow: none;
+  animation: none;
+}
+html.study-page .btn:hover {
+  background: rgba(212, 162, 76, 0.14);
+  box-shadow: 0 0 16px rgba(212, 162, 76, 0.22);
+  filter: none;
+  transform: none;
+}
+html.study-page .btn.primary {
+  color: #1a1410;
+  font-weight: 700;
+  background: linear-gradient(135deg, #d4a24c, #f0c878);
+  border-color: rgba(212, 162, 76, 0.55);
+  box-shadow: 0 6px 20px rgba(212, 162, 76, 0.28);
+  animation: none;
+  background-size: auto;
+}
+html.study-page .btn.primary:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 8px 24px rgba(212, 162, 76, 0.38);
+}
+html.study-page .btn.primary::after { display: none; }
+html.study-page .chapter-card {
+  border-color: rgba(212, 162, 76, 0.22);
+  border-left-color: rgba(212, 162, 76, 0.4);
+  background: rgba(26, 20, 16, 0.92);
+}
+html.study-page .chapter-card.open {
+  border-left-color: #d4a24c;
+  box-shadow: 0 0 20px rgba(212, 162, 76, 0.14);
+}
+html.study-page .chapter-toggle:hover {
+  background: rgba(212, 162, 76, 0.05);
+}
+html.study-page .md h1,
+html.study-page .md h2 { color: var(--brass-bright); }
+html.study-page .md h3 { color: #e8c878; }
+html.study-page .md strong,
+html.study-page .md code { color: #e8c878; }
+html.study-page .md pre {
+  border-left-color: #d4a24c;
+  color: #e8c878;
+}
 
-/* ATC cursor-idle: suppress CSS :hover while keyboard-navigating / cursor hidden */
-body.cursor-idle .ps2-menu-item:hover:not(.focused),
-body.cursor-idle .ps2-menu-item:focus-visible:not(.focused){
-  transform:none!important;
-  background:linear-gradient(90deg,rgba(var(--accent-0-rgb),0.09) 0%,rgba(var(--accent-0-rgb),0.02) 100%)!important;
-  box-shadow:none!important;
-}
-body.cursor-idle .ps2-back-btn:hover{
-  border-color:var(--col-border)!important;
-  color:var(--col-text-muted)!important;
-  box-shadow:none!important;
-}
-body.cursor-idle .ps2-menu-item,
-body.cursor-idle .ps2-back-btn,
-body.cursor-idle .btn,
-body.cursor-idle .chapter-toggle{
-  pointer-events:none;
-}
-body.cursor-idle .btn:hover,
-body.cursor-idle .btn.primary:hover,
-body.cursor-idle .chapter-toggle:hover{
-  transform:none!important;
-  filter:none!important;
-  box-shadow:none!important;
-}
