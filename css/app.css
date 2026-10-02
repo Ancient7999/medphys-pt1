@@ -780,7 +780,7 @@ html.study-page .md h3::before {
 }
 html.study-page .md h4 { color: var(--amber); font-family: var(--head); font-weight: 600; }
 html.study-page .md a { color: var(--cyan); }
-html.study-page .md strong { color: var(--amber); }
+html.study-page .md strong { color: inherit; }
 html.study-page .md em { color: var(--cyan); font-style: normal; font-weight: 500; }
 html.study-page .md code {
   color: var(--cyan);

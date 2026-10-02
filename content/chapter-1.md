@@ -194,7 +194,7 @@ Dimensionless — NO units
 
 **How this formula is made:** ΔL is the change in length; L₀ is the original length. Strain is a ratio of two lengths, so the units cancel — it is a pure number. It answers “how much did the object stretch (or shorten) relative to how long it was?”
 
-### Stress in the human body (examples)
+### Examples of stress in the human body
 
 - Blood pressure acting on vessel walls  
 - Forces on the knee joint during walking  
