@@ -338,7 +338,7 @@
     let q, ans, unit, digits, explain, formulaHint, formulaMap;
     const fluidName = rho === 1000 ? 'fresh water' : (rho === 1025 ? 'seawater' : (rho === 13600 ? 'mercury' : 'a fluid'));
     if (variant === 0) {
-      q = 'What gauge pressure does ' + fluidName + ' (ρ = ' + fmtSci(rho, 3) + ' kg/m³) produce at a depth of ' + h + ' m?';
+      q = 'What gauge pressure does ' + fluidName + ' of density ' + fmtSci(rho, 3) + ' kg/m³ produce at a depth of ' + h + ' m?';
       ans = PG; unit = 'Pa'; digits = 3;
       formulaHint = 'P_G = ρ g h';
       formulaMap = [
@@ -348,7 +348,7 @@
       ];
       explain = 'P_G = ρgh = ' + fmtSci(rho, 3) + ' × 9.8 × ' + h + ' = ' + fmtSci(PG, 3) + ' Pa.';
     } else if (variant === 1) {
-      q = 'A diver\'s gauge reads ' + fmtSci(PG, 3) + ' Pa in ' + fluidName + ' (ρ = ' + fmtSci(rho, 3) + ' kg/m³). How deep is the diver?';
+      q = 'A diver\'s gauge reads ' + fmtSci(PG, 3) + ' Pa in ' + fluidName + ' of density ' + fmtSci(rho, 3) + ' kg/m³. How deep is the diver?';
       ans = h; unit = 'm'; digits = 3;
       formulaHint = 'From P_G = ρ g h  →  h = P_G / (ρ g)';
       formulaMap = [
@@ -384,7 +384,7 @@
     const Pabs = P_ATM + PG;
     let q, ans, unit, digits, explain, formulaHint, formulaMap;
     if (variant === 0) {
-      q = 'What absolute pressure acts on a swimmer ' + h + ' m below the surface of fresh water (ρ = 1000 kg/m³)?';
+      q = 'What absolute pressure acts on a swimmer ' + h + ' m below the surface of fresh water of density 1000 kg/m³?';
       ans = Pabs; unit = 'Pa'; digits = 3;
       formulaHint = 'P_abs = P_atm + ρ g h';
       formulaMap = [
@@ -395,7 +395,7 @@
       ];
       explain = 'P_G = ρgh = ' + fmtSci(PG, 3) + ' Pa. P_abs = P_atm + P_G = ' + fmtSci(Pabs, 3) + ' Pa.';
     } else if (variant === 1) {
-      q = 'The absolute pressure at a depth in fresh water is ' + fmtSci(Pabs, 3) + ' Pa (ρ = 1000 kg/m³). What is the depth?';
+      q = 'The absolute pressure at a depth in fresh water of density 1000 kg/m³ is ' + fmtSci(Pabs, 3) + ' Pa. What is the depth?';
       ans = h; unit = 'm'; digits = 3;
       formulaHint = 'P_abs = P_atm + ρgh  →  h = (P_abs − P_atm) / (ρ g)';
       formulaMap = [
@@ -406,7 +406,7 @@
       ];
       explain = 'h = (P_abs − P_atm)/(ρg) = ' + fmtSci(h, 3) + ' m.';
     } else {
-      q = 'At a depth of ' + h + ' m in fresh water (ρ = 1000 kg/m³), what is the gauge pressure?';
+      q = 'At a depth of ' + h + ' m in fresh water of density 1000 kg/m³, what is the gauge pressure?';
       ans = PG; unit = 'Pa'; digits = 3;
       formulaHint = 'P_G = ρ g h  (gauge excludes P_atm)';
       formulaMap = [
@@ -582,7 +582,7 @@
     const mdot = rho * Q;
     let q, ans, unit, digits, explain, formulaHint, formulaMap;
     if (variant === 0) {
-      q = 'Blood (ρ = ' + fmtSci(rho, 3) + ' kg/m³) flows at ' + fmtSci(v, 3) + ' m/s through a vessel of area ' + fmtSci(A, 3) + ' m². What is the mass flow rate?';
+      q = 'Blood of density ' + fmtSci(rho, 3) + ' kg/m³ flows at ' + fmtSci(v, 3) + ' m/s through a vessel of area ' + fmtSci(A, 3) + ' m². What is the mass flow rate?';
       ans = mdot; unit = 'kg/s'; digits = 3;
       formulaHint = 'ṁ = ρ A v';
       formulaMap = [
@@ -627,7 +627,7 @@
       const v2 = pick([2.0, 3.0, 4.0, 5.0]);
       const v2u = Math.max(v2, v1 + 1);
       const dP = 0.5 * rho * (v2u * v2u - v1 * v1);
-      q = 'Along a horizontal streamline, blood (ρ = 1000 kg/m³) speeds up from ' + fmtSci(v1, 2) + ' m/s to ' + fmtSci(v2u, 2) + ' m/s. By how much does the pressure drop?';
+      q = 'Along a horizontal streamline, blood of density 1000 kg/m³ speeds up from ' + fmtSci(v1, 2) + ' m/s to ' + fmtSci(v2u, 2) + ' m/s. By how much does the pressure drop?';
       ans = dP; unit = 'Pa'; digits = 3;
       formulaHint = 'Same height: P + ½ρv² = const  →  P₁ − P₂ = ½ρ(v₂² − v₁²)';
       formulaMap = [
@@ -642,7 +642,7 @@
       const dP = pick([2000, 4500, 8000, 13500, 24500]);
       const v2sq = v1 * v1 + (2 * dP) / rho;
       const v2 = Math.sqrt(v2sq);
-      q = 'On a horizontal streamline (ρ = 1000 kg/m³), pressure falls by ' + fmtSci(dP, 3) + ' Pa as speed rises from ' + fmtSci(v1, 2) + ' m/s. What is the new speed?';
+      q = 'On a horizontal streamline in a fluid of density 1000 kg/m³, pressure falls by ' + fmtSci(dP, 3) + ' Pa as speed rises from ' + fmtSci(v1, 2) + ' m/s. What is the new speed?';
       ans = v2; unit = 'm/s'; digits = 3;
       formulaHint = 'P₁ − P₂ = ½ρ(v₂² − v₁²)  →  v₂ = √(v₁² + 2(P₁−P₂)/ρ)';
       formulaMap = [
@@ -655,7 +655,7 @@
     } else {
       const dh = pick([0.5, 1.0, 1.5, 2.0, 2.5]);
       const dP = rho * G * dh;
-      q = 'A fluid (ρ = 1000 kg/m³) moves slowly up a height change of ' + fmtSci(dh, 2) + ' m, with kinetic terms negligible. Using Bernoulli, by how much does pressure fall?';
+      q = 'A fluid of density 1000 kg/m³ moves slowly up a height change of ' + fmtSci(dh, 2) + ' m, with kinetic terms negligible. Using Bernoulli, by how much does pressure fall?';
       ans = dP; unit = 'Pa'; digits = 3;
       formulaHint = 'Negligible speed change: ΔP ≈ ρ g Δh  (from P + ρgh = const)';
       formulaMap = [
