@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medical Physics · Periodic Test 1</title>
 <link rel="stylesheet" href="css/theme-vars.css">
+<link rel="stylesheet" href="css/colorizer.css">
 <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -65,6 +66,8 @@
   </div>
 </div>
 
+<script src="js/particles.js"></script>
+<script src="js/colorizer-theme.js"></script>
 <script>
 (function(){
   var home = document.getElementById('ps2-home');
@@ -113,8 +116,71 @@
   items.forEach(function(el, i){
     el.addEventListener('mouseenter', function(){ focusIdx = i; updateFocus(); });
   });
+  window.__ps2SetFocusIdx = function(i){ focusIdx = i; updateFocus(); };
   updateFocus();
   document.body.style.opacity = '1';
+})();
+</script>
+
+<script>
+/* ATC Math brushCursor — custom mouse (exact CSS in app.css) */
+(function(){
+  window.mouseHoveredItem = null;
+  var brush = document.createElement('div');
+  brush.className = 'brushCursor';
+  var aura = document.createElement('div');
+  aura.className = 'aura';
+  brush.appendChild(aura);
+  document.body.appendChild(brush);
+  var hoverBlocker = document.createElement('div');
+  hoverBlocker.style.cssText = 'position:fixed;inset:0;z-index:2147483646;pointer-events:none;';
+  document.body.appendChild(hoverBlocker);
+  var idleTimer;
+  var keyActive = false;
+  function hideCursor(){
+    clearTimeout(idleTimer);
+    brush.classList.add('hidden');
+    hoverBlocker.style.pointerEvents = 'auto';
+    document.body.classList.add('cursor-idle');
+    document.querySelectorAll('.ps2-menu-item.focused,.ps2-back-btn.focused').forEach(function(el){
+      el.classList.remove('focused');
+    });
+    mouseHoveredItem = null;
+  }
+  function showCursor(){
+    brush.classList.remove('hidden');
+    hoverBlocker.style.pointerEvents = 'none';
+    document.body.classList.remove('cursor-idle');
+    keyActive = false;
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(hideCursor, 1500);
+    if (mouseHoveredItem && mouseHoveredItem.classList.contains('ps2-menu-item')) {
+      var items = Array.prototype.slice.call(document.querySelectorAll('#ps2-home .ps2-menu-item'));
+      var idx = items.indexOf(mouseHoveredItem);
+      if (idx !== -1) {
+        items.forEach(function(el, i){ el.classList.toggle('focused', i === idx); });
+        if (typeof window.__ps2SetFocusIdx === 'function') window.__ps2SetFocusIdx(idx);
+      }
+    }
+  }
+  document.addEventListener('mousemove', function(e){
+    brush.style.left = e.clientX + 'px';
+    brush.style.top = e.clientY + 'px';
+    showCursor();
+  });
+  document.addEventListener('keydown', function(){ hideCursor(); keyActive = true; });
+  document.addEventListener('mousedown', showCursor, true);
+  document.addEventListener('mouseover', function(e){
+    var item = e.target.closest('.ps2-menu-item,.ps2-back-btn');
+    mouseHoveredItem = item || null;
+  }, true);
+  document.addEventListener('mouseout', function(e){
+    var item = e.target.closest('.ps2-menu-item,.ps2-back-btn');
+    if (item) {
+      if (mouseHoveredItem === item) mouseHoveredItem = null;
+    }
+  }, true);
+  idleTimer = setTimeout(hideCursor, 1500);
 })();
 </script>
 </body>

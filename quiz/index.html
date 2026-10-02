@@ -574,6 +574,9 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
 .final .score-big{font-size:2.8rem;font-weight:900;color:var(--gold);font-family:var(--mono);margin:12px 0}
 .final-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
 .final-actions button,.review-actions button{padding:13px 22px;border:none;border-radius:12px;font-weight:800;font-family:var(--mono);font-size:.95rem}
+.results-scroll{text-align:left;max-height:min(58vh,620px);overflow-y:auto!important;overflow-x:hidden;margin:18px 0 8px;padding:4px 8px 8px 2px;border-top:1px solid var(--border);scrollbar-width:thin}
+.results-scroll .review-item{margin-top:12px}
+.results-heading{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin:14px 0 0;text-align:left}
 .btn-gold{background:linear-gradient(135deg,var(--cyan),var(--gold));color:#0a0e17;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;box-shadow:0 12px 36px color-mix(in srgb, var(--cyan) 30%, transparent),0 0 0 1px color-mix(in srgb, var(--gold) 40%, transparent)}
 .btn-gold::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.3) 45%,transparent 70%);transform:translateX(-120%);pointer-events:none}
 .btn-gold:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 18px 48px color-mix(in srgb, var(--gold) 38%, transparent),0 0 0 1px color-mix(in srgb, var(--gold) 70%, transparent)}
@@ -585,12 +588,7 @@ html.mood-sad[data-skin], html.mood-crying[data-skin], html.mood-sleepy[data-ski
 .btn-ghost:active{transform:scale(.97)}
 .btn-ghost:focus-visible{outline:2px solid var(--cyan-bright);outline-offset:3px}
 @keyframes btnShimmer{from{transform:translateX(-120%)}to{transform:translateX(120%)}}
-.mood-wrap{margin-top:24px;padding-top:18px;border-top:1px solid var(--border)}
-.mood-prompt{font-weight:400;opacity:.55;font-size:1rem;margin-bottom:.55rem}
-.mood-row{display:flex;gap:.55rem;flex-wrap:wrap;justify-content:center;margin-bottom:.4rem}
-.mood-btn{font-size:1.95rem;background:none;border:none;transition:.2s;filter:grayscale(.8);opacity:.5;padding:.25rem .45rem;border-radius:1rem}
-.mood-btn:hover{transform:scale(1.2);filter:grayscale(0);opacity:1}
-.mood-btn.selected{filter:grayscale(0);opacity:1;background:rgba(255,255,255,.08)}
+
 .mood-label{text-align:center;font-size:.85rem;opacity:.4;margin-top:.15rem;font-family:var(--mono)}
 .review h2{font-size:1.45rem;margin-bottom:14px;color:var(--cyan)}
 .review-item{text-align:left;background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:12px}
@@ -1365,37 +1363,84 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
 <div id="cursor"></div>
 <div id="cursor" class="core"></div>
 
-<div class="timer-dock" id="timerDock">
-  <div class="timer-dock-main" id="moodWrapLive">
-    <button type="button" class="mood-live" id="liveMoodBtn" title="Choose mood theme" aria-haspopup="true" aria-expanded="false">😊</button>
-  </div>
-  <div class="mood-tray" id="moodTray" role="listbox" aria-label="Mood themes">
-    <div class="mood-tray-row">
-      <button type="button" class="mood-pick" data-mood="😊" title="Happy">😊</button>
-      <button type="button" class="mood-pick" data-mood="🤩" title="Starstruck">🤩</button>
-      <button type="button" class="mood-pick" data-mood="😎" title="Cool">😎</button>
-      <button type="button" class="mood-pick" data-mood="🙂" title="Smile">🙂</button>
-      <button type="button" class="mood-pick" data-mood="😐" title="Neutral">😐</button>
-      <button type="button" class="mood-pick" data-mood="😌" title="Calm">😌</button>
-      <button type="button" class="mood-pick" data-mood="🧘" title="Zen">🧘</button>
-      <button type="button" class="mood-pick" data-mood="😤" title="Frustrated">😤</button>
-      <button type="button" class="mood-pick" data-mood="🔥" title="Fired up">🔥</button>
-      <button type="button" class="mood-pick" data-mood="😠" title="Mad">😠</button>
-      <button type="button" class="mood-pick" data-mood="😢" title="Sad">😢</button>
-      <button type="button" class="mood-pick" data-mood="😭" title="Crying">😭</button>
-      <button type="button" class="mood-pick" data-mood="🥱" title="Sleepy">🥱</button>
-      <button type="button" class="mood-pick" data-mood="😴" title="Sleep">😴</button>
-      <button type="button" class="mood-pick" data-mood="🤔" title="Thinking">🤔</button>
-      <button type="button" class="mood-pick" data-mood="💪" title="Strong">💪</button>
+
+<div class="settings-wrapper" id="settings-wrapper">
+  <button class="settings-btn" id="settings-btn" title="Theme / Colorizer" aria-label="Open theme settings">
+    <span class="settings-icon">⚙</span>
+  </button>
+</div>
+
+<div id="settings-modal" class="settings-modal">
+  <div class="settings-modal-content">
+    <div class="settings-modal-header">
+      <h2>Settings</h2>
+      <button class="settings-close-modal" id="settings-close-btn" aria-label="Close">×</button>
     </div>
-    <div class="mood-tray-sep" aria-hidden="true"></div>
-    <div class="mood-tray-tools">
-      <button type="button" class="mood-cursor-btn" id="cursorRandomBtn" title="Randomize mouse cursor" aria-label="Randomize mouse cursor">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M5 3.5L19.5 11.2l-6.2 1.6 2.9 6.6-2.4 1.1-2.9-6.6L5 18.8V3.5z" fill="currentColor" opacity=".92"/>
-        </svg>
-      </button>
-      <span class="mood-cursor-hint">Change cursor</span>
+    <div class="settings-body">
+      <div class="settings-nav">
+        <button class="settings-nav-btn active" data-panel="general" onclick="openSettingsPanel('general')">Theme</button>
+        <button class="settings-nav-btn" data-panel="quiz" onclick="openSettingsPanel('quiz')">Quiz</button>
+      </div>
+      <div class="settings-panels">
+        <div class="settings-panel active" id="settings-panel-general">
+          <div class="settings-panel-title">Theme</div>
+<div class="setting-item" style="padding-top:20px; position:relative;">
+<div style="font-size:0.75em; font-weight:bold; color:var(--col-text-muted); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:16px; opacity:0.6;">Theme</div>
+<button title="Reset Theme to Defaults" onclick="resetThemeToDefaults()" style="position:absolute; top:20px; right:0; background:transparent; border:1px solid var(--col-error); color:var(--col-error); border-radius:6px; padding:3px 8px; font-size:0.8em; ">↺</button>
+<span class="setting-item-label">Accent Color</span>
+<div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+<div class="preset-swatches" style="margin:0; flex-shrink:0;">
+<button class="preset-swatch" data-hex="#00bbcc" style="background:#00bbcc;" title="Cyan" onclick="applyPreset('#00bbcc', false)"></button>
+<button class="preset-swatch" data-hex="#8833ff" style="background:#8833ff;" title="Violet" onclick="applyPreset('#8833ff', false, 32)"></button>
+<button class="preset-swatch" data-hex="#000000" style="background:#000000;" title="Obsidian" onclick="applyPreset('#000000', false, 90)"></button>
+<button class="preset-swatch" data-hex="#ff8800" style="background:#ff8800;" title="Amber" onclick="applyPreset('#ff8800', false)"></button>
+<button class="preset-swatch" data-hex="#ff0000" style="background:#ff0000;" title="Red" onclick="applyPreset('#ff0000', false, 32)"></button>
+</div>
+<div id="custom-presets-area" style="display:flex;gap:6px;align-items:center;"></div>
+<div id="theme-lock-colorPicker" style="display:flex; gap:8px; align-items:center; margin-left:auto;">
+<input type="color" id="accent-color-picker" value="#FF8800" style="width:40px;height:40px;border:none;border-radius:8px;flex-shrink:0;">
+<input type="text" id="accent-hex-input" value="#FF8800" maxlength="7" class="number-input" style="width:100px; font-family:monospace; font-size:0.85em;">
+</div>
+</div>
+</div>
+<div class="setting-item" id="theme-lock-colorStrength" style="border-top:1px solid var(--col-border-light); padding-top:20px;">
+<span class="setting-item-label">Color Strength: <span id="strength-value-display" style="color:var(--accent-0);">64</span></span>
+<div style="display:flex; gap:10px; align-items:center;">
+<span style="font-size:0.82em; color:var(--col-text-muted);">Subtle</span>
+<input type="range" id="accent-strength-slider" min="0" max="100" value="64" style="flex:1; ">
+<span style="font-size:0.82em; color:var(--col-text-muted);">Vibrant</span>
+</div>
+</div>
+<div class="setting-item" style="border-top:1px solid var(--col-border-light); padding-top:20px; display:none;">
+<span class="setting-item-label">Reset Theme</span>
+<button class="btn btn-secondary" style="border-color:var(--col-error); color:var(--col-error);" onclick="resetThemeToDefaults()">Reset Theme to Defaults</button>
+<p class="setting-item-desc">Resets accent color, hue shift, and dark mode.</p>
+</div>
+<div class="setting-item" style="display: none;">
+<span class="setting-item-label">Appearance</span>
+<div class="toggle-container" style="margin:0; justify-content:flex-start;">
+<span class="toggle-label">Dark</span>
+<label class="toggle-switch">
+<input type="checkbox" id="light-mode-toggle">
+<span class="toggle-slider"></span>
+</label>
+<span class="toggle-label">Light</span>
+</div>
+</div>
+        </div>
+        <div class="settings-panel" id="settings-panel-quiz">
+          <div class="settings-panel-title">Quiz</div>
+          <div class="setting-item" style="padding-top:8px;">
+            <span class="setting-item-label">Shuffle &amp; order</span>
+            <div class="pref-row" style="margin-top:10px;">
+              <label><input type="checkbox" id="prefShuffleQ" checked> Shuffle questions</label>
+              <label><input type="checkbox" id="prefShuffleC" checked> Shuffle choices</label>
+              <label><input type="checkbox" id="prefLinkFirst" checked> Insert linking questions randomly</label>
+            </div>
+            <p class="setting-item-desc">Prefs apply to the next run you start from the forms hub.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -1404,7 +1449,7 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
 <div class="modal-overlay" id="resetModal">
   <div class="modal-card">
     <h3 id="resetModalTitle">Reset this set?</h3>
-    <p id="resetModalText">This clears solved progress and the emoji response for this card.</p>
+    <p id="resetModalText">This clears solved progress for this card.</p>
     <div class="modal-actions">
       <button class="btn-ghost" type="button" id="resetModalCancel">Cancel</button>
       <button class="btn-gold" type="button" id="resetModalConfirm">Reset</button>
@@ -1430,18 +1475,6 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
     <div class="mode-tabs" role="tablist">
       <button type="button" class="mode-tab active" data-mode="forms">Forms</button>
       <button type="button" class="mode-tab" data-mode="categories">Categories</button>
-    </div>
-
-    <div class="quiz-settings-wrap" id="quizSettingsWrap">
-      <button type="button" class="quiz-settings-btn" id="quizSettingsBtn" aria-haspopup="true" aria-expanded="false">⚙ Quiz settings</button>
-      <div class="quiz-settings-panel" id="quizSettingsPanel" role="dialog" aria-label="Quiz settings">
-        <div class="settings-title">Quiz settings</div>
-        <div class="pref-row">
-          <label><input type="checkbox" id="prefShuffleQ" checked> Shuffle questions</label>
-          <label><input type="checkbox" id="prefShuffleC" checked> Shuffle choices</label>
-          <label><input type="checkbox" id="prefLinkFirst" checked> Insert linking questions randomly</label>
-        </div>
-      </div>
     </div>
 
     <div id="hubSections"></div>
@@ -1489,37 +1522,10 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
         <h2 id="finalHeading">Run complete</h2>
         <div class="score-big" id="scoreBig">0 / 0</div>
         <p id="finalStats"></p>
-        <div class="mood-wrap">
-          <div class="mood-prompt">how did that feel?</div>
-          <div class="mood-row" id="moodContainer">
-            <button class="mood-btn" type="button" data-mood="😊">😊</button>
-            <button class="mood-btn" type="button" data-mood="🤩">🤩</button>
-            <button class="mood-btn" type="button" data-mood="😎">😎</button>
-            <button class="mood-btn" type="button" data-mood="🙂">🙂</button>
-            <button class="mood-btn" type="button" data-mood="😐">😐</button>
-            <button class="mood-btn" type="button" data-mood="🤔">🤔</button>
-            <button class="mood-btn" type="button" data-mood="😌">😌</button>
-            <button class="mood-btn" type="button" data-mood="🧘">🧘</button>
-            <button class="mood-btn" type="button" data-mood="😤">😤</button>
-            <button class="mood-btn" type="button" data-mood="🔥">🔥</button>
-            <button class="mood-btn" type="button" data-mood="💪">💪</button>
-            <button class="mood-btn" type="button" data-mood="😠">😠</button>
-            <button class="mood-btn" type="button" data-mood="😢">😢</button>
-            <button class="mood-btn" type="button" data-mood="😭">😭</button>
-            <button class="mood-btn" type="button" data-mood="🥱">🥱</button>
-            <button class="mood-btn" type="button" data-mood="😴">😴</button>
-          </div>
-        </div>
+        <div class="results-heading">All questions</div>
+        <div class="results-scroll" id="resultsScroll"></div>
         <div class="final-actions">
-          <button class="btn-ghost" type="button" id="reviewBtn">Review</button>
           <button class="btn-gold" type="button" id="againHubBtn">← Return to Quiz</button>
-        </div>
-      </div>
-      <div class="review" id="reviewScreen" style="display:none">
-        <h2>Answer review</h2>
-        <div id="reviewList"></div>
-        <div class="final-actions" style="margin-top:18px">
-          <button class="btn-ghost" type="button" id="reviewBackBtn">← Results</button>
         </div>
       </div>
     </div>
@@ -1549,19 +1555,19 @@ function showToast(msg,ms){
   clearTimeout(showToast._t); showToast._t=setTimeout(()=>toastEl.classList.remove('show'), ms||2200);
 }
 
-/* FX + cursor + mood (same atmosphere as the lecture quiz) */
+/* FX + cursor */
 const canvas=document.getElementById('fxCanvas'); const ctx=canvas.getContext('2d');
 let W,H; const streams=[], orbs=[], sparks=[];
-function moodFxColors(){
+function fxColors(){
   const cs=getComputedStyle(document.documentElement);
   return [cs.getPropertyValue('--cyan').trim()||'#22d3ee', cs.getPropertyValue('--cyan-bright').trim()||'#67e8f9', cs.getPropertyValue('--teal').trim()||'#2dd4bf', cs.getPropertyValue('--gold').trim()||'#fbbf24', cs.getPropertyValue('--accent-2').trim()||'#82b1ff'];
 }
 function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
 addEventListener('resize', resize); resize();
 for(let i=0;i<14;i++) streams.push({x:Math.random()*W,y:Math.random()*H,len:30+Math.random()*70,speed:.45+Math.random()*1.1,a:.07+Math.random()*.14,color:Math.random()>.4?'#22d3ee':'#fbbf24'});
-for(let i=0;i<22;i++) orbs.push({x:Math.random()*W,y:Math.random()*H,r:2+Math.random()*6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.22,a:.12+Math.random()*.28,color:moodFxColors()[i%5],pulse:Math.random()*6});
+for(let i=0;i<22;i++) orbs.push({x:Math.random()*W,y:Math.random()*H,r:2+Math.random()*6,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.22,a:.12+Math.random()*.28,color:fxColors()[i%5],pulse:Math.random()*6});
 function spawnFireworkBurst(cx,cy,count=28){
-  const cols=moodFxColors();
+  const cols=fxColors();
   for(let i=0;i<count;i++){const angle=(Math.PI*2*i)/count+Math.random()*.3,speed=2.2+Math.random()*4.5;
     sparks.push({x:cx,y:cy,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,decay:.012+Math.random()*.018,color:cols[i%cols.length],r:1.5+Math.random()*2.5});}
 }
@@ -1582,67 +1588,14 @@ const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove', e=>{ if(!customCursorOn()) return; document.querySelectorAll('#cursor').forEach(el=>{ el.style.left=e.clientX+'px'; el.style.top=e.clientY+'px'; }); });
 document.addEventListener('mousedown',()=>{ if(customCursorOn()&&cursor) cursor.classList.add('active'); });
 document.addEventListener('mouseup',()=>{ if(cursor) cursor.classList.remove('active'); });
-
-const MOODS=[
-  {emoji:'😊',cls:'mood-happy',label:'Happy'},{emoji:'🤩',cls:'mood-starstruck',label:'Starstruck'},{emoji:'😎',cls:'mood-cool',label:'Cool'},{emoji:'🙂',cls:'mood-smile',label:'Smile'},
-  {emoji:'😐',cls:'mood-neutral',label:'Neutral'},{emoji:'🤔',cls:'mood-thinking',label:'Thinking'},
-  {emoji:'😌',cls:'mood-calm',label:'Calm'},{emoji:'🧘',cls:'mood-zen',label:'Zen'},
-  {emoji:'😤',cls:'mood-fierce',label:'Frustrated'},{emoji:'🔥',cls:'mood-firedup',label:'Fired up'},{emoji:'💪',cls:'mood-strong',label:'Strong'},
-  {emoji:'😠',cls:'mood-mad',label:'Mad'},{emoji:'😢',cls:'mood-sad',label:'Sad'},{emoji:'😭',cls:'mood-crying',label:'Crying'},
-  {emoji:'🥱',cls:'mood-sleepy',label:'Sleepy'},{emoji:'😴',cls:'mood-sleep',label:'Sleep'}
-];
-const MOOD_CLASSES=['mood-happy','mood-starstruck','mood-cool','mood-smile','mood-neutral','mood-thinking','mood-calm','mood-zen','mood-fierce','mood-firedup','mood-strong','mood-mad','mood-sad','mood-crying','mood-sleepy','mood-sleep'];
-const SKINS_BY_FAMILY={
-  'mood-happy':['summit-amber','amber-tide','aurora','copper-ember'],
-  'mood-starstruck':['violet-mist','aurora','grid-haze','rib-haze'],
-  'mood-cool':['teal-rift','grid-haze','aurora','deep-ink'],
-  'mood-smile':['amber-tide','summit-amber','copper-ember','aurora'],
-  'mood-neutral':['grid-haze','violet-mist','aurora','rib-haze'],
-  'mood-thinking':['violet-mist','deep-ink','grid-haze','rib-haze'],
-  'mood-calm':['teal-rift','aurora','rib-haze','grid-haze'],
-  'mood-zen':['violet-mist','aurora','teal-rift','grid-haze'],
-  'mood-fierce':['copper-ember','amber-tide','deep-ink','rib-haze'],
-  'mood-firedup':['deep-ink','copper-ember','amber-tide','summit-amber'],
-  'mood-strong':['teal-rift','aurora','copper-ember','grid-haze'],
-  'mood-mad':['deep-ink','copper-ember','amber-tide'],
-  'mood-sad':['deep-ink','violet-mist','teal-rift','rib-haze'],
-  'mood-crying':['deep-ink','violet-mist','aurora'],
-  'mood-sleepy':['violet-mist','deep-ink','grid-haze','rib-haze'],
-  'mood-sleep':['deep-ink','violet-mist','grid-haze','rib-haze']
-};
-const CURSOR_SKINS=['ring-screen','ring-tight','ring-gold','pill','beam-v','beam-h','diamond','comma'];
-let currentMoodEmoji='😊', pomodoroCycle=0;
-function resolveMood(e){ return MOODS.find(x=>x.emoji===e)||{emoji:e||'😊',cls:'mood-neutral',label:'Mood'}; }
-function applySkin(){ const list=SKINS_BY_FAMILY[resolveMood(currentMoodEmoji).cls]||SKINS_BY_FAMILY['mood-neutral']; document.documentElement.setAttribute('data-skin', list[Math.abs(pomodoroCycle)%list.length]); }
-function applyCursorSkin(force){ const cur=document.documentElement.getAttribute('data-cursor'); let next=force?shuffle(CURSOR_SKINS.filter(x=>x!==cur))[0]:CURSOR_SKINS[Math.abs(pomodoroCycle)%CURSOR_SKINS.length]; document.documentElement.setAttribute('data-cursor', next||CURSOR_SKINS[0]); }
-const liveMoodBtn=document.getElementById('liveMoodBtn');
-function applyLiveMood(emoji){
-  const m=resolveMood(emoji); currentMoodEmoji=m.emoji;
-  document.documentElement.classList.remove(...MOOD_CLASSES); document.documentElement.classList.add(m.cls);
-  liveMoodBtn.textContent=m.emoji; liveMoodBtn.title='Mood: '+m.label;
-  document.querySelectorAll('.mood-pick').forEach(p=>p.classList.toggle('active', p.dataset.mood===m.emoji));
-  lsSet('pt1_live_mood', m.emoji);
-  streams.forEach((s,i)=>{ const cols=moodFxColors(); s.color=i%2?cols[0]:cols[3]; });
-  applySkin(); applyCursorSkin(false);
+// Keep cursor skin stable (no mood-driven cycling)
+if(!document.documentElement.getAttribute('data-cursor')) document.documentElement.setAttribute('data-cursor','ring-screen');
+function refreshFxAccentColors(){
+  const cols=fxColors();
+  streams.forEach((s,i)=>{ s.color=i%2?cols[0]:cols[3]; });
+  orbs.forEach((o,i)=>{ o.color=cols[i%cols.length]; });
 }
-const moodWrap=document.getElementById('moodWrapLive');
-let moodCloseTimer=null;
-function openMoodTray(open){ document.getElementById('timerDock').classList.toggle('open',!!open); moodWrap.classList.toggle('open',!!open); }
-document.getElementById('timerDock').addEventListener('mouseenter',()=>{ clearTimeout(moodCloseTimer); openMoodTray(true); });
-document.getElementById('timerDock').addEventListener('mouseleave',()=>{ moodCloseTimer=setTimeout(()=>openMoodTray(false),420); });
-liveMoodBtn.addEventListener('click', e=>{ e.stopPropagation(); openMoodTray(!document.getElementById('timerDock').classList.contains('open')); });
-document.getElementById('moodTray').addEventListener('click', e=>{ const p=e.target.closest('.mood-pick'); if(p) applyLiveMood(p.dataset.mood); });
-document.addEventListener('click', e=>{ if(!document.getElementById('timerDock').contains(e.target)) openMoodTray(false); });
-document.getElementById('cursorRandomBtn').addEventListener('click', e=>{ e.stopPropagation(); pomodoroCycle++; applyCursorSkin(true); applySkin(); });
-document.querySelectorAll('#moodContainer .mood-btn').forEach(b=>b.addEventListener('click',()=>{
-  applyLiveMood(b.dataset.mood);
-  if(runLabel){
-    let runMoods = {};
-    try { runMoods = JSON.parse(lsGet('skel_run_moods')||'{}'); } catch(e){}
-    runMoods[runLabel] = b.dataset.mood;
-    lsSet('skel_run_moods', JSON.stringify(runMoods));
-  }
-}));
+refreshFxAccentColors();
 
 /* —— bank + hub —— */
 let BANK=null;
@@ -1740,7 +1693,7 @@ function openResetConfirm(label,pool){
   pendingResetPool=pool;
   pendingResetLabel=label;
   document.getElementById('resetModalTitle').textContent='Reset '+label+'?';
-  document.getElementById('resetModalText').textContent='This clears solved progress and the emoji response for this card.';
+  document.getElementById('resetModalText').textContent='This clears solved progress for this card.';
   document.getElementById('resetModal').classList.add('show');
 }
 function closeResetConfirm(){
@@ -1752,9 +1705,6 @@ function resetPoolProgress(pool,label){
   const s=loadSolved();
   pool.forEach(q=>{ s.delete(q.__id); s.delete(qid(q,0)); });
   saveSolved(s);
-  let runMoods = {};
-  try { runMoods = JSON.parse(lsGet('skel_run_moods')||'{}'); } catch(e){}
-  if(label && runMoods[label]!=null){ delete runMoods[label]; lsSet('skel_run_moods', JSON.stringify(runMoods)); }
   updateCounters();
   renderHub();
 }
@@ -1814,11 +1764,10 @@ function poolForForm(formDef, all){
   return all.filter(q => set.has((q.cat||'').replace(/_/g,' ')));
 }
 
-function appendPoolCard(grid, label, pool, runMoods){
+function appendPoolCard(grid, label, pool){
   const left=remainingOf(pool).length;
   const btn=document.createElement('button'); btn.type='button'; btn.className='card';
-  const moodEmoji = runMoods[label] || '';
-  btn.innerHTML=`<div class="card-top"><span class="form-letter">${escapeHtml(label)}</span><span class="mood-stamp">${moodEmoji}</span></div>
+  btn.innerHTML=`<div class="card-top"><span class="form-letter">${escapeHtml(label)}</span></div>
     <div class="card-sub">${pool.filter(isMatching).length} linking · ${pool.length-pool.filter(isMatching).length} choice</div>
     <div class="card-pct">${left} left</div>
     <div class="card-meta">${pool.length-left} solved / ${pool.length}</div>`;
@@ -1838,8 +1787,6 @@ function renderHub(){
     return;
   }
   const all=allQuestions();
-  let runMoods = {};
-  try { runMoods = JSON.parse(lsGet('skel_run_moods')||'{}'); } catch(e){}
 
   if(MODE==='forms'){
     const h=document.createElement('div'); h.className='section-h'; h.textContent='Forms'; host.appendChild(h);
@@ -1847,7 +1794,7 @@ function renderHub(){
     QUIZ_FORMS.forEach(formDef=>{
       const pool=poolForForm(formDef, all);
       if(!pool.length) return;
-      appendPoolCard(grid, formDef.title, pool, runMoods);
+      appendPoolCard(grid, formDef.title, pool);
     });
     host.appendChild(grid);
   } else {
@@ -1856,7 +1803,7 @@ function renderHub(){
     all.forEach(q=>{ const c=(q.cat||'general').replace(/_/g,' '); (by[c]=by[c]||[]).push(q); });
     const grid=document.createElement('div'); grid.className='grid';
     Object.keys(by).sort().forEach(cat=>{
-      appendPoolCard(grid, cat, by[cat], runMoods);
+      appendPoolCard(grid, cat, by[cat]);
     });
     host.appendChild(grid);
   }
@@ -1900,17 +1847,7 @@ async function loadEmbeddedBank(){
 loadEmbeddedBank();
 
 
-(function wireQuizSettings(){
-  const wrap=document.getElementById('quizSettingsWrap');
-  const btn=document.getElementById('quizSettingsBtn');
-  if(!wrap||!btn) return;
-  function setOpen(open){
-    wrap.classList.toggle('open', !!open);
-    btn.setAttribute('aria-expanded', open?'true':'false');
-  }
-  btn.addEventListener('click', e=>{ e.stopPropagation(); setOpen(!wrap.classList.contains('open')); });
-  document.addEventListener('click', e=>{ if(!wrap.contains(e.target)) setOpen(false); });
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && wrap.classList.contains('open')) setOpen(false); });
+(function wireQuizPrefs(){
   ['prefShuffleQ','prefShuffleC','prefLinkFirst'].forEach(id=>{
     const el=document.getElementById(id);
     if(!el) return;
@@ -1952,7 +1889,6 @@ function startRun(pool, label){
   document.getElementById('qTotal').textContent=questions.length;
   document.getElementById('quizScreen').style.display='block';
   document.getElementById('finalScreen').style.display='none';
-  document.getElementById('reviewScreen').style.display='none';
   showView('quizView');
   renderQuestion();
 }
@@ -2345,17 +2281,11 @@ function score(){ let c=0; answers.forEach((a,i)=>{ const q=questions[i]; if(isM
 function finishQuiz(){
   clearWireLayer();
   document.getElementById('quizScreen').style.display='none';
-  document.getElementById('reviewScreen').style.display='none';
   document.getElementById('finalScreen').style.display='block';
   const s=score();
   document.getElementById('scoreBig').textContent=s+' / '+questions.length;
   document.getElementById('finalStats').textContent=Math.round(s/questions.length*100)+'% · '+runLabel;
-  quizActive=false; spawnFireworkBurst(W*.5,H*.3,36);
-}
-function showReview(){
-  document.getElementById('finalScreen').style.display='none';
-  document.getElementById('reviewScreen').style.display='block';
-  const list=document.getElementById('reviewList'); list.innerHTML='';
+  const list=document.getElementById('resultsScroll'); list.innerHTML='';
   questions.forEach((q,i)=>{
     const div=document.createElement('div'); div.className='review-item';
     if(isMatching(q)){
@@ -2367,14 +2297,14 @@ function showReview(){
     }
     list.appendChild(div);
   });
+  quizActive=false; spawnFireworkBurst(W*.5,H*.3,36);
+  try{ list.scrollTop=0; }catch(e){}
 }
 
 document.getElementById('nextBtn').addEventListener('click', goNext);
 document.getElementById('backBtn').addEventListener('click', goBack);
 document.getElementById('hubBtn').addEventListener('click', returnToQuiz);
 document.getElementById('againHubBtn').addEventListener('click', ()=>{ clearWireLayer(); returnToQuiz(); });
-document.getElementById('reviewBtn').addEventListener('click', showReview);
-document.getElementById('reviewBackBtn').addEventListener('click', ()=>{ document.getElementById('reviewScreen').style.display='none'; document.getElementById('finalScreen').style.display='block'; });
 document.getElementById('fsBtn').addEventListener('click', ()=>{ if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{}); else document.exitFullscreen(); });
 document.addEventListener('keydown', e=>{
   if(e.key==='f'||e.key==='F'){ e.preventDefault(); document.getElementById('fsBtn').click(); }
@@ -2385,22 +2315,25 @@ document.addEventListener('keydown', e=>{
   }
 });
 
-applyLiveMood(lsGet('pt1_live_mood')||'😊');
 renderHub();
 </script>
 
-<!-- Colorizer theme sync (atc_theme_color_v1) — particles → colorizer-theme -->
-<div style="display:none" aria-hidden="true">
-  <input type="color" id="accent-color-picker" value="#FF8800">
-  <input type="text" id="accent-hex-input" value="#FF8800" maxlength="7">
-  <input type="range" id="accent-strength-slider" min="0" max="100" value="64">
-  <span id="strength-value-display">64</span>
-  <div id="custom-presets-area"></div>
-  <div class="preset-swatches"></div>
-  <input type="checkbox" id="light-mode-toggle">
-</div>
+<!-- Colorizer: settings modal owns controls · particles → colorizer-theme -->
 <script src="../js/particles.js"></script>
 <script src="../js/colorizer-theme.js"></script>
+<script>
+// Keep FX stream colors in sync when accent changes via colorizer
+(function(){
+  var _orig = window.changeAccentColor;
+  if(typeof _orig === 'function'){
+    window.changeAccentColor = function(){
+      var r = _orig.apply(this, arguments);
+      try{ if(typeof refreshFxAccentColors === 'function') refreshFxAccentColors(); }catch(e){}
+      return r;
+    };
+  }
+})();
+</script>
 </body>
 
 </html>

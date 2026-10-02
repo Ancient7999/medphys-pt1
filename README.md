@@ -27,7 +27,7 @@ medphys-pt1/
 
 ## Main menu
 
-Title: **Medical Physics · Periodic Test 1** · default accent **#FF8800** (amber)
+Title: **Medical Physics · Periodic Test 1** · shared colorizer theme via `atc_theme_color_v1` (default **#FF8800**; change in Quiz ⚙ Settings — hub/study follow)
 
 | Item | Behaviour |
 |------|-----------|

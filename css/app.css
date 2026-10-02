@@ -499,3 +499,28 @@ a { color: var(--accent-0); }
   background: rgba(var(--accent-0-rgb), 0.12);
   border-color: var(--accent-0);
 }
+
+
+/* —— ATC Math custom mouse cursor (exact brushCursor CSS) —— */
+*{cursor:none !important;}
+.brushCursor{position:fixed;pointer-events:none;z-index:2147483647;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle,var(--accent-0) 0,var(--accent-0) 8px,rgba(var(--accent-0-rgb),0.8) 8px,rgba(var(--accent-0-rgb),0.8) 10px);transform:translate(-50%,-50%);left:-100px;top:-100px;transition:opacity 0.2s ease;}
+.brushCursor.hidden{opacity:0;}
+.aura{position:absolute;width:100px;height:100px;left:calc(50% - 50px);top:calc(50% - 50px);background:radial-gradient(circle,rgba(var(--accent-0-rgb),0.5) 0%,rgba(var(--accent-0-rgb),0) 70%);opacity:0.5;pointer-events:none;animation:breathe 2s infinite;}
+@keyframes breathe{0%{transform:scale(1);opacity:0.5;}50%{transform:scale(1.2);opacity:0.8;}100%{transform:scale(1);opacity:0.5;}}
+
+/* ATC cursor-idle: suppress CSS :hover while keyboard-navigating / cursor hidden */
+body.cursor-idle .ps2-menu-item:hover:not(.focused),
+body.cursor-idle .ps2-menu-item:focus-visible:not(.focused){
+  transform:none!important;
+  background:linear-gradient(90deg,rgba(var(--accent-0-rgb),0.09) 0%,rgba(var(--accent-0-rgb),0.02) 100%)!important;
+  box-shadow:none!important;
+}
+body.cursor-idle .ps2-back-btn:hover{
+  border-color:var(--col-border)!important;
+  color:var(--col-text-muted)!important;
+  box-shadow:none!important;
+}
+body.cursor-idle .ps2-menu-item,
+body.cursor-idle .ps2-back-btn{
+  pointer-events:none;
+}
