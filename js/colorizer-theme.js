@@ -223,11 +223,11 @@ const picker = document.getElementById('accent-color-picker');
 const hexInput = document.getElementById('accent-hex-input');
 const strengthSlider = document.getElementById('accent-strength-slider');
 const strengthDisplay = document.getElementById('strength-value-display');
-if (picker) picker.value = '#000000';
-if (hexInput) hexInput.value = '#000000';
-if (strengthSlider) strengthSlider.value = 90;
-if (strengthDisplay) strengthDisplay.textContent = 90;
-changeAccentColor('#000000', 90);
+if (picker) picker.value = '#FF8800';
+if (hexInput) hexInput.value = '#FF8800';
+if (strengthSlider) strengthSlider.value = 64;
+if (strengthDisplay) strengthDisplay.textContent = 64;
+changeAccentColor('#FF8800', 64);
 refreshThemeSVGs();
 syncAllPresetHighlights();renderCustomPresets();
 }
@@ -296,8 +296,8 @@ const str = strengthSlider ? parseInt(strengthSlider.value) : 90;
 changeAccentColor(hex, str);
 });
 }
-let initialColor = '#000000';
-let initialStrength = 90;
+let initialColor = '#FF8800';
+let initialStrength = 64;
 try {
 const savedColor = localStorage.getItem(THEME_STORAGE_KEY);
 if (savedColor && savedColor[0] === '#' && savedColor.length === 7) {

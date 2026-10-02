@@ -1,4 +1,4 @@
-# Medical Physics Periodic Test 1 — Hub · Study · Quiz
+# Medical Physics Periodic Test 1 — Main Menu · Study · Quiz
 
 GitHub Pages app for **Phys101 Medical Physics** Periodic Test 1.
 
@@ -8,51 +8,54 @@ GitHub Pages app for **Phys101 Medical Physics** Periodic Test 1.
 
 ```
 medphys-pt1/
-  index.html                 # ATC-style hub (Quiz / Study / Options)
+  index.html                 # Main menu (Quiz / Study / About)
   study.html                 # folded chapter study
   quiz/index.html            # quiz portal (bank via fetch)
   css/
-    theme-vars.css           # COPIED from calculator (unchanged)
-    colorizer.css            # COPIED from calculator (unchanged)
-    app.css                  # hub + study chrome (Hooke fonts + accent bridge)
+    theme-vars.css           # theme tokens (default accent #FF8800)
+    colorizer.css            # vendor (unused on main menu)
+    app.css                  # main menu + study chrome
   js/
-    particles.js             # COPIED from calculator (unchanged)
-    colorizer-theme.js       # COPIED from calculator (unchanged)
+    particles.js             # vendor (quiz mood FX path)
+    colorizer-theme.js       # vendor theme engine (quiz; default amber)
     study-app.js             # markdown + accordion
   assets/
-    colorizer-panel.fragment.html  # COPIED (unchanged)
+    colorizer-panel.fragment.html  # vendor fragment (unused)
   data/bank.json
   content/chapter-1.md … chapter-3.md
 ```
 
-## Hub menu
+## Main menu
 
-Title: **Medical Physics · Periodic Test 1**
+Title: **Medical Physics · Periodic Test 1** · default accent **#FF8800** (amber)
 
 | Item | Behaviour |
 |------|-----------|
-| **Quiz Interface** | Hero CTA (flowing glow + glossy shine) → `quiz/` |
-| **Study Interface** | Quiet / demure → `study.html` (chapters collapsed) |
-| **Options** | Mounts calculator colorizer (presets, strength, `atc_theme_color_v1`) |
+| **Quiz Interface** | Hero CTA → `quiz/` · forms by chapter |
+| **Study Interface** | Quiet → `study.html` (chapters collapsed) |
+| **About** | How to use · scope · tips |
 
-Script order on pages that theme: `particles.js` → `colorizer-theme.js`.
+## Quiz forms
+
+- Chapter 1: Matter and Mechanical Properties
+- Chapter 1: Stress, Strain & Young's Modulus
+- Chapter 2: Fluids at Rest (all Ch2 cats)
+- Chapter 3: Mass Flow & Bernoulli
+
+Shuffle prefs live under **Quiz settings**. From a run, **Return to Quiz** goes to the forms list (not the main menu).
 
 ## Run locally
 
 ```bash
 cd medphys-pt1
 python3 -m http.server 8080
-# Hub:   http://localhost:8080/
+# Main:  http://localhost:8080/
 # Study: http://localhost:8080/study.html
 # Quiz:  http://localhost:8080/quiz/
 ```
 
 ## GitHub Pages
 
-- Hub: `https://ancient7999.github.io/medphys-pt1/`
+- Main: `https://ancient7999.github.io/medphys-pt1/`
 - Study: `https://ancient7999.github.io/medphys-pt1/study.html`
 - Quiz: `https://ancient7999.github.io/medphys-pt1/quiz/`
-
-## Fonts
-
-Instrument Serif · Outfit · Space Mono (Hooke demure), driven by colorizer `--accent-*`.

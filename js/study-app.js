@@ -271,10 +271,5 @@
     });
   }
 
-  document.getElementById('fsBtn').addEventListener('click', function () {
-    if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function () {});
-    else document.exitFullscreen();
-  });
-
   buildCards();
 })();

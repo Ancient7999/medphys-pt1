@@ -26,7 +26,7 @@
   color: var(--accent-0);
   text-shadow: 0 0 18px rgba(var(--accent-0-rgb), 0.45);
 }
-#returnHubBtn, #returnHubBtnQuiz, #returnStudyBtn, #returnStudyBtnQuiz {
+#returnHubBtn, #returnStudyBtn, #returnStudyBtnQuiz, #hubBtn {
   border-color: rgba(var(--accent-0-rgb), 0.45);
   color: var(--accent-0);
 }
@@ -1345,8 +1345,14 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
 .mode-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 16px}
 .mode-tab{font-family:var(--mono);font-size:.85rem;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--text-dim)}
 .mode-tab.active{background:var(--mood-glow);border-color:var(--cyan);color:var(--cyan-bright)}
-.pref-row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:0 0 18px;color:var(--text-dim);font-family:var(--mono);font-size:.82rem}
+.pref-row{display:flex;flex-direction:column;gap:10px;margin:0;color:var(--text-dim);font-family:var(--mono);font-size:.82rem}
 .pref-row label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.quiz-settings-wrap{position:relative;display:inline-flex;align-items:center;margin:0 0 18px}
+.quiz-settings-btn{font-family:var(--mono);font-size:.85rem;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:rgba(14,22,40,.55);color:var(--cyan-bright);backdrop-filter:blur(14px);transition:transform .2s,border-color .2s,box-shadow .2s,background .2s}
+.quiz-settings-btn:hover,.quiz-settings-wrap.open .quiz-settings-btn{border-color:var(--cyan);background:var(--mood-glow);box-shadow:0 0 18px var(--mood-glow);transform:translateY(-1px)}
+.quiz-settings-panel{display:none;position:absolute;top:calc(100% + 8px);left:0;z-index:40;min-width:min(320px,86vw);padding:14px 16px;border-radius:14px;border:1px solid var(--border);background:rgba(14,22,40,.92);backdrop-filter:blur(16px);box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.quiz-settings-wrap.open .quiz-settings-panel{display:block}
+.quiz-settings-panel .settings-title{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
 .load-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 8px}
 .file-btn{position:relative;overflow:hidden}
 .file-btn input{position:absolute;inset:0;opacity:0;cursor:pointer}
@@ -1410,10 +1416,10 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
   <div class="hub-view hub-wrap">
     <h1 id="hubTitle">Medical Physics · PT1 Quiz</h1>
     <p class="hub-kicker" id="hubKicker">Medical Physics · Form A · 198 items</p>
-    <div class="sub" id="hubSub">Bank from data/bank.json · pick a category or form</div>
+    <div class="sub" id="hubSub">Pick a form · chapter groupings of the bank</div>
 
     <div class="hub-back" style="display:flex;flex-wrap:wrap;gap:10px;">
-      <button type="button" id="returnHubBtn">← Return to hub</button>
+      <button type="button" id="returnHubBtn">← Main Menu</button>
       <button type="button" id="returnStudyBtn">Study</button>
     </div>
     <div class="load-row">
@@ -1422,15 +1428,20 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
     <p class="foot" id="bankMeta" style="margin-top:8px;text-align:left;opacity:.7">Loading bank…</p>
 
     <div class="mode-tabs" role="tablist">
-      <button type="button" class="mode-tab active" data-mode="categories">Categories</button>
-      <button type="button" class="mode-tab" data-mode="forms">Forms</button>
-      <button type="button" class="mode-tab" data-mode="mix">Mixture</button>
+      <button type="button" class="mode-tab active" data-mode="forms">Forms</button>
+      <button type="button" class="mode-tab" data-mode="categories">Categories</button>
     </div>
 
-    <div class="pref-row">
-      <label><input type="checkbox" id="prefShuffleQ" checked> Shuffle questions</label>
-      <label><input type="checkbox" id="prefShuffleC" checked> Shuffle choices</label>
-      <label><input type="checkbox" id="prefLinkFirst" checked> Insert linking questions randomly</label>
+    <div class="quiz-settings-wrap" id="quizSettingsWrap">
+      <button type="button" class="quiz-settings-btn" id="quizSettingsBtn" aria-haspopup="true" aria-expanded="false">⚙ Quiz settings</button>
+      <div class="quiz-settings-panel" id="quizSettingsPanel" role="dialog" aria-label="Quiz settings">
+        <div class="settings-title">Quiz settings</div>
+        <div class="pref-row">
+          <label><input type="checkbox" id="prefShuffleQ" checked> Shuffle questions</label>
+          <label><input type="checkbox" id="prefShuffleC" checked> Shuffle choices</label>
+          <label><input type="checkbox" id="prefLinkFirst" checked> Insert linking questions randomly</label>
+        </div>
+      </div>
     </div>
 
     <div id="hubSections"></div>
@@ -1445,9 +1456,8 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
       <div class="sub" id="quizSub">practice run</div>
     </div>
     <div class="header-right">
-      <button class="fs-btn" type="button" id="returnHubBtnQuiz">← Hub</button>
+      <button class="fs-btn" type="button" id="hubBtn">← Return to Quiz</button>
       <button class="fs-btn" type="button" id="returnStudyBtnQuiz">Study</button>
-      <button class="fs-btn" type="button" id="hubBtn">← Quiz menu</button>
       <button class="fs-btn" type="button" id="fsBtn">Fullscreen · F</button>
     </div>
   </div>
@@ -1502,7 +1512,7 @@ html[data-custom-cursor="on"] .match-item,html[data-custom-cursor="on"] .q-nav-b
         </div>
         <div class="final-actions">
           <button class="btn-ghost" type="button" id="reviewBtn">Review</button>
-          <button class="btn-gold" type="button" id="againHubBtn">Back to Main Menu</button>
+          <button class="btn-gold" type="button" id="againHubBtn">← Return to Quiz</button>
         </div>
       </div>
       <div class="review" id="reviewScreen" style="display:none">
@@ -1636,7 +1646,10 @@ document.querySelectorAll('#moodContainer .mood-btn').forEach(b=>b.addEventListe
 
 /* —— bank + hub —— */
 let BANK=null;
-let MODE=lsGet('skel_mode')||'categories';
+let _savedMode=lsGet('skel_mode');
+let MODE=(_savedMode==='mix'||!_savedMode)?'forms':_savedMode;
+if(MODE!=='forms'&&MODE!=='categories') MODE='forms';
+lsSet('skel_mode', MODE);
 let questions=[], answers=[], current=0, locked=false, quizActive=false, startTime=0, elapsedTimer=null, drawState=null, runLabel='';
 
 function bankId(){ return (BANK && (BANK.id||BANK.title)) || 'anon'; }
@@ -1761,6 +1774,62 @@ document.getElementById('resetModal').addEventListener('click',e=>{
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'&&document.getElementById('resetModal').classList.contains('show')) closeResetConfirm();
 });
+const QUIZ_FORMS = [
+  {
+    id: 'ch1-matter',
+    title: 'Chapter 1: Matter and Mechanical Properties',
+    cats: ['Chapter 1: Matter and Mechanical Properties']
+  },
+  {
+    id: 'ch1-stress',
+    title: "Chapter 1: Stress, Strain & Young's Modulus",
+    cats: ["Chapter 1: Stress, Strain & Young's Modulus"]
+  },
+  {
+    id: 'ch2',
+    title: 'Chapter 2: Fluids at Rest',
+    cats: [
+      'Chapter 2: Density',
+      'Chapter 2: Pressure in Fluids',
+      'Chapter 2: Atmospheric Pressure',
+      'Chapter 2: Gauge Pressure',
+      "Chapter 2: Pascal's Principle",
+      'Chapter 2: Barometer',
+      'Chapter 2: Open Tube Manometer',
+      "Chapter 2: Buoyancy and Archimedes' Principle"
+    ]
+  },
+  {
+    id: 'ch3',
+    title: "Chapter 3: Mass Flow & Bernoulli",
+    cats: [
+      'Chapter 3: Mass Flow Rate and Equation of Continuity',
+      "Chapter 3: Bernoulli's Equation"
+    ]
+  }
+];
+
+function poolForForm(formDef, all){
+  const set = new Set(formDef.cats);
+  return all.filter(q => set.has((q.cat||'').replace(/_/g,' ')));
+}
+
+function appendPoolCard(grid, label, pool, runMoods){
+  const left=remainingOf(pool).length;
+  const btn=document.createElement('button'); btn.type='button'; btn.className='card';
+  const moodEmoji = runMoods[label] || '';
+  btn.innerHTML=`<div class="card-top"><span class="form-letter">${escapeHtml(label)}</span><span class="mood-stamp">${moodEmoji}</span></div>
+    <div class="card-sub">${pool.filter(isMatching).length} linking · ${pool.length-pool.filter(isMatching).length} choice</div>
+    <div class="card-pct">${left} left</div>
+    <div class="card-meta">${pool.length-left} solved / ${pool.length}</div>`;
+  if(left===0) btn.style.opacity='.55';
+  btn.addEventListener('click',()=>{
+    if(left===0){ handleLockedCardClick(label,pool); return; }
+    startRun(pool, label);
+  });
+  grid.appendChild(btn);
+}
+
 function renderHub(){
   const host=document.getElementById('hubSections');
   host.innerHTML='';
@@ -1769,54 +1838,25 @@ function renderHub(){
     return;
   }
   const all=allQuestions();
-  const solved=loadSolved();
-  const showForms = MODE==='forms' || MODE==='mix';
-  const showCats = MODE==='categories' || MODE==='mix';
   let runMoods = {};
   try { runMoods = JSON.parse(lsGet('skel_run_moods')||'{}'); } catch(e){}
 
-  if(showForms){
+  if(MODE==='forms'){
     const h=document.createElement('div'); h.className='section-h'; h.textContent='Forms'; host.appendChild(h);
     const grid=document.createElement('div'); grid.className='grid';
-    (BANK.forms||Object.keys(BANK.bank||{})).forEach(letter=>{
-      const pool=all.filter(q=>q.__form===letter);
-      const left=remainingOf(pool).length;
-      const btn=document.createElement('button'); btn.type='button'; btn.className='card';
-      const label = 'Form '+letter;
-      const moodEmoji = runMoods[label] || '';
-      btn.innerHTML=`<div class="card-top"><span class="form-letter">Form ${escapeHtml(letter)}</span><span class="mood-stamp">${moodEmoji}</span></div>
-        <div class="card-sub">${pool.filter(isMatching).length} linking · ${pool.length-pool.filter(isMatching).length} choice</div>
-        <div class="card-pct">${left} left</div>
-        <div class="card-meta">${pool.length-left} solved / ${pool.length}</div>`;
-      if(left===0) btn.style.opacity='.55';
-      btn.addEventListener('click',()=>{
-        if(left===0){ handleLockedCardClick(label,pool); return; }
-        startRun(pool, label);
-      });
-      grid.appendChild(btn);
+    QUIZ_FORMS.forEach(formDef=>{
+      const pool=poolForForm(formDef, all);
+      if(!pool.length) return;
+      appendPoolCard(grid, formDef.title, pool, runMoods);
     });
     host.appendChild(grid);
-  }
-  if(showCats){
+  } else {
     const h=document.createElement('div'); h.className='section-h'; h.textContent='Categories'; host.appendChild(h);
     const by={};
     all.forEach(q=>{ const c=(q.cat||'general').replace(/_/g,' '); (by[c]=by[c]||[]).push(q); });
     const grid=document.createElement('div'); grid.className='grid';
     Object.keys(by).sort().forEach(cat=>{
-      const pool=by[cat];
-      const left=remainingOf(pool).length;
-      const btn=document.createElement('button'); btn.type='button'; btn.className='card';
-      const moodEmoji = runMoods[cat] || '';
-      btn.innerHTML=`<div class="card-top"><span class="form-letter">${escapeHtml(cat)}</span><span class="mood-stamp">${moodEmoji}</span></div>
-        <div class="card-sub">${pool.filter(isMatching).length} linking · ${pool.length-pool.filter(isMatching).length} choice</div>
-        <div class="card-pct">${left} left</div>
-        <div class="card-meta">${pool.length-left} solved / ${pool.length}</div>`;
-      if(left===0) btn.style.opacity='.55';
-      btn.addEventListener('click',()=>{
-        if(left===0){ handleLockedCardClick(cat,pool); return; }
-        startRun(pool, cat);
-      });
-      grid.appendChild(btn);
+      appendPoolCard(grid, cat, by[cat], runMoods);
     });
     host.appendChild(grid);
   }
@@ -1826,17 +1866,17 @@ function ingestBank(data){
   if(!data || !data.bank){ showToast('JSON needs a bank object'); return; }
   BANK=data;
   document.getElementById('hubTitle').textContent=data.title||'Quiz Skeleton';
-  document.getElementById('hubKicker').textContent=(data.subject||'Bank')+' · '+(data.forms||Object.keys(data.bank)).join(' · ');
-  document.getElementById('hubSub').textContent=(data.subject||'')+' · load once, play by form or category';
+  document.getElementById('hubKicker').textContent=(data.subject||'Bank')+' · '+allQuestions().length+' items · 4 forms';
+  document.getElementById('hubSub').textContent=(data.subject||'')+' · pick a form (chapter groupings) or browse categories';
   document.getElementById('bankMeta').textContent='Loaded · '+(allQuestions().length)+' items · solved '+loadSolved().size;
   document.title=(data.title||'Quiz')+' · PT1';
   renderHub();
 }
 
-function goHub(){ window.location.href='../index.html'; }
+function goMainMenu(){ window.location.href='../index.html'; }
 function goStudy(){ window.location.href='../study.html'; }
-document.getElementById('returnHubBtn').addEventListener('click', goHub);
-document.getElementById('returnHubBtnQuiz').addEventListener('click', goHub);
+function returnToQuiz(){ quizActive=false; clearWireLayer(); renderHub(); showView('hubView'); }
+document.getElementById('returnHubBtn').addEventListener('click', goMainMenu);
 document.getElementById('returnStudyBtn').addEventListener('click', goStudy);
 document.getElementById('returnStudyBtnQuiz').addEventListener('click', goStudy);
 
@@ -1858,6 +1898,29 @@ async function loadEmbeddedBank(){
   console.error(lastErr);
 }
 loadEmbeddedBank();
+
+
+(function wireQuizSettings(){
+  const wrap=document.getElementById('quizSettingsWrap');
+  const btn=document.getElementById('quizSettingsBtn');
+  if(!wrap||!btn) return;
+  function setOpen(open){
+    wrap.classList.toggle('open', !!open);
+    btn.setAttribute('aria-expanded', open?'true':'false');
+  }
+  btn.addEventListener('click', e=>{ e.stopPropagation(); setOpen(!wrap.classList.contains('open')); });
+  document.addEventListener('click', e=>{ if(!wrap.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && wrap.classList.contains('open')) setOpen(false); });
+  ['prefShuffleQ','prefShuffleC','prefLinkFirst'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    const key='skel_'+id;
+    const saved=lsGet(key);
+    if(saved==='0') el.checked=false;
+    if(saved==='1') el.checked=true;
+    el.addEventListener('change',()=> lsSet(key, el.checked?'1':'0'));
+  });
+})();
 
 document.querySelectorAll('.mode-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
@@ -2308,8 +2371,8 @@ function showReview(){
 
 document.getElementById('nextBtn').addEventListener('click', goNext);
 document.getElementById('backBtn').addEventListener('click', goBack);
-document.getElementById('hubBtn').addEventListener('click', ()=>{ quizActive=false; clearWireLayer(); renderHub(); showView('hubView'); });
-document.getElementById('againHubBtn').addEventListener('click', ()=>{ clearWireLayer(); renderHub(); showView('hubView'); });
+document.getElementById('hubBtn').addEventListener('click', returnToQuiz);
+document.getElementById('againHubBtn').addEventListener('click', ()=>{ clearWireLayer(); returnToQuiz(); });
 document.getElementById('reviewBtn').addEventListener('click', showReview);
 document.getElementById('reviewBackBtn').addEventListener('click', ()=>{ document.getElementById('reviewScreen').style.display='none'; document.getElementById('finalScreen').style.display='block'; });
 document.getElementById('fsBtn').addEventListener('click', ()=>{ if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{}); else document.exitFullscreen(); });
