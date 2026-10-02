@@ -192,3 +192,37 @@ button { cursor: pointer; }
 .preview-comma{width:16px;height:16px;border:2px solid var(--accent-0);border-radius:50% 50% 50% 2px;transform:rotate(-20deg);}
 .preview-system{width:14px;height:18px;background:linear-gradient(160deg,#fff 0 46%,var(--accent-0) 46% 100%);clip-path:polygon(0% 0%,0% 100%,34% 70%,48% 100%,60% 95%,42% 62%,78% 62%);box-shadow:1px 1px 4px rgba(0,0,0,.35);font-size:0;color:transparent;}
 .cursor-skins-disabled{opacity:.42;pointer-events:none;filter:grayscale(.25);}
+
+
+/* Custom font picker (Theme → Change Fonts) */
+.font-picker-wrap{position:relative;flex:1;min-width:140px;max-width:220px;}
+.font-family-select-native{
+  position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+  overflow:hidden!important;clip:rect(0,0,0,0)!important;border:0!important;opacity:0!important;pointer-events:none!important;
+}
+.font-picker-btn{
+  display:block;width:100%!important;max-width:none!important;text-align:left!important;
+  padding:8px 28px 8px 10px!important;font-size:0.9em!important;line-height:1.25;cursor:pointer;
+  position:relative;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.font-picker-btn::after{
+  content:'▾';position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  font-family:system-ui,sans-serif;font-size:0.85em;opacity:.7;pointer-events:none;
+}
+.font-picker-wrap.open .font-picker-btn{border-color:var(--accent-0);box-shadow:0 0 12px rgba(var(--accent-0-rgb),.28);}
+.font-picker-menu{
+  display:none;position:absolute;z-index:80;left:0;right:0;top:calc(100% + 4px);
+  max-height:220px;overflow-y:auto;padding:6px;border-radius:10px;
+  border:1.5px solid rgba(var(--accent-0-rgb),.35);
+  background:rgba(12,14,20,.98);box-shadow:0 14px 36px rgba(0,0,0,.5);
+  scrollbar-width:thin;
+}
+.font-picker-wrap.open .font-picker-menu{display:block;}
+.font-picker-option{
+  display:block;width:100%;text-align:left;padding:8px 10px;margin:0;border:none;border-radius:8px;
+  background:transparent;color:var(--col-text-main);font-size:0.92em;line-height:1.25;cursor:pointer;
+  transition:background .12s,color .12s;
+}
+.font-picker-option:hover{background:rgba(var(--accent-0-rgb),.12);color:var(--accent-0);}
+.font-picker-option.active{background:rgba(var(--accent-0-rgb),.18);color:var(--accent-0);}
+.settings-panel:not(#settings-panel-about) .font-picker-btn.number-input{width:100%!important;}

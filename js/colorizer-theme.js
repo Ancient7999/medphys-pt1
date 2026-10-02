@@ -249,9 +249,30 @@ global.resetThemeToDefaults = resetThemeToDefaults;
     { id: 'nav', defaultName: 'Space Mono', vars: ['--font-nav'] },
     { id: 'mono', defaultName: 'Space Mono', vars: ['--font-mono', '--mono'] }
   ];
+  var FONT_ORDER = [
+    'Instrument Serif', 'Fraunces', 'Playfair Display', 'Georgia', 'Times New Roman',
+    'Outfit', 'Nunito', 'Montserrat', 'Roboto', 'Oswald', 'Arial', 'Verdana', 'Trebuchet MS',
+    'Space Mono', 'IBM Plex Mono', 'Courier New', 'Press Start 2P',
+    'Bebas Neue', 'Impact',
+    'Permanent Marker', 'Pacifico', 'Indie Flower', 'Comic Neue'
+  ];
+  var FONT_LABELS = {
+    'Instrument Serif': 'Instrument',
+    'Playfair Display': 'Playfair',
+    'Bebas Neue': 'Bebas',
+    'Permanent Marker': 'Marker',
+    'Press Start 2P': 'Pixel',
+    'Times New Roman': 'Times',
+    'Trebuchet MS': 'Trebuchet',
+    'Courier New': 'Courier',
+    'IBM Plex Mono': 'IBM Plex Mono',
+    'Fraunces': 'Fraunces'
+  };
   var FONT_STACKS = {
     'Instrument Serif': "'Instrument Serif', Georgia, serif",
+    'Fraunces': "'Fraunces', Georgia, serif",
     'Space Mono': "'Space Mono', ui-monospace, monospace",
+    'IBM Plex Mono': "'IBM Plex Mono', ui-monospace, monospace",
     'Nunito': "'Nunito', system-ui, sans-serif",
     'Outfit': "'Outfit', system-ui, sans-serif",
     'Montserrat': "'Montserrat', system-ui, sans-serif",
@@ -274,7 +295,9 @@ global.resetThemeToDefaults = resetThemeToDefaults;
   };
   var FONT_GOOGLE = {
     'Instrument Serif': 'Instrument+Serif:ital@0;1',
+    'Fraunces': 'Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700',
     'Space Mono': 'Space+Mono:wght@400;700',
+    'IBM Plex Mono': 'IBM+Plex+Mono:wght@400;500;600;700',
     'Nunito': 'Nunito:wght@400;500;600;700',
     'Outfit': 'Outfit:wght@400;500;600;700',
     'Montserrat': 'Montserrat:wght@400;500;600;700',
@@ -323,6 +346,134 @@ global.resetThemeToDefaults = resetThemeToDefaults;
     return defaultName;
   }
 
+  function fontLabel(name) {
+    return FONT_LABELS[name] || name;
+  }
+
+  function syncFontSelectOptions(sel) {
+    if (!sel) return;
+    var current = sel.value;
+    var html = '';
+    for (var i = 0; i < FONT_ORDER.length; i++) {
+      var name = FONT_ORDER[i];
+      if (!FONT_STACKS[name]) continue;
+      var selected = name === current ? ' selected' : '';
+      html += '<option value="' + name.replace(/"/g, '&quot;') + '"' + selected +
+        ' style="font-family:' + FONT_STACKS[name].replace(/"/g, '&quot;') + ';">' +
+        fontLabel(name) + '</option>';
+    }
+    sel.innerHTML = html;
+    if (current && FONT_STACKS[current]) sel.value = current;
+    if (FONT_STACKS[sel.value]) sel.style.fontFamily = FONT_STACKS[sel.value];
+  }
+
+  function syncFontPickerUI(roleId, name) {
+    var wrap = document.querySelector('.font-picker-wrap[data-font-role="' + roleId + '"]');
+    if (!wrap) return;
+    var btn = wrap.querySelector('.font-picker-btn');
+    var opts = wrap.querySelectorAll('.font-picker-option');
+    var stack = FONT_STACKS[name] || '';
+    if (btn) {
+      btn.textContent = fontLabel(name);
+      btn.style.fontFamily = stack;
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    for (var i = 0; i < opts.length; i++) {
+      var on = opts[i].getAttribute('data-font') === name;
+      opts[i].classList.toggle('active', on);
+      opts[i].setAttribute('aria-selected', on ? 'true' : 'false');
+    }
+    wrap.classList.remove('open');
+  }
+
+  function closeAllFontPickers(except) {
+    var opens = document.querySelectorAll('.font-picker-wrap.open');
+    for (var i = 0; i < opens.length; i++) {
+      if (except && opens[i] === except) continue;
+      opens[i].classList.remove('open');
+      var b = opens[i].querySelector('.font-picker-btn');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  function buildCustomFontPicker(sel) {
+    if (!sel || sel.dataset.customPicker === '1') return;
+    sel.dataset.customPicker = '1';
+    var role = sel.getAttribute('data-font-role') || '';
+    var wrap = document.createElement('div');
+    wrap.className = 'font-picker-wrap';
+    wrap.setAttribute('data-font-role', role);
+    sel.parentNode.insertBefore(wrap, sel);
+    wrap.appendChild(sel);
+    sel.classList.add('font-family-select-native');
+    sel.setAttribute('aria-hidden', 'true');
+    sel.tabIndex = -1;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'font-picker-btn number-input';
+    btn.id = sel.id + '-btn';
+    btn.setAttribute('aria-haspopup', 'listbox');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.title = sel.title || 'Choose font';
+    wrap.appendChild(btn);
+
+    var menu = document.createElement('div');
+    menu.className = 'font-picker-menu';
+    menu.setAttribute('role', 'listbox');
+    menu.id = sel.id + '-menu';
+    btn.setAttribute('aria-controls', menu.id);
+
+    for (var i = 0; i < FONT_ORDER.length; i++) {
+      var name = FONT_ORDER[i];
+      if (!FONT_STACKS[name]) continue;
+      var opt = document.createElement('button');
+      opt.type = 'button';
+      opt.className = 'font-picker-option';
+      opt.setAttribute('role', 'option');
+      opt.setAttribute('data-font', name);
+      opt.style.fontFamily = FONT_STACKS[name];
+      opt.textContent = fontLabel(name);
+      if (name === sel.value) {
+        opt.classList.add('active');
+        opt.setAttribute('aria-selected', 'true');
+      } else {
+        opt.setAttribute('aria-selected', 'false');
+      }
+      menu.appendChild(opt);
+    }
+    wrap.appendChild(menu);
+
+    btn.textContent = fontLabel(sel.value);
+    if (FONT_STACKS[sel.value]) btn.style.fontFamily = FONT_STACKS[sel.value];
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var willOpen = !wrap.classList.contains('open');
+      closeAllFontPickers(wrap);
+      wrap.classList.toggle('open', willOpen);
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      if (willOpen) {
+        for (var fi = 0; fi < FONT_ORDER.length; fi++) ensureGoogleFont(FONT_ORDER[fi]);
+        var active = menu.querySelector('.font-picker-option.active');
+        if (active && active.scrollIntoView) active.scrollIntoView({ block: 'nearest' });
+      }
+    });
+
+    menu.addEventListener('click', function (e) {
+      var opt = e.target && e.target.closest ? e.target.closest('.font-picker-option') : null;
+      if (!opt || !menu.contains(opt)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var name = opt.getAttribute('data-font');
+      if (!name || !FONT_STACKS[name]) return;
+      sel.value = name;
+      sel.dispatchEvent(new Event('change', { bubbles: true }));
+      closeAllFontPickers();
+    });
+  }
+
   function applyFontRole(roleId, name, persist) {
     if (document.documentElement.classList.contains('study-page')) return;
     var role = null;
@@ -341,7 +492,11 @@ global.resetThemeToDefaults = resetThemeToDefaults;
       try { localStorage.setItem(FONT_STORAGE_PREFIX + roleId, name); } catch (e) {}
     }
     var sel = document.getElementById('font-family-' + roleId);
-    if (sel && sel.value !== name) sel.value = name;
+    if (sel) {
+      if (sel.value !== name) sel.value = name;
+      if (FONT_STACKS[name]) sel.style.fontFamily = FONT_STACKS[name];
+    }
+    syncFontPickerUI(roleId, name);
   }
 
   function applyAllFonts(persist) {
@@ -353,9 +508,15 @@ global.resetThemeToDefaults = resetThemeToDefaults;
   }
 
   function wireFontPickers() {
-    applyAllFonts(false);
     var panel = document.getElementById('theme-font-picker');
-    if (!panel || panel.dataset.wired === '1') return;
+    if (!panel) return;
+    var selects = panel.querySelectorAll('select.font-family-select');
+    for (var i = 0; i < selects.length; i++) {
+      syncFontSelectOptions(selects[i]);
+      buildCustomFontPicker(selects[i]);
+    }
+    applyAllFonts(false);
+    if (panel.dataset.wired === '1') return;
     panel.dataset.wired = '1';
     panel.addEventListener('change', function (e) {
       var sel = e.target && e.target.closest ? e.target.closest('select.font-family-select') : null;
@@ -364,6 +525,16 @@ global.resetThemeToDefaults = resetThemeToDefaults;
       if (!role) return;
       applyFontRole(role, sel.value, true);
     });
+    if (!document.documentElement.dataset.fontPickerDocWired) {
+      document.documentElement.dataset.fontPickerDocWired = '1';
+      document.addEventListener('click', function (e) {
+        if (e.target && e.target.closest && e.target.closest('.font-picker-wrap')) return;
+        closeAllFontPickers();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAllFontPickers();
+      });
+    }
   }
 
   global.applyFontRole = applyFontRole;
