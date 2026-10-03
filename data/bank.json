@@ -2289,7 +2289,7 @@
           "Hooke's relation in the mask wall"
         ],
         "correct": 2,
-        "explain": "A Venturi mask uses Bernoulli's relation in the flowing gas to set a controlled oxygen concentration. Buoyancy, a confined-liquid pressure, and elastic stretch do not set that fraction."
+        "explain": "A Venturi mask uses Bernoulli's relation in the flowing gas to set a controlled oxygen concentration."
       },
       {
         "id": "PHY00209",
