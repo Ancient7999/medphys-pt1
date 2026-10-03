@@ -1539,7 +1539,7 @@
         "id": "PHY00110",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "For steady, incompressible, frictionless streamline flow, Bernoulli's principle keeps which three energy terms constant per unit volume? (Bernoulli's Principle)",
+        "q": "For steady, incompressible, frictionless streamline flow, Bernoulli's principle keeps which three energy terms constant per unit volume?",
         "options": [
           "Pressure, potential energy, and kinetic energy",
           "Density, flow speed, and cross-sectional area",
@@ -1553,7 +1553,7 @@
         "id": "PHY00111",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Which of the following is the correct form of Bernoulli's equation? (Bernoulli's Principle)",
+        "q": "Which of the following is the correct form of Bernoulli's equation?",
         "options": [
           "A₁ v₁ = A₂ v₂",
           "P₁ / ρ₁ = P₂ / ρ₂",
@@ -1567,7 +1567,7 @@
         "id": "PHY00112",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "According to Bernoulli's principle, as velocity increases: (Bernoulli's Principle)",
+        "q": "According to Bernoulli's principle, as velocity increases:",
         "options": [
           "Temperature increases",
           "Pressure increases",
@@ -1581,7 +1581,7 @@
         "id": "PHY00113",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "In a narrowed artery, Bernoulli's principle predicts: (Bernoulli's Principle)",
+        "q": "In a narrowed artery, Bernoulli's principle predicts:",
         "options": [
           "Velocity decreases and pressure increases",
           "Velocity increases and pressure decreases",
@@ -2239,7 +2239,7 @@
         "id": "PHY00205",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Bernoulli's equation, for an ideal fluid, keeps which sum constant along a streamline? (Bernoulli's Principle)",
+        "q": "Bernoulli's equation, for an ideal fluid, keeps which sum constant along a streamline?",
         "options": [
           "Pressure plus density times area plus flow speed",
           "Pressure plus half density speed squared plus density g height",
@@ -2253,7 +2253,7 @@
         "id": "PHY00206",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Which set of conditions is assumed when Bernoulli's equation is applied? (Bernoulli's Principle)",
+        "q": "Which set of conditions is assumed when Bernoulli's equation is applied?",
         "options": [
           "Unsteady flow, compressible fluid, high friction, swirling path",
           "Steady flow, incompressible fluid, frictionless, streamline path",
@@ -2267,7 +2267,7 @@
         "id": "PHY00207",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "In a narrowed artery, continuity and Bernoulli assign which pair of changes? (Bernoulli's Principle)",
+        "q": "In a narrowed artery, continuity and Bernoulli assign which pair of changes?",
         "options": [
           "Speed falls by continuity, and pressure rises by Bernoulli",
           "Speed rises by continuity, and pressure falls by Bernoulli",
@@ -2281,7 +2281,7 @@
         "id": "PHY00208",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "A Venturi mask controls the oxygen fraction by using which relation? (Bernoulli's Principle)",
+        "q": "A Venturi mask controls the oxygen fraction by using which relation?",
         "options": [
           "Archimedes' relation on the displaced air",
           "Pascal's relation in a closed liquid",
@@ -2295,7 +2295,7 @@
         "id": "PHY00209",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "A murmur heard over a narrowed valve is produced by which change? (Bernoulli's Principle)",
+        "q": "A murmur heard over a narrowed valve is produced by which change?",
         "options": [
           "High speed through the narrow valve, with turbulent flow",
           "Low speed through a wide valve, with laminar flow",
@@ -2309,7 +2309,7 @@
         "id": "PHY00210",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Doppler ultrasound is used to measure which feature of blood flow? (Bernoulli's Principle)",
+        "q": "Doppler ultrasound is used to measure which feature of blood flow?",
         "options": [
           "The mass and the thickness of the vessel wall",
           "The color and the brightness of the flowing blood",
@@ -2676,7 +2676,7 @@
         "id": "PHY00218",
         "type": "matching",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Match each relation to the job it does in a narrowed vessel. (Bernoulli's Principle)",
+        "q": "Match each relation to the job it does in a narrowed vessel.",
         "leftItems": [
           {
             "id": "1",
@@ -3014,7 +3014,7 @@
         "id": "PHY00223",
         "type": "matching",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Match each flow formula to the statement it makes. (Bernoulli's Principle)",
+        "q": "Match each flow formula to the statement it makes.",
         "leftItems": [
           {
             "id": "1",
@@ -3400,7 +3400,7 @@
         "id": "PHY00238",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "In the Bernoulli sum, which term is kinetic energy per unit volume, and which is potential energy per unit volume? (Bernoulli's Principle)",
+        "q": "In the Bernoulli sum, which term is kinetic energy per unit volume, and which is potential energy per unit volume?",
         "options": [
           "½ρv² is kinetic; ρgh is potential",
           "ρgh is kinetic; ½ρv² is potential",
