@@ -3240,20 +3240,20 @@ function paintWires(_ignored,wires,live){
   if(!stage){ layer.style.display='none'; return; }
   const r=wireStageRect();
   if(r.width<2||r.height<2){ layer.style.display='none'; return; }
+  const boxW=window.innerWidth;
+  const boxH=window.innerHeight;
   layer.style.display='block';
   layer.style.position='fixed';
   layer.style.left='0';
   layer.style.top='0';
-  layer.style.right='0';
-  layer.style.bottom='0';
-  layer.style.width='100vw';
-  layer.style.height='100vh';
+  layer.style.right='auto';
+  layer.style.bottom='auto';
+  layer.style.width=boxW+'px';
+  layer.style.height=boxH+'px';
   layer.style.zIndex='70';
   layer.style.pointerEvents='none';
   layer.style.opacity='1';
   layer.style.overflow='visible';
-  const boxW=window.innerWidth;
-  const boxH=window.innerHeight;
   const dpr=Math.min(2,window.devicePixelRatio||1);
   const pw=Math.max(1,Math.round(boxW*dpr));
   const ph=Math.max(1,Math.round(boxH*dpr));
@@ -3433,13 +3433,7 @@ function dragAutoScrollStep(){
     if(dragScrollEl&&!dragScrollEl.isConnected) dragScrollEl=getMatchScrollParent(svg);
     if(dragScrollEl){ dragScrollEl.scrollTop+=dy; }
     else{ window.scrollTo({top:window.scrollY+dy,left:window.scrollX,behavior:'auto'}); }
-    const p=boardPoint(svg,{clientX:dragPointer.x,clientY:dragPointer.y});
-    const last=drawState.points[drawState.points.length-1];
-    if(last){
-      const dx=p.x-last.x, ddy=p.y-last.y;
-      if(dx*dx+ddy*ddy>=1.2) drawState.points.push(p);
-      else drawState.points[drawState.points.length-1]=p;
-    }
+    putWireTip(drawState.points, boardPoint(svg,{clientX:dragPointer.x,clientY:dragPointer.y}));
     paintWires(svg, ensureMatchAns().wires||[], drawState);
   }
   dragScrollRAF=requestAnimationFrame(dragAutoScrollStep);
@@ -3465,13 +3459,49 @@ function beginDraw(ev,q,btn){
   btn.addEventListener('pointercancel', onDrawUp);
   startDragAutoScroll(layer);
 }
+/* Keep the live tip on the pointer. A few px of polyline spacing is only so
+   the stored path stays small; the last point is always rewritten to the
+   current event, so the stroke does not trail the finger. */
+function putWireTip(points, p){
+  if(!points||!p) return;
+  if(!points.length){ points.push({x:p.x,y:p.y}); return; }
+  const last=points[points.length-1];
+  const dx=p.x-last.x, dy=p.y-last.y;
+  if(points.length===1 || dx*dx+dy*dy>=2.25) points.push({x:p.x,y:p.y});
+  else { last.x=p.x; last.y=p.y; }
+}
+function followDrawPointer(ev, layer){
+  if(!drawState||!ev) return;
+  let samples=null;
+  try{ samples=ev.getCoalescedEvents?ev.getCoalescedEvents():null; }catch(e){ samples=null; }
+  if(samples&&samples.length){
+    for(let i=0;i<samples.length;i++) putWireTip(drawState.points, boardPoint(layer, samples[i]));
+  }
+  putWireTip(drawState.points, boardPoint(layer, ev));
+}
+function matchTargetAnchor(el){
+  if(!el||!el.getBoundingClientRect) return null;
+  const r=el.getBoundingClientRect();
+  if(r.width<1||r.height<1) return null;
+  const stage=document.querySelector('.match-stage');
+  const sr=stage&&stage.getBoundingClientRect?stage.getBoundingClientRect():{left:0,top:0};
+  const side=el.dataset?el.dataset.side:'';
+  const x=side==='L'?r.right:side==='R'?r.left:(r.left+r.right)/2;
+  const y=(r.top+r.bottom)/2;
+  return {x:x-sr.left,y:y-sr.top};
+}
+function snapWireEnd(points, anchor){
+  if(!points||!anchor) return;
+  if(points.length<2){ points.push({x:anchor.x,y:anchor.y}); return; }
+  const tip=points[points.length-1];
+  tip.x=anchor.x; tip.y=anchor.y;
+}
 function onDrawMove(ev){
   if(!drawState) return;
   dragPointer.x=ev.clientX; dragPointer.y=ev.clientY;
   pinCustomCursor(ev);
   const layer=document.querySelector('.match-wires'); if(!layer) return;
-  const p=boardPoint(layer,ev); const last=drawState.points[drawState.points.length-1];
-  const dx=p.x-last.x, dy=p.y-last.y; if(dx*dx+dy*dy>=64) drawState.points.push(p);
+  followDrawPointer(ev, layer);
   paintWires(layer, ensureMatchAns().wires||[], drawState);
 }
 /* Expanded hit pad for linking release (~28–40px). Distance-to-rect is the
@@ -3518,10 +3548,10 @@ function onDrawUp(ev){
   src.classList.remove('active');
   src.blur();
   // Prefer distance-to-nearest opposite choice (expanded hit) over elementFromPoint.
-  const hit=nearestOppositeMatchItem(ev.clientX, ev.clientY, drawState.side);
   const svg=document.querySelector('.match-wires');
+  putWireTip(drawState.points, boardPoint(svg, ev));
+  const hit=nearestOppositeMatchItem(ev.clientX, ev.clientY, drawState.side);
   const cur=ensureMatchAns();
-  const pts=drawState.points.slice();
   if(hit && hit.dataset.side && hit.dataset.side!==drawState.side && !hit.disabled){
     const leftId=drawState.side==='L'?drawState.id:hit.dataset.id;
     const rightId=drawState.side==='R'?drawState.id:hit.dataset.id;
@@ -3531,10 +3561,13 @@ function onDrawUp(ev){
     if(isCorrect){
       // Persist only correct pairs; replace this left's prior wire. A right
       // may intentionally serve multiple lefts (e.g. shared base units).
+      snapWireEnd(drawState.points, matchTargetAnchor(hit));
+      const pts=drawState.points.map(pt=>({x:pt.x,y:pt.y}));
       cur.wires=cur.wires.filter(w=>w.leftId!==leftId);
       cur.pairs[leftId]=rightId;
       cur.wires.push({leftId,rightId,points:pts,color:currentWireColor()});
       cur.checked=false;
+      if(svg) paintWires(svg, cur.wires);
       celebrateLink(ev.clientX, ev.clientY);
       // Glow + lock left in place (no full redraw)
       leftEl.classList.add('paired','is-solved-link');
@@ -3558,7 +3591,8 @@ function onDrawUp(ev){
       const fb=document.getElementById('feedback');
       fb.className='feedback idle'; fb.textContent='';
     }
-  } else if(pts.length){
+  } else if(drawState.points.length){
+    const pts=drawState.points.map(pt=>({x:pt.x,y:pt.y}));
     const loose={points:pts,loose:true,color:currentWireColor()};
     if(drawState.side==='L') loose.leftId=drawState.id;
     else loose.rightId=drawState.id;
