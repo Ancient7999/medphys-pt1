@@ -2239,7 +2239,7 @@
         "id": "PHY00205",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "Bernoulli's equation, for an ideal fluid, keeps which sum constant along a streamline?",
+        "q": "For an ideal fluid, keeps which sum constant along a streamline?",
         "options": [
           "Pressure plus density times area plus flow speed",
           "Pressure plus half density speed squared plus density g height",
