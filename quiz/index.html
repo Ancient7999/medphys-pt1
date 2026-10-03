@@ -677,6 +677,8 @@ body.formula-mode #catTag{display:none!important}
    quizzes keep the 70px elapsed slot so the progress track does not jump. */
 body.formula-mode .elapsed{min-width:0;float:left;margin:1px 10px 3px 0}
 body.formula-mode .quiz-meta{display:block}
+/* Shared status-bar rule: keep it on question runs, drop it only under Formulas. */
+body.formula-mode .status-bar{border-bottom:none}
 .formula-family-strip{display:none;flex:1;align-items:center;align-content:flex-start;flex-wrap:wrap;gap:3px 6px;min-width:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.01em;line-height:1.1}
 /* contents, not flex: a flex strip is a formatting context and stays in a
    column beside the float. Pills then share the line flow and can use the
