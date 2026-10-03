@@ -8,7 +8,7 @@
 .toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 2px; bottom: 2px; background-color: var(--col-text-muted); transition: 0.3s; border-radius: 50%; }
 .toggle-switch input:checked + .toggle-slider { border-color: var(--col-primary); background-color: rgba(var(--accent-0-rgb), 0.1); }
 .toggle-switch input:checked + .toggle-slider:before { transform: translateX(24px); background-color: var(--col-primary); }
-.settings-btn { position: fixed !important; top: 25px !important; right: 30px !important; background: transparent !important; border: 2px solid var(--accent-0) !important; color: var(--accent-0) !important; font-size: 28px !important; width: 52px !important; height: 52px !important; padding: 0 !important; border-radius: 50% !important; transition: box-shadow 0.4s ease, background 0.4s ease !important; transform-origin: center center !important; z-index: 100 !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+.settings-btn { position: relative !important; top: auto !important; right: auto !important; left: auto !important; bottom: auto !important; background: transparent !important; border: 2px solid var(--accent-0) !important; color: var(--accent-0) !important; font-size: 28px !important; width: 52px !important; height: 52px !important; padding: 0 !important; border-radius: 50% !important; transition: box-shadow 0.4s ease, background 0.4s ease !important; transform-origin: center center !important; z-index: 100 !important; display: flex !important; align-items: center !important; justify-content: center !important; }
 @keyframes settings-gear-bump {
   /* slow start → accelerate */
   0%   { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.45, 0.05, 0.85, 0.35); }
@@ -47,14 +47,14 @@
 .settings-btn:hover { background: rgba(var(--accent-0-rgb), 0.15) !important; box-shadow: 0 0 25px rgba(var(--accent-0-rgb), 0.9) !important; }
 .settings-icon { display: block; }
 .settings-btn:hover .settings-icon { animation: settings-gear-bump var(--gear-dur, 5.2s) linear infinite; }
-.settings-wrapper { position: fixed !important; top: 25px !important; right: 30px !important; left: auto !important; bottom: auto !important; margin: 0 !important; z-index: 10000 !important; display: flex; align-items: flex-start; pointer-events: none !important; transform: none !important; animation: none !important; }
-/* Gear stays pinned to the viewport corner. Do not switch it back to relative
-   inside the wrapper — that lets it drift with layout instead of staying top-right. */
+.settings-wrapper { position: absolute !important; top: 25px !important; right: 30px !important; left: auto !important; bottom: auto !important; margin: 0 !important; z-index: 10000 !important; display: flex; align-items: flex-start; pointer-events: none !important; transform: none !important; animation: none !important; }
+/* Top-right of the page (body is position:relative, not fixed). Scrolls away
+   with the document. Do not pin with position:fixed or sticky. */
 .settings-wrapper .settings-btn,
 #settings-btn {
-  position: fixed !important;
-  top: 25px !important;
-  right: 30px !important;
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
   left: auto !important;
   bottom: auto !important;
   margin: 0 !important;
