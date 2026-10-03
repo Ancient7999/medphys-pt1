@@ -212,6 +212,31 @@ a { color: var(--accent-0); }
 }
 .ps2-menu-item.neutral .ps2-label { color: var(--col-text-main); }
 
+/* Drop the click/hover glow stuck on About after returning to the menu. */
+#menuAbout.glow-cleared,
+#menuAbout.glow-cleared:hover,
+#menuAbout.glow-cleared:focus,
+#menuAbout.glow-cleared:focus-visible,
+#menuAbout.glow-cleared.focused {
+  transform: none !important;
+  opacity: 0.72 !important;
+  background: linear-gradient(90deg, rgba(var(--accent-0-rgb), 0.06) 0%, rgba(26, 26, 26, 0.45) 100%) !important;
+  border-color: rgba(var(--accent-0-rgb), 0.2) !important;
+  border-left-color: rgba(var(--accent-0-rgb), 0.42) !important;
+  box-shadow: none !important;
+  filter: none !important;
+  outline: none;
+}
+#menuAbout.glow-cleared .ps2-icon,
+#menuAbout.glow-cleared:hover .ps2-icon,
+#menuAbout.glow-cleared:focus-visible .ps2-icon,
+#menuAbout.glow-cleared.focused .ps2-icon {
+  color: var(--accent-0);
+  filter: drop-shadow(0 0 4px rgba(var(--accent-0-rgb), 0.35));
+  opacity: 0.9;
+}
+
+
 /* Quiz Interface = glowing hero CTA */
 .ps2-menu-item.hero {
   opacity: 1 !important;

@@ -53,7 +53,7 @@
       <h3>Tips</h3>
       <ul>
         <li>Keyboard on the main menu: ↑↓ move · Enter open</li>
-        <li>In a quiz run: Enter next · F fullscreen</li>
+        <li>In a quiz run: left and right arrow keys move between questions · Enter next · F fullscreen</li>
         <li>Double-click a finished form card to reset that set’s progress</li>
       </ul>
     </section>
@@ -61,7 +61,7 @@
 </div>
 
 <script src="js/particles.js?v=20261003h"></script>
-<script src="js/colorizer-theme.js?v=20261003i"></script>
+<script src="js/colorizer-theme.js?v=20261003j"></script>
 <script>
 (function(){
   var home = document.getElementById('ps2-home');
@@ -72,6 +72,28 @@
   function showHome(){
     home.style.display = 'flex';
     about.style.display = 'none';
+    var aboutBtn = document.getElementById('menuAbout');
+    /* Click focuses About and mouseenter leaves .focused. The menu is hidden
+       while About is open, so that glow is still on the button when we return. */
+    if(aboutBtn){
+      if(document.activeElement === aboutBtn) aboutBtn.blur();
+      aboutBtn.classList.remove('focused');
+      aboutBtn.classList.add('glow-cleared');
+      if(items[focusIdx] === aboutBtn) focusIdx = 0;
+      if(aboutBtn._glowRelease){
+        window.removeEventListener('pointermove', aboutBtn._glowRelease);
+        window.removeEventListener('keydown', aboutBtn._glowRelease);
+      }
+      aboutBtn._glowRelease = function(e){
+        if(e && e.type === 'pointermove' && (e.target === aboutBtn || aboutBtn.contains(e.target))) return;
+        aboutBtn.classList.remove('glow-cleared');
+        window.removeEventListener('pointermove', aboutBtn._glowRelease);
+        window.removeEventListener('keydown', aboutBtn._glowRelease);
+        aboutBtn._glowRelease = null;
+      };
+      window.addEventListener('pointermove', aboutBtn._glowRelease);
+      window.addEventListener('keydown', aboutBtn._glowRelease);
+    }
     updateFocus();
   }
   function showAbout(){

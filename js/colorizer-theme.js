@@ -93,7 +93,7 @@ function removeCustomPreset(idx){_customPresets.splice(idx,1);saveCustomPresets(
 function syncAllPresetHighlights(){document.querySelectorAll('.preset-swatches .preset-swatch').forEach(function(sw){sw.classList.remove('active-preset');if(_activePresetType==='standard'){var picker=document.getElementById('accent-color-picker');var slider=document.getElementById('accent-strength-slider');
 if(picker&&sw.dataset.hex===picker.value.toLowerCase()&&slider&&getStandardPresetMatch(picker.value.toLowerCase(),parseInt(slider.value)))sw.classList.add('active-preset');
 }});renderCustomPresets();}
-function getStandardPresetMatch(hex,strength){var map={'#4ea121':62,'#8833ff':32,'#000000':90,'#ff8800':62,'#ff0000':43,'#0008ff':26};return map[hex.toLowerCase()]===strength;}function handleColorChange(){var picker=document.getElementById('accent-color-picker');var slider=document.getElementById('accent-strength-slider');var hex=picker?picker.value.toLowerCase():'#000000';var str=slider?parseInt(slider.value):90;if(getStandardPresetMatch(hex,str)){_activePresetType='standard';_activeCustomIdx=-1;saveActivePreset();localStorage.setItem(THEME_STORAGE_KEY,hex);localStorage.setItem('atc_accent_strength',String(str));syncAllPresetHighlights();return;}if(_activePresetType==='custom'&&_customPresets[_activeCustomIdx]){var cp=_customPresets[_activeCustomIdx];if(!cp.locked){cp.hex=hex;cp.strength=str;saveCustomPresets();localStorage.setItem(THEME_STORAGE_KEY,hex);localStorage.setItem('atc_accent_strength',String(str));}}_activePresetType=_activePresetType==='custom'?'custom':null;if(_activePresetType!=='custom'&&_customPresets.length===0){_customPresets.push({hex:hex,strength:str,locked:false});_activePresetType='custom';_activeCustomIdx=0;saveCustomPresets();localStorage.setItem(THEME_STORAGE_KEY,hex);localStorage.setItem('atc_accent_strength',String(str));}else if(_activePresetType!=='custom'){localStorage.setItem(THEME_STORAGE_KEY,hex);localStorage.setItem('atc_accent_strength',String(str));}saveActivePreset();syncAllPresetHighlights();}
+function getStandardPresetMatch(hex,strength){var map={'#4ea121':62,'#330000':90,'#8833ff':32,'#000000':90,'#ff8800':62,'#ff0000':43,'#0008ff':26};return map[hex.toLowerCase()]===strength;}function handleColorChange(){var picker=document.getElementById('accent-color-picker');var slider=document.getElementById('accent-strength-slider');var hex=picker?picker.value.toLowerCase():'#000000';var str=slider?parseInt(slider.value):90;if(getStandardPresetMatch(hex,str)){_activePresetType='standard';_activeCustomIdx=-1;saveActivePreset();localStorage.setItem(THEME_STORAGE_KEY,hex);localStorage.setItem('atc_accent_strength',String(str));syncAllPresetHighlights();return;}if(_activePresetType==='custom'&&_customPresets[_activeCustomIdx]){var cp=_customPresets[_activeCustomIdx];if(!cp.locked){cp.hex=hex;cp.strength=str;saveCustomPresets();localStorage.setItem(THEME_STORAGE_KEY,hex);localStorage.setItem('atc_accent_strength',String(str));}}_activePresetType=_activePresetType==='custom'?'custom':null;if(_activePresetType!=='custom'&&_customPresets.length===0){_customPresets.push({hex:hex,strength:str,locked:false});_activePresetType='custom';_activeCustomIdx=0;saveCustomPresets();localStorage.setItem(THEME_STORAGE_KEY,hex);localStorage.setItem('atc_accent_strength',String(str));}else if(_activePresetType!=='custom'){localStorage.setItem(THEME_STORAGE_KEY,hex);localStorage.setItem('atc_accent_strength',String(str));}saveActivePreset();syncAllPresetHighlights();}
 function applyPreset(hexColor, isLight, presetStrength) {
 const PRESET_STRENGTH = presetStrength !== undefined ? presetStrength : 62;
 const picker = document.getElementById('accent-color-picker');
@@ -231,12 +231,12 @@ const picker = document.getElementById('accent-color-picker');
 const hexInput = document.getElementById('accent-hex-input');
 const strengthSlider = document.getElementById('accent-strength-slider');
 const strengthDisplay = document.getElementById('strength-value-display');
-if (picker) picker.value = '#8833ff';
-if (hexInput) hexInput.value = '#8833FF';
-if (strengthSlider) strengthSlider.value = 32;
-if (strengthDisplay) strengthDisplay.textContent = 32;
+if (picker) picker.value = '#330000';
+if (hexInput) hexInput.value = '#330000';
+if (strengthSlider) strengthSlider.value = 90;
+if (strengthDisplay) strengthDisplay.textContent = 90;
 _activePresetType='standard';_activeCustomIdx=-1;
-changeAccentColor('#8833ff', 32);
+changeAccentColor('#330000', 90);
 refreshParticleEffects();
 syncAllPresetHighlights();renderCustomPresets();
 }
@@ -250,7 +250,7 @@ global.resetThemeToDefaults = resetThemeToDefaults;
   var FONT_STORAGE_PREFIX = 'pt1_font_';
   var FONT_ROLES = [
     { id: 'ui', defaultName: 'Comic Neue', vars: ['--font-ui', '--body'] },
-    { id: 'head', defaultName: 'Permanent Marker', vars: ['--font-head', '--head'] },
+    { id: 'head', defaultName: 'Pacifico', vars: ['--font-head', '--head'] },
     { id: 'question', defaultName: 'Space Mono', vars: ['--font-question'] },
     { id: 'choice', defaultName: 'Space Mono', vars: ['--font-choice'] },
     { id: 'nav', defaultName: 'Montserrat', vars: ['--font-nav'] },
@@ -853,9 +853,9 @@ document.body.style.opacity = "1";
 return;
 }
 
-// Quiz default when no saved theme: Violet (matches applyPreset('#8833ff', false, 32))
-var DEFAULT_ACCENT_HEX = '#8833ff';
-var DEFAULT_ACCENT_STRENGTH = 32;
+// Quiz default when no saved theme: Maroon (matches applyPreset('#330000', false, 90))
+var DEFAULT_ACCENT_HEX = '#330000';
+var DEFAULT_ACCENT_STRENGTH = 90;
 let initialColor = DEFAULT_ACCENT_HEX;
 let initialStrength = DEFAULT_ACCENT_STRENGTH;
 var hadSavedColor = false;
@@ -881,7 +881,7 @@ if (displayEl) displayEl.textContent = initialStrength;
 loadCustomPresets();
 if(_activePresetType==='custom'&&_customPresets[_activeCustomIdx]){var cp=_customPresets[_activeCustomIdx];initialColor=cp.hex;initialStrength=cp.strength;if(picker)picker.value=initialColor;if(hexInput)hexInput.value=initialColor.toUpperCase();if(strengthSlider)strengthSlider.value=initialStrength;var de=document.getElementById('strength-value-display');if(de)de.textContent=initialStrength;}
 else if(!hadSavedColor && !_activePresetType){
-  // No saved theme: show Violet as the active standard preset
+  // No saved theme: show Maroon as the active standard preset
   initialColor = DEFAULT_ACCENT_HEX;
   initialStrength = DEFAULT_ACCENT_STRENGTH;
   if (picker) picker.value = initialColor;

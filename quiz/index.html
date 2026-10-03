@@ -80,7 +80,7 @@
     };
     var roles=[
       ['ui','Comic Neue',['--font-ui','--body']],
-      ['head','Permanent Marker',['--font-head','--head']],
+      ['head','Pacifico',['--font-head','--head']],
       ['question','Space Mono',['--font-question']],
       ['choice','Space Mono',['--font-choice']],
       ['nav','Montserrat',['--font-nav']],
@@ -99,7 +99,7 @@
 })();
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Permanent+Marker&family=Comic+Neue:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Permanent+Marker&family=Pacifico&family=Comic+Neue:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
 :root {
   --bg:#05070c;
   --bg2:#080c14;
@@ -125,7 +125,7 @@
   --transition-ms:280ms;
   --particle-speed:1;
   --mono:'Oswald',system-ui,sans-serif;
-  --head:'Permanent Marker',cursive;
+  --head:'Pacifico',cursive;
   --body:'Comic Neue','Comic Sans MS',cursive;
   --font-ui:var(--body);
   --font-head:var(--head);
@@ -671,17 +671,17 @@ body.formula-mode #qNav{display:none!important}
 body.formula-mode .track{display:none!important}
 body.formula-mode .q-count{display:none!important}
 body.formula-mode #catTag{display:none!important}
-.formula-family-strip{display:none;flex:1;align-items:center;flex-wrap:wrap;gap:8px 10px;min-width:0;font-family:var(--mono);font-size:.78rem;letter-spacing:.02em}
+.formula-family-strip{display:none;flex:1;align-items:center;align-content:flex-start;flex-wrap:wrap;gap:3px 6px;min-width:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.01em;line-height:1.1}
 body.formula-mode .formula-family-strip{display:flex}
 .ff-title{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:8px 13px;border-radius:10px;
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px;border-radius:999px;
   border:1px solid rgba(var(--accent-0-rgb),.18);
   background:rgba(14,18,28,.55);
   color:var(--text-dim);opacity:.55;white-space:nowrap;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
   transition:opacity .2s ease,color .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease,transform .15s ease;
-  font-size:.82rem;line-height:1.2;
+  font-size:.68rem;line-height:1.15;
 }
 .ff-title.active{
   opacity:1;color:var(--accent-1);font-weight:600;
@@ -1805,8 +1805,9 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <span class="setting-item-label">Accent Color</span>
 <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
 <div class="preset-swatches" style="margin:0; flex-shrink:0;">
+<button class="preset-swatch active-preset" data-hex="#330000" style="background:#330000;" title="Maroon" onclick="applyPreset('#330000', false, 90)"></button>
 <button class="preset-swatch" data-hex="#4EA121" style="background:#4EA121;" title="Leaf" onclick="applyPreset('#4EA121', false)"></button>
-<button class="preset-swatch active-preset" data-hex="#8833ff" style="background:#8833ff;" title="Violet" onclick="applyPreset('#8833ff', false, 32)"></button>
+<button class="preset-swatch" data-hex="#8833ff" style="background:#8833ff;" title="Violet" onclick="applyPreset('#8833ff', false, 32)"></button>
 <button class="preset-swatch" data-hex="#000000" style="background:#000000;" title="Obsidian" onclick="applyPreset('#000000', false, 90)"></button>
 <button class="preset-swatch" data-hex="#ff8800" style="background:#ff8800;" title="Amber" onclick="applyPreset('#ff8800', false)"></button>
 <button class="preset-swatch" data-hex="#ff0000" style="background:#ff0000;" title="Red" onclick="applyPreset('#ff0000', false, 43)"></button>
@@ -1814,16 +1815,16 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 </div>
 <div id="custom-presets-area" style="display:flex;gap:6px;align-items:center;"></div>
 <div id="theme-lock-colorPicker" style="display:flex; gap:8px; align-items:center; margin-left:auto;">
-<input type="color" id="accent-color-picker" value="#8833ff" style="width:40px;height:40px;border:none;border-radius:8px;flex-shrink:0;">
-<input type="text" id="accent-hex-input" value="#8833FF" maxlength="7" class="number-input" style="width:100px; font-family:monospace; font-size:0.85em;">
+<input type="color" id="accent-color-picker" value="#330000" style="width:40px;height:40px;border:none;border-radius:8px;flex-shrink:0;">
+<input type="text" id="accent-hex-input" value="#330000" maxlength="7" class="number-input" style="width:100px; font-family:monospace; font-size:0.85em;">
 </div>
 </div>
 </div>
 <div class="setting-item" id="theme-lock-colorStrength" style="border-top:1px solid var(--col-border-light); padding-top:20px;">
-<span class="setting-item-label">Color Strength: <span id="strength-value-display" style="color:var(--accent-0);">32</span></span>
+<span class="setting-item-label">Color Strength: <span id="strength-value-display" style="color:var(--accent-0);">90</span></span>
 <div style="display:flex; gap:10px; align-items:center;">
 <span style="font-size:0.82em; color:var(--col-text-muted);">Subtle</span>
-<input type="range" id="accent-strength-slider" min="0" max="100" value="32" style="flex:1; ">
+<input type="range" id="accent-strength-slider" min="0" max="100" value="90" style="flex:1; ">
 <span style="font-size:0.82em; color:var(--col-text-muted);">Vibrant</span>
 </div>
 </div>
@@ -1875,8 +1876,8 @@ fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke
 <option value="Oswald" style="font-family:'Oswald', system-ui, sans-serif;">Oswald</option>
 <option value="Playfair Display" style="font-family:'Playfair Display', Georgia, serif;">Playfair</option>
 <option value="Bebas Neue" style="font-family:'Bebas Neue', Impact, sans-serif;">Bebas</option>
-<option value="Permanent Marker" selected style="font-family:'Permanent Marker', cursive;">Marker</option>
-<option value="Pacifico" style="font-family:'Pacifico', cursive;">Pacifico</option>
+<option value="Permanent Marker" style="font-family:'Permanent Marker', cursive;">Marker</option>
+<option value="Pacifico" selected style="font-family:'Pacifico', cursive;">Pacifico</option>
 <option value="Indie Flower" style="font-family:'Indie Flower', cursive;">Indie Flower</option>
 <option value="Comic Neue" style="font-family:'Comic Neue', Comic Sans MS, cursive;">Comic Neue</option>
 <option value="Press Start 2P" style="font-family:'Press Start 2P', monospace;">Pixel</option>
@@ -3975,7 +3976,7 @@ placeSettingsGear();
 
 <!-- Colorizer: settings modal owns controls · theme grid → colorizer-theme -->
 <script src="../js/particles.js?v=20261003h"></script>
-<script src="../js/colorizer-theme.js?v=20261003i"></script>
+<script src="../js/colorizer-theme.js?v=20261003j"></script>
 <script>
 // Keep quiz FX colors in sync when accent changes.
 (function(){
