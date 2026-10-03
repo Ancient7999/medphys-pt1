@@ -2643,6 +2643,82 @@ function showView(id){
   document.querySelectorAll('.app.view').forEach(v=>v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
+  placeSettingsGear();
+}
+/* Park the gear in document flow on the right of the active title's second
+   line only when a title line would intersect the absolute gear. Wide layouts
+   with no intersection leave the body-level absolute gear untouched. */
+function setTitleText(id, text){
+  var el=document.getElementById(id);
+  if(!el) return;
+  var gear=document.getElementById('settings-wrapper');
+  var home=document.getElementById('settings-modal');
+  if(gear && el.contains(gear) && home) document.body.insertBefore(gear, home);
+  el.textContent=text;
+}
+function placeSettingsGear(){
+  var gear=document.getElementById('settings-wrapper');
+  var home=document.getElementById('settings-modal');
+  if(!gear||!home) return;
+  document.querySelectorAll('h1.title-has-gear').forEach(function(h){
+    h.classList.remove('title-has-gear');
+    h.style.removeProperty('--gear-line-push');
+    h.style.removeProperty('--gear-right-inset');
+    h.style.removeProperty('--gear-line-nudge');
+  });
+  if(gear.parentNode!==document.body||gear.nextSibling!==home){
+    document.body.insertBefore(gear, home);
+  }
+  var view=document.querySelector('.app.view.active');
+  var title=view?view.querySelector('h1'):null;
+  if(!title) return;
+  var lines=titleLineRects(title);
+  if(!lines.length) return;
+  var gr=gear.getBoundingClientRect();
+  var hit=false;
+  for(var i=0;i<lines.length;i++){
+    if(rectsHit(gr, lines[i])){ hit=true; break; }
+  }
+  if(!hit) return;
+  var lineH=lines[0].height;
+  var naturalRight=lines[0].right;
+  var naturalBottom=lines[0].bottom;
+  var nudge=Math.max(0, (lineH-gr.height)/2);
+  var inset=Math.max(0, Math.round(title.getBoundingClientRect().right-(window.innerWidth-30)));
+  var push=lineH;
+  title.style.setProperty('--gear-line-push', Math.round(push)+'px');
+  title.style.setProperty('--gear-line-nudge', Math.round(nudge)+'px');
+  title.style.setProperty('--gear-right-inset', inset+'px');
+  title.classList.add('title-has-gear');
+  title.insertBefore(gear, title.firstChild);
+  /* Clear the first line completely so it keeps its natural width, and leave
+     the gear on the following line rather than over the glyphs. */
+  for(var pass=0; pass<8; pass++){
+    var now=titleLineRects(title);
+    var gr2=gear.getBoundingClientRect();
+    if(!now.length) break;
+    var short=now[0].right<naturalRight-3;
+    var high=gr2.top<naturalBottom+1;
+    if(!short && !high) break;
+    push+=high?Math.max(4, naturalBottom+2-gr2.top):4;
+    title.style.setProperty('--gear-line-push', Math.round(push)+'px');
+  }
+}
+function titleLineRects(title){
+  var out=[];
+  var walker=document.createTreeWalker(title, NodeFilter.SHOW_TEXT);
+  var node;
+  while((node=walker.nextNode())){
+    if(!node.textContent||!node.textContent.trim()) continue;
+    var range=document.createRange();
+    range.selectNodeContents(node);
+    var list=range.getClientRects();
+    for(var i=0;i<list.length;i++) out.push(list[i]);
+  }
+  return out;
+}
+function rectsHit(a,b){
+  return !(a.right<=b.left||a.left>=b.right||a.bottom<=b.top||a.top>=b.bottom);
 }
 
 let lockedClickState={label:'',time:0};
@@ -2795,11 +2871,12 @@ function ingestBank(data){
   if(!data || !data.bank){ showToast('JSON needs a bank object'); return; }
   normalizeBankMatching(data);
   BANK=data;
-  document.getElementById('hubTitle').textContent='Medical Physics · Periodic Test 1';
+  setTitleText('hubTitle','Medical Physics · Periodic Test 1');
   document.getElementById('hubSub').textContent='';
   document.getElementById('bankMeta').textContent=(allQuestions().length)+' questions · '+loadSolved().size+' solved';
   document.title='Medical Physics · Periodic Test 1';
   renderHub();
+  placeSettingsGear();
 }
 
 function goMainMenu(){ window.location.href='../index.html'; }
@@ -2867,7 +2944,7 @@ function startFormulaRun(keys, label){
   startTime=Date.now();
   if(elapsedTimer) clearInterval(elapsedTimer);
   elapsedTimer=setInterval(()=>{ const e=Math.floor((Date.now()-startTime)/1000); document.getElementById('elapsed').textContent=String(Math.floor(e/60)).padStart(2,'0')+':'+String(e%60).padStart(2,'0'); },1000);
-  document.getElementById('quizTitle').textContent=runLabel;
+  setTitleText('quizTitle', runLabel);
   document.getElementById('statusText').textContent='Formulas';
   document.getElementById('quizScreen').style.display='block';
   document.getElementById('finalScreen').style.display='none';
@@ -2911,7 +2988,7 @@ function startRun(pool, label){
   startTime=Date.now();
   if(elapsedTimer) clearInterval(elapsedTimer);
   elapsedTimer=setInterval(()=>{ const e=Math.floor((Date.now()-startTime)/1000); document.getElementById('elapsed').textContent=String(Math.floor(e/60)).padStart(2,'0')+':'+String(e%60).padStart(2,'0'); },1000);
-  document.getElementById('quizTitle').textContent=label;
+  setTitleText('quizTitle', label);
   document.getElementById('quizSub').textContent=(BANK.title||'')+' · '+questions.length+' remaining this run';
   document.getElementById('statusText').textContent=label;
   document.getElementById('qTotal').textContent=questions.length;
@@ -3889,6 +3966,11 @@ document.addEventListener('keydown', e=>{
 });
 
 renderHub();
+window.addEventListener('resize', placeSettingsGear);
+if(document.fonts&&document.fonts.ready){
+  document.fonts.ready.then(function(){ placeSettingsGear(); });
+}
+placeSettingsGear();
 </script>
 
 <!-- Colorizer: settings modal owns controls · theme grid → colorizer-theme -->

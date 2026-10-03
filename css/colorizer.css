@@ -239,3 +239,35 @@ button { cursor: pointer; }
 .font-picker-option:hover{background:rgba(var(--accent-0-rgb),.12);color:var(--accent-0);}
 .font-picker-option.active{background:rgba(var(--accent-0-rgb),.18);color:var(--accent-0);}
 .settings-panel:not(#settings-panel-about) .font-picker-btn.number-input{width:100%!important;}
+
+/* Overlap only: quiz/index.html adds .title-has-gear when a title line box
+   intersects the gear. PC widths never get the class, so the absolute
+   top/right rules above stay put. In flow, a zero-width float one line tall
+   lets the first line run full width and clears the gear onto the second
+   line's right side. Not fixed, not sticky; it scrolls with the title. */
+h1.title-has-gear{
+  display:flow-root;
+}
+h1.title-has-gear::before{
+  content:"";
+  float:right;
+  width:0;
+  height:var(--gear-line-push, 1lh);
+}
+h1.title-has-gear > .settings-wrapper{
+  position:static !important;
+  float:right;
+  clear:right;
+  top:auto !important;
+  right:auto !important;
+  left:auto !important;
+  bottom:auto !important;
+  margin:var(--gear-line-nudge, 0px) var(--gear-right-inset, 0px) 0 12px !important;
+  width:auto !important;
+  height:auto !important;
+  transform:none !important;
+  animation:none !important;
+}
+h1.title-has-gear > .settings-wrapper .settings-btn{
+  -webkit-text-fill-color:var(--accent-0) !important;
+}
