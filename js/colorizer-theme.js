@@ -252,14 +252,14 @@ global.resetThemeToDefaults = resetThemeToDefaults;
     { id: 'ui', defaultName: 'Comic Neue', vars: ['--font-ui', '--body'] },
     { id: 'head', defaultName: 'Permanent Marker', vars: ['--font-head', '--head'] },
     { id: 'question', defaultName: 'Space Mono', vars: ['--font-question'] },
-    { id: 'choice', defaultName: 'Courier New', vars: ['--font-choice'] },
+    { id: 'choice', defaultName: 'Space Mono', vars: ['--font-choice'] },
     { id: 'nav', defaultName: 'Montserrat', vars: ['--font-nav'] },
     { id: 'mono', defaultName: 'Oswald', vars: ['--font-mono', '--mono'] }
   ];
   var FONT_ORDER = [
     'Instrument Serif', 'Fraunces', 'Playfair Display', 'Georgia', 'Times New Roman',
     'Outfit', 'Nunito', 'Montserrat', 'Roboto', 'Oswald', 'Arial', 'Verdana', 'Trebuchet MS',
-    'Space Mono', 'IBM Plex Mono', 'Courier New', 'Press Start 2P',
+    'Space Mono', 'IBM Plex Mono', 'Press Start 2P',
     'Bebas Neue', 'Impact',
     'Permanent Marker', 'Pacifico', 'Indie Flower', 'Comic Neue'
   ];
@@ -271,7 +271,6 @@ global.resetThemeToDefaults = resetThemeToDefaults;
     'Press Start 2P': 'Pixel',
     'Times New Roman': 'Times',
     'Trebuchet MS': 'Trebuchet',
-    'Courier New': 'Courier',
     'IBM Plex Mono': 'IBM Plex Mono',
     'Fraunces': 'Fraunces'
   };
@@ -297,7 +296,6 @@ global.resetThemeToDefaults = resetThemeToDefaults;
     'Arial': "Arial, Helvetica, sans-serif",
     'Verdana': "Verdana, Geneva, sans-serif",
     'Trebuchet MS': "'Trebuchet MS', Helvetica, sans-serif",
-    'Courier New': "'Courier New', Courier, monospace",
     'Impact': "Impact, Haettenschweiler, sans-serif"
   };
   var FONT_GOOGLE = {
