@@ -3488,11 +3488,33 @@ function matchTargetAnchor(el){
   const side=el.dataset?el.dataset.side:'';
   const x=side==='L'?r.right:side==='R'?r.left:(r.left+r.right)/2;
   const y=(r.top+r.bottom)/2;
-  return {x:x-sr.left,y:y-sr.top};
+  return {x:x-sr.left,y:y-sr.top,side};
 }
+/* Meet the destination pill's inward edge and stop. Drop any trailing points
+   that already crossed into the choice box so the stroke never paints inside. */
 function snapWireEnd(points, anchor){
   if(!points||!anchor) return;
   if(points.length<2){ points.push({x:anchor.x,y:anchor.y}); return; }
+  const side=anchor.side||'';
+  const edgeX=anchor.x;
+  const past=side==='R'
+    ?(p)=>p.x>edgeX
+    :side==='L'
+    ?(p)=>p.x<edgeX
+    :()=>false;
+  let keep=points.length;
+  while(keep>0 && past(points[keep-1])) keep--;
+  if(keep===0){
+    points.length=0;
+    points.push({x:anchor.x,y:anchor.y});
+    return;
+  }
+  if(keep<points.length){
+    // Drop the interior tail, then append the edge so no chord is drawn inside.
+    points.length=keep;
+    points.push({x:anchor.x,y:anchor.y});
+    return;
+  }
   const tip=points[points.length-1];
   tip.x=anchor.x; tip.y=anchor.y;
 }
@@ -3559,11 +3581,12 @@ function onDrawUp(ev){
     const rightEl=drawState.side==='R'?src:hit;
     const isCorrect=!!(q.correct_pairs && q.correct_pairs[leftId]===rightId);
     if(isCorrect){
-      // Persist only correct pairs; replace this left's prior wire. A right
-      // may intentionally serve multiple lefts (e.g. shared base units).
+      // Persist only correct pairs; replace this left's prior committed wire.
+      // Unfinished/loose strokes stay on the canvas. A right may intentionally
+      // serve multiple lefts (e.g. shared base units).
       snapWireEnd(drawState.points, matchTargetAnchor(hit));
       const pts=drawState.points.map(pt=>({x:pt.x,y:pt.y}));
-      cur.wires=cur.wires.filter(w=>w.leftId!==leftId);
+      cur.wires=cur.wires.filter(w=>w.loose || w.leftId!==leftId);
       cur.pairs[leftId]=rightId;
       cur.wires.push({leftId,rightId,points:pts,color:currentWireColor()});
       cur.checked=false;
@@ -3586,7 +3609,14 @@ function onDrawUp(ev){
         spawnConfetti(); afterAnswerProgress();
       }
     } else {
-      // Wrong links are intentionally silent: do not store, glow, or announce them.
+      // Wrong target: keep the unfinished stroke, but do not store a pair or glow.
+      if(drawState.points.length){
+        const pts=drawState.points.map(pt=>({x:pt.x,y:pt.y}));
+        const loose={points:pts,loose:true,color:currentWireColor()};
+        if(drawState.side==='L') loose.leftId=drawState.id;
+        else loose.rightId=drawState.id;
+        cur.wires.push(loose);
+      }
       cur.checked=false; cur.correct=false;
       const fb=document.getElementById('feedback');
       fb.className='feedback idle'; fb.textContent='';
@@ -3608,9 +3638,9 @@ function onDrawUp(ev){
       Object.keys(ans.pairs).forEach(lid=>{
         if(ans.pairs[lid]!==q.correct_pairs[lid]){
           delete ans.pairs[lid];
-          // Only this left's bad drawing is stale; preserve other correct
-          // links that may share the same right-hand meaning.
-          ans.wires=(ans.wires||[]).filter(w=>w.leftId!==lid);
+          // Only this left's bad committed drawing is stale; preserve unfinished
+          // strokes and other correct links that may share the same right.
+          ans.wires=(ans.wires||[]).filter(w=>w.loose || w.leftId!==lid);
         }
       });
     }
