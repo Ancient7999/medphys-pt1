@@ -671,10 +671,20 @@ body.formula-mode #qNav{display:none!important}
 body.formula-mode .track{display:none!important}
 body.formula-mode .q-count{display:none!important}
 body.formula-mode #catTag{display:none!important}
+/* Family pills borrow the timer's unused min-width. The timer shrinks to
+   its digits and floats, so wrapped rows can sit closer instead of leaving
+   a reserved column. A right margin keeps pills off the digits. Other
+   quizzes keep the 70px elapsed slot so the progress track does not jump. */
+body.formula-mode .elapsed{min-width:0;float:left;margin:1px 10px 3px 0}
+body.formula-mode .quiz-meta{display:block}
 .formula-family-strip{display:none;flex:1;align-items:center;align-content:flex-start;flex-wrap:wrap;gap:3px 6px;min-width:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.01em;line-height:1.1}
-body.formula-mode .formula-family-strip{display:flex}
+/* contents, not flex: a flex strip is a formatting context and stays in a
+   column beside the float. Pills then share the line flow and can use the
+   width under the timer without covering the digits. */
+body.formula-mode .formula-family-strip{display:contents}
 .ff-title{
   display:inline-flex;align-items:center;gap:4px;
+  margin:1px 6px 2px 0;
   padding:2px 8px;border-radius:999px;
   border:1px solid rgba(var(--accent-0-rgb),.18);
   background:rgba(14,18,28,.55);
@@ -3178,7 +3188,7 @@ function renderQuestion(){
   if(isMatching(q)) renderMatching(q, answers[current]||{pairs:{},wires:[],checked:false,correct:false});
   else renderMcq(q, answered);
   const fb=document.getElementById('feedback');
-  if(answered){ fb.className='feedback good'; fb.textContent='✓ '+(q.explain||''); }
+  if(answered && !formulaMode){ fb.className='feedback good'; fb.textContent='✓ '+(q.explain||''); }
   else { fb.className='feedback idle'; fb.textContent=''; }
   document.getElementById('backBtn').disabled=formulaMode?true:(current===0);
   updateBackSkipGlow();
@@ -3851,7 +3861,8 @@ function selectAnswer(idx){
   }
   locked=true; answers[current]=idx; markSolved(q);
   document.querySelectorAll('.opt').forEach((o,i)=>{ o.disabled=true; if(i===idx) o.classList.add('correct'); });
-  fb.className='feedback good'; fb.textContent='✓ '+(q.explain||'');
+  if(formulaMode){ fb.className='feedback idle'; fb.textContent=''; }
+  else { fb.className='feedback good'; fb.textContent='✓ '+(q.explain||''); }
   document.getElementById('mainPanel').classList.add('correct-pulse');
   setTimeout(()=>document.getElementById('mainPanel').classList.remove('correct-pulse'),650);
   spawnConfetti();
