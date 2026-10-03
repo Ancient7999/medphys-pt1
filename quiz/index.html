@@ -678,10 +678,12 @@ body.formula-mode #catTag{display:none!important}
 body.formula-mode .elapsed{min-width:0;float:left;margin:1px 10px 3px 0}
 body.formula-mode .quiz-meta{display:block}
 /* Shared status-bar rule: keep it on question runs, drop it only under Formulas.
-   The line still under the formula subtitle is the panel's top edge, not the
-   status bar. Question runs keep the full frame and every other divider. */
+   The hairline still under the formula subtitle is #mainPanel's inset top
+   highlight (box-shadow), not the status-bar border or the panel border.
+   Question runs keep the full frame and every other divider. */
 body.formula-mode .status-bar{border-bottom:none}
-body.formula-mode #mainPanel{border-top-width:0}
+body.formula-mode #mainPanel{border-top-width:0;box-shadow:0 10px 28px -18px rgba(0,0,0,.65)}
+body.formula-mode #mainPanel.correct-pulse{box-shadow:0 0 0 1px rgba(52,211,153,.55),0 0 48px rgba(52,211,153,.28)}
 .formula-family-strip{display:none;flex:1;align-items:center;align-content:flex-start;flex-wrap:wrap;gap:3px 6px;min-width:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.01em;line-height:1.1}
 /* contents, not flex: a flex strip is a formatting context and stays in a
    column beside the float. Pills then share the line flow and can use the
