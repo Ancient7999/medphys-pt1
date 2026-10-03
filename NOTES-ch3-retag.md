@@ -32,7 +32,6 @@ Both `data/bank.json` and `/workspace/medical-physics-bank-final.json` synced.
 - `PHY00109` → `Chapter 3: Mass Flow Rate and Equation of Continuity` — stenosis speed via continuity
 - `PHY00110` → `Chapter 3: Bernoulli's Equation` — Bernoulli energy terms
 - `PHY00111` → `Chapter 3: Bernoulli's Equation` — Bernoulli equation form
-- `PHY00112` → `Chapter 3: Bernoulli's Equation` — pressure–velocity tradeoff
 - `PHY00113` → `Chapter 3: Bernoulli's Equation` — stenosis: v↑ P↓ by Bernoulli
 - `PHY00117` → `Chapter 3: Mass Flow Rate and Equation of Continuity` — laminar velocity max at centre
 - `PHY00118` → `Chapter 3: Mass Flow Rate and Equation of Continuity` — parabolic velocity profile
@@ -51,7 +50,6 @@ Both `data/bank.json` and `/workspace/medical-physics-bank-final.json` synced.
 - `PHY00204` → `Chapter 3: Mass Flow Rate and Equation of Continuity` — stenosis speed rise = continuity (not Bernoulli)
 - `PHY00205` → `Chapter 3: Bernoulli's Equation` — Bernoulli constant sum
 - `PHY00206` → `Chapter 3: Bernoulli's Equation` — Bernoulli assumptions
-- `PHY00207` → `Chapter 3: Bernoulli's Equation` — continuity+Bernoulli paired changes
 - `PHY00208` → `Chapter 3: Bernoulli's Equation` — Venturi mask app
 - `PHY00209` → `Chapter 3: Bernoulli's Equation` — murmur as Bernoulli/turbulence app
 - `PHY00210` → `Chapter 3: Bernoulli's Equation` — Doppler as Bernoulli-related app

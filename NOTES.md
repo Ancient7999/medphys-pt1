@@ -7,7 +7,7 @@
 3. Quiz has **Return to study** on the hub and on the in-run header (Main Menu still returns to the quiz hub).
 4. **Fonts / themes:** Main menu + quiz keep Hooke tokens (Instrument Serif / Outfit / Space Mono) + ATC colorizer. **Study** is study-only **Quantum Vault** (cyan `#3fe0d0` / magenta / amber on `#05080f`; Space Grotesk / Inter / JetBrains Mono; system cursor; all `.study-header .btn` including ← Main Menu). Do **not** include Hooke's practical lab worksheet as exam/study prose. Hooke's **law** theory remains in Ch1.
 5. **Ch3 stops at Bernoulli** (continuity + Bernoulli + medical apps). Explicit exclusions: viscosity, Poiseuille, Laplace, Reynolds, surface tension / surfactant / alveoli deep dive.
-6. **Bank** is the merged formative bank (`medical-physics-bank-final.json` → `data/bank.json`), 198 items, Form A.
+6. **Bank** is the merged formative bank (`medical-physics-bank-final.json` → `data/bank.json`), 196 items, Form A.
 7. **No GitHub push** in this pass — local folder (+ optional `git init` without remote).
 
 ## Quiz skeleton adaptation

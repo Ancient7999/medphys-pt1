@@ -3,7 +3,7 @@
   "subject": "Medical Physics",
   "subjectId": "medical_physics",
   "title": "Medical Physics · Periodic Test 1",
-  "formSize": 198,
+  "formSize": 196,
   "forms": [
     "A"
   ],
@@ -363,15 +363,15 @@
         "id": "PHY00026",
         "type": "mcq",
         "cat": "Chapter 1: Stress, Strain & Young's Modulus",
-        "q": "A bone under 5 × 10⁶ Pa of stress shows a strain of 0.0025. What is the Young's modulus of this sample?",
+        "q": "A bone under 9 × 10⁶ Pa of stress shows a strain of 0.003. What is the Young's modulus of this sample?",
         "options": [
-          "2 × 10⁶ Pa",
-          "1.25 × 10⁴ Pa",
-          "0.0005 Pa",
-          "2 × 10⁹ Pa"
+          "3 × 10⁶ Pa",
+          "2.7 × 10⁴ Pa",
+          "0.000333 Pa",
+          "3 × 10⁹ Pa"
         ],
         "correct": 3,
-        "explain": "Y = stress / strain = (5×10⁶) / (2.5×10⁻³) = 2 × 10⁹ Pa = 2 GPa That's 2 GPa, which is in the range of real bone (cortical bone ~15-20 GPa, cancellous bone ~1-2 GPa). The formula is just Y = stress / strain, the slope of the linear (elastic) portion of the stress-strain curve. If you plot stress on the y-axis and strain on the x-axis, Young's modulus is the slope of the straight line before the material yields."
+        "explain": "Y = stress / strain = (9×10⁶) / (3×10⁻³) = 3 × 10⁹ Pa = 3 GPa. That's 3 GPa, between typical cancellous bone and cortical bone (cortical bone is often about 15–20 GPa). The formula is just Y = stress / strain, the slope of the linear (elastic) portion of the stress-strain curve. If you plot stress on the y-axis and strain on the x-axis, Young's modulus is the slope of the straight line before the material yields."
       },
       {
         "id": "PHY00027",
@@ -559,29 +559,29 @@
         "id": "PHY00040",
         "type": "mcq",
         "cat": "Chapter 1: Stress, Strain & Young's Modulus",
-        "q": "Cortical bone specimen: L = 0.20 m, A = 1.0×10⁻⁴ m², F = 1000 N, ΔL = 0.12 mm. Calculate the Young's modulus.",
+        "q": "Cortical bone specimen: L = 0.25 m, A = 2.0×10⁻⁴ m², F = 1500 N, ΔL = 0.15 mm. Calculate the Young's modulus.",
         "options": [
-          "1.67 × 10⁹ Pa",
-          "1.67 × 10¹⁰ Pa",
-          "1.67 × 10¹¹ Pa",
-          "6.00 × 10⁶ Pa"
+          "1.25 × 10⁹ Pa",
+          "1.25 × 10¹⁰ Pa",
+          "1.25 × 10¹¹ Pa",
+          "7.50 × 10⁶ Pa"
         ],
         "correct": 1,
-        "explain": "Stress = F/A = 1000 / 1.0×10⁻⁴ = 1.0×10⁷ Pa. Strain = ΔL/L = 1.2×10⁻⁴ / 0.20 = 6.0×10⁻⁴. Young's modulus Y = stress/strain = 1.0×10⁷ / 6.0×10⁻⁴ = 1.67×10¹⁰ Pa."
+        "explain": "Stress = F/A = 1500 / 2.0×10⁻⁴ = 7.5×10⁶ Pa. Strain = ΔL/L = 1.5×10⁻⁴ / 0.25 = 6.0×10⁻⁴. Young's modulus Y = stress/strain = 7.5×10⁶ / 6.0×10⁻⁴ = 1.25×10¹⁰ Pa."
       },
       {
         "id": "PHY00041",
         "type": "mcq",
         "cat": "Chapter 1: Stress, Strain & Young's Modulus",
-        "q": "Femur: L = 0.4 m, Young's modulus = 16×10⁹ Pa, max stress = 150×10⁶ Pa. Find maximum compression ΔL before breaking.",
+        "q": "Femur: L = 0.45 m, Young's modulus = 18×10⁹ Pa, max stress = 120×10⁶ Pa. Find maximum compression ΔL before breaking.",
         "options": [
-          "3.75 mm",
-          "0.375 mm",
-          "37.5 mm",
-          "0.00375 mm"
+          "3.00 mm",
+          "0.300 mm",
+          "30.0 mm",
+          "0.0300 mm"
         ],
         "correct": 0,
-        "explain": "Strain = stress / Young's modulus = 150×10⁶ / 16×10⁹ = 0.009375. ΔL = strain × L = 0.009375 × 0.4 = 0.00375 m = 3.75 mm A 40 cm femur can compress by only about 3.75 mm before reaching its breaking stress, less than 1% of its length. That narrow margin is exactly why a fall from standing height can break a hip in an elderly patient: the load exceeds the stress limit, and the small elastic range is quickly exceeded."
+        "explain": "Strain = stress / Young's modulus = 120×10⁶ / 18×10⁹ = 1/150 ≈ 0.00667. ΔL = strain × L = 0.00667 × 0.45 = 0.00300 m = 3.00 mm. A 45 cm femur can compress by only about 3 mm before reaching its breaking stress, under 1% of its length. That narrow margin is why a fall from standing height can break a hip in an elderly patient: the load exceeds the stress limit, and the small elastic range is quickly exceeded."
       },
       {
         "id": "PHY00042",
@@ -839,29 +839,29 @@
         "id": "PHY00060",
         "type": "mcq",
         "cat": "Chapter 2: Density",
-        "q": "A block measures 5.0 cm × 6.0 cm × 8.0 cm and has a mass of 960 g. What is its density?",
+        "q": "A block measures 4.0 cm × 5.0 cm × 10.0 cm and has a mass of 600 g. What is its density?",
         "options": [
-          "4.8 g/cm³",
-          "2.5 g/cm³",
-          "3.0 g/cm³",
-          "4.0 g/cm³"
+          "1.5 g/cm³",
+          "2.0 g/cm³",
+          "4.0 g/cm³",
+          "3.0 g/cm³"
         ],
         "correct": 3,
-        "explain": "Volume = 5 × 6 × 8 = 240 cm³. Density = 960 / 240 = 4.0 g/cm³ In SI units, this is 4000 kg/m³, about four times the density of water. Materials in this range include titanium (4.5 g/cm³) and some ceramics. The specific gravity of this block is 4.0."
+        "explain": "Volume = 4 × 5 × 10 = 200 cm³. Density = 600 / 200 = 3.0 g/cm³. In SI units, this is 3000 kg/m³, about three times the density of water. The specific gravity of this block is 3.0."
       },
       {
         "id": "PHY00061",
         "type": "mcq",
         "cat": "Chapter 2: Density",
-        "q": "A glass block measures 8 cm × 5 cm × 3 cm and has a density of 2.5 g/cm³. What is its mass?",
+        "q": "A glass block measures 10 cm × 4 cm × 5 cm and has a density of 2.5 g/cm³. What is its mass?",
         "options": [
-          "150 g",
-          "240 g",
-          "300 g",
-          "375 g"
+          "250 g",
+          "400 g",
+          "500 g",
+          "625 g"
         ],
         "correct": 2,
-        "explain": "Volume = 8 × 5 × 3 = 120 cm³. Mass = density × volume = 2.5 × 120 = 300 g. Density and the block dimensions (which give volume) are known, so mass follows from rearranging ρ = m/V to m = ρV."
+        "explain": "Volume = 10 × 4 × 5 = 200 cm³. Mass = density × volume = 2.5 × 200 = 500 g. Density and the block dimensions (which give volume) are known, so mass follows from rearranging ρ = m/V to m = ρV."
       },
       {
         "id": "PHY00062",
@@ -1007,15 +1007,15 @@
         "id": "PHY00072",
         "type": "mcq",
         "cat": "Chapter 2: Barometer",
-        "q": "A mercury barometer shows a column of 76 cm. If water were used instead, approximately how tall would the column need to be?",
+        "q": "A mercury barometer shows a column of 70 cm. If water were used instead, approximately how tall would the column need to be?",
         "options": [
-          "About 76.0 m",
+          "About 70.0 m",
           "About 1.0 m",
           "About 5.0 m",
-          "About 10.3 m"
+          "About 9.5 m"
         ],
         "correct": 3,
-        "explain": "Using h = P / (ρg) with P = 1.013 × 10⁵ Pa, ρ = 1000 kg/m³, and g = 9.8 m/s²: h ≈ 10.33 m The 13.6× density difference between mercury and water means the water column must be 13.6× taller than the mercury column (76 cm × 13.6 ≈ 10.3 m). This is why mercury is preferred, a water barometer would be inconveniently tall."
+        "explain": "Mercury is about 13.6 times as dense as water, so the water column is 70 cm × 13.6 = 952 cm ≈ 9.5 m. The same result follows from h = P/(ρg): the 70 cm mercury column is a pressure of 13,600 × 9.8 × 0.70 = 9.33 × 10⁴ Pa, and 9.33 × 10⁴ / (1000 × 9.8) = 9.52 m. Mercury is preferred because a water barometer is inconveniently tall."
       },
       {
         "id": "PHY00073",
@@ -1063,29 +1063,29 @@
         "id": "PHY00076",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "A diver is at a depth where the gauge pressure reads 4.41 × 10⁵ Pa in fresh water (ρ = 1000 kg/m³, g = 9.8 m/s²). How deep is the diver?",
+        "q": "A diver is at a depth where the gauge pressure reads 2.94 × 10⁵ Pa in fresh water (ρ = 1000 kg/m³, g = 9.8 m/s²). How deep is the diver?",
         "options": [
-          "49.0 m",
-          "22.5 m",
+          "15.0 m",
+          "24.0 m",
           "35.0 m",
-          "45.0 m"
+          "30.0 m"
         ],
         "correct": 3,
-        "explain": "h = P_G / (ρg) = 4.41 × 10⁵ / (1000 × 9.8) = 45.0 m The gauge pressure is roughly 4.5 atmospheres above surface. At 10.3 m depth, water alone adds 1 atm of gauge pressure; at 45 m it adds about 4.4 atm. Divers must ascend slowly to avoid decompression sickness, a consequence of the physics of pressure at depth."
+        "explain": "h = P_G / (ρg) = 2.94 × 10⁵ / (1000 × 9.8) = 30.0 m. The gauge pressure is about 2.9 atmospheres above the surface. At about 10.3 m, fresh water adds 1 atm of gauge pressure, so 30 m adds roughly 3 atm. Divers must ascend slowly to avoid decompression sickness, a consequence of the physics of pressure at depth."
       },
       {
         "id": "PHY00077",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "What is the absolute pressure at a depth of 20 m in fresh water, given ρ = 1000 kg/m³, g = 9.8 m/s², and P_atm = 1.013 × 10⁵ Pa?",
+        "q": "What is the absolute pressure at a depth of 15 m in fresh water, given ρ = 1000 kg/m³, g = 9.8 m/s², and P_atm = 1.013 × 10⁵ Pa?",
         "options": [
           "1.013 × 10⁵ Pa",
-          "2.973 × 10⁵ Pa",
-          "3.5 × 10⁵ Pa",
-          "9.8 × 10⁵ Pa"
+          "2.483 × 10⁵ Pa",
+          "3.50 × 10⁵ Pa",
+          "9.80 × 10⁵ Pa"
         ],
         "correct": 1,
-        "explain": "P_gauge = 1000 × 9.8 × 20 = 1.96 × 10⁵ Pa. P_abs = 1.013 × 10⁵ + 1.96 × 10⁵ = 2.973 × 10⁵ Pa Notice the absolute pressure at 20 m is roughly 3 times atmospheric pressure. This is a useful rule of thumb: every 10 metres of water adds about 1 atm of gauge pressure. Depth in metres divided by 10 gives an approximate gauge pressure in atmospheres."
+        "explain": "P_gauge = 1000 × 9.8 × 15 = 1.47 × 10⁵ Pa. P_abs = 1.013 × 10⁵ + 1.47 × 10⁵ = 2.483 × 10⁵ Pa. Every 10 metres of fresh water adds about 1 atm of gauge pressure, so 15 m adds about 1.5 atm and the absolute pressure is about 2.5 atm."
       },
       {
         "id": "PHY00078",
@@ -1105,15 +1105,15 @@
         "id": "PHY00079",
         "type": "mcq",
         "cat": "Chapter 2: Pascal's Principle",
-        "q": "A hydraulic system has a small piston of area 0.02 m² and a large piston of area 0.8 m². If 150 N is applied on the small piston, what is the output force on the large piston?",
+        "q": "A hydraulic system has a small piston of area 0.01 m² and a large piston of area 0.40 m². If 200 N is applied on the small piston, what is the output force on the large piston?",
         "options": [
-          "6000 N",
-          "12000 N",
-          "1500 N",
-          "3000 N"
+          "8000 N",
+          "16000 N",
+          "2000 N",
+          "4000 N"
         ],
         "correct": 0,
-        "explain": "F_out = F_in × (A_out / A_in) = 150 × (0.8 / 0.02) = 150 × 40 = 6000 N The area ratio here is 40:1, so the force is amplified 40 times. This is the mechanical advantage of the hydraulic system. To achieve this, the small piston must move 40 times farther than the large piston, energy is conserved, but the force is multiplied."
+        "explain": "F_out = F_in × (A_out / A_in) = 200 × (0.40 / 0.01) = 200 × 40 = 8000 N. The area ratio is 40:1, so the force is amplified 40 times. The small piston must move 40 times farther than the large piston: energy is conserved, but the force is multiplied."
       },
       {
         "id": "PHY00080",
@@ -1175,113 +1175,113 @@
         "id": "PHY00084",
         "type": "mcq",
         "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
-        "q": "How much mass of fluid does a box of volume 0.4 m³ displace when fully submerged in fresh water (ρ = 1000 kg/m³)?",
+        "q": "How much mass of fluid does a box of volume 0.25 m³ displace when fully submerged in fresh water (ρ = 1000 kg/m³)?",
         "options": [
-          "4000 kg",
-          "0.4 kg",
-          "40 kg",
-          "400 kg"
+          "2500 kg",
+          "0.25 kg",
+          "25 kg",
+          "250 kg"
         ],
         "correct": 3,
-        "explain": "m_f = ρV = 1000 × 0.4 = 400 kg of fluid displaced The displaced mass is what generates the buoyant force: F_B = m_f g = 400 × 9.8 = 3920 N. Notice this is independent of the object's own mass. A very heavy object that is fully submerged still displaces 400 kg of water and still experiences 3920 N of buoyancy."
+        "explain": "m_f = ρV = 1000 × 0.25 = 250 kg of fluid displaced. The displaced mass generates the buoyant force: F_B = m_f g = 250 × 9.8 = 2450 N. That force does not depend on the object's own mass. A heavier object that is still fully submerged displaces the same 250 kg of water."
       },
       {
         "id": "PHY00085",
         "type": "mcq",
         "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
-        "q": "What is the buoyant force on a sphere of volume 0.6 m³ fully submerged in a fluid of density 850 kg/m³? (g = 9.8 m/s²)",
+        "q": "What is the buoyant force on a sphere of volume 0.40 m³ fully submerged in a fluid of density 800 kg/m³? (g = 9.8 m/s²)",
         "options": [
-          "4998 N",
-          "5010 N",
-          "5100 N",
-          "6000 N"
+          "3136 N",
+          "3920 N",
+          "3200 N",
+          "4000 N"
         ],
         "correct": 0,
-        "explain": "F_B = ρgV = 850 × 9.8 × 0.6 = 4998 N Using a less dense fluid (850 kg/m³, similar to some oils) gives less buoyant force than water would. For the same volume, buoyancy scales linearly with fluid density. This is why an object that sinks in water might float in mercury (13,600 kg/m³), the buoyant force is 13.6 times larger."
+        "explain": "F_B = ρgV = 800 × 9.8 × 0.40 = 3136 N. A fluid less dense than water (800 kg/m³, similar to some oils) gives less buoyancy than fresh water would for the same volume. Buoyancy scales linearly with fluid density, which is why an object that sinks in water can float in mercury."
       },
       {
         "id": "PHY00086",
         "type": "mcq",
         "cat": "Chapter 2: Pascal's Principle",
-        "q": "A hydraulic press has a small piston of area 0.015 m² and a large piston of area 1.2 m². What output force results from an input force of 200 N?",
+        "q": "A hydraulic press has a small piston of area 0.02 m² and a large piston of area 1.0 m². What output force results from an input force of 250 N?",
         "options": [
-          "8000 N",
-          "16000 N",
-          "24000 N",
-          "2400 N"
+          "5000 N",
+          "12500 N",
+          "25000 N",
+          "2500 N"
         ],
         "correct": 1,
-        "explain": "F_out = F_in × (A_out / A_in) = 200 × (1.2 / 0.015) = 200 × 80 = 16,000 N The area ratio is 80:1, so the force multiplication is 80×. This is the essence of hydraulic presses, which are used industrially to shape metal and in medical devices like some operating tables. The trade-off is that the small piston must travel 80 times farther than the large piston moves."
+        "explain": "F_out = F_in × (A_out / A_in) = 250 × (1.0 / 0.02) = 250 × 50 = 12,500 N. The area ratio is 50:1, so the force multiplication is 50×. The small piston must travel 50 times farther than the large piston moves."
       },
       {
         "id": "PHY00087",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "What is the gauge pressure at a depth of 25 m in a lake (ρ = 1000 kg/m³, g = 9.8 m/s²)?",
+        "q": "What is the gauge pressure at a depth of 12 m in a lake (ρ = 1000 kg/m³, g = 9.8 m/s²)?",
         "options": [
           "1.013 × 10⁵ Pa",
-          "3.46 × 10⁵ Pa",
-          "2.45 × 10⁴ Pa",
-          "2.45 × 10⁵ Pa"
+          "2.189 × 10⁵ Pa",
+          "1.176 × 10⁴ Pa",
+          "1.176 × 10⁵ Pa"
         ],
         "correct": 3,
-        "explain": "P_G = ρgh = 1000 × 9.8 × 25 = 2.45 × 10⁵ Pa That is approximately 2.4 atm of gauge pressure. The absolute pressure at that depth would be P_atm + P_G = 1.013 × 10⁵ + 2.45 × 10⁵ ≈ 3.46 × 10⁵ Pa. Gauge pressure is what most pressure gauges in diving, plumbing, and tire applications actually measure."
+        "explain": "P_G = ρgh = 1000 × 9.8 × 12 = 1.176 × 10⁵ Pa, about 1.2 atm of gauge pressure. The absolute pressure at that depth is P_atm + P_G = 1.013 × 10⁵ + 1.176 × 10⁵ = 2.189 × 10⁵ Pa. Gauge pressure is what most diving and plumbing gauges measure."
       },
       {
         "id": "PHY00088",
         "type": "mcq",
         "cat": "Chapter 2: Atmospheric Pressure",
-        "q": "Convert a systolic pressure of 150 mmHg to pascals. (1 mmHg ≈ 133.3 Pa)",
+        "q": "Convert a systolic pressure of 120 mmHg to pascals. (1 mmHg ≈ 133.3 Pa)",
         "options": [
-          "200,000 Pa",
-          "150 Pa",
-          "2000 Pa",
-          "20,000 Pa"
+          "160,000 Pa",
+          "120 Pa",
+          "1,600 Pa",
+          "16,000 Pa"
         ],
         "correct": 3,
-        "explain": "150 × 133.3 ≈ 19,995 Pa ≈ 2.0 × 10⁴ Pa In SI units, a systolic pressure of 150 mmHg is about 20 kilopascals. This is much smaller than atmospheric pressure (101 kPa), which is why blood pressure is normally expressed in mmHg, the numbers are more convenient for clinical use. A systolic of 150 mmHg is considered high."
+        "explain": "120 × 133.3 = 15,996 Pa ≈ 1.60 × 10⁴ Pa. A systolic pressure of 120 mmHg is about 16 kPa, much smaller than atmospheric pressure (101 kPa), which is why blood pressure is quoted in mmHg. A systolic of 120 mmHg is a typical healthy reading."
       },
       {
         "id": "PHY00089",
         "type": "mcq",
         "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
-        "q": "A wooden block floats in water with 40% of its volume submerged. If its total volume is 0.02 m³ and water density is 1000 kg/m³, what is the buoyant force on the block? (g = 9.8 m/s²)",
+        "q": "A wooden block floats in water with 30% of its volume submerged. If its total volume is 0.05 m³ and water density is 1000 kg/m³, what is the buoyant force on the block? (g = 9.8 m/s²)",
         "options": [
-          "78.4 N",
-          "98.0 N",
-          "196.0 N",
-          "200.0 N"
+          "147 N",
+          "490 N",
+          "245 N",
+          "200 N"
         ],
         "correct": 0,
-        "explain": "Volume submerged = 0.4 × 0.02 = 0.008 m³. F_B = ρgV_sub = 1000 × 9.8 × 0.008 = 78.4 N For a floating object, the buoyant force equals the object's weight. So if we know the buoyant force is 78.4 N, the block's mass is 78.4/9.8 = 8 kg. The 40% submergence tells us the wood's density is 40% of water's, i.e., 400 kg/m³. Floating fraction is a direct indicator of relative density."
+        "explain": "Volume submerged = 0.30 × 0.05 = 0.015 m³. F_B = ρgV_sub = 1000 × 9.8 × 0.015 = 147 N. For a floating object the buoyant force equals the weight, so the block's mass is 147/9.8 = 15 kg. The 30% submergence means the wood's density is 30% of water's, 300 kg/m³."
       },
       {
         "id": "PHY00090",
         "type": "mcq",
         "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
-        "q": "What is the net upward force on a submerged object if its weight is 250 N and the buoyant force is 320 N?",
+        "q": "What is the net upward force on a submerged object if its weight is 180 N and the buoyant force is 260 N?",
         "options": [
-          "250 N upward",
-          "320 N upward",
-          "570 N upward",
-          "70 N upward"
+          "180 N upward",
+          "260 N upward",
+          "440 N upward",
+          "80 N upward"
         ],
         "correct": 3,
-        "explain": "Net force = F_B − weight = 320 − 250 = 70 N upward. The object rises toward the surface The buoyant force and weight act in opposite directions. When F_B exceeds the weight, the object experiences a net upward force and rises. This is what happens when you release an inflated balloon underwater or when a cork rises from the bottom of a bucket. When F_B is less than the weight, the object sinks."
+        "explain": "Net force = F_B − weight = 260 − 180 = 80 N upward. The object rises toward the surface. The buoyant force and the weight act in opposite directions, so they subtract; adding them, or reporting either force alone, is not the net force."
       },
       {
         "id": "PHY00091",
         "type": "mcq",
         "cat": "Chapter 2: Open Tube Manometer",
-        "q": "In a manometer connected to a gas container, the liquid on the container side is 20 cm lower than the liquid on the atmosphere side. If the liquid is mercury (ρ = 13,600 kg/m³) and g = 9.8 m/s², what is the gauge pressure of the gas?",
+        "q": "In a manometer connected to a gas container, the liquid on the container side is 18 cm lower than the liquid on the atmosphere side. If the liquid is mercury (ρ = 13,600 kg/m³) and g = 9.8 m/s², what is the gauge pressure of the gas?",
         "options": [
-          "1.33 × 10⁴ Pa",
+          "1.20 × 10⁴ Pa",
           "1.33 × 10⁵ Pa",
-          "2.67 × 10⁴ Pa",
-          "2.67 × 10⁵ Pa"
+          "2.40 × 10⁴ Pa",
+          "2.40 × 10⁵ Pa"
         ],
         "correct": 2,
-        "explain": "P_gauge = ρgΔh = 13,600 × 9.8 × 0.20 = 26,656 Pa ≈ 2.67 × 10⁴ Pa The height difference is 20 cm = 0.20 m. Because mercury is so dense, even a modest height difference produces a large pressure reading. The container pressure is about 0.26 atm above atmospheric pressure. For water instead of mercury, the same gauge pressure would require a 2.72 m height difference."
+        "explain": "P_gauge = ρgΔh = 13,600 × 9.8 × 0.18 = 23,990 Pa ≈ 2.40 × 10⁴ Pa. The height difference is 18 cm = 0.18 m. Because mercury is so dense, a modest height difference is a large pressure, about 0.24 atm above atmospheric pressure. The same gauge pressure with water would need a column about 13.6 times taller, roughly 2.4 m."
       },
       {
         "id": "PHY00092",
@@ -1301,15 +1301,15 @@
         "id": "PHY00093",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "How much does the gauge pressure increase for every 10 m of depth in fresh water? (ρ = 1000 kg/m³, g = 9.8 m/s²)",
+        "q": "How much does the gauge pressure increase for every 15 m of depth in fresh water? (ρ = 1000 kg/m³, g = 9.8 m/s²)",
         "options": [
-          "About 980 Pa, near 0.01 atm",
-          "About 9.8 kPa, near 0.1 atm",
-          "About 98 kPa, near 1 atm",
-          "About 980 kPa, near 10 atm"
+          "About 14.7 kPa, near 0.15 atm",
+          "About 1.47 kPa, near 0.015 atm",
+          "About 147 kPa, near 1.5 atm",
+          "About 1470 kPa, near 15 atm"
         ],
         "correct": 2,
-        "explain": "Gauge pressure rises by ρ g h = 1000 × 9.8 × 10 = 9.8×10⁴ Pa, about 98 kPa, close to 1 atm."
+        "explain": "Gauge pressure rises by ρ g h = 1000 × 9.8 × 15 = 1.47×10⁵ Pa, about 147 kPa, close to 1.5 atm."
       },
       {
         "id": "PHY00094",
@@ -1343,43 +1343,43 @@
         "id": "PHY00096",
         "type": "mcq",
         "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
-        "q": "A 0.9 m³ block floats in seawater (ρ = 1025 kg/m³) with 60% of its volume submerged. What is the buoyant force on the block? (g = 9.8 m/s²)",
+        "q": "A 0.50 m³ block floats in seawater (ρ = 1025 kg/m³) with 80% of its volume submerged. What is the buoyant force on the block? (g = 9.8 m/s²)",
         "options": [
-          "10250 N",
-          "5425 N",
-          "6027 N",
-          "9040 N"
+          "5023 N",
+          "4018 N",
+          "4900 N",
+          "8036 N"
         ],
         "correct": 1,
-        "explain": "Volume submerged = 0.6 × 0.9 = 0.54 m³. F_B = ρgV_sub = 1025 × 9.8 × 0.54 ≈ 5425 N. The buoyant force equals the weight of the displaced seawater, not the weight of the whole block. If the block's own weight is less than 5425 N, it will rise further; if more, it will sink further. The 60% figure implies the block's density is 0.6 × 1025 = 615 kg/m³, quite light, similar to some woods."
+        "explain": "Volume submerged = 0.80 × 0.50 = 0.40 m³. F_B = ρgV_sub = 1025 × 9.8 × 0.40 = 4018 N. That equals the weight of the displaced seawater, not the weight of a fully submerged block. The 80% figure means the block's density is 0.80 × 1025 = 820 kg/m³."
       },
       {
         "id": "PHY00097",
         "type": "mcq",
         "cat": "Chapter 2: Barometer",
-        "q": "The water barometer column is 10.33 m tall at 1 atm. If the local atmospheric pressure drops to 0.98 atm, what is the new column height?",
+        "q": "The water barometer column is 10.40 m tall at 1 atm. If the local atmospheric pressure drops to 0.95 atm, what is the new column height?",
         "options": [
+          "About 9.5 m",
           "About 9.9 m",
-          "About 10.1 m",
-          "About 10.33 m",
-          "About 10.6 m"
+          "About 10.40 m",
+          "About 10.9 m"
         ],
         "correct": 1,
-        "explain": "h ∝ P. New h = 10.33 × (0.98 / 1.00) = 10.12 m ≈ 10.1 m The barometer height is directly proportional to atmospheric pressure. A 2% drop in pressure gives a 2% drop in column height. Real mercury barometers used this principle historically for weather prediction, a falling mercury column indicated an approaching low-pressure system, often bringing storms."
+        "explain": "h ∝ P. New h = 10.40 × (0.95 / 1.00) = 9.88 m ≈ 9.9 m. A 5% drop in atmospheric pressure shortens the column by 5%. A falling barometer column marks a falling pressure, often ahead of storms."
       },
       {
         "id": "PHY00098",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "A swimmer at 5 m depth in fresh water (ρ = 1000 kg/m³) feels a certain absolute pressure. At what depth would the swimmer feel twice that absolute pressure? (Take P_atm = 1.013 × 10⁵ Pa)",
+        "q": "A swimmer at 4 m depth in fresh water (ρ = 1000 kg/m³) feels a certain absolute pressure. At what depth would the swimmer feel twice that absolute pressure? (Take P_atm = 1.013 × 10⁵ Pa and g = 9.8 m/s²)",
         "options": [
-          "About 10.33 m",
-          "About 15.33 m",
-          "About 20.33 m",
-          "About 5.33 m"
+          "About 8.3 m",
+          "About 14.3 m",
+          "About 18.3 m",
+          "About 4.3 m"
         ],
         "correct": 2,
-        "explain": "P_abs at 5 m = P_atm + ρgh = 1.013 × 10⁵ + (1000 × 9.8 × 5) = 1.013 × 10⁵ + 4.9 × 10⁴ = 1.503 × 10⁵ Pa. Twice that is 3.006 × 10⁵ Pa. Solving: 3.006 × 10⁵ = 1.013 × 10⁵ + 9800h to 9800h = 1.993 × 10⁵ to h ≈ 20.33 m This is a subtle problem: gauge pressure doubles when depth doubles, but absolute pressure does not double until depth more than quadruples. The extra 1 atm of atmospheric pressure at the surface means that at 5 m (absolute pressure 1.5 atm), doubling gives 3 atm, which occurs at about 20.33 m. Reading the question carefully, 'absolute pressure' vs 'gauge pressure', makes all the difference."
+        "explain": "P_abs at 4 m = P_atm + ρgh = 1.013 × 10⁵ + (1000 × 9.8 × 4) = 1.013 × 10⁵ + 3.92 × 10⁴ = 1.405 × 10⁵ Pa. Twice that is 2.810 × 10⁵ Pa. Then 2.810 × 10⁵ = 1.013 × 10⁵ + 9800h, so 9800h = 1.797 × 10⁵ and h ≈ 18.3 m. Gauge pressure doubles when depth doubles, but absolute pressure does not: the surface already contributes 1 atm, so doubling the absolute pressure at 4 m needs about 18.3 m, not 8 m."
       },
       {
         "id": "PHY00099",
@@ -1525,15 +1525,15 @@
         "id": "PHY00109",
         "type": "mcq",
         "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
-        "q": "A blood vessel narrows from A₁ = 0.1 m² (V₁ = 0.5 m/s) to A₂ = 0.01 m². What is V₂?",
+        "q": "A blood vessel narrows from A₁ = 2.0×10⁻⁴ m² (V₁ = 0.40 m/s) to A₂ = 5.0×10⁻⁵ m². What is V₂?",
         "options": [
-          "0.05 m/s",
-          "0.5 m/s",
-          "5 m/s",
-          "50 m/s"
+          "0.16 m/s",
+          "0.40 m/s",
+          "1.6 m/s",
+          "16 m/s"
         ],
         "correct": 2,
-        "explain": "Using A₁V₁ = A₂V₂: V₂ = (A₁V₁) / A₂ = (0.1 × 0.5) / 0.01 = 5 m/s The area dropped by a factor of 10 (0.1 to 0.01), so the velocity increased by the same factor (0.5 to 5 m/s). This is exactly why blood speeds up as it passes through a stenosis. The product A × v is what must stay the same, not v alone"
+        "explain": "Using A₁V₁ = A₂V₂: V₂ = (A₁V₁) / A₂ = (2.0×10⁻⁴ × 0.40) / 5.0×10⁻⁵ = 1.6 m/s. The area fell by a factor of 4, so the speed rose by the same factor, from 0.40 m/s to 1.6 m/s. That is why blood speeds up through a stenosis. The product A × v stays the same, not v alone."
       },
       {
         "id": "PHY00110",
@@ -1562,20 +1562,6 @@
         ],
         "correct": 2,
         "explain": "Bernoulli's equation: P₁ + ½ ρ v₁² + ρ g y₁ = P₂ + ½ ρ v₂² + ρ g y₂, or compactly P + ½ ρ v² + ρ g h = Constant. It is a sum, not a product. Each term contributes energy per unit volume: P (pressure energy), ½ρv² (kinetic energy per unit volume), ρgh (potential energy per unit volume). Along a streamline, these three trade off but the sum is preserved."
-      },
-      {
-        "id": "PHY00112",
-        "type": "mcq",
-        "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "According to Bernoulli's principle, as velocity increases:",
-        "options": [
-          "Temperature increases",
-          "Pressure increases",
-          "Pressure decreases",
-          "Pressure stays the same"
-        ],
-        "correct": 2,
-        "explain": "As velocity increases, pressure decreases. In symbols: v ↑ ⇒ P ↓ This is the pressure-velocity trade-off: when a fluid speeds up along a streamline, its kinetic energy rises, and since total energy is conserved, its pressure energy must fall. In a narrowed artery, velocity rises and pressure drops, which can reduce tissue perfusion beyond the narrowing."
       },
       {
         "id": "PHY00113",
@@ -1693,295 +1679,295 @@
         "id": "PHY00166",
         "type": "mcq",
         "cat": "Chapter 2: Density",
-        "q": "A wooden block measuring 6 cm × 7 cm × 8 cm has a mass of 120 g. What is its density?",
+        "q": "A wooden block measuring 5 cm × 4 cm × 8 cm has a mass of 80 g. What is its density?",
         "options": [
-          "0.75 g/cm³",
-          "1.15 g/cm³",
-          "2.55 g/cm³",
-          "0.35 g/cm³"
+          "2.00 g/cm³",
+          "0.80 g/cm³",
+          "1.25 g/cm³",
+          "0.50 g/cm³"
         ],
         "correct": 3,
-        "explain": "Volume is 6 × 7 × 8 = 336 cm³. Density is mass divided by volume, 120 / 336 = 0.357 g/cm³, which rounds to 0.35 g/cm³. The larger values treat the product of the edges as the density, or divide volume by mass, or add the edges to the mass."
+        "explain": "Volume is 5 × 4 × 8 = 160 cm³. Density is mass divided by volume, 80 / 160 = 0.50 g/cm³. The larger values divide volume by mass, or treat an edge as the density."
       },
       {
         "id": "PHY00167",
         "type": "mcq",
         "cat": "Chapter 2: Density",
-        "q": "A wooden block has a mass of 20.0 g and dimensions 3.00 cm × 4.00 cm × 5.00 cm. What is its density?",
+        "q": "A wooden block has a mass of 30.0 g and dimensions 2.00 cm × 5.00 cm × 6.00 cm. What is its density?",
         "options": [
-          "0.030 g/cm³",
-          "0.333 g/cm³",
-          "3.33 g/cm³",
+          "0.050 g/cm³",
+          "0.500 g/cm³",
+          "5.00 g/cm³",
           "60.0 g/cm³"
         ],
         "correct": 1,
-        "explain": "Volume is 3.00 × 4.00 × 5.00 = 60.0 cm³. Density is 20.0 / 60.0 = 0.333 g/cm³. 3.33 g/cm³ inverts the division, 60.0 g/cm³ is the volume written as a density, and 0.030 g/cm³ drops a factor of ten."
+        "explain": "Volume is 2.00 × 5.00 × 6.00 = 60.0 cm³. Density is 30.0 / 60.0 = 0.500 g/cm³. 5.00 g/cm³ inverts the division, 60.0 g/cm³ is the volume written as a density, and 0.050 g/cm³ drops a factor of ten."
       },
       {
         "id": "PHY00168",
         "type": "mcq",
         "cat": "Chapter 2: Density",
-        "q": "A plastic block measures 6 cm × 5 cm × 7 cm and has a density of 0.25 g/cm³. What is its mass?",
+        "q": "A plastic block measures 4 cm × 5 cm × 8 cm and has a density of 0.40 g/cm³. What is its mass?",
         "options": [
-          "52.5 g",
-          "18.0 g",
-          "0.0083 g",
-          "105 g"
+          "64 g",
+          "17 g",
+          "0.0025 g",
+          "128 g"
         ],
         "correct": 0,
-        "explain": "Volume is 6 × 5 × 7 = 210 cm³. Mass is density times volume, 0.25 × 210 = 52.5 g. 105 g uses twice the density, 18.0 g adds the edges, and 0.0083 g divides density by volume."
+        "explain": "Volume is 4 × 5 × 8 = 160 cm³. Mass is density times volume, 0.40 × 160 = 64 g. 128 g uses twice the density, 17 g adds the edges, and 0.0025 g divides density by volume."
       },
       {
         "id": "PHY00169",
         "type": "mcq",
         "cat": "Chapter 2: Pressure in Fluids",
-        "q": "The pressure in a room is 1.368 × 10⁵ Pa. What force acts on a floor measuring 5 m × 5 m?",
+        "q": "The pressure in a room is 1.215 × 10⁵ Pa. What force acts on a floor measuring 4 m × 5 m?",
         "options": [
-          "1.68 × 10⁵ N",
-          "3.42 × 10⁶ N",
-          "4.68 × 10⁷ N",
-          "7.883 × 10⁸ N"
+          "1.215 × 10⁵ N",
+          "2.43 × 10⁶ N",
+          "4.86 × 10⁷ N",
+          "6.075 × 10⁸ N"
         ],
         "correct": 1,
-        "explain": "Force is pressure times area. Area is 25 m², so F = 1.368 × 10⁵ × 25 = 3.42 × 10⁶ N."
+        "explain": "Force is pressure times area. Area is 20 m², so F = 1.215 × 10⁵ × 20 = 2.43 × 10⁶ N."
       },
       {
         "id": "PHY00170",
         "type": "mcq",
         "cat": "Chapter 2: Atmospheric Pressure",
-        "q": "A patient has a diastolic arterial pressure of 80 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
+        "q": "A patient has a diastolic arterial pressure of 90 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
         "options": [
-          "15.21 kPa",
-          "20.32 kPa",
-          "2.41 kPa",
-          "10.66 kPa"
+          "16.00 kPa",
+          "18.00 kPa",
+          "3.00 kPa",
+          "12.00 kPa"
         ],
         "correct": 3,
-        "explain": "80 / 760 × 1.013 × 10⁵ Pa = 1.066 × 10⁴ Pa = 10.66 kPa. 15.21 kPa and 20.32 kPa scale 80 mmHg as if it were about 114 mmHg or 152 mmHg, and 2.41 kPa drops a factor of about four."
+        "explain": "90 / 760 × 1.013 × 10⁵ Pa = 1.200 × 10⁴ Pa = 12.00 kPa. 16.00 kPa and 18.00 kPa scale 90 mmHg as if it were about 120 mmHg or 135 mmHg, and 3.00 kPa drops a factor of about four."
       },
       {
         "id": "PHY00171",
         "type": "mcq",
         "cat": "Chapter 2: Atmospheric Pressure",
-        "q": "A patient has a systolic arterial pressure of 145 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
+        "q": "A patient has a systolic arterial pressure of 160 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
         "options": [
-          "19.32 kPa",
-          "25.41 kPa",
-          "10.54 kPa",
-          "14.61 kPa"
+          "21.33 kPa",
+          "28.40 kPa",
+          "10.66 kPa",
+          "16.00 kPa"
         ],
         "correct": 0,
-        "explain": "145 / 760 × 1.013 × 10⁵ Pa = 1.932 × 10⁴ Pa = 19.32 kPa. 10.54 kPa is about half, 14.61 kPa treats 145 as roughly 110 mmHg, and 25.41 kPa overscales the conversion."
+        "explain": "160 / 760 × 1.013 × 10⁵ Pa = 2.133 × 10⁴ Pa = 21.33 kPa. 10.66 kPa is half, 16.00 kPa treats 160 as 120 mmHg, and 28.40 kPa overscales the conversion."
       },
       {
         "id": "PHY00172",
         "type": "mcq",
         "cat": "Chapter 2: Atmospheric Pressure",
-        "q": "A patient's systolic arterial pressure is 135 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
+        "q": "A patient's systolic arterial pressure is 110 mmHg. What is this pressure in pascals? Take 760 mmHg = 1.013 × 10⁵ Pa.",
         "options": [
           "1.013 × 10³ Pa",
-          "1.35 × 10⁵ Pa",
-          "1.80 × 10⁴ Pa",
+          "1.10 × 10⁵ Pa",
+          "1.47 × 10⁴ Pa",
           "7.60 × 10⁵ Pa"
         ],
         "correct": 2,
-        "explain": "135 / 760 × 1.013 × 10⁵ Pa = 1.80 × 10⁴ Pa. 1.35 × 10⁵ Pa copies the millimetres of mercury into pascals with a wrong power, 7.60 × 10⁵ Pa inflates one atmosphere, and 1.013 × 10³ Pa is a truncated atmosphere."
+        "explain": "110 / 760 × 1.013 × 10⁵ Pa = 1.47 × 10⁴ Pa. 1.10 × 10⁵ Pa copies the millimetres of mercury into pascals with a wrong power, 7.60 × 10⁵ Pa inflates one atmosphere, and 1.013 × 10³ Pa is a truncated atmosphere."
       },
       {
         "id": "PHY00173",
         "type": "mcq",
         "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
-        "q": "What is the buoyant force on a box of volume 0.24 m³ fully submerged in fresh water of density 1000 kg/m³? Take g = 9.8 m/s².",
+        "q": "What is the buoyant force on a box of volume 0.30 m³ fully submerged in fresh water of density 1000 kg/m³? Take g = 9.8 m/s².",
         "options": [
           "1000 N",
-          "1890 N",
-          "2352 N",
-          "4310 N"
+          "2450 N",
+          "2940 N",
+          "5880 N"
         ],
         "correct": 2,
-        "explain": "Buoyant force equals the weight of displaced fluid, ρ g V = 1000 × 9.8 × 0.24 = 2352 N, upward. 1000 N is the density written as a force, 1890 N uses g = 7.9, and 4310 N nearly doubles the volume."
+        "explain": "Buoyant force equals the weight of displaced fluid, ρ g V = 1000 × 9.8 × 0.30 = 2940 N, upward. 1000 N is the density written as a force, 2450 N uses a volume of 0.25 m³, and 5880 N doubles the volume."
       },
       {
         "id": "PHY00174",
         "type": "mcq",
         "cat": "Chapter 2: Density",
-        "q": "A metal ball has a mass of 18 g and a density of 8 g/cm³. What is its volume?",
+        "q": "A metal ball has a mass of 24 g and a density of 6.0 g/cm³. What is its volume?",
         "options": [
-          "2.25 cm³",
-          "3.75 cm³",
-          "6.84 cm³",
-          "1.11 cm³"
+          "4.00 cm³",
+          "6.50 cm³",
+          "10.2 cm³",
+          "2.40 cm³"
         ],
         "correct": 0,
-        "explain": "Volume is mass divided by density, 18 / 8 = 2.25 cm³. 1.11 cm³ divides density by a wrong mass, 3.75 cm³ uses a density of about 4.8 g/cm³, and 6.84 cm³ subtracts density from mass."
+        "explain": "Volume is mass divided by density, 24 / 6.0 = 4.00 cm³. 2.40 cm³ uses a density of 10 g/cm³, 6.50 cm³ uses a density of about 3.7 g/cm³, and 10.2 cm³ subtracts density from mass."
       },
       {
         "id": "PHY00175",
         "type": "mcq",
         "cat": "Chapter 2: Density",
-        "q": "How massive is a wooden block measuring 6 cm × 8 cm × 4 cm with a density of 0.35 g/cm³?",
+        "q": "How massive is a wooden block measuring 5 cm × 6 cm × 10 cm with a density of 0.40 g/cm³?",
         "options": [
-          "41.45 g",
-          "67.20 g",
-          "7.20 g",
-          "13.15 g"
+          "75 g",
+          "120 g",
+          "21 g",
+          "48 g"
         ],
         "correct": 1,
-        "explain": "Volume is 6 × 8 × 4 = 192 cm³. Mass is 0.35 × 192 = 67.20 g. 7.20 g multiplies density by one edge, 13.15 g adds the edges, and 41.45 g uses about half the volume."
+        "explain": "Volume is 5 × 6 × 10 = 300 cm³. Mass is 0.40 × 300 = 120 g. 75 g uses a density of 0.25 g/cm³, 21 g adds the edges, and 48 g uses a volume of 120 cm³."
       },
       {
         "id": "PHY00176",
         "type": "mcq",
         "cat": "Chapter 2: Pressure in Fluids",
-        "q": "Air pressure in a room is 1.368 × 10⁵ Pa and the air exerts a force of 3.42 × 10⁵ N on a table. What is the area of the table?",
+        "q": "Air pressure in a room is 1.20 × 10⁵ Pa and the air exerts a force of 3.60 × 10⁵ N on a table. What is the area of the table?",
         "options": [
-          "2.5 m²",
-          "5 m²",
-          "10 m²",
-          "1.5 m²"
+          "3.0 m²",
+          "6.0 m²",
+          "12 m²",
+          "1.8 m²"
         ],
         "correct": 0,
-        "explain": "Area is force divided by pressure, 3.42 × 10⁵ / 1.368 × 10⁵ = 2.5 m². 5 m² and 10 m² drop a factor of two or four, and 1.5 m² divides the leading digits the wrong way."
+        "explain": "Area is force divided by pressure, 3.60 × 10⁵ / 1.20 × 10⁵ = 3.0 m². 6.0 m² and 12 m² drop a factor of two or four, and 1.8 m² divides the leading digits the wrong way."
       },
       {
         "id": "PHY00177",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "A pressure gauge on a diver reads 1.39 × 10⁵ Pa in fresh water of density 1000 kg/m³. How deep is the diver? Take g = 9.8 m/s².",
+        "q": "A pressure gauge on a diver reads 1.96 × 10⁵ Pa in fresh water of density 1000 kg/m³. How deep is the diver? Take g = 9.8 m/s².",
         "options": [
-          "5.18 m",
-          "8.95 m",
-          "11.54 m",
-          "14.18 m"
+          "10.0 m",
+          "15.0 m",
+          "16.3 m",
+          "20.0 m"
         ],
         "correct": 3,
-        "explain": "Depth is gauge pressure divided by ρ g, 1.39 × 10⁵ / (1000 × 9.8) = 14.18 m. The smaller depths divide by 2 g, by 1.5 g, or use g = 12."
+        "explain": "Depth is gauge pressure divided by ρ g, 1.96 × 10⁵ / (1000 × 9.8) = 20.0 m. The smaller depths divide by 2 g, by about 1.3 g, or use g = 12."
       },
       {
         "id": "PHY00178",
         "type": "mcq",
         "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
-        "q": "A buoyant force of 2352 N acts on a box fully submerged in fresh water of density 1000 kg/m³. What is the volume of the box? Take g = 9.8 m/s².",
+        "q": "A buoyant force of 1960 N acts on a box fully submerged in fresh water of density 1000 kg/m³. What is the volume of the box? Take g = 9.8 m/s².",
         "options": [
-          "1.94 m³",
-          "23.24 m³",
-          "43.41 m³",
-          "0.24 m³"
+          "2.00 m³",
+          "20.0 m³",
+          "39.2 m³",
+          "0.20 m³"
         ],
         "correct": 3,
-        "explain": "Volume is buoyant force divided by ρ g, 2352 / (1000 × 9.8) = 0.24 m³. The larger volumes divide by g alone, by 100, or by a density far below that of water."
+        "explain": "Volume is buoyant force divided by ρ g, 1960 / (1000 × 9.8) = 0.20 m³. 2.00 m³ divides by 100 g, 20.0 m³ divides by 10 g, and 39.2 m³ divides by 50."
       },
       {
         "id": "PHY00179",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "What absolute pressure acts on a swimmer 30 m below the surface of fresh water of density 1000 kg/m³? Take atmospheric pressure as 1.0123 × 10⁵ Pa and g = 9.8 m/s².",
+        "q": "What absolute pressure acts on a swimmer 25 m below the surface of fresh water of density 1000 kg/m³? Take atmospheric pressure as 1.013 × 10⁵ Pa and g = 9.8 m/s².",
         "options": [
-          "3.95 × 10⁵ Pa",
-          "4.21 × 10⁶ Pa",
-          "1.93 × 10⁵ Pa",
+          "3.46 × 10⁵ Pa",
+          "3.46 × 10⁶ Pa",
+          "1.46 × 10⁵ Pa",
           "2.45 × 10⁶ Pa"
         ],
         "correct": 0,
-        "explain": "Absolute pressure is atmospheric pressure plus ρ g h. ρ g h = 1000 × 9.8 × 30 = 2.94 × 10⁵ Pa, so P = 1.0123 × 10⁵ + 2.94 × 10⁵ = 3.95 × 10⁵ Pa. 1.93 × 10⁵ Pa understates the water column, and the 10⁶ Pa values multiply depth by an extra factor of ten."
+        "explain": "Absolute pressure is atmospheric pressure plus ρ g h. ρ g h = 1000 × 9.8 × 25 = 2.45 × 10⁵ Pa, so P = 1.013 × 10⁵ + 2.45 × 10⁵ = 3.463 × 10⁵ Pa ≈ 3.46 × 10⁵ Pa. 1.46 × 10⁵ Pa understates the water column, and the 10⁶ Pa values multiply depth by an extra factor of ten."
       },
       {
         "id": "PHY00180",
         "type": "mcq",
         "cat": "Chapter 2: Pascal's Principle",
-        "q": "A hydraulic press has a large piston of area 0.20 m² and a small piston of area 0.02 m². What force on the small piston lifts a 3000 N object?",
+        "q": "A hydraulic press has a large piston of area 0.25 m² and a small piston of area 0.05 m². What force on the small piston lifts a 2000 N object?",
         "options": [
-          "450 N",
-          "50 N",
-          "150 N",
-          "300 N"
+          "500 N",
+          "80 N",
+          "200 N",
+          "400 N"
         ],
         "correct": 3,
-        "explain": "Pascal's principle keeps F/A the same, so F_small = 3000 × (0.02 / 0.20) = 300 N. 50 N and 150 N use area ratios of 1/60 and 1/20, and 450 N uses a ratio of 0.15."
+        "explain": "Pascal's principle keeps F/A the same, so F_small = 2000 × (0.05 / 0.25) = 400 N. 80 N and 200 N use area ratios of 1/25 and 1/10, and 500 N uses a ratio of 0.25."
       },
       {
         "id": "PHY00181",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "What gauge pressure does fresh water produce at a depth of 8.0 m? Take ρ = 1000 kg/m³ and g = 9.8 m/s².",
+        "q": "What gauge pressure does fresh water produce at a depth of 6.0 m? Take ρ = 1000 kg/m³ and g = 9.8 m/s².",
         "options": [
           "9800 Pa",
-          "78400 Pa",
-          "80 Pa",
+          "58800 Pa",
+          "60 Pa",
           "1.013 × 10⁵ Pa"
         ],
         "correct": 1,
-        "explain": "Gauge pressure is ρ g h = 1000 × 9.8 × 8.0 = 78400 Pa. 9800 Pa drops the depth, 80 Pa drops both density factors, and 1.013 × 10⁵ Pa is standard atmospheric pressure rather than the water column."
+        "explain": "Gauge pressure is ρ g h = 1000 × 9.8 × 6.0 = 58800 Pa. 9800 Pa drops the depth, 60 Pa drops both density factors, and 1.013 × 10⁵ Pa is standard atmospheric pressure rather than the water column."
       },
       {
         "id": "PHY00182",
         "type": "mcq",
         "cat": "Chapter 2: Pressure in Fluids",
-        "q": "A room is at 1.123 × 10⁵ Pa. What force does this pressure exert on a table measuring 2 m × 3 m?",
+        "q": "A room is at 1.25 × 10⁵ Pa. What force does this pressure exert on a table measuring 2 m × 4 m?",
         "options": [
-          "1.123 × 10⁵ N",
-          "1.87 × 10⁴ N",
-          "6.74 × 10⁴ N",
-          "6.74 × 10⁵ N"
+          "1.25 × 10⁵ N",
+          "2.50 × 10⁴ N",
+          "6.25 × 10⁴ N",
+          "1.00 × 10⁶ N"
         ],
         "correct": 3,
-        "explain": "Area is 6 m², so force is 1.123 × 10⁵ × 6 = 6.74 × 10⁵ N. 1.123 × 10⁵ N ignores the area, and the 10⁴ N values divide by the area or drop a factor of ten."
+        "explain": "Area is 8 m², so force is 1.25 × 10⁵ × 8 = 1.00 × 10⁶ N. 1.25 × 10⁵ N ignores the area, 6.25 × 10⁴ N divides by one side, and 2.50 × 10⁴ N divides by a side of 5 m."
       },
       {
         "id": "PHY00183",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "A diver's gauge pressure is 2.67 × 10⁵ Pa in fresh water of density 1000 kg/m³. How deep is the diver? Take g = 9.8 m/s².",
+        "q": "A diver's gauge pressure is 1.96 × 10⁵ Pa in fresh water of density 1000 kg/m³. How deep is the diver? Take g = 9.8 m/s².",
         "options": [
-          "2.72 m",
-          "27.2 m",
-          "0.0272 m",
-          "272 m"
+          "2.00 m",
+          "20.0 m",
+          "0.0200 m",
+          "200 m"
         ],
         "correct": 1,
-        "explain": "Depth is 2.67 × 10⁵ / (1000 × 9.8) = 27.2 m. 0.0272 m and 2.72 m drop powers of ten, and 272 m multiplies by ten."
+        "explain": "Depth is 1.96 × 10⁵ / (1000 × 9.8) = 20.0 m. 0.0200 m and 2.00 m drop powers of ten, and 200 m multiplies by ten."
       },
       {
         "id": "PHY00184",
         "type": "mcq",
         "cat": "Chapter 2: Gauge Pressure",
-        "q": "At a depth of 1000 m in water of density 1000 kg/m³, with atmospheric pressure 1.10 × 10⁵ Pa and g = 9.8 m/s², which pair of pressures is correct?",
+        "q": "At a depth of 500 m in water of density 1000 kg/m³, with atmospheric pressure 1.01 × 10⁵ Pa and g = 9.8 m/s², which pair of pressures is correct?",
         "options": [
-          "Gauge pressure 1.10 × 10⁵ Pa and absolute pressure 9.91 × 10⁶ Pa",
-          "Gauge pressure 9.8 × 10⁶ Pa and absolute pressure 9.91 × 10⁶ Pa",
-          "Gauge pressure 1.10 × 10⁵ Pa and absolute pressure 9.80 × 10⁵ Pa",
-          "Gauge pressure 9.8 × 10⁶ Pa and absolute pressure 9.80 × 10⁵ Pa"
+          "Gauge pressure 1.01 × 10⁵ Pa and absolute pressure 4.90 × 10⁶ Pa",
+          "Gauge pressure 4.90 × 10⁶ Pa and absolute pressure 5.00 × 10⁶ Pa",
+          "Gauge pressure 1.01 × 10⁵ Pa and absolute pressure 4.90 × 10⁵ Pa",
+          "Gauge pressure 4.90 × 10⁶ Pa and absolute pressure 4.90 × 10⁵ Pa"
         ],
         "correct": 1,
-        "explain": "Gauge pressure is ρ g h = 1000 × 9.8 × 1000 = 9.8 × 10⁶ Pa. Absolute pressure adds the atmosphere, 9.8 × 10⁶ + 1.10 × 10⁵ = 9.91 × 10⁶ Pa. A gauge value of 1.10 × 10⁵ Pa is the atmosphere alone, and an absolute value of 9.80 × 10⁵ Pa drops a factor of ten."
+        "explain": "Gauge pressure is ρ g h = 1000 × 9.8 × 500 = 4.90 × 10⁶ Pa. Absolute pressure adds the atmosphere, 4.90 × 10⁶ + 1.01 × 10⁵ = 5.001 × 10⁶ Pa ≈ 5.00 × 10⁶ Pa. A gauge value of 1.01 × 10⁵ Pa is the atmosphere alone, and an absolute value of 4.90 × 10⁵ Pa drops a factor of ten."
       },
       {
         "id": "PHY00185",
         "type": "mcq",
         "cat": "Chapter 2: Pascal's Principle",
-        "q": "A hydraulic lift has a large piston of area 0.10 m² and a small piston of area 0.010 m². What force on the small piston lifts a 1500 N object?",
+        "q": "A hydraulic lift has a large piston of area 0.20 m² and a small piston of area 0.020 m². What force on the small piston lifts a 2400 N object?",
         "options": [
-          "15 N",
-          "15000 N",
-          "150 N",
-          "1500 N"
+          "24 N",
+          "24000 N",
+          "240 N",
+          "2400 N"
         ],
         "correct": 2,
-        "explain": "F_small = 1500 × (0.010 / 0.10) = 150 N. 15 N drops a factor of ten, 15000 N inverts the area ratio, and 1500 N assumes the areas are equal."
+        "explain": "F_small = 2400 × (0.020 / 0.20) = 240 N. 24 N drops a factor of ten, 24000 N inverts the area ratio, and 2400 N assumes the areas are equal."
       },
       {
         "id": "PHY00186",
         "type": "mcq",
         "cat": "Chapter 2: Buoyancy and Archimedes' Principle",
-        "q": "What is the buoyant force on a fully submerged box of volume 0.5 m³ in fresh water of density 1000 kg/m³? Take g = 9.8 m/s².",
+        "q": "What is the buoyant force on a fully submerged box of volume 0.40 m³ in fresh water of density 1000 kg/m³? Take g = 9.8 m/s².",
         "options": [
-          "4900 N upward",
-          "490 N upward",
-          "500 N downward",
-          "19600 N upward"
+          "3920 N upward",
+          "392 N upward",
+          "400 N downward",
+          "7840 N upward"
         ],
         "correct": 0,
-        "explain": "Buoyant force is ρ g V = 1000 × 9.8 × 0.5 = 4900 N, directed upward. 19600 N uses a volume of 2 m³, 490 N drops a factor of ten, and 500 N downward has both the wrong magnitude and the wrong direction."
+        "explain": "Buoyant force is ρ g V = 1000 × 9.8 × 0.40 = 3920 N, directed upward. 7840 N uses a volume of 0.80 m³, 392 N drops a factor of ten, and 400 N downward has both the wrong magnitude and the wrong direction."
       },
       {
         "id": "PHY00187",
@@ -2029,43 +2015,43 @@
         "id": "PHY00190",
         "type": "mcq",
         "cat": "Chapter 1: Stress, Strain & Young's Modulus",
-        "q": "A force of 100 N acts over an area of 0.01 m². What stress is produced?",
+        "q": "A force of 180 N acts over an area of 0.020 m². What stress is produced?",
         "options": [
-          "100 Pa",
-          "1000 Pa",
-          "10000 Pa",
-          "10 Pa"
+          "180 Pa",
+          "1800 Pa",
+          "9000 Pa",
+          "9 Pa"
         ],
         "correct": 2,
-        "explain": "Stress is force divided by area, 100 / 0.01 = 10000 Pa. 10 Pa inverts the division, 100 Pa ignores the area, and 1000 Pa uses an area of 0.1 m²."
+        "explain": "Stress is force divided by area, 180 / 0.020 = 9000 Pa. 9 Pa inverts the division, 180 Pa ignores the area, and 1800 Pa uses an area of 0.10 m²."
       },
       {
         "id": "PHY00191",
         "type": "mcq",
         "cat": "Chapter 1: Stress, Strain & Young's Modulus",
-        "q": "A cortical bone has Young's modulus 16 × 10⁹ Pa and is subjected to a stress of 80 × 10⁶ Pa. What strain is produced?",
+        "q": "A cortical bone has Young's modulus 20 × 10⁹ Pa and is subjected to a stress of 50 × 10⁶ Pa. What strain is produced?",
         "options": [
-          "0.005",
-          "0.05",
-          "0.0005",
-          "0.002"
+          "0.0025",
+          "0.025",
+          "0.00025",
+          "0.0050"
         ],
         "correct": 0,
-        "explain": "Within the elastic limit, strain is stress divided by Young's modulus, 80 × 10⁶ / 16 × 10⁹ = 0.005. 0.0005 drops a factor of ten, 0.002 uses a modulus of 40 × 10⁹ Pa, and 0.05 inverts a power of ten."
+        "explain": "Within the elastic limit, strain is stress divided by Young's modulus, 50 × 10⁶ / 20 × 10⁹ = 0.0025. 0.00025 drops a factor of ten, 0.0050 uses a modulus of 10 × 10⁹ Pa, and 0.025 inverts a power of ten."
       },
       {
         "id": "PHY00192",
         "type": "mcq",
         "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
-        "q": "Blood flows through a vessel of cross-sectional area 0.08 m² at 0.5 m/s. The vessel narrows to 0.02 m². What is the new speed, if the fluid is incompressible?",
+        "q": "Blood flows through a vessel of cross-sectional area 3.0×10⁻⁴ m² at 0.30 m/s. The vessel narrows to 1.0×10⁻⁴ m². What is the new speed, if the fluid is incompressible?",
         "options": [
-          "8 m/s",
-          "0.125 m/s",
-          "0.5 m/s",
-          "2 m/s"
+          "2.7 m/s",
+          "0.10 m/s",
+          "0.30 m/s",
+          "0.90 m/s"
         ],
         "correct": 3,
-        "explain": "Continuity for an incompressible fluid gives A1 v1 = A2 v2, so v2 = 0.08 × 0.5 / 0.02 = 2 m/s. 0.125 m/s inverts the area ratio, 0.5 m/s assumes speed is unchanged, and 8 m/s uses a ratio of 16."
+        "explain": "Continuity for an incompressible fluid gives A1 v1 = A2 v2, so v2 = 3.0×10⁻⁴ × 0.30 / 1.0×10⁻⁴ = 0.90 m/s. 0.10 m/s inverts the area ratio, 0.30 m/s assumes speed is unchanged, and 2.7 m/s uses a ratio of 9."
       },
       {
         "id": "PHY00193",
@@ -2169,15 +2155,15 @@
         "id": "PHY00200",
         "type": "mcq",
         "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
-        "q": "The cross-section of an incompressible vessel falls by a factor of 4. By what factor does the speed rise, in steady flow?",
+        "q": "The cross-section of an incompressible vessel falls by a factor of 5. By what factor does the speed rise, in steady flow?",
         "options": [
           "By a factor of 2",
-          "By a factor of 4",
-          "By a factor of 8",
-          "By a factor of 16"
+          "By a factor of 5",
+          "By a factor of 10",
+          "By a factor of 25"
         ],
         "correct": 1,
-        "explain": "For an incompressible fluid, area times speed is constant, so speed rises by the same factor that area falls. A drop by 4 raises speed by 4, not by 2, 8, or 16."
+        "explain": "For an incompressible fluid, area times speed is constant, so speed rises by the same factor that area falls. A drop by 5 raises speed by 5, not by 2, 10, or 25."
       },
       {
         "id": "PHY00201",
@@ -2264,20 +2250,6 @@
         "explain": "Bernoulli's equation is written for steady, incompressible, frictionless (ideal), streamline flow. Unsteady flow, compressibility, frictional losses, or a swirling path falls outside that ideal case."
       },
       {
-        "id": "PHY00207",
-        "type": "mcq",
-        "cat": "Chapter 3: Bernoulli's Equation",
-        "q": "In a narrowed artery, continuity and Bernoulli assign which pair of changes?",
-        "options": [
-          "Speed falls by continuity, and pressure rises by Bernoulli",
-          "Speed rises by continuity, and pressure falls by Bernoulli",
-          "Speed rises by Bernoulli, and pressure falls by continuity",
-          "Speed and pressure both rise, by either relation"
-        ],
-        "correct": 1,
-        "explain": "Continuity raises speed where area falls. Bernoulli then lowers pressure where speed rises. Reversing either change, or giving both jobs to one relation, swaps the two results."
-      },
-      {
         "id": "PHY00208",
         "type": "mcq",
         "cat": "Chapter 3: Bernoulli's Equation",
@@ -2323,15 +2295,15 @@
         "id": "PHY00211",
         "type": "mcq",
         "cat": "Chapter 3: Mass Flow Rate and Equation of Continuity",
-        "q": "Blood flows at 0.25 m/s through a vessel of area 0.04 m². The vessel narrows to 0.01 m². What is the new speed, if the blood is incompressible?",
+        "q": "Blood flows at 0.20 m/s through a vessel of area 0.030 m². The vessel narrows to 0.010 m². What is the new speed, if the blood is incompressible?",
         "options": [
-          "0.50 m/s",
-          "1.0 m/s",
-          "2.0 m/s",
-          "4.0 m/s"
+          "0.30 m/s",
+          "0.60 m/s",
+          "1.2 m/s",
+          "2.4 m/s"
         ],
         "correct": 1,
-        "explain": "Area times speed is constant, so 0.04 × 0.25 = 0.01 × v₂. That gives v₂ = 1.0 m/s."
+        "explain": "Area times speed is constant, so 0.030 × 0.20 = 0.010 × v₂. That gives v₂ = 0.60 m/s."
       },
       {
         "id": "PHY00212",
@@ -3576,29 +3548,29 @@
         "id": "PHY00242",
         "type": "mcq",
         "cat": "Chapter 2: Density",
-        "q": "A metal block measures 4.0 cm × 5.0 cm × 6.0 cm and has a mass of 480 g. Taking the density of water as 1.0 g/cm³, what is the specific gravity of the metal?",
+        "q": "A metal block measures 3.0 cm × 4.0 cm × 5.0 cm and has a mass of 360 g. Taking the density of water as 1.0 g/cm³, what is the specific gravity of the metal?",
         "options": [
-          "0.25",
-          "2.0",
-          "4.0",
-          "8.0"
+          "0.167",
+          "3.0",
+          "6.0",
+          "12"
         ],
         "correct": 2,
-        "explain": "Volume = 4.0 × 5.0 × 6.0 = 120 cm³. Density = 480 / 120 = 4.0 g/cm³. Specific gravity = ρ_substance / ρ_water = 4.0 / 1.0 = 4.0 (dimensionless). 0.25 inverts mass/volume; 2.0 undercounts the volume product; 8.0 treats an edge product incorrectly."
+        "explain": "Volume = 3.0 × 4.0 × 5.0 = 60 cm³. Density = 360 / 60 = 6.0 g/cm³. Specific gravity = ρ_substance / ρ_water = 6.0 / 1.0 = 6.0 (dimensionless). 0.167 inverts mass/volume; 3.0 undercounts the volume product; 12 doubles the density."
       },
       {
         "id": "PHY00243",
         "type": "mcq",
         "cat": "Chapter 2: Open Tube Manometer",
-        "q": "An open-tube water manometer connected to a gas container shows a height difference Δh = 25 cm, with the container-side level lower. If ρ_water = 1000 kg/m³, g = 9.8 m/s², and P_atm = 1.013 × 10⁵ Pa, what is the absolute pressure of the gas?",
+        "q": "An open-tube water manometer connected to a gas container shows a height difference Δh = 40 cm, with the container-side level lower. If ρ_water = 1000 kg/m³, g = 9.8 m/s², and P_atm = 1.013 × 10⁵ Pa, what is the absolute pressure of the gas?",
         "options": [
-          "2.45 × 10³ Pa",
-          "9.88 × 10⁴ Pa",
-          "1.037 × 10⁵ Pa",
-          "1.258 × 10⁵ Pa"
+          "3.92 × 10³ Pa",
+          "9.74 × 10⁴ Pa",
+          "1.052 × 10⁵ Pa",
+          "1.405 × 10⁵ Pa"
         ],
         "correct": 2,
-        "explain": "Gauge pressure = ρgΔh = 1000 × 9.8 × 0.25 = 2450 Pa. Absolute pressure = P_atm + P_gauge = 1.013 × 10⁵ + 2450 = 1.0375 × 10⁵ Pa ≈ 1.037 × 10⁵ Pa. 2.45 × 10³ Pa is the gauge pressure alone; 9.88 × 10⁴ Pa subtracts gauge from atm; 1.258 × 10⁵ Pa overstates the column contribution."
+        "explain": "Gauge pressure = ρgΔh = 1000 × 9.8 × 0.40 = 3920 Pa. Absolute pressure = P_atm + P_gauge = 1.013 × 10⁵ + 3920 = 1.0522 × 10⁵ Pa ≈ 1.052 × 10⁵ Pa. 3.92 × 10³ Pa is the gauge pressure alone; 9.74 × 10⁴ Pa subtracts gauge from atm; 1.405 × 10⁵ Pa treats the column as 4 m rather than 0.40 m."
       }
     ]
   }

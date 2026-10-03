@@ -3265,7 +3265,7 @@ function paintWires(_ignored,wires,live){
   const ink=currentWireColor();
   wctx.globalCompositeOperation='source-over';
   wctx.globalAlpha=1;
-  wctx.lineWidth=2.2;
+  wctx.lineWidth=WIRE_STROKE;
   wctx.lineCap='round';
   wctx.lineJoin='round';
   wctx.setLineDash([]);
@@ -3479,22 +3479,71 @@ function followDrawPointer(ev, layer){
   }
   putWireTip(drawState.points, boardPoint(layer, ev));
 }
-function matchTargetAnchor(el){
+/* Stroke width shared by paint and snap spacing. Round caps touch when
+   endpoint centers are closer than this. */
+const WIRE_STROKE=2.2;
+const WIRE_END_GAP=WIRE_STROKE+1.5;
+function matchEdgeFrame(el){
   if(!el||!el.getBoundingClientRect) return null;
   const r=el.getBoundingClientRect();
   if(r.width<1||r.height<1) return null;
   const stage=document.querySelector('.match-stage');
   const sr=stage&&stage.getBoundingClientRect?stage.getBoundingClientRect():{left:0,top:0};
   const side=el.dataset?el.dataset.side:'';
-  const x=side==='L'?r.right:side==='R'?r.left:(r.left+r.right)/2;
-  const y=(r.top+r.bottom)/2;
-  return {x:x-sr.left,y:y-sr.top,side};
+  const edge=side==='L'?r.right:side==='R'?r.left:(r.left+r.right)/2;
+  let radius=0;
+  try{ radius=parseFloat(getComputedStyle(el).borderTopLeftRadius)||0; }catch(e){ radius=0; }
+  return {
+    x:edge-sr.left,
+    top:r.top-sr.top,
+    bottom:r.bottom-sr.top,
+    side,
+    id:el.dataset?String(el.dataset.id):'',
+    radius
+  };
+}
+function matchTargetAnchor(el){
+  const frame=matchEdgeFrame(el);
+  if(!frame) return null;
+  return {x:frame.x,y:(frame.top+frame.bottom)/2,side:frame.side};
+}
+/* A snapped wire ends on this pill when its tip sits on the inward edge.
+   The same id on the source side of a wire drawn the other way does not. */
+function wireEndsOnFrame(w, frame){
+  if(!w||w.loose||w.leftId==null||w.rightId==null||!frame) return false;
+  if(frame.side==='R' && String(w.rightId)!==frame.id) return false;
+  if(frame.side==='L' && String(w.leftId)!==frame.id) return false;
+  if(frame.side!=='L' && frame.side!=='R') return false;
+  const pts=wirePoints(w);
+  if(!pts.length) return false;
+  const tip=pts[pts.length-1];
+  return Math.abs(tip.x-frame.x)<=2.5 && tip.y>=frame.top-2 && tip.y<=frame.bottom+2;
+}
+function approachYOf(pts){
+  if(!pts||!pts.length) return 0;
+  return pts.length>=2 ? pts[pts.length-2].y : pts[0].y;
+}
+function spreadSlotYs(frame, n){
+  const half=WIRE_STROKE/2+0.6;
+  function insetRange(inset){
+    const span=frame.bottom-frame.top;
+    const cap=Math.max(0, span/2-0.5);
+    inset=Math.min(Math.max(inset,0), cap);
+    return [frame.top+inset, frame.bottom-inset];
+  }
+  let range=insetRange(Math.max(half, frame.radius||0));
+  if(n>1 && (range[1]-range[0])/(n-1) < WIRE_END_GAP) range=insetRange(half);
+  if(n<=1 || range[1]<=range[0]) return [(frame.top+frame.bottom)/2];
+  const ys=[];
+  for(let i=0;i<n;i++) ys.push(range[0]+(range[1]-range[0])*i/(n-1));
+  return ys;
 }
 /* Meet the destination pill's inward edge and stop. Drop any trailing points
-   that already crossed into the choice box so the stroke never paints inside. */
+   that already crossed into the choice box so the stroke never paints inside.
+   Finish with a short outside stub so the last segment does not slide along
+   the edge into a neighbor. */
 function snapWireEnd(points, anchor){
   if(!points||!anchor) return;
-  if(points.length<2){ points.push({x:anchor.x,y:anchor.y}); return; }
   const side=anchor.side||'';
   const edgeX=anchor.x;
   const past=side==='R'
@@ -3504,19 +3553,59 @@ function snapWireEnd(points, anchor){
     :()=>false;
   let keep=points.length;
   while(keep>0 && past(points[keep-1])) keep--;
-  if(keep===0){
-    points.length=0;
-    points.push({x:anchor.x,y:anchor.y});
+  points.length=keep;
+  const lead=Math.max(8, WIRE_STROKE*3);
+  const inMargin=side==='R'
+    ?(p)=>p.x>edgeX-lead
+    :side==='L'
+    ?(p)=>p.x<edgeX+lead
+    :()=>false;
+  while(points.length && inMargin(points[points.length-1])) points.pop();
+  const stubX=side==='R'?edgeX-lead:side==='L'?edgeX+lead:anchor.x;
+  if(!points.length) points.push({x:stubX,y:anchor.y});
+  const prev=points[points.length-1];
+  if(Math.abs(prev.x-stubX)>0.4 || Math.abs(prev.y-anchor.y)>0.4){
+    points.push({x:stubX,y:anchor.y});
+  }
+  points.push({x:anchor.x,y:anchor.y});
+}
+/* Spread every snapped end on this pill along the facing edge. One shared
+   midpoint makes several strokes merge and touch; distinct slots, farther
+   apart than the stroke, keep the caps from touching. X stays on the edge. */
+function spreadSnapAnchors(el, points, wires, replaceLeftId){
+  const frame=matchEdgeFrame(el);
+  if(!frame){
+    snapWireEnd(points, matchTargetAnchor(el));
     return;
   }
-  if(keep<points.length){
-    // Drop the interior tail, then append the edge so no chord is drawn inside.
-    points.length=keep;
-    points.push({x:anchor.x,y:anchor.y});
-    return;
-  }
-  const tip=points[points.length-1];
-  tip.x=anchor.x; tip.y=anchor.y;
+  const peers=[];
+  (wires||[]).forEach(w=>{
+    if(replaceLeftId!=null && !w.loose && String(w.leftId)===String(replaceLeftId)) return;
+    if(wireEndsOnFrame(w, frame)) peers.push(w);
+  });
+  const items=peers.map(w=>({w, y:approachYOf(wirePoints(w))}));
+  items.push({w:null, y:approachYOf(points)});
+  items.sort((a,b)=>(a.y-b.y) || (a.w?1:-1));
+  const ys=spreadSlotYs(frame, items.length);
+  items.forEach((item,i)=>{
+    const anchor={x:frame.x,y:ys[i],side:frame.side};
+    if(!item.w){ snapWireEnd(points, anchor); return; }
+    const pts=wirePoints(item.w);
+    if(!pts.length) return;
+    const tip=pts[pts.length-1];
+    const lead=Math.max(8, WIRE_STROKE*3);
+    if(pts.length>=2){
+      const prev=pts[pts.length-2];
+      const near=frame.side==='R'
+        ? prev.x>=anchor.x-lead-0.5 && prev.x<=anchor.x+0.5
+        : frame.side==='L'
+        ? prev.x<=anchor.x+lead+0.5 && prev.x>=anchor.x-0.5
+        : false;
+      if(near) prev.y=anchor.y;
+    }
+    tip.x=anchor.x;
+    tip.y=anchor.y;
+  });
 }
 function onDrawMove(ev){
   if(!drawState) return;
@@ -3584,7 +3673,7 @@ function onDrawUp(ev){
       // Persist only correct pairs; replace this left's prior committed wire.
       // Unfinished/loose strokes stay on the canvas. A right may intentionally
       // serve multiple lefts (e.g. shared base units).
-      snapWireEnd(drawState.points, matchTargetAnchor(hit));
+      spreadSnapAnchors(hit, drawState.points, cur.wires, leftId);
       const pts=drawState.points.map(pt=>({x:pt.x,y:pt.y}));
       cur.wires=cur.wires.filter(w=>w.loose || w.leftId!==leftId);
       cur.pairs[leftId]=rightId;
