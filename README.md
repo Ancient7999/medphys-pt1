@@ -2,7 +2,7 @@ This README is AI-generated.
 
 Open the Medical Physics Periodic Test 1 interface.
 
-https://SonicUnligmated.github.io/medphys-pt1/
+https://Ancient7999.github.io/medphys-pt1/
 
 # Medical Physics Periodic Test 1 — Main Menu · Study · Quiz
 
